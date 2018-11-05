@@ -1,7 +1,7 @@
 #' @title Fetch appropriate daily value sites from NWIS
 #' 
 #' @param ind_file character file name where the output should be saved
-#' @param dates object from viz_config.yaml that specifies dates as string
+#' @param dates object from viz_config.yml that specifies dates as string
 fetch_dv_sites <- function(ind_file, dates){
 
   hucs <- zeroPad(1:21, 2) # all hucs

@@ -2,9 +2,9 @@
 #' 
 #' @param ind_file character file name where the output should be saved
 #' @param sites_ind indicator file for the vector of site numbers
-#' @param request_limit number indicating how many sites to include per dataRetrieval request
+#' @param request_limit number indicating how many sites to include per dataRetrieval request (from viz_config.yml)
 #' @param percentiles character vector of the types of stats to include, i.e. `c("10", "75")` 
-#' will return the 10th and 75th percentiles
+#' will return the 10th and 75th percentiles (from viz_config.yml)
 fetch_site_stats <- function(ind_file, sites_ind, request_limit, percentiles){
    
   sites <- readRDS(scipiper::sc_retrieve(sites_ind))
