@@ -5,8 +5,7 @@
 process_site_locations_to_sp <- function(ind_file, site_locations_ind){
   
   site_data <- readRDS(scipiper::sc_retrieve(site_locations_ind, remake_file = '1_fetch.yml'))
-  
-  coords <- cbind(site_data$lon, site_data$lat)
+
   sp_sites <- sp::SpatialPointsDataFrame(
     coords = dplyr::select(site_data, lat, lon), 
     data = dplyr::select(site_data, -lat, -lon), 
