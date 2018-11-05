@@ -17,13 +17,8 @@ sources:
   - 6_visualize/src/create_gif_makefile.R
   - 6_visualize/src/prep_watermark_fun.R
   - 6_visualize/src/prep_basemap_fun.R
-  - 6_visualize/src/prep_view_fun.R
-  - 6_visualize/src/prep_storm_line_fun.R
   - 6_visualize/src/prep_gage_sites_fun.R
-  - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
-  - 6_visualize/src/prep_major_cities_fun.R
-  - 6_visualize/src/prep_ocean_name_fun.R
   - 6_visualize/src/visualize_utils.R
   - 6_visualize/src/combine_animation_frames.R
 
@@ -55,7 +50,7 @@ targets:
   date_display_tz:
     command: viz_config[[I('date_display_tz')]]
   gage_color_config:
-    command: viz_config[I(c('gage_flood_col','gage_norm_col','gage_out_col','gage_line_col','gage_ltn_col','gage_stn_col'))]
+    command: viz_config[I(c('gage_norm_col','gage_line_col'))]
   intro_config:
     command: viz_config[[I(c('intro'))]]
   legend_text_cfg:
@@ -74,20 +69,12 @@ targets:
     command: component_placement[[I('legend_x_pos')]]
   legend_y_pos:
     command: component_placement[[I('legend_y_pos')]]
-  sparkline_placement:
-    command: component_placement[[I('sparks')]]
   outro_placement:
     command: component_placement[[I('outro')]]
-
-  # ---- location of labels on figure ---- #
-  ocean_name_placement:
-    command: viz_config[[I('ocean_name_placement')]]
 
   # ---- static image calls ----- #
   view_cfg:
     command: viz_config[I('ocean_col')]
-  view_fun:
-    command: prep_view_fun(view_polygon, view_cfg)
 
   bbox_fun:
     command: prep_bbox_fun(view_config)
@@ -95,42 +82,11 @@ targets:
   basemap_fun:
     command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
 
-  storm_line_cfg:
-    command: viz_config[I('storm_line_col')]
-  storm_line_fun:
-    command: prep_storm_line_fun("2_process/out/storm_line.rds.ind", storm_line_cfg)
-
-  storm_points_sf:
-    command: fetch_read('2_process/out/storm_points_interp.rds.ind')
-
   gage_sites_initial:
     command: prep_gage_sites_fun(stage_data, gage_color_config, storm_start_date)
 
-  stage_data:
-    command: fetch_read('2_process/out/cleaned_streamdata.rds.ind')
-
-  storm_start_date:
-    command: format_start_date(timestep_ind = '2_process/out/timesteps.rds.ind')
-
-  site_data:
-    command: fetch_read('2_process/out/gage_sites.rds.ind')
-
-  precip_rasters:
-    command: fetch_read('2_process/out/precip_rasters.rds.ind')
-
-  rivers_cfg:
-    command: viz_config[I(c('major_river_col','gage_river_col','lake_col','marsh_col'))]
-  rivers_fun:
-    command: prep_rivers_fun('2_process/out/river_geoms.rds.ind', rivers_cfg)
-
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)
-
-  ocean_name_fun:
-    command: prep_ocean_name_fun(ocean_name_placement)
-
-  cities_fun:
-    command: prep_major_cities_fun('1_fetch/out/major_cities.rds.ind')
 
   #### intro frames - animating the link between gages and sparklines ####
 

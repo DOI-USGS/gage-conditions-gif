@@ -1,0 +1,46 @@
+dates:
+  start: '2018-09-12'
+  end: '2018-09-19'
+date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
+frame_step: 3 # hours elapsed between GIF frames
+
+# view, dimensions
+bbox: [-83, 30.4, -67, 38.5]
+projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
+height: 512
+width: 1024
+
+# styling
+gage_line_col: "#3c829c"
+gage_norm_col: "#4BA3C3"
+legend_text:
+  cex: 1.5
+  col: "#161616"
+  family: ""
+
+# introductory animation
+intro:
+  t_last_start: 5 # last frame in the intro animation when a site should leave its lat/lon (they're staggered)
+  n_frames: 20 # number of frames in the intro animation linking gages to sparklines
+  elbow_radius: 50000 # radius of the curvature at the elbow of the dot travel path, in 10000ths of degrees
+  point_background: "#175676"
+  frame_delay_cs: 8 # delay between intro frames. cs = centiseconds = hundredths of a second
+
+frame_delay_cs: 14 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
+
+# Image placement for function calls of USGS watermark, legend, datetime, etc..
+#  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
+component_placement:
+  watermark_x_pos: "left"
+  watermark_y_pos: "top"
+  datetime: # above watermark for now
+    x1: 0.005
+    y1: 0.85
+  legend_x_pos: "left"
+  legend_y_pos: "bottom"
+  outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
+    xleft: 0.55
+    xright: 0.99
+    ytop_ltn: 0.6 # top y coordinate of the text and legend for the long-term network
+    ytop_stn: 0.85 # top y coordinate of the text and legend for the short-term network
+    ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more

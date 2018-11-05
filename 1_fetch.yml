@@ -2,192 +2,27 @@ target_default: 1_fetch
 
 packages:
   - dataRetrieval
-  - yaml
-  - httr
-  - sf
-  - sp
-  - mapdata
-  - maps
-  - ncdf4
-  - arrayhelpers
-  - geoknife
   - dplyr
-  - xml2
-  - jsonlite
 
 file_extensions:
   - ind
 
 sources:
-  - 1_fetch/src/fetch_streamdata.R
-  - 1_fetch/src/fetch_storm_track.R
   - 1_fetch/src/map_utils.R
-  - 1_fetch/src/fetch_sites.R
-  - 1_fetch/src/fetch_precip_nc.R
-  - 1_fetch/src/fetch_river_geometry.R
-  - 1_fetch/src/fetch_precip_bins.R
-  - 1_fetch/src/fetch_major_cities.R
   - 1_fetch/src/fetch_dv_sites.R
 
 targets:
 
   1_fetch:
     depends:
-      - view_polygon
-      - 1_fetch/out/storm_track.zip.ind
       - 1_fetch/out/all_sites.rds.ind
-      - 1_fetch/out/streamdata.rds.ind
-      - 1_fetch/out/precip_data.nc.ind
-      - 1_fetch/out/major_river_geometry.rds.ind
-      - 1_fetch/out/gage_river_geometry.rds.ind
-      - 1_fetch/out/waterbodies.rds.ind
-      - 1_fetch/out/major_cities.rds.ind
-      - 1_fetch/out/rapid_dep_sites.rds.ind
 
   # -- read config --
   viz_config:
     command: yaml.load_file('viz_config.yml')
-
   dates:
     command: viz_config[[I('dates')]]
-  stream_params:
-    command: yaml.load_file('1_fetch/cfg/stream_params.yml')
-  precip_config:
-    command: viz_config[I(c('precip_cols', 'precip_bin'))]
-
-  legend_styles:
-    command: viz_config[I(c('gage_flood_col','gage_norm_col','hurricane_cols','hurricane_col_names','storm_name','storm_line_col'))]
-
-  hurricane_cols:
-    command: viz_config[[I('hurricane_cols')]]
-
-  hurricane_col_names:
-    command: viz_config[[I('hurricane_col_names')]]
-
-  # -- determine precip colors and legend info --
-  precip_bins:
-    command: fetch_precip_bins(precip_config)
-
-  # -- get spatial extent and data --
-  view_config:
-    command: viz_config[I(c('bbox', 'projection', 'width', 'height'))]
-
-  1_fetch/out/view_polygon.rds.ind:
-    command: post_view_polygon(target_name, view_config)
-  1_fetch/out/view_polygon.rds:
-    command: gd_get('1_fetch/out/view_polygon.rds.ind')
-  view_polygon:
-    command: get_view_polygon('1_fetch/out/view_polygon.rds.ind')
-
-  secondary_geoms_config:
-    command: viz_config[I('secondary_geoms')]
-  1_fetch/out/secondary_geoms.rds.ind:
-    command: fetch_geoms(target_name, secondary_geoms_config, within = view_polygon)
-  1_fetch/out/secondary_geoms.rds:
-    command: gd_get('1_fetch/out/secondary_geoms.rds.ind')
-
-  focus_geoms_config:
-    command: viz_config[I('focus_geoms')]
-  1_fetch/out/focus_geoms.rds.ind:
-    command: fetch_geoms(target_name, focus_geoms_config, within = view_polygon)
-  1_fetch/out/focus_geoms.rds:
-    command: gd_get('1_fetch/out/focus_geoms.rds.ind')
-
-  # -- download stormtrack --
-  storm_track_cfg:
-    command: viz_config[I('storm_code')]
-  1_fetch/out/storm_track.zip.ind:
-    command: fetch_storm_track(ind_file=target_name, cfg=storm_track_cfg)
-  1_fetch/out/storm_track.zip:
-    command: gd_get('1_fetch/out/storm_track.zip.ind')
 
   # -- get sites and site info --
-  state_cds:
-    command: fetch_states_from_sf(sf_ind = '1_fetch/out/focus_geoms.rds.ind')
-  1_fetch/out/all_sites.rds.ind:
-    command: fetch_sites_from_states(
-      ind_file = target_name,
-      state_cds = state_cds,
-      dates = dates,
-      stream_params = stream_params)
-  1_fetch/out/all_sites.rds:
-    command: gd_get('1_fetch/out/all_sites.rds.ind')
-  # all_sites is limited to sites with flood stage, but for outro we don't want that limit
-  1_fetch/out/all_sites_really.rds.ind:
-    command: fetch_sites_from_states(
-      ind_file = target_name,
-      state_cds = state_cds,
-      dates = dates,
-      stream_params = stream_params,
-      require_flood_stage = I(FALSE))
-  1_fetch/out/all_sites_really.rds:
-    command: gd_get('1_fetch/out/all_sites_really.rds.ind')
 
   # -- get streamdata --
-  1_fetch/out/streamdata.rds.ind:
-    command: fetch_streamdata(
-      ind_file = target_name,
-      sites_ind = '2_process/out/gage_sites.rds.ind',
-      dates = dates,
-      stream_params = stream_params,
-      gd_config = 'lib/cfg/gd_config.yml')
-  1_fetch/out/streamdata.rds:
-    command: gd_get('1_fetch/out/streamdata.rds.ind')
-
-  # -- get precip --
-  1_fetch/out/precip_data.nc.ind:
-    command: fetch_precip_data(ind_file=target_name,
-                                view_polygon = view_polygon, times = dates)
-  1_fetch/out/precip_data.nc:
-    command: gd_get('1_fetch/out/precip_data.nc.ind')
-
-  # -- get river geometry --
-  fetch_streamorder:
-    command: viz_config[I('fetch_streamorder')]
-
-  1_fetch/out/major_river_geometry.rds.ind:
-    command: fetch_major_river_geoms(ind_file=target_name,
-                               view_polygon=view_polygon,
-                               fetch_streamorder=fetch_streamorder)
-  1_fetch/out/major_river_geometry.rds:
-    command: gd_get('1_fetch/out/major_river_geometry.rds.ind')
-
-  1_fetch/out/gage_river_geometry.rds.ind:
-    command: fetch_gage_river_geoms(ind_file=target_name,
-                               view_polygon=view_polygon,
-                               sites_ind='2_process/out/gage_sites.rds.ind')
-  1_fetch/out/gage_river_geometry.rds:
-    command: gd_get('1_fetch/out/gage_river_geometry.rds.ind')
-
-  # -- get waterbodies -- #
-  fetch_waterbody_areasqkm:
-    command: viz_config[I('fetch_waterbody_areasqkm')]
-
-  1_fetch/out/waterbodies.rds.ind:
-    command: fetch_waterbody_geoms(ind_file=target_name,
-                                   view_polygon=view_polygon,
-                                   fetch_waterbody_areasqkm=fetch_waterbody_areasqkm)
-  1_fetch/out/waterbodies.rds:
-    command: gd_get('1_fetch/out/waterbodies.rds.ind')
-
-  # -- get major cities -- #
-  city_config:
-    command: viz_config[[I('cities')]]
-
-  1_fetch/out/major_cities.rds.ind:
-    command: fetch_major_cities(
-      ind_file = target_name,
-      city_config = city_config,
-      within = view_polygon)
-  1_fetch/out/major_cities.rds:
-    command: gd_get('1_fetch/out/major_cities.rds.ind')
-
-  # -- get additional gage sites for outtro -- #
-  stn_event:
-    command: viz_config[[I('stn_event')]]
-  1_fetch/out/rapid_dep_sites.rds.ind:
-    command: fetch_rapid_dep_sites(
-      ind_file = target_name,
-      event = stn_event)
-  1_fetch/out/rapid_dep_sites.rds:
-    command: gd_get('1_fetch/out/rapid_dep_sites.rds.ind')
