@@ -32,3 +32,5 @@ targets:
   2_process/out/gage_sites.rds:
     command: gd_get('2_process/out/gage_sites.rds.ind')
 
+  2_process/out/projected_shifted_states.rds.ind:
+    command: project_shift_states(infile = "", projection)
