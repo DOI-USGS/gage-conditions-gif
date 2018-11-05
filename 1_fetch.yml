@@ -59,3 +59,7 @@ targets:
       dates = dates)
   1_fetch/out/dv_data.rds:
     command: gd_get('1_fetch/out/dv_data.rds.ind')
+
+  # See https://www.census.gov/geo/maps-data/data/cbf/cbf_state.html for details on this file.
+  1_fetch/in/pre_state_boundaries_census.zip:
+    command: download.file(destfile = target_name, url = I("http://www2.census.gov/geo/tiger/GENZ2017/shp/cb_2017_us_state_20m.zip"), method = I("libcurl"))
