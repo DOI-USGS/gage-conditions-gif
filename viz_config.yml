@@ -10,6 +10,10 @@ projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.8333333333
 height: 512
 width: 1024
 
+# fetch site data parameters
+request_limit: 10
+percentiles: ["05","10","20","25","50","75","80","90","95"]
+
 # styling
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
