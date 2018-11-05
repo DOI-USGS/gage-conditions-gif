@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 1_fetch/out/site_locations.rds.ind
+type: file
+hash: 204284312d62f416dacdb22ace61f845
+time: 2018-11-05 18:55:10 UTC
+depends:
+  1_fetch/out/sites.rds.ind: f18e7145934e7f8e0f6cd3f05c7bc519
+fixed: 815cf73829504ede512d11cef2f0b77a
+code:
+  functions:
+    fetch_site_locations: 4e220bbcbecd639095550475972c9dec
+

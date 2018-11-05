@@ -14,6 +14,7 @@ sources:
   - 1_fetch/src/fetch_dv_sites.R
   - 1_fetch/src/fetch_site_stats.R
   - 1_fetch/src/fetch_dv_data.R
+  - 1_fetch/src/fetch_site_locations.R
 
 targets:
 
@@ -22,6 +23,7 @@ targets:
       - 1_fetch/out/sites.rds.ind
       - 1_fetch/out/site_stats.rds.ind
       - 1_fetch/out/dv_data.rds.ind
+      - 1_fetch/out/site_locations.rds.ind
 
   # -- read config --
   viz_config:
@@ -40,6 +42,14 @@ targets:
       dates = dates)
   1_fetch/out/sites.rds:
     command: gd_get('1_fetch/out/sites.rds.ind')
+  
+  # -- get site locations --
+  1_fetch/out/site_locations.rds.ind:
+    command: fetch_site_locations(
+      ind_file = target_name,
+      sites_ind = '1_fetch/out/sites.rds.ind')
+  1_fetch/out/site_locations.rds:
+    command: gd_get('1_fetch/out/site_locations.rds.ind')
     
   # -- get site statistics --
   1_fetch/out/site_stats.rds.ind:
