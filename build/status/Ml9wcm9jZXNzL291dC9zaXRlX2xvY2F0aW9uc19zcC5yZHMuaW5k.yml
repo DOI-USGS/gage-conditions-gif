@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 2_process/out/site_locations_sp.rds.ind
+type: file
+hash: 44dfc826c656ab1b32dfcede0ef5db05
+time: 2018-11-05 21:16:34 UTC
+depends:
+  1_fetch/out/site_locations.rds.ind: 204284312d62f416dacdb22ace61f845
+fixed: 4509b4a06686ca31c1874b601471c247
+code:
+  functions:
+    process_site_locations_to_sp: 4042453f628e196259ed3b930455c159
+
