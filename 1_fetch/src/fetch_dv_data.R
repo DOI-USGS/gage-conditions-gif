@@ -5,7 +5,7 @@
 #' @param dates object from viz_config.yml that specifies dates as string
 fetch_dv_data <- function(ind_file, sites_ind, dates){
   
-  sites <- readRDS(scipiper::sc_retrieve(sites_ind))
+  sites <- readRDS(scipiper::sc_retrieve(sites_ind, remake_file = '1_fetch.yml'))
   
   dv_sites_data <- lapply(sites, FUN = function(x){
     d <- dataRetrieval::readNWISdata(

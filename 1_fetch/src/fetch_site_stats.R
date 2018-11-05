@@ -7,7 +7,7 @@
 #' will return the 10th and 75th percentiles (from viz_config.yml)
 fetch_site_stats <- function(ind_file, sites_ind, request_limit, percentiles){
    
-  sites <- readRDS(scipiper::sc_retrieve(sites_ind))
+  sites <- readRDS(scipiper::sc_retrieve(sites_ind, remake_file = '1_fetch.yml'))
   
   req_bks <- seq(1, length(sites), by=request_limit)
   stat_data <- data.frame()
