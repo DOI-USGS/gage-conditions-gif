@@ -15,7 +15,7 @@ targets:
 
   1_fetch:
     depends:
-      - 1_fetch/out/all_sites.rds.ind
+      - 1_fetch/out/sites.rds.ind
 
   # -- read config --
   viz_config:
@@ -23,6 +23,11 @@ targets:
   dates:
     command: viz_config[[I('dates')]]
 
-  # -- get sites and site info --
+  1_fetch/out/sites.rds.ind:
+    command: fetch_dv_sites(
+      ind_file = target_name,
+      dates = dates)
+  1_fetch/out/all_sites.rds:
+    command: gd_get('1_fetch/out/sites.rds.ind')
 
   # -- get streamdata --
