@@ -3,6 +3,8 @@ target_default: 1_fetch
 packages:
   - dataRetrieval
   - dplyr
+  - scipiper
+  - yaml
 
 file_extensions:
   - ind
@@ -10,7 +12,7 @@ file_extensions:
 sources:
   - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_dv_sites.R
-  - 1_fetch/src/fetch_site_sites.R
+  - 1_fetch/src/fetch_site_stats.R
   - 1_fetch/src/fetch_dv_data.R
 
 targets:
@@ -36,18 +38,18 @@ targets:
     command: fetch_dv_sites(
       ind_file = target_name,
       dates = dates)
-  1_fetch/out/all_sites.rds:
+  1_fetch/out/sites.rds:
     command: gd_get('1_fetch/out/sites.rds.ind')
     
   # -- get site statistics --
-  1_fetch/out/sites_stats.rds.ind:
+  1_fetch/out/site_stats.rds.ind:
     command: fetch_site_stats(
       ind_file = target_name,
       sites_ind = '1_fetch/out/sites.rds.ind',
       request_limit = request_limit,
       percentiles = percentiles)
-  1_fetch/out/sites_stats.rds:
-    command: gd_get('1_fetch/out/sites_stats.rds.ind')
+  1_fetch/out/site_stats.rds:
+    command: gd_get('1_fetch/out/site_stats.rds.ind')
 
   # -- get dv data --
   1_fetch/out/dv_data.rds.ind:

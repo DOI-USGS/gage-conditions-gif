@@ -27,7 +27,7 @@ fetch_dv_data <- function(ind_file, sites_ind, dates){
   names(dv_sites_data) <- sites
   
   # Write the data file and the indicator file
-  data_file <- as_data_file(ind_file)
-  saveRDS(stat_data, data_file)
-  gd_put(ind_file, data_file)
+  data_file <- scipiper::as_data_file(ind_file)
+  saveRDS(dv_sites_data, data_file)
+  scipiper::gd_put(ind_file, data_file)
 }

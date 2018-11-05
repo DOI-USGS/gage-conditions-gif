@@ -12,8 +12,9 @@ fetch_site_stats <- function(ind_file, sites_ind, request_limit, percentiles){
   req_bks <- seq(1, length(sites), by=request_limit)
   stat_data <- data.frame()
   for(i in req_bks) {
-    get_sites <- sites[i:(i+block_size-1)]
-    current_sites <- suppressWarnings(
+    last_site <- i+request_limit-1
+    get_sites <- sites[i:last_site]
+    current_sites <- suppressMessages(
       dataRetrieval::readNWISstat(
         siteNumbers = get_sites,
         parameterCd = "00060", 
@@ -21,10 +22,11 @@ fetch_site_stats <- function(ind_file, sites_ind, request_limit, percentiles){
         statType=paste0("P", percentiles)
       ))
     stat_data <- rbind(stat_data, current_sites)
+    print(paste("Completed", last_site, "of", length(sites)))
   }
   
   # Write the data file and the indicator file
-  data_file <- as_data_file(ind_file)
+  data_file <- scipiper::as_data_file(ind_file)
   saveRDS(stat_data, data_file)
-  gd_put(ind_file, data_file)
+  scipiper::gd_put(ind_file, data_file)
 }
