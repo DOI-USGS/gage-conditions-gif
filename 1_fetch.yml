@@ -27,6 +27,7 @@ sources:
   - 1_fetch/src/fetch_river_geometry.R
   - 1_fetch/src/fetch_precip_bins.R
   - 1_fetch/src/fetch_major_cities.R
+  - 1_fetch/src/fetch_dv_sites.R
 
 targets:
 
