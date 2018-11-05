@@ -4,7 +4,9 @@ include:
   - 1_fetch.yml
 
 packages:
-  
+  - dplyr
+  - scipiper
+  - sp
 
 file_extensions:
   - feather
@@ -12,13 +14,14 @@ file_extensions:
 
 sources:
   - 2_process/src/choose_timesteps.R
+  - 2_process/src/process_site_locations_to_sp.R
 
 targets:
 
   2_process:
     depends:
       - 2_process/out/timesteps.rds.ind
-      - 2_process/out/gage_sites.rds.ind
+      - 2_process/out/site_locations_sp.rds.ind
 
   # -- config --
   proj_str:
@@ -29,8 +32,12 @@ targets:
   2_process/out/timesteps.rds:
     command: gd_get('2_process/out/timesteps.rds.ind')
 
-  2_process/out/gage_sites.rds:
-    command: gd_get('2_process/out/gage_sites.rds.ind')
+  2_process/out/site_locations_sp.rds.ind:
+    command: process_site_locations_to_sp(
+      ind_file = target_name,
+      site_locations_ind = '1_fetch/out/site_locations.rds.ind')
+  2_process/out/site_locations_sp.rds:
+    command: gd_get('2_process/out/site_locations_sp.rds.ind')
 
   2_process/out/projected_shifted_states.rds.ind:
     command: project_shift_states(infile = "", projection)
