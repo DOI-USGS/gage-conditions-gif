@@ -11,6 +11,7 @@ sources:
   - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_dv_sites.R
   - 1_fetch/src/fetch_site_sites.R
+  - 1_fetch/src/fetch_dv_data.R
 
 targets:
 
@@ -18,6 +19,7 @@ targets:
     depends:
       - 1_fetch/out/sites.rds.ind
       - 1_fetch/out/site_stats.rds.ind
+      - 1_fetch/out/dv_data.rds.ind
 
   # -- read config --
   viz_config:
@@ -47,4 +49,11 @@ targets:
   1_fetch/out/sites_stats.rds:
     command: gd_get('1_fetch/out/sites_stats.rds.ind')
 
-  # -- get streamdata --
+  # -- get dv data --
+  1_fetch/out/dv_data.rds.ind:
+    command: fetch_dv_data(
+      ind_file = target_name,
+      sites_ind = '1_fetch/out/sites.rds.ind',
+      dates = dates)
+  1_fetch/out/dv_data.rds:
+    command: gd_get('1_fetch/out/dv_data.rds.ind')
