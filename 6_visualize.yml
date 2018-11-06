@@ -7,6 +7,7 @@ packages:
   - dplyr
   - tidyr
   - showtext
+  - sysfonts
 
 file_extensions:
   - feather
@@ -15,35 +16,29 @@ file_extensions:
 sources:
   - 6_visualize/src/create_gif_tasks.R
   - 6_visualize/src/create_gif_makefile.R
-  - 6_visualize/src/prep_watermark_fun.R
+  - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_basemap_fun.R
-  - 6_visualize/src/prep_gage_sites_fun.R
-  - 6_visualize/src/prep_legend_fun.R
-  - 6_visualize/src/visualize_utils.R
+  - 6_visualize/src/prep_watermark_fun.R
   - 6_visualize/src/combine_animation_frames.R
 
 targets:
 
   6_visualize:
     depends:
-      - 6_storm_gif_tasks.yml
-      - 6_visualize/log/6_storm_gif_tasks.ind
-      - 6_intro_gif_tasks.yml
-      - 6_visualize/log/6_intro_gif_tasks.ind
-      - 6_visualize/out/animation_a.gif
+      - font_abel
+      - font_oswald
+      - 6_timestep_gif_tasks.yml
+      - 6_visualize/log/6_timestep_gif_tasks.ind
+      - 6_visualize/out/year_in_review.gif
 
-  # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
-  # adn storm_line. each of these components doesn't change over time. each
-  # component is a closure, i.e., a function that contains all the data it needs
-  # to run. the closure should accept 0 arguments. the closure should be saved
-  # into an RDS file with a corresponding .rds.ind indicator file.
+  #### fonts. not sure how to add these better, but this might do ####
 
-  # tmp=temporary folder for holding files to only be created on 1 computer.
-  # log=folder for the few indicator files that don't correspond to a data file.
-  visualize_folders:
-    command: list(
-      tmp=I('6_visualize/tmp'),
-      log=I('6_visualize/log'))
+  font_abel:
+    command: font_add_google(I('Abel'), I('abel'))
+  font_oswald:
+    command: font_add_google(I('Oswald'), I('Oswald'))
+
+  #### non-positional configuration information ####
 
   dates_config:
     command: viz_config[[I('dates')]]
@@ -56,7 +51,8 @@ targets:
   legend_text_cfg:
     command: viz_config[[I("legend_text")]]
 
-  # ---- location of images on figure ---- #
+  #### location of images on figure ####
+
   component_placement:
     command: viz_config[[I('component_placement')]]
   datetime_placement:
@@ -72,131 +68,79 @@ targets:
   outro_placement:
     command: component_placement[[I('outro')]]
 
-  # ---- static image calls ----- #
+  #### static plot-component functions ####
+
+  # each plot-component function is a closure, i.e., a function that contains
+  # all the data it needs to run. the closure should accept 0 arguments.
+  # the closure should be saved into an RDS file with a corresponding .rds.ind indicator file
+  # to save on remake hashing time
+
   view_cfg:
-    command: viz_config[I('ocean_col')]
+    command: viz_config[I('background_col')]
+  view_fun:
+    command: prep_view_fun(view_polygon, view_cfg)
 
-  bbox_fun:
-    command: prep_bbox_fun(view_config)
-
+  # basemap fun will need different args to match the new state boundary data
   basemap_fun:
-    command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
-
-  gage_sites_initial:
-    command: prep_gage_sites_fun(stage_data, gage_color_config, storm_start_date)
+    command: prep_basemap_fun()
 
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)
 
-  #### intro frames - animating the link between gages and sparklines ####
+  #### animation frames ####
 
-  intro_frame_config:
+  timestep_frame_config:
     command: viz_config[I(c('width','height'))]
-
-  intro_gif_tasks:
-    command: create_intro_gif_tasks(
-      intro_config = intro_config,
-      folders = visualize_folders,
-      storm_track_cfg = storm_track_cfg,
-      storm_start_date = storm_start_date)
-
-  6_intro_gif_tasks.yml:
-    command: create_intro_gif_makefile(
-      makefile = target_name,
-      task_plan = intro_gif_tasks,
-      remake_file = I('6_visualize.yml'))
-
-  # Build the timestep-specific functions and png files.
-  # When we like how this is looking, we can set task_names=NULL to build all frames.
-  # In the meantime, you may want to edit the command for trial_intro_frames (rebuild with force=TRUE)
-  # and set task_names=trial_intro_frames to specify a subset of frames to build.
-  # If you're trying to iterate on just a few png frames, delete 6_visualize/log/6_intro_gif_tasks.ind,
-  # then you can call scmake('6_visualize/log/6_intro_gif_tasks.ind') repeatedly.
-  # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_intro_gif_tasks.ind', force=TRUE)
-  # to iterate on all frames at once.
-  trial_intro_frames:
-    command: sprintf(I('a_01_%03d'), I(c(1:5,7,9,11,13,15:20)))
-  6_visualize/log/6_intro_gif_tasks.ind:
-    command: loop_tasks(
-      task_plan=intro_gif_tasks, task_makefile='6_intro_gif_tasks.yml',
-      task_names=NULL,
-      num_tries=I(1), sleep_on_error=I(0))
-
-  #### storm frames - animating the progression of the storm, precip, and stage over time ####
-
-  storm_frame_config:
-    command: viz_config[I(c('width','height'))]
-
-  storm_frame_step:
+  timestep_frame_step:
     command: viz_config[[I('frame_step')]]
 
-  storm_gif_tasks:
-    command: create_storm_gif_tasks(
+  timestep_gif_tasks:
+    command: create_timestep_gif_tasks(
       timestep_ind = '2_process/out/timesteps.rds.ind',
-      storm_track_cfg = storm_track_cfg,
-      folders = visualize_folders,
-      frame_step = storm_frame_step)
+      folders = I(list(tmp=I('6_visualize/tmp'), log=I('6_visualize/log'))))
+  # tmp=temporary folder for holding files to only be created on 1 computer.
+  # log=folder for the few indicator files that don't correspond to a data file.
 
-  6_storm_gif_tasks.yml:
-    command: create_storm_gif_makefile(
+  6_timestep_gif_tasks.yml:
+    command: create_timestep_gif_makefile(
       makefile = target_name,
-      task_plan = storm_gif_tasks,
+      task_plan = timestep_gif_tasks,
       remake_file = I('6_visualize.yml'))
 
   # Build the timestep-specific functions and png files.
   # When we like how this is looking, we can set task_names=NULL to build all frames.
-  # In the meantime, you may want to edit the command for trial_storm_frames (rebuild with force=TRUE)
-  # and set task_names=trial_storm_frames to specify a subset of frames to build.
-  # If you're trying to iterate on just a few png frames, delete 6_visualize/log/6_storm_gif_tasks.ind,
-  # then you can call scmake('6_visualize/log/6_storm_gif_tasks.ind') repeatedly.
-  # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_storm_gif_tasks.ind', force=TRUE)
+  # While iterating on the individual-png level, you may want to
+  #   edit the list in trial_timestep_frames,
+  #   task_names=trial_timestep_frames in the loop_tasks command, and
+  #   rebuild with force=TRUE
+  #
+  # If you're trying to iterate on just a few png frames, delete 6_visualize/log/6_timestep_gif_tasks.ind,
+  # then you can call scmake('6_visualize/log/6_timestep_gif_tasks.ind') repeatedly.
+  # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_timestep_gif_tasks.ind', force=TRUE)
   # to iterate on all frames at once.
-  trial_storm_frames_01:
-    command: sprintf(I('a_201708%02d_01'), I(25:31))
-  trial_storm_frames_07:
-    command: sprintf(I('a_201708%02d_07'), I(25:31))
-  trial_storm_frames_13:
-    command: sprintf(I('a_201708%02d_13'), I(25:31))
-  trial_storm_frames_19:
-    command: sprintf(I('a_201708%02d_19'), I(25:31))
-  trial_storm_frames:
-    command: c(trial_storm_frames_01, trial_storm_frames_07, trial_storm_frames_13, trial_storm_frames_19)
-  6_visualize/log/6_storm_gif_tasks.ind:
+  #trial_timestep_frames: I(c(''))
+  6_visualize/log/6_timestep_gif_tasks.ind:
     command: loop_tasks(
-      task_plan=storm_gif_tasks, task_makefile='6_storm_gif_tasks.yml',
+      task_plan=timestep_gif_tasks, task_makefile='6_timestep_gif_tasks.yml',
       task_names=NULL,
       num_tries=I(1), sleep_on_error=I(0))
-
-  6_visualize/log/6_outro_gif_frames.ind:
-    command: scmake(I('6_outro_gif_frames'), '6_outro_gif_frames.yml')
 
   # Combine the png files into a gif.
   #
-  # For now, call scmake('6_visualize/out/animation_a.gif', force=TRUE)
-  #   if any of the pngs have changed. You also need force=TRUE for
-  #   the final_intro_frames and final_storm_frames
+  # While task_names != NULL or 6_visualize/log/6_timestep_gif_tasks.ind is
+  # not a declared dependency, always call
+  #   scmake('6_visualize/out/year_in_review.gif', force=TRUE)
   #
   # When we're close to done, we can add
   #   depends:
-  #     - 6_visualize/log/6_intro_gif_tasks.ind
-  #     - 6_visualize/log/6_storm_gif_tasks.ind
+  #     - 6_visualize/log/6_timestep_gif_tasks.ind
   #   and set task_names=NULL to build all the frames.
-  trial_frames:
-    command: c(trial_intro_frames, trial_storm_frames)
-  final_intro_frames:
-    command: existing_png_tasks(pattern=I('a_01_[[:digit:]]{3}'))
-  final_storm_frames:
-    command: existing_png_tasks(pattern=I('a_[[:digit:]]{8}_[[:digit:]]{2}'))
-  final_frames:
-    command: c(I('a_20170825_01'), final_intro_frames, final_storm_frames)
   animation_cfg:
     command: viz_config[I('frame_delay_cs')]
-  6_visualize/out/animation_a.gif:
+  6_visualize/out/year_in_review.gif:
     command: combine_animation_frames(
       gif_file=target_name,
       animation_cfg=animation_cfg,
-      task_names=NULL,
-      intro_config = intro_config,
-      n_outro = I(3))
-  6_visualize/out/animation_a.gif.ind:
-    command: gd_put(target_name, '6_visualize/out/animation_a.gif')
+      task_names=NULL)
+  6_visualize/out/year_in_review.gif.ind:
+    command: gd_put(target_name, '6_visualize/out/year_in_review.gif')
