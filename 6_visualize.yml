@@ -81,8 +81,10 @@ targets:
     command: prep_view_fun(view_polygon, view_cfg)
 
   # basemap fun will need different args to match the new state boundary data
-  basemap_fun:
-    command: prep_basemap_fun()
+  basemap_cfg:
+    command: viz_config[[I(c('basemap'))]]
+  #basemap_fun:
+  #  command: prep_basemap_fun(state_boundaries_ind, basemap_cfg)
 
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)
