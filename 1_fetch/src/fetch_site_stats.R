@@ -20,13 +20,26 @@ fetch_site_stats <- function(ind_file, sites_ind, request_limit, percentiles){
         parameterCd = "00060", 
         statReportType="daily",
         statType=paste0("P", percentiles)
-      ))
+      )) %>% 
+      dplyr::select(-agency_cd, -parameter_cd, -ts_id, -loc_web_ds)
     stat_data <- rbind(stat_data, current_sites)
     print(paste("Completed", last_site, "of", length(sites)))
   }
   
+  # For duplicated site stats, pick the result with the more recent end_yr
+  #   E.g. Site number 12010000 has two sets of stats for some of it's data 
+  #   filter by January 1 and you will see one set from 1930 - 2003 and one 
+  #   from 1930 - 2018. Filter so that only the 2018 one is used.
+  stat_data_unique <- stat_data %>%
+    tidyr::unite(mashed, site_no, month_nu, day_nu) %>% 
+    dplyr::group_by(mashed) %>% 
+    dplyr::filter(end_yr == max(end_yr)) %>% 
+    dplyr::ungroup() %>% 
+    tidyr::separate(mashed, c("site_no", "month_nu", "day_nu"), sep = "_") %>% 
+    dplyr::mutate(month_nu = as.numeric(month_nu), day_nu = as.numeric(day_nu))
+  
   # Write the data file and the indicator file
   data_file <- scipiper::as_data_file(ind_file)
-  saveRDS(stat_data, data_file)
+  saveRDS(stat_data_unique, data_file)
   scipiper::gd_put(ind_file, data_file)
 }
