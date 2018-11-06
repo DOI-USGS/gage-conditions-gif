@@ -26,7 +26,7 @@ targets:
       - 1_fetch/out/site_locations.rds.ind
       - 1_fetch/out/site_stats.rds.ind
       - 1_fetch/out/dv_data.rds.ind
-      - 1_fetch/in/pre_state_boundaries_census.zip
+      - 1_fetch/out/pre_state_boundaries_census.zip
 
   # -- read config --
   viz_config:
@@ -85,4 +85,4 @@ targets:
   1_fetch/out/pre_state_boundaries_census.zip.ind:
     command: fetch_states(target_name)
   1_fetch/out/pre_state_boundaries_census.zip:
-    command: gd_get('1_fetch/in/pre_state_boundaries_census.zip.ind')
+    command: gd_get('1_fetch/out/pre_state_boundaries_census.zip.ind')
