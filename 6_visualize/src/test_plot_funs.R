@@ -9,7 +9,7 @@ test_plot_funs <- function(..., png_file=NA, task_file='6_timestep_gif_tasks.yml
   # call create_animation_frame. we'll always want the view_fun as a base layer
   args <- c(
     list(png_file=png_file,
-         config=scmake('view_cfg', verbose=FALSE),
+         config=scmake('timestep_frame_config', verbose=FALSE),
          view_fun=scmake('view_fun', verbose=FALSE)),
     plot_funs)
   do.call(create_animation_frame, args)
