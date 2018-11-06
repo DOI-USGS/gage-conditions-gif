@@ -15,6 +15,7 @@ request_limit: 10
 percentiles: ["05","10","20","25","50","75","80","90","95"]
 
 # styling
+background_col: "gray90"
 color_palette: ['#ca0020','#f4a582','#efefef','#efefef','#92c5de','#034064']
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
