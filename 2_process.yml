@@ -17,6 +17,7 @@ sources:
   - 2_process/src/process_site_locations_to_sp.R
   - 2_process/src/process_site_stats.R
   - 2_process/src/process_dv_stats.R
+  - 2_process/src/process_dv_stat_colors.R
 
 targets:
 
@@ -26,10 +27,13 @@ targets:
       - 2_process/out/site_locations_sp.rds.ind
       - 2_process/out/site_stats_clean.rds.ind
       - 2_process/out/dv_stats.rds.ind
+      - 2_process/out/dv_stat_colors.rds.ind
 
   # -- config --
   proj_str:
     command: viz_config[[I('projection')]]
+  color_palette:
+    command: viz_config[[I('color_palette')]]
 
   2_process/out/timesteps.rds.ind:
     command: choose_timesteps(target_name, dates = dates)
@@ -59,3 +63,11 @@ targets:
       percentiles = percentiles)
   2_process/out/dv_stats.rds:
     command: gd_get('2_process/out/dv_stats.rds.ind')
+    
+  2_process/out/dv_stat_colors.rds.ind:
+    command: process_dv_stat_colors(
+      ind_file = target_name,
+      dv_stats_ind = '2_process/out/dv_stats.rds.ind',
+      color_palette = color_palette)
+  2_process/out/dv_stat_colors.rds:
+    command: gd_get('2_process/out/dv_stat_colors.rds.ind')
