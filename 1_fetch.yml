@@ -31,6 +31,8 @@ targets:
     command: yaml.load_file('viz_config.yml')
   dates:
     command: viz_config[[I('dates')]]
+  projection:
+    command: viz_config[[I('projection')]]
   request_limit:
     command: viz_config[[I('request_limit')]]
   percentiles:

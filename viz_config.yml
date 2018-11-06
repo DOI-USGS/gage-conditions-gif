@@ -6,7 +6,7 @@ frame_step: 3 # hours elapsed between GIF frames
 
 # view, dimensions
 bbox: [-83, 30.4, -67, 38.5]
-projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
+projection: "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs "
 height: 512
 width: 1024
 
