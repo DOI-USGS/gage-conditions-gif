@@ -13,13 +13,15 @@ fetch_dv_data <- function(ind_file, sites_ind, dates, request_limit){
   for(i in req_bks) {
     last_site <- i+request_limit-1
     get_sites <- sites[i:last_site]
-    data_i <- dataRetrieval::readNWISdata(
-      service = "dv",
-      site = get_sites,
-      parameterCd = "00060",
-      startDate = dates$start,
-      endDate = dates$end) %>% 
-      dataRetrieval::renameNWISColumns()
+    data_i <- 
+      dataRetrieval::readNWISdata(
+        service = "dv",
+        statCd = "00003", # need this to avoid NAs
+        site = get_sites,
+        parameterCd = "00060",
+        startDate = dates$start,
+        endDate = dates$end) %>% 
+      dataRetrieval::renameNWISColumns() 
     
     if(nrow(data_i) > 0 && any(names(data_i) == "Flow")) {
       data_i <- data_i[, c("site_no", "dateTime", "Flow")] # keep only dateTime and Flow columns
@@ -31,8 +33,10 @@ fetch_dv_data <- function(ind_file, sites_ind, dates, request_limit){
     print(paste("Completed", last_site, "of", length(sites)))
   }
   
+  dv_data_unique <- dplyr::distinct(dv_data) # need this to avoid some duplicates
+  
   # Write the data file and the indicator file
   data_file <- scipiper::as_data_file(ind_file)
-  saveRDS(dv_data, data_file)
+  saveRDS(dv_data_unique, data_file)
   scipiper::gd_put(ind_file, data_file)
 }
