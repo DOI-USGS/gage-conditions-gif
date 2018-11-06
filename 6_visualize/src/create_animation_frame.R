@@ -7,8 +7,6 @@ create_animation_frame <- function(png_file, config, ...) {
                         Darwin = "quartz")
     # open the plotting device
     png(filename=png_file, width=config$width, height=config$height, units='px', type = plot_type)
-  } else {
-    graphics.off()
   }
 
   # begin using google fonts
