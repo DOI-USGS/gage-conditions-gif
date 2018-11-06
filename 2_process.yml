@@ -50,4 +50,3 @@ targets:
   2_state_boundaries_mutated_sp:
     command: mutate_sp_coords(`2_state_boundaries_albers_sp`, STATEFP = I(list('02', c('72', '78'), c('15'))), 
       scale = I(c(0.47, 3, 1.5)), shift_x = I(c(90, -120, 520)), shift_y = I(c(-465, 90, -110)), rotate = I(c(-50, 20, -35)))
-      
