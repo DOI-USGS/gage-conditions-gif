@@ -4,6 +4,7 @@ packages:
   - dataRetrieval
   - dplyr
   - scipiper
+  - sf
   - yaml
 
 file_extensions:
@@ -38,6 +39,12 @@ targets:
   percentiles:
     command: viz_config[[I('percentiles')]]
 
+  # -- view polygon --
+  view_config:
+    command: viz_config[I(c('bbox', 'projection', 'width', 'height'))]
+  view_polygon:
+    command: as_view_polygon(view_config)
+
   # -- get sites --
   1_fetch/out/sites.rds.ind:
     command: fetch_dv_sites(
@@ -45,7 +52,7 @@ targets:
       dates = dates)
   1_fetch/out/sites.rds:
     command: gd_get('1_fetch/out/sites.rds.ind')
-  
+
   # -- get site locations --
   1_fetch/out/site_locations.rds.ind:
     command: fetch_site_locations(
@@ -53,7 +60,7 @@ targets:
       sites_ind = '1_fetch/out/sites.rds.ind')
   1_fetch/out/site_locations.rds:
     command: gd_get('1_fetch/out/site_locations.rds.ind')
-    
+
   # -- get site statistics --
   1_fetch/out/site_stats.rds.ind:
     command: fetch_site_stats(

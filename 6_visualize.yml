@@ -7,6 +7,7 @@ packages:
   - dplyr
   - tidyr
   - showtext
+  - sysfonts
 
 file_extensions:
   - feather
@@ -15,26 +16,27 @@ file_extensions:
 sources:
   - 6_visualize/src/create_gif_tasks.R
   - 6_visualize/src/create_gif_makefile.R
-  - 6_visualize/src/prep_watermark_fun.R
+  - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_basemap_fun.R
-  - 6_visualize/src/prep_gage_sites_fun.R
-  - 6_visualize/src/prep_legend_fun.R
-  - 6_visualize/src/visualize_utils.R
+  - 6_visualize/src/prep_watermark_fun.R
   - 6_visualize/src/combine_animation_frames.R
 
 targets:
 
   6_visualize:
     depends:
+      - font_abel
+      - font_oswald
       - 6_timestep_gif_tasks.yml
       - 6_visualize/log/6_timestep_gif_tasks.ind
       - 6_visualize/out/year_in_review.gif
 
-  # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
-  # adn storm_line. each of these components doesn't change over time. each
-  # component is a closure, i.e., a function that contains all the data it needs
-  # to run. the closure should accept 0 arguments. the closure should be saved
-  # into an RDS file with a corresponding .rds.ind indicator file.
+  #### fonts. not sure how to add these better, but this might do ####
+
+  font_abel:
+    command: font_add_google(I('Abel'), I('abel'))
+  font_oswald:
+    command: font_add_google(I('Oswald'), I('Oswald'))
 
   #### non-positional configuration information ####
 
@@ -66,16 +68,22 @@ targets:
   outro_placement:
     command: component_placement[[I('outro')]]
 
-  #### static image calls ####
+  #### static plot-component functions ####
+
+  # each plot-component function is a closure, i.e., a function that contains
+  # all the data it needs to run. the closure should accept 0 arguments.
+  # the closure should be saved into an RDS file with a corresponding .rds.ind indicator file
+  # to save on remake hashing time
 
   view_cfg:
-    command: viz_config[I('ocean_col')]
-  bbox_fun:
-    command: prep_bbox_fun(view_config)
+    command: viz_config[I('background_col')]
+  view_fun:
+    command: prep_view_fun(view_polygon, view_cfg)
+
+  # basemap fun will need different args to match the new state boundary data
   basemap_fun:
-    command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
-  gage_sites_initial:
-    command: prep_gage_sites_fun(stage_data, gage_color_config, storm_start_date)
+    command: prep_basemap_fun()
+
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)
 
@@ -89,8 +97,7 @@ targets:
   timestep_gif_tasks:
     command: create_timestep_gif_tasks(
       timestep_ind = '2_process/out/timesteps.rds.ind',
-      folders = I(list(tmp=I('6_visualize/tmp'), log=I('6_visualize/log'))),
-      frame_step = timestep_frame_step)
+      folders = I(list(tmp=I('6_visualize/tmp'), log=I('6_visualize/log'))))
   # tmp=temporary folder for holding files to only be created on 1 computer.
   # log=folder for the few indicator files that don't correspond to a data file.
 
@@ -111,7 +118,7 @@ targets:
   # then you can call scmake('6_visualize/log/6_timestep_gif_tasks.ind') repeatedly.
   # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_timestep_gif_tasks.ind', force=TRUE)
   # to iterate on all frames at once.
-  trial_timestep_frames: I(c(''))
+  #trial_timestep_frames: I(c(''))
   6_visualize/log/6_timestep_gif_tasks.ind:
     command: loop_tasks(
       task_plan=timestep_gif_tasks, task_makefile='6_timestep_gif_tasks.yml',
@@ -120,7 +127,8 @@ targets:
 
   # Combine the png files into a gif.
   #
-  # When task_names != NULL, always call
+  # While task_names != NULL or 6_visualize/log/6_timestep_gif_tasks.ind is
+  # not a declared dependency, always call
   #   scmake('6_visualize/out/year_in_review.gif', force=TRUE)
   #
   # When we're close to done, we can add
