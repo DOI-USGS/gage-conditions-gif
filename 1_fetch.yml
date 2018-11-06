@@ -10,20 +10,21 @@ file_extensions:
   - ind
 
 sources:
-  - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_dv_sites.R
+  - 1_fetch/src/fetch_site_locations.R
   - 1_fetch/src/fetch_site_stats.R
   - 1_fetch/src/fetch_dv_data.R
-  - 1_fetch/src/fetch_site_locations.R
+  - 1_fetch/src/map_utils.R
 
 targets:
 
   1_fetch:
     depends:
       - 1_fetch/out/sites.rds.ind
+      - 1_fetch/out/site_locations.rds.ind
       - 1_fetch/out/site_stats.rds.ind
       - 1_fetch/out/dv_data.rds.ind
-      - 1_fetch/out/site_locations.rds.ind
+      - 1_fetch/in/pre_state_boundaries_census.zip
 
   # -- read config --
   viz_config:
