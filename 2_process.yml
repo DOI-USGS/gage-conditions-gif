@@ -15,6 +15,7 @@ file_extensions:
 sources:
   - 2_process/src/choose_timesteps.R
   - 2_process/src/process_site_locations_to_sp.R
+  - 2_process/src/process_site_stats.R
   - 2_process/src/process_dv_stats.R
 
 targets:
@@ -23,6 +24,7 @@ targets:
     depends:
       - 2_process/out/timesteps.rds.ind
       - 2_process/out/site_locations_sp.rds.ind
+      - 2_process/out/site_stats_clean.rds.ind
       - 2_process/out/dv_stats.rds.ind
 
   # -- config --
@@ -41,11 +43,18 @@ targets:
   2_process/out/site_locations_sp.rds:
     command: gd_get('2_process/out/site_locations_sp.rds.ind')
 
+  2_process/out/site_stats_clean.rds.ind:
+    command: process_site_stats(
+      ind_file = target_name,
+      site_stats_ind = '1_fetch/out/site_stats.rds.ind')
+  2_process/out/site_stats_clean.rds:
+    command: gd_get('2_process/out/site_stats_clean.rds.ind')
+  
   2_process/out/dv_stats.rds.ind:
     command: process_dv_stats(
       ind_file = target_name,
       dv_data_ind = '1_fetch/out/dv_data.rds.ind',
-      site_stats_ind = '1_fetch/out/site_stats.rds.ind',
+      site_stats_clean_ind = '2_process/out/site_stats_clean.rds.ind',
       dates = dates,
       percentiles = percentiles)
   2_process/out/dv_stats.rds:
