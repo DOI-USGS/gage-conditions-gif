@@ -1,12 +1,18 @@
-#
-# project_shift_states <- function(pre_state_boundaries)
-# state_boundaries_census_sp <- read_shp_zip(
-#   '1_fetch/in/pre_state_boundaries_census.zip', skip = I(list(STATEFP=c('69','66','60'))))
-# state_boundaries_albers_sp <- spTransform(state_boundaries_census_sp, projection)
-# state_boundaries_mutated_sp <- mutate_sp_coords(
-#   state_boundaries_albers_sp, STATEFP = I(list('02', c('72', '78'), c('15'))),
-#   scale = I(c(0.47, 3, 1.5)), shift_x = I(c(90, -120, 520)), shift_y = I(c(-465, 90, -110)), rotate = I(c(-50, 20, -35)))
 
+project_states <- function(pre_state_boundaries_ind, projection) {
+
+  sc_retrieve(pre_state_boundaries_ind) %>%
+    read_shp_zip(skip = I(list(STATEFP=c('69','66','60')))) %>%
+    spTransform(projection)
+}
+
+shift_states <- function(projected_states, shift_cfg) {
+
+  projected_states %>%
+    mutate_sp_coords(
+      STATEFP = shift_cfg$STATEFP, scale = shift_cfg$scale,
+      shift_x = shift_cfg$shift_x, shift_y = shift_cfg$shift_y, rotate = shift_cfg$rotate)
+}
 
 # copied most of this function from vizlab:::readData.shp. can't directly reuse
 # that function here because it requires viz syntax. Also, we'll use this function to filter out territories for which we don't have water use data
