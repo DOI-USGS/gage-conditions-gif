@@ -84,11 +84,9 @@ mutate_sp_coords <- function(sp, ..., scale, shift_x, shift_y, rotate, ref = sp)
 
 mutate_sp <- function(sp, scale = NULL, shift = NULL, rotate = 0, ref=sp, proj.string=NULL, row.names=NULL){
 
-
   if (is.null(scale) & is.null(shift) & rotate == 0){
     return(obj)
   }
-
   orig.cent <- colMeans(rgeos::gCentroid(ref, byid=TRUE)@coords)
   scale <- max(apply(bbox(ref), 1, diff)) * scale
   obj <- elide(sp, rotate=rotate, center=orig.cent, bb = bbox(ref))

@@ -34,19 +34,21 @@ targets:
   2_process/out/timesteps.rds:
     command: gd_get('2_process/out/timesteps.rds.ind')
 
-  2_process/out/site_locations_sp.rds.ind:
-    command: process_site_locations_to_sp(
-      ind_file = target_name,
-      site_locations_ind = '1_fetch/out/site_locations.rds.ind')
-  2_process/out/site_locations_sp.rds:
-    command: gd_get('2_process/out/site_locations_sp.rds.ind')
-
+##### states
   2_state_boundaries_census_sp:
     command: read_shp_zip('1_fetch/in/pre_state_boundaries_census.zip', skip = I(list(STATEFP=c('69','66','60'))))
-    
+
   2_state_boundaries_albers_sp:
-    command: spTransform(`2_state_boundaries_census_sp`, projection) 
-    
+    command: spTransform(`2_state_boundaries_census_sp`, projection)
+
   2_state_boundaries_mutated_sp:
-    command: mutate_sp_coords(`2_state_boundaries_albers_sp`, STATEFP = I(list('02', c('72', '78'), c('15'))), 
+    command: mutate_sp_coords(`2_state_boundaries_albers_sp`, STATEFP = I(list('02', c('72', '78'), c('15'))),
       scale = I(c(0.47, 3, 1.5)), shift_x = I(c(90, -120, 520)), shift_y = I(c(-465, 90, -110)), rotate = I(c(-50, 20, -35)))
+
+######## sites
+  2_site_locations_sp:
+    command: process_site_locations_to_sp(site_locations_ind = '1_fetch/out/site_locations.rds.ind', projection = projection)
+  2_site_locations_mutated_sp:
+    command: mutate_sp_coords(`2_site_locations_sp`, ref = `2_state_boundaries_albers_sp`, STATEFP = I(list('02', c('72', '78'), c('15'))),
+      scale = I(c(0.47, 3, 1.5)), shift_x = I(c(90, -120, 520)), shift_y = I(c(-465, 90, -110)), rotate = I(c(-50, 20, -35)))
+
