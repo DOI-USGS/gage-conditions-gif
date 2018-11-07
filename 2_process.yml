@@ -15,7 +15,6 @@ file_extensions:
 
 sources:
   - 2_process/src/choose_timesteps.R
-  - 2_process/src/process_site_locations_to_sp.R
   - 2_process/src/process_site_stats.R
   - 2_process/src/process_dv_stats.R
   - 2_process/src/process_dv_stat_colors.R
@@ -27,7 +26,6 @@ targets:
   2_process:
     depends:
       - 2_process/out/timesteps.rds.ind
-      - 2_process/out/site_locations_sp.rds.ind
       - 2_process/out/site_stats_clean.rds.ind
       - 2_process/out/dv_stats.rds.ind
       - 2_process/out/dv_stat_colors.rds.ind
