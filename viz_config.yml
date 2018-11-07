@@ -7,8 +7,8 @@ frame_step: 3 # hours elapsed between GIF frames
 # view, dimensions
 bbox: [-130.0, 20.0, -77.0, 49.0]
 projection: "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs "
-height: 512
-width: 1024
+height: 1024
+width: 2048
 shift:
   STATEFP:
     - '02'
