@@ -1,0 +1,15 @@
+version: 0.3.0
+name: 2_process/out/dv_stats.rds.ind
+type: file
+hash: 720501f733596a258a2475bf416e9dde
+time: 2018-11-07 17:38:43 UTC
+depends:
+  1_fetch/out/dv_data.rds.ind: 637f8fb258fd00a213028166afe4628c
+  2_process/out/site_stats_clean.rds.ind: 9d2874c468177b9b78d90759d47d26e3
+  dates: c87840fa717587715effdfedc24e8fca
+  percentiles: af632b99e36448cfb51ec4b40b8bfeb9
+fixed: d68b248e742da518189e972bd02d3d7b
+code:
+  functions:
+    process_dv_stats: cf13f7d546c0c55fa754cf4d6ed299a8
+

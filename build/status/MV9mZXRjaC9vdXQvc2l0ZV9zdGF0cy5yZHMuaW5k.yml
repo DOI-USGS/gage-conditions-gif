@@ -1,0 +1,14 @@
+version: 0.3.0
+name: 1_fetch/out/site_stats.rds.ind
+type: file
+hash: b9340a9d65c4260474b5599d24673ff4
+time: 2018-11-07 17:04:27 UTC
+depends:
+  1_fetch/out/sites.rds.ind: 6e931c8c143913423fcabedde591610a
+  request_limit: 71db8a6cad03244e6e50f0ad8bc95a65
+  percentiles: af632b99e36448cfb51ec4b40b8bfeb9
+fixed: a447e0f033c83c25b92148c0bb37a510
+code:
+  functions:
+    fetch_site_stats: f39288bbea2f64f36863f8bd58c35794
+

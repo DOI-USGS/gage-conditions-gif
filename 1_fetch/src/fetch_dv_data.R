@@ -1,33 +1,42 @@
 #' @title Download the discharge from NWIS for each dv gage
-#' 
+#'
 #' @param ind_file character file name where the output should be saved
 #' @param sites_ind indicator file for the vector of site numbers
 #' @param dates object from viz_config.yml that specifies dates as string
-fetch_dv_data <- function(ind_file, sites_ind, dates){
-  
+#' @param request_limit number indicating how many sites to include per dataRetrieval request (from viz_config.yml)
+fetch_dv_data <- function(ind_file, sites_ind, dates, request_limit){
+
   sites <- readRDS(scipiper::sc_retrieve(sites_ind, remake_file = '1_fetch.yml'))
-  
-  dv_sites_data <- lapply(sites, FUN = function(x){
-    d <- dataRetrieval::readNWISdata(
-        service="dv",
-        site = x,
+
+  req_bks <- seq(1, length(sites), by=request_limit)
+  dv_data <- data.frame()
+  for(i in req_bks) {
+    last_site <- min(i+request_limit-1, length(sites))
+    get_sites <- sites[i:last_site]
+    data_i <-
+      dataRetrieval::readNWISdata(
+        service = "dv",
+        statCd = "00003", # need this to avoid NAs
+        site = get_sites,
         parameterCd = "00060",
         startDate = dates$start,
-        endDate = dates$end) %>% 
+        endDate = dates$end) %>%
       dataRetrieval::renameNWISColumns()
-  
-    if(nrow(d) > 0 && any(names(d) == "Flow")) {
-      d[, c("dateTime", "Flow")] # keep only dateTime and Flow columns
+
+    if(nrow(data_i) > 0 && any(names(data_i) == "Flow")) {
+      data_i <- data_i[, c("site_no", "dateTime", "Flow")] # keep only dateTime and Flow columns
     } else {
-      NULL # no data returned situation
+      data_i <- NULL # no data returned situation
     }
-    
-  })
-  
-  names(dv_sites_data) <- sites
-  
+
+    dv_data <- rbind(dv_data, data_i)
+    message(paste("Completed", last_site, "of", length(sites)))
+  }
+
+  dv_data_unique <- dplyr::distinct(dv_data) # need this to avoid some duplicates
+
   # Write the data file and the indicator file
   data_file <- scipiper::as_data_file(ind_file)
-  saveRDS(dv_sites_data, data_file)
+  saveRDS(dv_data_unique, data_file)
   scipiper::gd_put(ind_file, data_file)
 }
