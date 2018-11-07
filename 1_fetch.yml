@@ -5,6 +5,7 @@ packages:
   - dplyr
   - scipiper
   - sf
+  - tidyr
   - yaml
 
 file_extensions:
@@ -77,7 +78,8 @@ targets:
     command: fetch_dv_data(
       ind_file = target_name,
       sites_ind = '1_fetch/out/sites.rds.ind',
-      dates = dates)
+      dates = dates,
+      request_limit = request_limit)
   1_fetch/out/dv_data.rds:
     command: gd_get('1_fetch/out/dv_data.rds.ind')
 

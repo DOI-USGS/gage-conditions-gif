@@ -15,6 +15,9 @@ file_extensions:
 
 sources:
   - 2_process/src/choose_timesteps.R
+  - 2_process/src/process_site_stats.R
+  - 2_process/src/process_dv_stats.R
+  - 2_process/src/process_dv_stat_colors.R
   - 2_process/src/project_shift_points.R
   - 2_process/src/project_shift_states.R
 
@@ -23,29 +26,60 @@ targets:
   2_process:
     depends:
       - 2_process/out/timesteps.rds.ind
+      - 2_process/out/site_stats_clean.rds.ind
+      - 2_process/out/dv_stats.rds.ind
+      - 2_process/out/dv_stat_colors.rds.ind
       - states_shifted
       - site_locations_shifted
 
   # -- config --
   proj_str:
     command: viz_config[[I('projection')]]
+  sites_color_palette:
+    command: viz_config[[I('sites_color_palette')]]
 
   2_process/out/timesteps.rds.ind:
     command: choose_timesteps(target_name, dates = dates)
   2_process/out/timesteps.rds:
     command: gd_get('2_process/out/timesteps.rds.ind')
 
+  # -- process site data --
+  2_process/out/site_stats_clean.rds.ind:
+    command: process_site_stats(
+      ind_file = target_name,
+      site_stats_ind = '1_fetch/out/site_stats.rds.ind')
+  2_process/out/site_stats_clean.rds:
+    command: gd_get('2_process/out/site_stats_clean.rds.ind')
+
+  2_process/out/dv_stats.rds.ind:
+    command: process_dv_stats(
+      ind_file = target_name,
+      dv_data_ind = '1_fetch/out/dv_data.rds.ind',
+      site_stats_clean_ind = '2_process/out/site_stats_clean.rds.ind',
+      dates = dates,
+      percentiles = percentiles)
+  2_process/out/dv_stats.rds:
+    command: gd_get('2_process/out/dv_stats.rds.ind')
+
+  2_process/out/dv_stat_colors.rds.ind:
+    command: process_dv_stat_colors(
+      ind_file = target_name,
+      dv_stats_ind = '2_process/out/dv_stats.rds.ind',
+      color_palette = sites_color_palette)
+  2_process/out/dv_stat_colors.rds:
+    command: gd_get('2_process/out/dv_stat_colors.rds.ind')
+
   # -- scaling, shifting, rotating config (applies to both states and points) --
   shift_cfg:
     command: viz_config[[I('shift')]]
 
-  # -- states --
+  # -- process states --
   states_projected:
     command: project_states('1_fetch/out/pre_state_boundaries_census.zip.ind', projection)
   states_shifted:
     command: shift_states(states_projected, shift_cfg)
 
-  #-- sites --
+  # -- process sites --
   site_locations_projected:
     command: project_points('1_fetch/out/site_locations.rds.ind', projection)
   site_locations_shifted:

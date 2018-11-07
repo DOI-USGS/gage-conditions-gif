@@ -1,0 +1,13 @@
+version: 0.3.0
+name: 2_process/out/dv_stat_colors.rds.ind
+type: file
+hash: 8c59cd6937ee13c4ef7b3e31ac7521b0
+time: 2018-11-07 17:39:26 UTC
+depends:
+  2_process/out/dv_stats.rds.ind: 720501f733596a258a2475bf416e9dde
+  sites_color_palette: ff2cbc2b3f91933a46f1062a4703a9ac
+fixed: 486c649635ebbc0a9b69d6a88fe562b4
+code:
+  functions:
+    process_dv_stat_colors: 525e74d3cc1839c1a5134d07723cf261
+
