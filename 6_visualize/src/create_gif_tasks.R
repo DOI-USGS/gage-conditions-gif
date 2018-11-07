@@ -48,6 +48,8 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
         "png_file=target_name,",
         "config=timestep_frame_config,",
         "view_fun,",
+        "basemap_fun,",
+        "legend_fun,",
         "watermark_fun,",
         "gage_sites_plot_fun_%s,"=cur_task$tn,
         "datetime_fun_%s)"=cur_task$tn
