@@ -1,3 +1,19 @@
+
+project_states <- function(pre_state_boundaries_ind, projection) {
+
+  sc_retrieve(pre_state_boundaries_ind) %>%
+    read_shp_zip(skip = I(list(STATEFP=c('69','66','60')))) %>%
+    spTransform(projection)
+}
+
+shift_states <- function(projected_states, shift_cfg) {
+
+  projected_states %>%
+    mutate_sp_coords(
+      STATEFP = shift_cfg$STATEFP, scale = shift_cfg$scale,
+      shift_x = shift_cfg$shift_x, shift_y = shift_cfg$shift_y, rotate = shift_cfg$rotate)
+}
+
 # copied most of this function from vizlab:::readData.shp. can't directly reuse
 # that function here because it requires viz syntax. Also, we'll use this function to filter out territories for which we don't have water use data
 #' @param skip a list with the field name and the values to skip
@@ -35,6 +51,7 @@ read_shp_zip <- function(zipfile, skip = NULL) {
 #' @param scale a scale factor to apply to fips
 #' @return an `sp` similar to the input, but with the specified fips scaled according to `scale` parameter
 mutate_sp_coords <- function(sp, ..., scale, shift_x, shift_y, rotate, ref = sp){
+
   args <- list(...)
   field <- names(args)
   if (length(field) != 1){

@@ -12,11 +12,12 @@ file_extensions:
   - ind
 
 sources:
+  - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_dv_sites.R
   - 1_fetch/src/fetch_site_locations.R
   - 1_fetch/src/fetch_site_stats.R
   - 1_fetch/src/fetch_dv_data.R
-  - 1_fetch/src/map_utils.R
+  - 1_fetch/src/fetch_states.R
 
 targets:
 
@@ -26,7 +27,7 @@ targets:
       - 1_fetch/out/site_locations.rds.ind
       - 1_fetch/out/site_stats.rds.ind
       - 1_fetch/out/dv_data.rds.ind
-      - 1_fetch/in/pre_state_boundaries_census.zip
+      - 1_fetch/out/pre_state_boundaries_census.zip
 
   # -- read config --
   viz_config:
@@ -82,6 +83,8 @@ targets:
   1_fetch/out/dv_data.rds:
     command: gd_get('1_fetch/out/dv_data.rds.ind')
 
-  # See https://www.census.gov/geo/maps-data/data/cbf/cbf_state.html for details on this file.
-  1_fetch/in/pre_state_boundaries_census.zip:
-    command: download.file(destfile = target_name, url = I("http://www2.census.gov/geo/tiger/GENZ2017/shp/cb_2017_us_state_20m.zip"), method = I("libcurl"))
+  # -- get state boundaries --
+  1_fetch/out/pre_state_boundaries_census.zip.ind:
+    command: fetch_states(target_name)
+  1_fetch/out/pre_state_boundaries_census.zip:
+    command: gd_get('1_fetch/out/pre_state_boundaries_census.zip.ind')
