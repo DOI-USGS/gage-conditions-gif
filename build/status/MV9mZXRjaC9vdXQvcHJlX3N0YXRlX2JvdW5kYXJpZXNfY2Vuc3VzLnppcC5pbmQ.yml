@@ -1,0 +1,11 @@
+version: 0.3.0
+name: 1_fetch/out/pre_state_boundaries_census.zip.ind
+type: file
+hash: ea88e46619179584f6b8b2f5666c011d
+time: 2018-11-06 22:01:16 UTC
+depends: {}
+fixed: 371e38884f9e82ab7c7a7d0d12c8517d
+code:
+  functions:
+    fetch_states: 3995c434735793ff0378c2ffce3c6723
+
