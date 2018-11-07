@@ -24,20 +24,20 @@ request_limit: 10
 percentiles: ["05","10","20","25","50","75","80","90","95"]
 
 # styling
-sites_color_palette: ['#ca0020','#f4a582','#efefef','#efefef','#92c5de','#034064']
 background_col: "white"
 basemap:
   lwd: 0.5
   col: "transparent"
   border: "gray40"
+sites_color_palette: ['#ca0020','#f4a582','#efefef','#efefef','#92c5de','#034064']
 gage_style:
   pch: 16
   cex: 0.7
-
-legend_text:
-  cex: 1.5
-  col: "#161616"
-  family: ""
+legend_cfg:
+  point_cex: 4
+  text_cex: 0.9
+  text_col: "#161616"
+  y_text_pos: "under" # "under" or "over" accepted
 
 # gif options
 frame_delay_cs: 14 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
@@ -50,7 +50,7 @@ component_placement:
   datetime: # above watermark for now
     x1: 0.005
     y1: 0.85
-  legend_x_pos: "left"
+  legend_x_pos: "right"
   legend_y_pos: "bottom"
   outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
     xleft: 0.55
