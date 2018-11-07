@@ -11,10 +11,7 @@ fetch_dv_data <- function(ind_file, sites_ind, dates, request_limit){
   req_bks <- seq(1, length(sites), by=request_limit)
   dv_data <- data.frame()
   for(i in req_bks) {
-    last_site <- i+request_limit-1
-    if(i == tail(req_bks, 1) && last_site > length(sites)) {
-      last_site <- length(sites)
-    }
+    last_site <- min(i+request_limit-1, length(sites))
     get_sites <- sites[i:last_site]
     data_i <-
       dataRetrieval::readNWISdata(
@@ -33,7 +30,7 @@ fetch_dv_data <- function(ind_file, sites_ind, dates, request_limit){
     }
 
     dv_data <- rbind(dv_data, data_i)
-    print(paste("Completed", last_site, "of", length(sites)))
+    message(paste("Completed", last_site, "of", length(sites)))
   }
 
   dv_data_unique <- dplyr::distinct(dv_data) # need this to avoid some duplicates

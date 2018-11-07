@@ -16,8 +16,8 @@ fetch_dv_sites <- function(ind_file, dates){
         endDate = dates$end,
         parameterCd = "00060",
         statCd = "00003") %>%
-      dplyr::distinct() %>%
       dplyr::pull(site_no) %>%
+      unique() %>%
       c(sites)
   }
 

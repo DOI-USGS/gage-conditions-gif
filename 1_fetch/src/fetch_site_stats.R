@@ -12,10 +12,7 @@ fetch_site_stats <- function(ind_file, sites_ind, request_limit, percentiles){
   req_bks <- seq(1, length(sites), by=request_limit)
   stat_data <- data.frame()
   for(i in req_bks) {
-    last_site <- i+request_limit-1
-    if(i == tail(req_bks, 1) && last_site > length(sites)) {
-      last_site <- length(sites)
-    }
+    last_site <- min(i+request_limit-1, length(sites))
     get_sites <- sites[i:last_site]
     current_sites <- suppressMessages(
       dataRetrieval::readNWISstat(
