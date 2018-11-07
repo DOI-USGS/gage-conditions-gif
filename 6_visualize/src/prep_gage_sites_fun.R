@@ -1,25 +1,13 @@
-prep_gage_sites_fun <- function(stage_data, gage_col_config, DateTime){
-  this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
-  this_stage_data <- filter(stage_data, dateTime == this_DateTime)
-
-  norm_data_sites <- filter(this_stage_data, stage_normalized < flood_stage_normalized)
-  flood_data_sites <- filter(this_stage_data, stage_normalized >= flood_stage_normalized)
-  missing_data_sites <- filter(this_stage_data, is.na(stage_normalized))
-
-  plot_fun <- function(){
-
-    plot(sf::st_geometry(norm_data_sites$geometry), add = TRUE,
-         pch = 21, bg = gage_col_config$gage_norm_col, col = NA, cex = 1.5)
-    plot(sf::st_geometry(flood_data_sites$geometry),
-         pch = 21, bg = gage_col_config$gage_norm_col, add = TRUE,
-         col = gage_col_config$gage_flood_col, lwd = 4, cex = 1.7)
-    plot(sf::st_geometry(missing_data_sites$geometry),
-         pch = 4, add = TRUE,
-         col = gage_col_config$gage_norm_col, lwd = 5, cex = 1.3)
-    plot(sf::st_geometry(missing_data_sites$geometry),
-         pch = 4, add = TRUE,
-         col = gage_col_config$gage_out_col, lwd = 4, cex = 1.3)
-
+prep_gage_sites_fun <- function(percentile_color_data_ind, sites_sp, gage_style, dateTime){
+  this_date <- as.POSIXct(dateTime, tz = "UTC") #watch timezones if we ever switch from daily data
+  #only plotting sites with color for now
+  percentile_color_data <- readRDS(as_data_file(percentile_color_data_ind))
+  this_date_colors <- filter(percentile_color_data, dateTime == this_date)
+  sites_sp@data <- left_join(sites_sp@data, this_date_colors, by = "site_no")
+  gage_style <- gage_style$gage_style
+  gage_sites_plot_fun <- function(){
+    #single plot of gages w/color
+    plot(sites_sp, add = TRUE, pch = gage_style$pch, col = sites_sp$color, cex = gage_style$cex)
   }
-  return(plot_fun)
+  return(gage_sites_plot_fun)
 }

@@ -21,6 +21,19 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
     }
   )
 
+  gage_sites <- scipiper::create_task_step(
+    step_name = 'gage_sites',
+    target_name = function(task_name, step_name, ...){
+      sprintf('gage_sites_plot_fun_%s', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf("prep_gage_sites_fun(percentile_color_data_ind = '2_process/out/dv_stat_colors.rds.ind',
+              sites_sp = site_locations_shifted, gage_style_config, dateTime=I('%s'))", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+    },
+    depends = "2_process/out/dv_stat_colors.rds"
+  )
+
   # ---- main target for each task: the
 
   complete_png <- scipiper::create_task_step(
@@ -36,6 +49,7 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
         "config=timestep_frame_config,",
         "view_fun,",
         "watermark_fun,",
+        "gage_sites_plot_fun_%s,"=cur_task$tn,
         "datetime_fun_%s)"=cur_task$tn
       )
     }
@@ -47,6 +61,7 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
     task_names=tasks$task_name,
     task_steps=list(
       datetime_frame,
+      gage_sites,
       complete_png),
     add_complete=FALSE,
     final_steps='complete_png',
