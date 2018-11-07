@@ -35,6 +35,7 @@ prep_legend_fun <- function(percentiles_str, sites_color_palette,
     } else if (x_pos == 'right'){
       x_edge <- coord_space[2] - strwidth(right_text)
       shift_xdir <- -1
+      legend_cols <- rev(legend_cols)
     }
 
     if (y_pos == 'bottom'){
