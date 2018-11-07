@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 2_process/out/site_stats_clean.rds.ind
+type: file
+hash: 9d2874c468177b9b78d90759d47d26e3
+time: 2018-11-07 17:11:46 UTC
+depends:
+  1_fetch/out/site_stats.rds.ind: b9340a9d65c4260474b5599d24673ff4
+fixed: 6280d5ff6dc38f409141e1fe1d0bd609
+code:
+  functions:
+    process_site_stats: 768f3ae86828278f318b2556e065cb5a
+
