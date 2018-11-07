@@ -18,6 +18,7 @@ sources:
   - 6_visualize/src/create_gif_makefile.R
   - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_basemap_fun.R
+  - 6_visualize/src/prep_legend_fun.R
   - 6_visualize/src/prep_watermark_fun.R
   - 6_visualize/src/combine_animation_frames.R
 
@@ -44,12 +45,10 @@ targets:
     command: viz_config[[I('dates')]]
   date_display_tz:
     command: viz_config[[I('date_display_tz')]]
-  gage_color_config:
-    command: viz_config[I(c('gage_norm_col','gage_line_col'))]
   intro_config:
     command: viz_config[[I(c('intro'))]]
-  legend_text_cfg:
-    command: viz_config[[I("legend_text")]]
+  legend_cfg:
+    command: viz_config[[I("legend_cfg")]]
 
   #### location of images on figure ####
 
@@ -85,6 +84,14 @@ targets:
     command: viz_config[[I(c('basemap'))]]
   basemap_fun:
     command: prep_basemap_fun(states_shifted, basemap_cfg)
+
+  legend_fun:
+    command: prep_legend_fun(
+      percentiles_str = percentiles,
+      sites_color_palette = sites_color_palette,
+      x_pos = legend_x_pos,
+      y_pos = legend_y_pos,
+      legend_cfg = legend_cfg)
 
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)
