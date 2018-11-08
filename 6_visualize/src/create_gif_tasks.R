@@ -34,6 +34,17 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
     depends = "2_process/out/dv_stat_colors.rds"
   )
 
+  callouts <- scipiper::create_task_step(
+    step_name = 'callouts',
+    target_name = function(task_name, step_name, ...){
+      sprintf('callouts_plot_fun_%s', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf("prep_callouts_fun(callouts_cfg = callouts_cfg, dateTime=I('%s'))", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+    }
+  )
+
   # ---- main target for each task: the
 
   complete_png <- scipiper::create_task_step(
@@ -52,6 +63,7 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
         "legend_fun,",
         "watermark_fun,",
         "gage_sites_plot_fun_%s,"=cur_task$tn,
+        "callouts_plot_fun_%s,"=cur_task$tn,
         "datetime_fun_%s)"=cur_task$tn
       )
     }
@@ -64,6 +76,7 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
     task_steps=list(
       datetime_frame,
       gage_sites,
+      callouts,
       complete_png),
     add_complete=FALSE,
     final_steps='complete_png',
