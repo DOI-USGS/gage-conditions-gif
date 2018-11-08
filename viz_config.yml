@@ -59,3 +59,11 @@ component_placement:
     ytop_stn: 0.85 # top y coordinate of the text and legend for the short-term network
     ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
 
+callouts:
+  -
+    dates: ["2018-06-01", "2018-06-11"]
+    text:
+        label: ["Flooding in the northeast", "driven by x…"]
+        x_loc: 0.88 #this is in percentage space, relative to the plotting device
+        y_loc: 0.65
+        pos: 3
