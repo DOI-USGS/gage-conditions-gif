@@ -147,7 +147,8 @@ targets:
   #     - 6_visualize/log/6_timestep_gif_tasks.ind
   #   and set task_names=NULL to build all the frames.
   animation_cfg:
-    command: viz_config[I('frame_rate')]
+    command: viz_config[[I('animation')]]
+
   6_visualize/out/year_in_review.webm:
     command: combine_animation_frames(
       gif_file=target_name,
