@@ -29,7 +29,7 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
       sprintf("prep_gage_sites_fun(percentile_color_data_ind = '2_process/out/dv_stat_colors.rds.ind',
-              sites_sp = site_locations_shifted, gage_style_config, dateTime=I('%s'))", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+              sites_sp = site_locations_shifted, dateTime=I('%s'))", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
     },
     depends = "2_process/out/dv_stat_colors.rds"
   )
