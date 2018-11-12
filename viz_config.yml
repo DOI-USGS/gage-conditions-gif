@@ -1,6 +1,6 @@
 dates:
-  start: '2018-09-12'
-  end: '2018-09-19'
+  start: '2017-10-01'
+  end: '2018-09-30'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 3 # hours elapsed between GIF frames
 
@@ -61,3 +61,24 @@ component_placement:
     ytop_stn: 0.85 # top y coordinate of the text and legend for the short-term network
     ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
 
+callouts:
+  -
+    dates:
+      start: "2018-09-09"
+      end: "2018-09-16"
+    text:
+        label: ["Flooding in the northeast", "driven by x…"]
+        x_loc: 0.88 #this is in percentage space, relative to the plotting device
+        y_loc: 0.65
+        pos: 3
+        cex: 1.2
+  -
+    dates:
+      start: "2018-09-15"
+      end: "2018-09-19"
+    text:
+        label: ["Something in the southwest", "and its explanation"]
+        x_loc: 0.25 #this is in percentage space, relative to the plotting device
+        y_loc: 0.50
+        pos: 4
+        cex: 2
