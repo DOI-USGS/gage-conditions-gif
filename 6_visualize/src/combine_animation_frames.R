@@ -1,20 +1,15 @@
-combine_animation_frames <- function(gif_file, animation_cfg, task_names=NULL) {
-
-  # run imageMagick convert to build a gif
-  if(is.null(task_names)) task_names <- '*'
-  png_files <- paste(sprintf('6_visualize/tmp/frame_%s.png', task_names), collapse=' ')
-  tmp_dir <- './6_visualize/tmp/magick'
-  if(!dir.exists(tmp_dir)) dir.create(tmp_dir)
-  magick_command <- sprintf(
-    'convert -define registry:temporary-path=%s -limit memory 24GiB -delay %d -loop 0 %s %s',
-    tmp_dir, animation_cfg$frame_delay_cs, png_files, gif_file)
-  if(Sys.info()[['sysname']] == "Windows") {
-    magick_command <- sprintf('magick %s', magick_command)
-  }
-  system(magick_command)
-
-  # simplify the gif with gifsicle - cuts size by about 2/3
-  animation_delay <- animation_cfg$frame_delay_cs
-  gifsicle_command <- sprintf('gifsicle -b -O3 -d %s --colors 256 %s', animation_delay, gif_file)
-  system(gifsicle_command)
+combine_animation_frames <- function(gif_file, animation_cfg) {
+  #build video from pngs with ffmpeg
+  #note that this will use all frames in 6_visualize/tmp
+  #have to rename files since can't use globbing with ffmpeg on Windows :(
+  png_frames <- list.files('6_visualize/tmp', full.names = TRUE)
+  file_name_df <- tibble(origName = png_frames,
+                         countFormatted = zeroPad(1:length(png_frames), padTo = 3),
+                         newName = file.path("6_visualize/tmp", paste0("frame_", countFormatted, ".png")))
+  file.rename(from = file_name_df$origName, to = file_name_df$newName)
+  shell_command <- sprintf(
+    "ffmpeg -y -framerate %s -i 6_visualize/tmp/frame_%%03d.png -framerate %s -pix_fmt yuv420p %s",
+    animation_cfg$frame_rate, animation_cfg$output_frame_rate, gif_file)
+  system(shell_command)
+  file.rename(from = file_name_df$newName, to = file_name_df$origName)
 }

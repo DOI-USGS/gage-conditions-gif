@@ -32,7 +32,7 @@ targets:
       - font_oswald
       - 6_timestep_gif_tasks.yml
       - 6_visualize/log/6_timestep_gif_tasks.ind
-      - 6_visualize/out/year_in_review.gif
+      - 6_visualize/out/year_in_review.webm
 
   #### fonts. not sure how to add these better, but this might do ####
 
@@ -150,11 +150,11 @@ targets:
   #     - 6_visualize/log/6_timestep_gif_tasks.ind
   #   and set task_names=NULL to build all the frames.
   animation_cfg:
-    command: viz_config[I('frame_delay_cs')]
-  6_visualize/out/year_in_review.gif:
+    command: viz_config[[I('animation')]]
+
+  6_visualize/out/year_in_review.webm:
     command: combine_animation_frames(
       gif_file=target_name,
-      animation_cfg=animation_cfg,
-      task_names=NULL)
-  6_visualize/out/year_in_review.gif.ind:
-    command: gd_put(target_name, '6_visualize/out/year_in_review.gif')
+      animation_cfg=animation_cfg)
+  6_visualize/out/year_in_review.web.ind:
+    command: gd_put(target_name, '6_visualize/out/year_in_review.webm')
