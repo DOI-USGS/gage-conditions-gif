@@ -155,7 +155,6 @@ targets:
   6_visualize/out/year_in_review.webm:
     command: combine_animation_frames(
       gif_file=target_name,
-      animation_cfg=animation_cfg,
-      task_names=NULL)
+      animation_cfg=animation_cfg)
   6_visualize/out/year_in_review.web.ind:
     command: gd_put(target_name, '6_visualize/out/year_in_review.webm')
