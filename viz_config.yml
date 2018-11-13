@@ -61,6 +61,9 @@ component_placement:
     cex: 2.5
   legend_x_pos: "right"
   legend_y_pos: "bottom"
+  dategrid:
+    xleft: 0.07
+    ytop: 0.75
   outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
     xleft: 0.55
     xright: 0.99
