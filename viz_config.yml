@@ -34,8 +34,8 @@ gage_style:
   pch: 16
   cex: 0.7
 legend_cfg:
-  point_cex: 4
-  text_cex: 0.9
+  point_cex: 7
+  text_cex: 2
   text_col: "#161616"
   y_text_pos: "under" # "under" or "over" accepted
 
@@ -49,9 +49,10 @@ animation:
 component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "top"
-  datetime: # above watermark for now
+  datetime: # below watermark for now
     x1: 0.005
     y1: 0.85
+    cex: 2.5
   legend_x_pos: "right"
   legend_y_pos: "bottom"
   outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
