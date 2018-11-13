@@ -13,6 +13,8 @@ prep_legend_fun <- function(percentiles_str, sites_color_palette,
 
   alpha_hex <- 'CC'
 
+  rm(percentiles)
+
   plot_fun <- function(){
 
     # compute position info shared across multiple legend elements
