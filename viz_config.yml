@@ -47,7 +47,7 @@ legend_cfg:
 
 # gif options
 animation:
-  frame_rate: 1 #original input frames per second
+  frame_rate: 10 #original input frames per second
   output_frame_rate: 10 #fps, but the actual frames in the video (not 1:1 with input)
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
