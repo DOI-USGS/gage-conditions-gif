@@ -5,8 +5,7 @@ prep_legend_fun <- function(percentiles_str, sites_color_palette,
 
   x_pos <- match.arg(x_pos)
   y_pos <- match.arg(y_pos)
-
-  col_fun <- colorRamp(sites_color_palette)
+  col_fun <- colorRamp(sites_color_palette$with_percentile)
   percentiles <- as.numeric(percentiles_str)/100
   legend_cols <- sapply(percentiles, FUN = function(x){
     rgb(col_fun(x), maxColorValue = 255)

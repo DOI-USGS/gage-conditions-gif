@@ -29,10 +29,16 @@ basemap:
   lwd: 0.5
   col: "transparent"
   border: "gray40"
-sites_color_palette: ['#ca0020','#f4a582','#efefef','#efefef','#92c5de','#034064']
+sites_color_palette:
+  with_percentile: ['#ca0020','#f4a582','#efefef','#efefef','#92c5de','#034064']
+  no_percentile: "gray50"
 gage_style:
-  pch: 16
-  cex: 0.7
+  with_percentile:
+    pch: 16
+    cex: 1
+  no_percentile:
+    pch: 16
+    cex: 1
 legend_cfg:
   point_cex: 7
   text_cex: 2
