@@ -89,7 +89,7 @@ callouts:
         y_loc: 0.6
         pos: 3
         cex: 2
-    addBox: TRUE
+    add_box: TRUE
   -
     dates:
       start: "2018-07-01"
@@ -100,7 +100,7 @@ callouts:
         y_loc: 0.50
         pos: 1
         cex: 2
-    addBox: TRUE
+    add_box: TRUE
   -
     dates:
       start: "2018-09-14"

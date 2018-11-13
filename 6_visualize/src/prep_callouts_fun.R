@@ -25,8 +25,8 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
       coord_space <- par()$usr
 
         for(n in 1:n_callouts) {
-          addBox <- ifelse(!is.null(this_date_callouts[[n]]$addBox),
-                           this_date_callouts[[n]]$addBox, FALSE)
+          add_box <- ifelse(!is.null(this_date_callouts[[n]]$add_box),
+                            this_date_callouts[[n]]$add_box, FALSE)
           callout_text_cfg_n <- this_date_callouts[[n]]$text
           x <- coord_space[1] + callout_text_cfg_n$x_loc * diff(coord_space[1:2])
           y <- coord_space[3] + callout_text_cfg_n$y_loc * diff(coord_space[3:4])
@@ -43,7 +43,7 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
                  col = 'grey40')
           }
 
-          if(addBox) {
+          if(add_box) {
             max_strwidth <- max(strwidth(callouts))*font_x_multiplier # buffer for abel since it can't do that correctly
             max_strheight <- max(strheight(callouts))*font_y_multiplier
 
