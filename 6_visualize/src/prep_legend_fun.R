@@ -13,6 +13,8 @@ prep_legend_fun <- function(percentiles_str, sites_color_palette,
 
   alpha_hex <- 'CC'
 
+  rm(percentiles)
+
   plot_fun <- function(){
 
     # compute position info shared across multiple legend elements
@@ -54,7 +56,7 @@ prep_legend_fun <- function(percentiles_str, sites_color_palette,
 
     x_start <- x_edge + point_width*shift_xdir
     for(n in 1:length(legend_cols)) {
-      x_loc <- x_start + (n-1)*point_width/2*shift_xdir
+      x_loc <- x_start + (n-1)*point_width*0.65*shift_xdir
       points(x_loc, y_edge, bg = paste0(legend_cols[n], alpha_hex),
              col = legend_cols[n], pch = 21, cex = legend_cfg$point_cex, lwd = 1)
     }
