@@ -1,7 +1,9 @@
 
 prep_datetime_fun <- function(datetime, component_placement, date_display_tz){
-  
+
   datetime <- strftime(as.POSIXct(datetime, tz="UTC"), format = '%b %d %I:%M %p %Z', tz = date_display_tz)
+
+  rm(date_display_tz)
 
   plot_fun <- function(){
     # coordinate space (edges, width, height)
@@ -20,7 +22,7 @@ prep_datetime_fun <- function(datetime, component_placement, date_display_tz){
     x1 <- coord_space_left + coord_width * component_placement$x1
     y1 <- coord_space_bot + coord_height * component_placement$y1 # bump up from bottom of figure (trying to place above the USGS watermark)
 
-    text(x = x1, y = y1, labels = datetime, cex = 1.6, pos = 4, col = 'grey40')
+    text(x = x1, y = y1, labels = datetime, cex = component_placement$cex, pos = 4, col = 'grey40')
   }
   return(plot_fun)
 }

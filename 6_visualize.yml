@@ -47,8 +47,6 @@ targets:
     command: viz_config[[I('dates')]]
   date_display_tz:
     command: viz_config[[I('date_display_tz')]]
-  gage_style_config:
-    command: viz_config[[I('gage_style')]]
   intro_config:
     command: viz_config[[I(c('intro'))]]
   legend_cfg:

@@ -29,19 +29,25 @@ basemap:
   lwd: 0.5
   col: "transparent"
   border: "gray40"
-sites_color_palette: ['#ca0020','#f4a582','#efefef','#efefef','#92c5de','#034064']
+sites_color_palette:
+  with_percentile: ['#ca0020','#f4a582','#efefef','#efefef','#92c5de','#034064']
+  no_percentile: "gray50"
 gage_style:
-  pch: 16
-  cex: 0.7
+  with_percentile:
+    pch: 16
+    cex: 1
+  no_percentile:
+    pch: 16
+    cex: 1
 legend_cfg:
-  point_cex: 4
-  text_cex: 0.9
+  point_cex: 7
+  text_cex: 2
   text_col: "#161616"
   y_text_pos: "under" # "under" or "over" accepted
 
 # gif options
 animation:
-  frame_rate: 1 #original input frames per second
+  frame_rate: 10 #original input frames per second
   output_frame_rate: 10 #fps, but the actual frames in the video (not 1:1 with input)
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
@@ -49,9 +55,10 @@ animation:
 component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "top"
-  datetime: # above watermark for now
+  datetime: # below watermark for now
     x1: 0.005
     y1: 0.85
+    cex: 2.5
   legend_x_pos: "right"
   legend_y_pos: "bottom"
   outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
@@ -82,6 +89,7 @@ callouts:
         y_loc: 0.6
         pos: 3
         cex: 2
+    add_box: TRUE
   -
     dates:
       start: "2018-07-01"
@@ -92,6 +100,7 @@ callouts:
         y_loc: 0.50
         pos: 1
         cex: 2
+    add_box: TRUE
   -
     dates:
       start: "2018-09-14"
