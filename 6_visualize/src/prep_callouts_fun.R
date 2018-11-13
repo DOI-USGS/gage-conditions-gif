@@ -80,7 +80,7 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
                  xright = x + x_buffer_right,
                  ybottom = y_i - max_strheight - y_buffer_bottom,
                  ytop = y + y_buffer_top,
-                 col = "#bdbdbd50", border = NA)
+                 col = "#bdbdbd5E", border = NA)
           }
         }
       }
