@@ -37,6 +37,8 @@ targets:
     command: viz_config[[I('projection')]]
   sites_color_palette:
     command: viz_config[[I('sites_color_palette')]]
+  gage_style_config:
+    command: viz_config[[I('gage_style')]]
 
   2_process/out/timesteps.rds.ind:
     command: choose_timesteps(target_name, dates = dates)
@@ -65,7 +67,8 @@ targets:
     command: process_dv_stat_colors(
       ind_file = target_name,
       dv_stats_ind = '2_process/out/dv_stats.rds.ind',
-      color_palette = sites_color_palette)
+      color_palette = sites_color_palette,
+      gage_style = gage_style_config)
   2_process/out/dv_stat_colors.rds:
     command: gd_get('2_process/out/dv_stat_colors.rds.ind')
 
