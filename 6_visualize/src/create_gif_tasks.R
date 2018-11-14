@@ -9,18 +9,6 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
 
   # ---- timestep-specific png plotting layers ---- #
 
-  datetime_frame <- scipiper::create_task_step(
-    step_name = 'datetime_frame',
-    target_name = function(task_name, step_name, ...){
-      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf('datetime_fun_%s', task_name)
-    },
-    command = function(task_name, ...){
-      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_datetime_fun(I('%s'), datetime_placement, date_display_tz)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
-    }
-  )
-
   datewheel <- scipiper::create_task_step(
     step_name = 'datewheel',
     target_name = function(task_name, step_name, ...){
@@ -76,8 +64,7 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
         "watermark_fun,",
         "datewheel_fun_%s,"=cur_task$tn,
         "gage_sites_fun_%s,"=cur_task$tn,
-        "callouts_fun_%s,"=cur_task$tn,
-        "datetime_fun_%s)"=cur_task$tn
+        "callouts_fun_%s)"=cur_task$tn
       )
     }
   )
@@ -87,7 +74,6 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
     task_steps=list(
-      datetime_frame,
       datewheel,
       gage_sites,
       callouts,

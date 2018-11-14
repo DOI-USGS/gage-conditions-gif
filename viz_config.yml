@@ -67,10 +67,6 @@ animation:
 component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "top"
-  datetime: # below watermark for now
-    x1: 0.005
-    y1: 0.85
-    cex: 2.5
   legend_x_pos: "right"
   legend_y_pos: "bottom"
   outro: # outro text & legend roughly, but not exactly, fit where the sparklines were

@@ -59,8 +59,6 @@ targets:
 
   component_placement:
     command: viz_config[[I('component_placement')]]
-  datetime_placement:
-    command: component_placement[[I('datetime')]]
   watermark_x_pos:
     command: component_placement[[I('watermark_x_pos')]]
   watermark_y_pos:
