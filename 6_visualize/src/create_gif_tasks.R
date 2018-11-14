@@ -21,6 +21,18 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
     }
   )
 
+  dategrid <- scipiper::create_task_step(
+    step_name = 'dategrid',
+    target_name = function(task_name, step_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf('dategrid_fun_%s', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf("prep_dategrid_fun(I('%s'), dates_config, dategrid_cfg)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+    }
+  )
+
   gage_sites <- scipiper::create_task_step(
     step_name = 'gage_sites',
     target_name = function(task_name, step_name, ...){
@@ -62,6 +74,7 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
         "basemap_fun,",
         "legend_fun,",
         "watermark_fun,",
+        "dategrid_fun_%s,"=cur_task$tn,
         "gage_sites_fun_%s,"=cur_task$tn,
         "callouts_fun_%s,"=cur_task$tn,
         "datetime_fun_%s)"=cur_task$tn
@@ -75,6 +88,7 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
     task_names=tasks$task_name,
     task_steps=list(
       datetime_frame,
+      dategrid,
       gage_sites,
       callouts,
       complete_png),
