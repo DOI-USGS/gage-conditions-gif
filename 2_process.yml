@@ -8,6 +8,7 @@ packages:
   - scipiper
   - sp
   - maptools
+  - assertthat
 
 file_extensions:
   - feather
