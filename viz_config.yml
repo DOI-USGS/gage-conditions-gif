@@ -52,9 +52,9 @@ datewheel_cfg:
     text_per: 0.75 # percentage of the inner radius to place the text
     col_empty: "#bdbdbd" # color of the wheel background
     col_filled: "#5d5d5d" # color to fill in the wheel as time marches on
-    col_text_months: "#383838"
+    col_text_months: "#383838" # color of month labels inside wheel
     cex_text_months: 0.9
-    col_text_datestamp: "#bdbdbd"
+    col_text_datestamp: "#bdbdbd" # color of text inside the wheel
     cex_text_datestamp: 1
 
 # gif options
