@@ -44,6 +44,14 @@ legend_cfg:
   text_cex: 2
   text_col: "#161616"
   y_text_pos: "under" # "under" or "over" accepted
+datewheel_cfg:
+    x_pos: 0.12 # percentage in the x direction to place the circle center
+    y_pos: 0.45 # percentage in the y direction to place the circle center
+    wheel_per: 0.2 # percentage in the x direction to make the diameter
+    inner_per: 0.6 # percentage of the wheel radius to make the donut, skinnier if this is bigger
+    col_empty: "grey" # color of the wheel
+    col_filled: "cornflowerblue" # color to fill in the wheel as time marches on
+    col_text: "darkgrey"
 
 # gif options
 animation:
@@ -61,9 +69,6 @@ component_placement:
     cex: 2.5
   legend_x_pos: "right"
   legend_y_pos: "bottom"
-  dategrid:
-    xleft: 0.07
-    ytop: 0.75
   outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
     xleft: 0.55
     xright: 0.99
