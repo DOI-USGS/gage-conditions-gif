@@ -33,8 +33,23 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
 
     wheel_radius <- datewheel_cfg$wheel_per*diff(coord_space[1:2])/2 # 20% of the x
     inner_radius <- datewheel_cfg$inner_per*wheel_radius
+    text_radius <- datewheel_cfg$text_per*inner_radius
     x_center <- coord_space[1] + datewheel_cfg$x_pos * diff(coord_space[1:2])
     y_center <- coord_space[3] + datewheel_cfg$y_pos * diff(coord_space[3:4])
+
+    # Calculate where to put month labels
+    date_df <- data.frame(day = seq.Date(start_dt, end_dt, by="days")) %>%
+      mutate(month = format(day, "%b"))
+    sum_dates <- date_df %>%
+      group_by(month) %>%
+      # find median day of each month
+      summarize(median_day = median(day)) %>%
+      mutate(median_day_n = as.numeric(median_day - start_dt) + 1) %>%
+      # calculate the angle at which to put them and then figure out x/y coords
+      mutate(angle_n = start_angle + median_day_n*wedge_width*rot_dir) %>%
+      mutate(x = x_center + text_radius*cos(angle_n),
+             y = y_center + text_radius*sin(angle_n)) %>%
+      select(month, x, y)
 
     # Create the whole wheel
     segments_wheel <- make_arc(x_center, y_center,
@@ -66,6 +81,12 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
     polygon(c(x_center, segments_middle$x, x_center),
             c(y_center, segments_middle$y, y_center),
             border = NA, col = col_background)
+
+    # Add month labels
+    text(sum_dates$x, sum_dates$y,
+         labels = sum_dates$month,
+         col = datewheel_cfg$col_text,
+         cex = datewheel_cfg$cex_text)
   }
   return(plot_fun)
 }

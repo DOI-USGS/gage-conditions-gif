@@ -52,6 +52,8 @@ datewheel_cfg:
     text_per: 0.75 # percentage of the inner radius to place the text
     col_empty: "#bdbdbd" # color of the wheel background
     col_filled: "#5d5d5d" # color to fill in the wheel as time marches on
+    col_text: "#383838"
+    cex_text: 0.9
 
 # gif options
 animation:
