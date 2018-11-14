@@ -85,8 +85,18 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
     # Add month labels
     text(sum_dates$x, sum_dates$y,
          labels = sum_dates$month,
-         col = datewheel_cfg$col_text,
-         cex = datewheel_cfg$cex_text)
+         col = datewheel_cfg$col_text_months,
+         cex = datewheel_cfg$cex_text_months)
+
+    # Add exact day in the center
+    text(x_center, y_center,
+         col = datewheel_cfg$col_text_datestamp,
+         cex = datewheel_cfg$cex_text_datestamp,
+         label = format(this_date, "%b %d"), pos = 3)
+    text(x_center, y_center,
+         col = datewheel_cfg$col_text_datestamp,
+         cex = datewheel_cfg$cex_text_datestamp,
+         label = format(this_date, "%Y"), pos = 1)
   }
   return(plot_fun)
 }
