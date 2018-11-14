@@ -31,7 +31,7 @@ process_dv_stats <- function(ind_file, dv_data_ind, site_stats_clean_ind, dates,
   stat_perc <- as.numeric(percentiles)/100
 
   interpolate_percentile <- function(df){
-    # This function takes the current daily value and interpolates it's percentile based
+    # This function takes the current daily value and interpolates its percentile based
     # on the percentiles for the matching site and day of the year
     df <- select(df, "dv_val", one_of(stat_colnames))
     out <- rep(NA, nrow(df))
