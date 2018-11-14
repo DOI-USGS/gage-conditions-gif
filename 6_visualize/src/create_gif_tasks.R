@@ -9,27 +9,15 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
 
   # ---- timestep-specific png plotting layers ---- #
 
-  datetime_frame <- scipiper::create_task_step(
-    step_name = 'datetime_frame',
+  datewheel <- scipiper::create_task_step(
+    step_name = 'datewheel',
     target_name = function(task_name, step_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf('datetime_fun_%s', task_name)
+      sprintf('datewheel_fun_%s', task_name)
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_datetime_fun(I('%s'), datetime_placement, date_display_tz)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
-    }
-  )
-
-  dategrid <- scipiper::create_task_step(
-    step_name = 'dategrid',
-    target_name = function(task_name, step_name, ...){
-      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf('dategrid_fun_%s', task_name)
-    },
-    command = function(task_name, ...){
-      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_dategrid_fun(I('%s'), dates_config, dategrid_cfg)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+      sprintf("prep_datewheel_fun(I('%s'), viz_config, dates_config, datewheel_cfg)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
     }
   )
 
@@ -74,10 +62,9 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
         "basemap_fun,",
         "legend_fun,",
         "watermark_fun,",
-        "dategrid_fun_%s,"=cur_task$tn,
+        "datewheel_fun_%s,"=cur_task$tn,
         "gage_sites_fun_%s,"=cur_task$tn,
-        "callouts_fun_%s,"=cur_task$tn,
-        "datetime_fun_%s)"=cur_task$tn
+        "callouts_fun_%s)"=cur_task$tn
       )
     }
   )
@@ -87,8 +74,7 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
     task_steps=list(
-      datetime_frame,
-      dategrid,
+      datewheel,
       gage_sites,
       callouts,
       complete_png),

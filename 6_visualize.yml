@@ -22,7 +22,6 @@ sources:
   - 6_visualize/src/prep_legend_fun.R
   - 6_visualize/src/prep_watermark_fun.R
   - 6_visualize/src/prep_gage_sites_fun.R
-  - 6_visualize/src/prep_dategrid_fun.R
   - 6_visualize/src/prep_callouts_fun.R
   - 6_visualize/src/combine_animation_frames.R
 
@@ -53,13 +52,13 @@ targets:
     command: viz_config[[I(c('intro'))]]
   legend_cfg:
     command: viz_config[[I("legend_cfg")]]
+  datewheel_cfg:
+    command: viz_config[[I("datewheel_cfg")]]
 
   #### location of images on figure ####
 
   component_placement:
     command: viz_config[[I('component_placement')]]
-  datetime_placement:
-    command: component_placement[[I('datetime')]]
   watermark_x_pos:
     command: component_placement[[I('watermark_x_pos')]]
   watermark_y_pos:
@@ -68,8 +67,6 @@ targets:
     command: component_placement[[I('legend_x_pos')]]
   legend_y_pos:
     command: component_placement[[I('legend_y_pos')]]
-  dategrid_cfg:
-    command: component_placement[[I('dategrid')]]
   outro_placement:
     command: component_placement[[I('outro')]]
 
