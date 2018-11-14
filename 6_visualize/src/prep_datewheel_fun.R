@@ -42,11 +42,11 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
       mutate(month = format(day, "%b"))
     sum_dates <- date_df %>%
       group_by(month) %>%
-      # find median day of each month
-      summarize(median_day = median(day)) %>%
-      mutate(median_day_n = as.numeric(median_day - start_dt) + 1) %>%
+      # find first day of each month
+      summarize(first_day = min(day)) %>%
+      mutate(first_day_n = as.numeric(first_day - start_dt) + 1) %>%
       # calculate the angle at which to put them and then figure out x/y coords
-      mutate(angle_n = start_angle + median_day_n*wedge_width*rot_dir) %>%
+      mutate(angle_n = start_angle + first_day_n*wedge_width*rot_dir) %>%
       mutate(x = x_center + text_radius*cos(angle_n),
              y = y_center + text_radius*sin(angle_n)) %>%
       select(month, x, y)
