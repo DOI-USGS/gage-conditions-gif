@@ -82,50 +82,60 @@ callouts:
       start: "2017-12-10"
       end: "2017-12-20"
     text:
-        label: ["Much-below-average", "December precipitation", "along the West Coast"]
-        x_loc: 0.25 #this is in percentage space, relative to the plotting device
-        y_loc: 0.6
-        pos: 2
-        cex: 2
+      label: ["Much-below-average", "December precipitation", "along the West Coast"]
+      x_loc: 0.25 #this is in percentage space, relative to the plotting device
+      y_loc: 0.6
+      pos: 2
+      cex: 2
+    polygon:
+      file: "6_visualize/in/callout_poly_West_Coast_December.png"
   -
     dates:
-      start: "2018-02-20"
-      end: "2018-02-23"
+      start: "2018-02-17"
+      end: "2018-02-26"
     text:
-        label: ["Drought begins to", "develop in UT, CO,", "NM, AZ, north TX,", "OK, and KS"]
-        x_loc: 0.57
-        y_loc: 0.6
-        pos: 3
-        cex: 2
+      label: ["Drought begins to", "develop in UT, CO,", "NM, AZ, north TX,", "OK, and KS"]
+      x_loc: 0.57
+      y_loc: 0.6
+      pos: 3
+      cex: 2
     add_box: TRUE
+    polygon:
+      file: "6_visualize/in/callout_poly_SW_drought.png"
   -
     dates:
       start: "2018-07-01"
       end: "2018-07-20"
     text:
-        label: ["Low snowpack drives", "sustained drought in the", "mountainous Southwest", "(UT, CO, NM, AZ)"]
-        x_loc: 0.57
-        y_loc: 0.50
-        pos: 1
-        cex: 2
+      label: ["Low snowpack drives", "sustained drought in the", "mountainous Southwest", "(UT, CO, NM, AZ)"]
+      x_loc: 0.57
+      y_loc: 0.50
+      pos: 1
+      cex: 2
     add_box: TRUE
+    polygon:
+      file: "6_visualize/in/callout_poly_SW_snowpack.png"
   -
     dates:
-      start: "2018-09-14"
-      end: "2018-09-15"
+      start: "2018-09-10"
+      end: "2018-09-19"
     text:
-        label: ["Hurricane Florence", "parks over NC and SC"]
-        x_loc: 0.85
-        y_loc: 0.4
-        pos: 4
-        cex: 2
+      label: ["Hurricane Florence", "parks over NC and SC"]
+      x_loc: 0.85
+      y_loc: 0.4
+      pos: 4
+      cex: 2
+    polygon:
+      file: "6_visualize/in/callout_poly_Florence.png"
   -
     dates:
-      start: "2018-09-21"
-      end: "2018-09-22"
+      start: "2018-09-16"
+      end: "2018-09-25"
     text:
-        label: ["Record rainfall in South Texas", "(8 inches in 2 days in Dallas)"]
-        x_loc: 0.62
-        y_loc: 0.18
-        pos: 4
-        cex: 2
+      label: ["Record rainfall in South Texas", "(8 inches in 2 days in Dallas)"]
+      x_loc: 0.62
+      y_loc: 0.18
+      pos: 4
+      cex: 2
+    polygon:
+      file: "6_visualize/in/callout_poly_Texas_rain.png"

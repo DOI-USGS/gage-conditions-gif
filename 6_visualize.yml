@@ -8,6 +8,7 @@ packages:
   - tidyr
   - showtext
   - sysfonts
+  - png
 
 file_extensions:
   - feather
