@@ -20,6 +20,7 @@ sources:
   - 6_visualize/src/create_gif_makefile.R
   - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_basemap_fun.R
+  - 6_visualize/src/prep_title_fun.R
   - 6_visualize/src/prep_legend_fun.R
   - 6_visualize/src/prep_watermark_fun.R
   - 6_visualize/src/prep_gage_sites_fun.R
@@ -89,6 +90,11 @@ targets:
   basemap_fun:
     command: prep_basemap_fun(states_shifted, basemap_cfg)
 
+  title_cfg:
+    command: viz_config[[I(c('title_cfg'))]]
+  title_fun:
+    command: prep_title_fun(title_cfg)
+
   legend_fun:
     command: prep_legend_fun(
       percentiles_str = percentiles,
@@ -152,9 +158,9 @@ targets:
   animation_cfg:
     command: viz_config[[I('animation')]]
 
-  6_visualize/out/year_in_review.webm:
+  6_visualize/out/year_in_review.mp4:
     command: combine_animation_frames(
       gif_file=target_name,
       animation_cfg=animation_cfg)
-  6_visualize/out/year_in_review.web.ind:
-    command: gd_put(target_name, '6_visualize/out/year_in_review.webm')
+  6_visualize/out/year_in_review.mp4.ind:
+    command: gd_put(target_name, '6_visualize/out/year_in_review.mp4')
