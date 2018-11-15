@@ -4,7 +4,7 @@ prep_title_fun <- function(title_cfg){
   plot_fun <- function(){
     # coordinate space (edges, width, height)
     coord_space <- par()$usr
-    font_y_multiplier <- 3.3 # for Abel
+    font_y_multiplier <- 3.4 # for Abel
 
     title_x <- coord_space[1] + title_cfg$x_pos * diff(coord_space[1:2])
     title_y <- coord_space[3] + title_cfg$y_pos * diff(coord_space[3:4])
