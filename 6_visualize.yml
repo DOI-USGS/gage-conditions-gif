@@ -151,9 +151,9 @@ targets:
   animation_cfg:
     command: viz_config[[I('animation')]]
 
-  6_visualize/out/year_in_review.webm:
+  6_visualize/out/year_in_review.mp4:
     command: combine_animation_frames(
       gif_file=target_name,
       animation_cfg=animation_cfg)
-  6_visualize/out/year_in_review.web.ind:
-    command: gd_put(target_name, '6_visualize/out/year_in_review.webm')
+  6_visualize/out/year_in_review.mp4.ind:
+    command: gd_put(target_name, '6_visualize/out/year_in_review.mp4')
