@@ -44,9 +44,18 @@ legend_cfg:
   text_cex: 2
   text_col: "#161616"
   y_text_pos: "under" # "under" or "over" accepted
+title_cfg:
+  main: "U.S. River Conditions"
+  subtitle: "Water Year 2018"
+  x_pos: 0.005
+  y_pos: 0.90
+  main_cex: 3
+  main_col: "#666666"
+  sub_cex: 2
+  sub_col: "#939393"
 datewheel_cfg:
-    x_pos: 0.12 # percentage in the x direction to place the circle center
-    y_pos: 0.45 # percentage in the y direction to place the circle center
+    x_pos: 0.10 # percentage in the x direction to place the circle center
+    y_pos: 0.65 # percentage in the y direction to place the circle center
     wheel_per: 0.15 # percentage in the x direction to make the diameter
     inner_per: 0.7 # percentage of the wheel radius to make the donut, skinnier if this is bigger
     text_per: 0.75 # percentage of the inner radius to place the text
@@ -66,7 +75,7 @@ animation:
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
 component_placement:
   watermark_x_pos: "left"
-  watermark_y_pos: "top"
+  watermark_y_pos: "bottom"
   legend_x_pos: "right"
   legend_y_pos: "bottom"
   outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
