@@ -80,31 +80,31 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
             "3" = 0, # above
             max_strheight*0.5 # default
           )
-          rect(xleft = x - x_buffer_left,
-               xright = x + x_buffer_right,
-               ybottom = y_bot - y_buffer_bottom,
-               ytop = y + y_buffer_top,
-               col = "#bdbdbd5E", border = NA)
-          # rect_left <- x - x_buffer_left
-          # rect_right <- x + x_buffer_right
-          # rect_center_x <- (rect_left + rect_right)/2
-          # rect_bot <- y_bot - y_buffer_bottom
-          # rect_top <- y + y_buffer_top
-          # rect_center_y <- (rect_bot + rect_top)/2
-          # plot_width <- coord_space[2]-coord_space[1]
-          # plot_height <- coord_space[4]-coord_space[3]
-          # plot_left <- coord_space[1]
-          # plot_bot <- coord_space[3]
-          # grid::grid.roundrect(
-          #   x = (rect_center_x - plot_left) / plot_width,
-          #   y = (rect_center_y - plot_bot) / plot_height,
-          #   just = 'centre',
-          #   width = 1.04 * (rect_right - rect_left) / plot_width,
-          #   height = 1.04 * (rect_top - rect_bot) / plot_height,
-          #   r = unit(20, 'points'),
-          #   gp = gpar(
-          #     fill = '#bdbdbd5E',
-          #     col = NA))
+          # rect(xleft = x - x_buffer_left,
+          #      xright = x + x_buffer_right,
+          #      ybottom = y_bot - y_buffer_bottom,
+          #      ytop = y + y_buffer_top,
+          #      col = "#bdbdbd5E", border = NA)
+          rect_left <- x - x_buffer_left
+          rect_right <- x + x_buffer_right
+          rect_center_x <- (rect_left + rect_right)/2
+          rect_bot <- y_bot - y_buffer_bottom
+          rect_top <- y + y_buffer_top
+          rect_center_y <- (rect_bot + rect_top)/2
+          plot_width <- coord_space[2]-coord_space[1]
+          plot_height <- coord_space[4]-coord_space[3]
+          plot_left <- coord_space[1]
+          plot_bot <- coord_space[3]
+          grid::grid.roundrect(
+            x = (rect_center_x - plot_left) / plot_width,
+            y = (rect_center_y - plot_bot) / plot_height,
+            just = 'centre',
+            width = 1.04 * (rect_right - rect_left) / plot_width,
+            height = 1.04 * (rect_top - rect_bot) / plot_height,
+            r = unit(20, 'points'),
+            gp = gpar(
+              fill = '#bdbdbd5E',
+              col = NA))
 
         }
 
