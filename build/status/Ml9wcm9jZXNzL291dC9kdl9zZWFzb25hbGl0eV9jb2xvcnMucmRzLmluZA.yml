@@ -1,0 +1,14 @@
+version: 0.3.0
+name: 2_process/out/dv_seasonality_colors.rds.ind
+type: file
+hash: 49fa9298f79f520463bd357f6f8cfcf8
+time: 2018-11-15 20:22:38 UTC
+depends:
+  2_process/out/dv_stats.rds.ind: 0dc9a48f439dabe61356bbab03211a3f
+  sites_color_palette: f4bda45333f2e464042d4b4851a2ec49
+  gage_style_config: e3491cdd3ecb0a0a35adcba91aa1096e
+fixed: 484099f00715bd33585e3194548bcc96
+code:
+  functions:
+    process_seasonality_colors: 24ec1c29cda964d5fc5ef7e3bf933be1
+
