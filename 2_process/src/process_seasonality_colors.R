@@ -10,12 +10,22 @@ process_seasonality_colors <- function(ind_file, dv_stats_ind, color_palette, ga
 
   dv_stats_scaled <- dv_stats %>%
     # calculate difference from site_median
-    mutate(delta = dv_val - site_median) %>%
-    group_by(site_no) %>%
-    mutate(delta_min = min(delta), delta_max = max(delta)) %>%
-    ungroup() %>%
+    mutate(delta = dv_val - site_median,
+           per_diff = ifelse(delta == 0, yes = 0,
+                             # if the change is zero, then the percent difference is 0
+                             no = ifelse(site_median == 0,
+                                         # if the site_median is zero, you get Inf
+                                         yes = delta/0.1, # using this as a stand-in for zero for now...
+                                         no = delta/site_median)))
+  per_diff_min <- min(dv_stats_scaled$per_diff, na.rm = T)
+  per_diff_max <- max(dv_stats_scaled$per_diff, na.rm = T)
+
+  dv_stats_scaled2 <- dv_stats_scaled %>%
     # need to scale to be between 0-1
-    mutate(delta_per = (delta - delta_min)/(delta_max - delta_min))
+    mutate(delta_frac = ifelse(per_diff <= 0,
+                               0.5 * (per_diff - per_diff_min) / (-per_diff_min),
+                               0.5 + 0.5 * per_diff / per_diff_max)) %>%
+    head()
 
   dv_stats_with_color <- dv_stats_scaled %>%
     mutate(shape = ifelse(is.na(delta_per),
