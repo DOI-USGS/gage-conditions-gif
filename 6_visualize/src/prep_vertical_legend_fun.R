@@ -41,21 +41,40 @@ prep_vertical_legend_fun <- function(percentiles_str, sites_color_palette,
              col = legend_cols[n], pch = 21, cex = legend_cfg$point_cex, lwd = 1)
     }
 
+    # correct for shrinking text size from nested atop() calls
+    text_size <- legend_cfg$text_cex
+    text_size_bot_top <- text_size #+ 0.5
+
     text_pos <- 2
     x_text <- x_loc - point_width*0.3
 
     y_text_shift <- point_height*0.06
-    y_text_bot <- y_loc_n - y_text_shift
-    y_text_mid <- mean(c(y_start, y_loc_n)) - y_text_shift
-    y_text_top <- y_start - y_text_shift
+    y_text_midpoint <- mean(c(y_start, y_loc_n))
+    y_text_mid <- y_text_midpoint - y_text_shift
+    y_text_bot <- y_text_midpoint - (y_text_midpoint - y_loc_n)*0.8
+    y_text_top <- y_text_midpoint + (y_start - y_text_midpoint)*0.8 - y_text_shift
+
+    # without arrows
+    text_bot <- expression(atop("Lower", "flows"))
+    text_mid <- "Normal"
+    text_top <- expression(atop("Higher", "flows"))
+
+    # with arrows
+    # text_bot <- expression(atop(atop("Lower", "flows"), ""%down%""))
+    # text_mid <- "Normal"
+    # text_top <- expression(atop(""%up%"", atop("Higher", "flows")))
+    # text_size_bot_top <- text_size_bot_top + 0.5
+    # y_text_bot <- y_text_bot - y_text_shift*5 #needs to shift down so bottom arrow is symmetric with top
 
     # Add text to show "Lower" vs "Higher"
-    text(x_text, y_text_bot, 'Lower flows', pos = text_pos,
-         col = legend_cfg$text_col, cex = legend_cfg$text_cex)
-    text(x_text, y_text_mid, 'Normal', pos = text_pos,
-         col = legend_cfg$text_col, cex = legend_cfg$text_cex)
-    text(x_text, y_text_top, 'Higher flows', pos = text_pos,
-         col = legend_cfg$text_col, cex = legend_cfg$text_cex)
+    text(x_text, y_text_bot,
+         labels = text_bot,
+         pos = text_pos, col = legend_cfg$text_col, cex = text_size_bot_top)
+    text(x_text, y_text_mid, text_mid, pos = text_pos,
+         col = legend_cfg$text_col, cex = text_size)
+    text(x_text, y_text_top,
+         labels = text_top,
+         pos = text_pos, col = legend_cfg$text_col, cex = text_size_bot_top)
 
   }
   return(plot_fun)
