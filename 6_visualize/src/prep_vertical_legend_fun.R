@@ -59,13 +59,6 @@ prep_vertical_legend_fun <- function(percentiles_str, sites_color_palette,
     text_mid <- "Normal"
     text_top <- expression(atop("Higher", "flows"))
 
-    # with arrows
-    # text_bot <- expression(atop(atop("Lower", "flows"), ""%down%""))
-    # text_mid <- "Normal"
-    # text_top <- expression(atop(""%up%"", atop("Higher", "flows")))
-    # text_size_bot_top <- text_size_bot_top + 0.5
-    # y_text_bot <- y_text_bot - y_text_shift*5 #needs to shift down so bottom arrow is symmetric with top
-
     # Add text to show "Lower" vs "Higher"
     text(x_text, y_text_bot,
          labels = text_bot,
