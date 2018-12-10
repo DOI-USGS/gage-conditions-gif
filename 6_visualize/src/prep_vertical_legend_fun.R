@@ -28,9 +28,9 @@ prep_vertical_legend_fun <- function(percentiles_str, sites_color_palette,
     point_height <- legend_cfg$point_cex*strheight("O")
 
     # Legend text
-    bottom_text <- "Lower flows"
+    bottom_text <- "Lower"
     mid_text <- "Normal"
-    top_text <- "Higher flows"
+    top_text <- "Higher"
 
     y_start <- y_loc - strheight(top_text)
     legend_cols <- rev(legend_cols) # fill top - bottom
@@ -48,25 +48,19 @@ prep_vertical_legend_fun <- function(percentiles_str, sites_color_palette,
     text_pos <- 2
     x_text <- x_loc - point_width*0.3
 
-    y_text_shift <- point_height*0.06
     y_text_midpoint <- mean(c(y_start, y_loc_n))
-    y_text_mid <- y_text_midpoint - y_text_shift
-    y_text_bot <- y_text_midpoint - (y_text_midpoint - y_loc_n)*0.8
-    y_text_top <- y_text_midpoint + (y_start - y_text_midpoint)*0.8 - y_text_shift
-
-    # without arrows
-    text_bot <- expression(atop("Lower", "flows"))
-    text_mid <- "Normal"
-    text_top <- expression(atop("Higher", "flows"))
+    y_text_mid <- y_text_midpoint - point_height*0.06
+    y_text_bot <- y_text_midpoint - (y_text_midpoint - y_loc_n)*0.87
+    y_text_top <- y_text_midpoint + (y_start - y_text_midpoint)*0.86
 
     # Add text to show "Lower" vs "Higher"
     text(x_text, y_text_bot,
-         labels = text_bot,
+         labels = bottom_text,
          pos = text_pos, col = legend_cfg$text_col, cex = text_size_bot_top)
-    text(x_text, y_text_mid, text_mid, pos = text_pos,
+    text(x_text, y_text_mid, mid_text, pos = text_pos,
          col = legend_cfg$text_col, cex = text_size)
     text(x_text, y_text_top,
-         labels = text_top,
+         labels = top_text,
          pos = text_pos, col = legend_cfg$text_col, cex = text_size_bot_top)
 
   }
