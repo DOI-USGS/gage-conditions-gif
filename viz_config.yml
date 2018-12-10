@@ -40,10 +40,11 @@ gage_style:
     pch: 16
     cex: 1
 legend_cfg:
-  point_cex: 7
-  text_cex: 2
-  text_col: "#161616"
-  y_text_pos: "under" # "under" or "over" accepted
+  point_cex: 5
+  text_cex: 1.2
+  text_col: "#444444"
+  x_pos: 0.11
+  y_pos: 0.80
 title_cfg:
   main: "U.S. River Conditions"
   subtitle: "Water Year 2018"
@@ -55,7 +56,7 @@ title_cfg:
   sub_col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
-    y_pos: 0.65 # percentage in the y direction to place the circle center
+    y_pos: 0.33 # percentage in the y direction to place the circle center
     wheel_per: 0.15 # percentage in the x direction to make the diameter
     inner_per: 0.7 # percentage of the wheel radius to make the donut, skinnier if this is bigger
     text_per: 0.75 # percentage of the inner radius to place the text
@@ -76,8 +77,6 @@ animation:
 component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "bottom"
-  legend_x_pos: "right"
-  legend_y_pos: "bottom"
   outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
     xleft: 0.55
     xright: 0.99
