@@ -32,6 +32,8 @@ basemap:
 sites_color_palette:
   with_percentile: ['#ca0020','#f4a582','#efefef','#efefef','#92c5de','#034064']
   no_percentile: "gray50"
+sites_size_palette:
+  cex_range: [0.5, 1.5]
 gage_style:
   with_percentile:
     pch: 16
