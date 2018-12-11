@@ -39,8 +39,8 @@ process_dv_stat_styles <- function(ind_file, dv_stats_ind, color_palette, size_p
       color = NA)
   # insert values into the color column. this was not working with ifelse inside
   # mutate, still NAs getting into rgb/col_fun
-  per_na <- is.na(dv_stats$per)
-  dv_stats_with_style$color[!per_na] <- rgb(col_fun(dv_stats$per[!per_na]), maxColorValue = 255)
+  per_na <- is.na(dv_stats_scaled$per)
+  dv_stats_with_style$color[!per_na] <- rgb(col_fun(dv_stats_scaled$per[!per_na]), maxColorValue = 255)
   dv_stats_with_style$color[per_na] <- color_palette$no_percentile
 
   # Write the data file and the indicator file
