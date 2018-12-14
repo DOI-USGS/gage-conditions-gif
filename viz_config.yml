@@ -32,7 +32,7 @@ basemap:
 sites_color_palette:
   with_percentile: ['#ca0020','#f4a582','#efefef','#efefef','#92c5de','#034064']
   no_percentile: "gray50"
-sites_size_palette:
+sites_size_palette: # not actually using this right now (see 2_process/src/process_dv_stat_styles.R, line 22)
   cex_range: [0.5, 2.5] # both must be formatted as doubles (no integers)
 gage_style:
   with_percentile:

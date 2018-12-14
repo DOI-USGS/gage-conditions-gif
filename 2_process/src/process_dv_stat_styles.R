@@ -19,10 +19,10 @@ process_dv_stat_styles <- function(ind_file, dv_stats_ind, color_palette, size_p
   col_fun <- colorRamp(color_palette$with_percentile)
   size_fun <- function(percentile) {
     # to use constant dot size:
-    #gage_style$no_percentile$cex
+    gage_style$with_percentile$cex
 
     # to show seasonality through dot size:
-    size_palette$cex_range[1] + percentile*(diff(size_palette$cex_range))
+    #size_palette$cex_range[1] + percentile*(diff(size_palette$cex_range))
   }
 
   # apply the styling functions to add style columns to the data.frame
