@@ -21,6 +21,7 @@ shift:
 
 # fetch site data parameters
 request_limit: 10
+request_limit_historic: 5
 percentiles: ["05","10","20","25","50","75","80","90","95"]
 
 # styling
