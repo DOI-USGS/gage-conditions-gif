@@ -2,33 +2,18 @@
 #'
 #' @param ind_file character file name where the output should be saved
 #' @param dv_data_ind indicator file for the data.frame of dv_data
-#' @param site_stats_clean_ind indicator file for the data.frame of dv stats for each site
+#' @param site_stats_ind indicator file for the data.frame of dv stats for each site
 #' @param dates object from viz_config.yml that specifies dates as string
-#' @param percentiles character vector of the types of stats to include, i.e. `c("10", "75")`
-#' will return the 10th and 75th percentiles (from viz_config.yml)
-process_dv_stats <- function(ind_file, dv_data_ind, site_stats_clean_ind, dates, percentiles){
+process_dv_stats <- function(ind_file, dv_data_ind, site_stats_ind, dates){
 
   dv_data <- readRDS(scipiper::sc_retrieve(dv_data_ind, remake_file = '1_fetch.yml'))
-  site_stats <- readRDS(scipiper::sc_retrieve(site_stats_clean_ind, remake_file = '2_process.yml'))
-  # breakdown date into month & day pairs
-  dv_data_md <- dv_data %>%
-    dplyr::mutate(month_nu = as.numeric(format(dateTime, "%m")),
-                  day_nu = as.numeric(format(dateTime, "%d")))
-  #calculate median of medians for each site
-  assert_that(sum(is.na(site_stats$p50_va)) == 0)
+  site_stats <- readRDS(scipiper::sc_retrieve(site_stats_ind, remake_file = '2_process.yml'))
 
-  #once https://github.com/USGS-VIZLAB/gage-conditions-gif/issues/48 is dealt with this
-  #assertion should be true
-  #assertthat((site_stats %>% group_by(site_no) %>% summarize(n=n()) %>% pull(n) %>% max()) == 366)
-  sites_overall_medians <- site_stats %>% group_by(site_no) %>% summarize(site_median = median(p50_va))
+  dv_with_stats <- left_join(dv_data, site_stats, by = "site_no") %>%
+    mutate(dv_val = Flow)
 
-  # merge stats with the dv data
-  # merge still results in extra rows - 24 extra to be exact
-  dv_with_stats <- left_join(dv_data_md, site_stats, by = c("site_no", "month_nu", "day_nu")) %>%
-    left_join(sites_overall_medians, by = "site_no")
-
-  stat_colnames <- sprintf("p%s_va", percentiles)
-  stat_perc <- as.numeric(percentiles)/100
+  stat_colnames <- names(site_stats)[grepl("p[0-9]+_va", names(site_stats))]
+  stat_perc <- as.numeric(gsub("p([0-9]+)_va", "\\1", stat_colnames))/100
 
   interpolate_percentile <- function(df){
     # This function takes the current daily value and interpolates its percentile based
@@ -50,26 +35,38 @@ process_dv_stats <- function(ind_file, dv_data_ind, site_stats_clean_ind, dates,
       nas <- is.na(x)
       x <- x[!nas]
       y <- y[!nas]
-      if (length(unique(x)) < 2){
+      if (is.na(dv_val)) {
         out[i] <- NA
-      } else if (dv_val < x[1L]){ # the first and last *have* to be numbers per filtering criteria
-        out[i] <- head(stat_perc, 1)
+      } else if (length(unique(x)) < 2){
+        out[i] <- NA
+      } else if (dv_val < x[1L]){
+        # less than the minimum, makes it the new minimum
+        out[i] <- 0
       } else if (dv_val > tail(x, 1L)){
-        out[i] <- tail(stat_perc, 1)
+        # greater than maximum, makes it the new maximum
+        out[i] <- 1
       } else {
         out[i] <- approx(x, y, xout = dv_val)$y
       }
+      print(i)
     }
     return(out)
 
   }
-  dv_stats <- dv_with_stats %>%
-    mutate(dv_val = Flow) %>%
-    filter_(sprintf("!is.na(%s)", stat_colnames[1]),
-            sprintf("!is.na(%s)", tail(stat_colnames,1)),
-            sprintf("!is.na(%s)", "dv_val")) %>%
+
+  # Add NA for short record (need at least 3 years of data or when dv_val is NA
+  dv_data_nas <- dv_with_stats %>%
+    filter(is.na(dv_val) | count < 365*3) %>%
+    mutate(per = NA) %>%
+    select(site_no, dateTime, dv_val, per, p50_va)
+
+  # Long enough record and no missing dv_val, so perform interpolation
+  dv_data <- dv_with_stats %>%
+    filter(!is.na(dv_val) & count >= 365*3) %>%
     mutate(per = interpolate_percentile(.)) %>%
-    select(site_no, dateTime, dv_val, per, p50_va, site_median)
+    select(site_no, dateTime, dv_val, per, p50_va) %>%
+    bind_rows(dv_data_nas)
+
   # Write the data file and the indicator file
   data_file <- scipiper::as_data_file(ind_file)
   saveRDS(dv_stats, data_file)
