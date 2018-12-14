@@ -16,7 +16,7 @@ process_dv_historic_quantiles <- function(ind_file, dv_historic_ind, percentiles
   # Actually calculate quantiles
   dv_quantiles <- dv_historic_data %>%
     group_by(site_no) %>%
-    # calculate quantiles and put into columns
+    # calculate quantiles (automatically add min and max, 0 & 1) and put into columns
     do(data.frame(t(quantile(.$Flow, probs = c(0, as.numeric(percentiles)/100, 1))))) %>%
     # rename columns to be pXX_va where XX is the percentile
     # numbers <10 automatically drop leading zero in line above and we need it back
