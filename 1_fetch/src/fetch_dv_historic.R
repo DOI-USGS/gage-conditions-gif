@@ -10,7 +10,6 @@ fetch_dv_historic <- function(ind_file, sites_ind, dates, request_limit, tmp_fil
   sites <- readRDS(scipiper::sc_retrieve(sites_ind, remake_file = '1_fetch.yml'))
 
   req_bks <- seq(1, length(sites), by=request_limit)
-  dv_historic_data <- data.frame()
   data_file_vec <- c()
   for(i in req_bks) {
     last_site <- min(i+request_limit-1, length(sites))
