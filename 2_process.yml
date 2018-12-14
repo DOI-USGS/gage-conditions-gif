@@ -16,7 +16,7 @@ file_extensions:
 
 sources:
   - 2_process/src/choose_timesteps.R
-  - 2_process/src/process_site_stats.R
+  - 2_process/src/process_dv_historic_quantiles.R
   - 2_process/src/process_dv_stats.R
   - 2_process/src/process_dv_stat_styles.R
   - 2_process/src/project_shift_points.R
@@ -27,7 +27,7 @@ targets:
   2_process:
     depends:
       - 2_process/out/timesteps.rds.ind
-      - 2_process/out/site_stats_clean.rds.ind
+      - 2_process/out/dv_historic_quantiles.rds.ind
       - 2_process/out/dv_stats.rds.ind
       - 2_process/out/dv_stat_styles.rds.ind
       - states_shifted
@@ -49,12 +49,13 @@ targets:
     command: gd_get('2_process/out/timesteps.rds.ind')
 
   # -- process site data --
-  2_process/out/site_stats_clean.rds.ind:
-    command: process_site_stats(
+  2_process/out/dv_historic_quantiles.rds.ind:
+    command: process_dv_historic_quantiles(
       ind_file = target_name,
-      site_stats_ind = '1_fetch/out/site_stats.rds.ind')
-  2_process/out/site_stats_clean.rds:
-    command: gd_get('2_process/out/site_stats_clean.rds.ind')
+      dv_historic_ind = '1_fetch/out/dv_historic.ind',
+      percentiles = percentiles)
+  2_process/out/dv_historic_quantiles.rds:
+    command: gd_get('2_process/out/dv_historic_quantiles.rds.ind')
 
   2_process/out/dv_stats.rds.ind:
     command: process_dv_stats(
