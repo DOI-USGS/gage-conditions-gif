@@ -11,12 +11,14 @@ fetch_dv_historic <- function(ind_file, sites_ind, dates, request_limit, tmp_fil
 
   req_bks <- seq(1, length(sites), by=request_limit)
   dv_historic_data <- data.frame()
+  data_file_vec <- c()
   for(i in req_bks) {
     last_site <- min(i+request_limit-1, length(sites))
     get_sites <- sites[i:last_site]
 
     # Check if current file already exists before pulling data
     current_filename <- sprintf(tmp_filenames, head(get_sites,1), tail(get_sites,1))
+    data_file_vec <- c(data_file_vec, current_filename)
     if(!file.exists(current_filename)) {
       data_i <-
         dataRetrieval::readNWISdata(
@@ -36,15 +38,11 @@ fetch_dv_historic <- function(ind_file, sites_ind, dates, request_limit, tmp_fil
 
       # save individual file locally as building in case something happens
       saveRDS(data_i, current_filename)
-
-      dv_historic_data <- rbind(dv_historic_data, data_i)
     }
 
     print(paste("Completed", last_site, "of", length(sites)))
   }
 
-  # Write the data file and the indicator file
-  data_file <- scipiper::as_data_file(ind_file)
-  saveRDS(dv_historic_data, data_file)
-  scipiper::gd_put(ind_file, data_file)
+  # Write the indicator file as table of hashes for local files
+  data_file <- scipiper::sc_indicate(ind_file = ind_file, data_file = data_file_vec)
 }
