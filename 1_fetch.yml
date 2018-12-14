@@ -71,7 +71,8 @@ targets:
       ind_file = target_name,
       sites_ind = '1_fetch/out/sites.rds.ind',
       dates = dates,
-      request_limit = request_limit_historic)
+      request_limit = request_limit_historic,
+      tmp_filenames = "1_fetch/tmp/historic_dv_%s_to_%s.rds")
   1_fetch/out/dv_historic.rds:
     command: gd_get('1_fetch/out/dv_historic.rds.ind')
 
