@@ -18,7 +18,7 @@ sources:
   - 2_process/src/choose_timesteps.R
   - 2_process/src/process_site_stats.R
   - 2_process/src/process_dv_stats.R
-  - 2_process/src/process_dv_stat_colors.R
+  - 2_process/src/process_dv_stat_styles.R
   - 2_process/src/project_shift_points.R
   - 2_process/src/project_shift_states.R
 
@@ -29,7 +29,7 @@ targets:
       - 2_process/out/timesteps.rds.ind
       - 2_process/out/site_stats_clean.rds.ind
       - 2_process/out/dv_stats.rds.ind
-      - 2_process/out/dv_stat_colors.rds.ind
+      - 2_process/out/dv_stat_styles.rds.ind
       - states_shifted
       - site_locations_shifted
 
@@ -38,6 +38,8 @@ targets:
     command: viz_config[[I('projection')]]
   sites_color_palette:
     command: viz_config[[I('sites_color_palette')]]
+  sites_size_palette:
+    command: viz_config[[I('sites_size_palette')]]
   gage_style_config:
     command: viz_config[[I('gage_style')]]
 
@@ -64,14 +66,15 @@ targets:
   2_process/out/dv_stats.rds:
     command: gd_get('2_process/out/dv_stats.rds.ind')
 
-  2_process/out/dv_stat_colors.rds.ind:
-    command: process_dv_stat_colors(
+  2_process/out/dv_stat_styles.rds.ind:
+    command: process_dv_stat_styles(
       ind_file = target_name,
       dv_stats_ind = '2_process/out/dv_stats.rds.ind',
       color_palette = sites_color_palette,
+      size_palette = sites_size_palette,
       gage_style = gage_style_config)
-  2_process/out/dv_stat_colors.rds:
-    command: gd_get('2_process/out/dv_stat_colors.rds.ind')
+  2_process/out/dv_stat_styles.rds:
+    command: gd_get('2_process/out/dv_stat_styles.rds.ind')
 
   # -- scaling, shifting, rotating config (applies to both states and points) --
   shift_cfg:

@@ -36,7 +36,7 @@ targets:
       - font_oswald
       - 6_timestep_gif_tasks.yml
       - 6_visualize/log/6_timestep_gif_tasks.ind
-      - 6_visualize/out/year_in_review.webm
+      - 6_visualize/out/year_in_review.mp4
 
   #### fonts. not sure how to add these better, but this might do ####
 
@@ -139,12 +139,19 @@ targets:
   # then you can call scmake('6_visualize/log/6_timestep_gif_tasks.ind') repeatedly.
   # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_timestep_gif_tasks.ind', force=TRUE)
   # to iterate on all frames at once.
+  #
+  # The following loop_tasks recipe can be used to build just a few tasks each time, but
+  # it's much slower than the scmake() version (below) if you're building all the frames
+  #
   #trial_timestep_frames: I(c(''))
+  #6_visualize/log/6_timestep_gif_tasks.ind:
+  #  command: loop_tasks(
+  #    task_plan=timestep_gif_tasks, task_makefile='6_timestep_gif_tasks.yml',
+  #    task_names=NULL,
+  #    num_tries=I(1), sleep_on_error=I(0))
   6_visualize/log/6_timestep_gif_tasks.ind:
-    command: loop_tasks(
-      task_plan=timestep_gif_tasks, task_makefile='6_timestep_gif_tasks.yml',
-      task_names=NULL,
-      num_tries=I(1), sleep_on_error=I(0))
+    command: scmake(I('6_timestep_gif_tasks'), '6_timestep_gif_tasks.yml')
+
 
   # Combine the png files into a gif.
   #

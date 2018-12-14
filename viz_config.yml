@@ -32,6 +32,8 @@ basemap:
 sites_color_palette:
   with_percentile: ['#ca0020','#f4a582','#efefef','#efefef','#92c5de','#034064']
   no_percentile: "gray50"
+sites_size_palette:
+  cex_range: [0.5, 2.5] # both must be formatted as doubles (no integers)
 gage_style:
   with_percentile:
     pch: 16
@@ -69,8 +71,8 @@ datewheel_cfg:
 
 # gif options
 animation:
-  frame_rate: 10 #original input frames per second
-  output_frame_rate: 10 #fps, but the actual frames in the video (not 1:1 with input)
+  frame_rate: 7 #original input frames per second
+  output_frame_rate: 7 #fps, but the actual frames in the video (not 1:1 with input)
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
