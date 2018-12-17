@@ -61,7 +61,7 @@ process_dv_stats <- function(ind_file, dv_data_ind, site_stats_ind, dates){
     select(site_no, dateTime, dv_val, per, p50_va)
 
   # Long enough record and no missing dv_val, so perform interpolation
-  dv_data <- dv_with_stats %>%
+  dv_stats_data <- dv_with_stats %>%
     filter(!is.na(dv_val) & count >= 365*3) %>%
     mutate(per = interpolate_percentile(.)) %>%
     select(site_no, dateTime, dv_val, per, p50_va) %>%
@@ -69,6 +69,6 @@ process_dv_stats <- function(ind_file, dv_data_ind, site_stats_ind, dates){
 
   # Write the data file and the indicator file
   data_file <- scipiper::as_data_file(ind_file)
-  saveRDS(dv_stats, data_file)
+  saveRDS(dv_stats_data, data_file)
   scipiper::gd_put(ind_file, data_file)
 }
