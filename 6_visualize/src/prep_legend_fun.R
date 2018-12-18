@@ -1,7 +1,7 @@
 
 prep_legend_fun <- function(percentiles_str, sites_color_palette,
                             x_pos = c('left', 'right'), y_pos = c('bottom','top'),
-                            legend_cfg){
+                            legend_cfg, normal_percentiles){
 
   x_pos <- match.arg(x_pos)
   y_pos <- match.arg(y_pos)
@@ -9,8 +9,10 @@ prep_legend_fun <- function(percentiles_str, sites_color_palette,
   percentiles <- as.numeric(percentiles_str)/100
 
   # eliminate range of adjusted "normal" colors
-  percentiles <- percentiles[!(percentiles >= 0.20 & percentiles < 0.50)]
-  percentiles <- percentiles[!(percentiles > 0.50 & percentiles <= 0.80)]
+  norm_per_low <- as.numeric(head(normal_percentiles, 1))/100
+  norm_per_high <- as.numeric(tail(normal_percentiles, 1))/100
+  percentiles <- percentiles[!(percentiles >= norm_per_low & percentiles < 0.50)]
+  percentiles <- percentiles[!(percentiles > 0.50 & percentiles <= norm_per_high)]
 
   legend_cols <- sapply(percentiles, FUN = function(x){
     rgb(col_fun(x), maxColorValue = 255)
