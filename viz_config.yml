@@ -21,6 +21,7 @@ shift:
 
 # fetch site data parameters
 request_limit: 10
+request_limit_historic: 5
 percentiles: ["05","10","20","25","50","75","80","90","95"]
 
 # styling
@@ -32,6 +33,8 @@ basemap:
 sites_color_palette:
   with_percentile: ['#ca0020','#f4a582','#efefef','#efefef','#92c5de','#034064']
   no_percentile: "gray50"
+sites_size_palette: # not actually using this right now (see 2_process/src/process_dv_stat_styles.R, line 22)
+  cex_range: [0.5, 2.5] # both must be formatted as doubles (no integers)
 gage_style:
   with_percentile:
     pch: 16
@@ -40,10 +43,11 @@ gage_style:
     pch: 16
     cex: 1
 legend_cfg:
-  point_cex: 7
-  text_cex: 2
-  text_col: "#161616"
-  y_text_pos: "under" # "under" or "over" accepted
+  point_cex: 5
+  text_cex: 1.2
+  text_col: "#444444"
+  x_pos: 0.11
+  y_pos: 0.80
 title_cfg:
   main: "U.S. River Conditions"
   subtitle: "Water Year 2018"
@@ -55,7 +59,7 @@ title_cfg:
   sub_col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
-    y_pos: 0.65 # percentage in the y direction to place the circle center
+    y_pos: 0.33 # percentage in the y direction to place the circle center
     wheel_per: 0.15 # percentage in the x direction to make the diameter
     inner_per: 0.7 # percentage of the wheel radius to make the donut, skinnier if this is bigger
     text_per: 0.75 # percentage of the inner radius to place the text
@@ -68,16 +72,14 @@ datewheel_cfg:
 
 # gif options
 animation:
-  frame_rate: 10 #original input frames per second
-  output_frame_rate: 10 #fps, but the actual frames in the video (not 1:1 with input)
+  frame_rate: 7 #original input frames per second
+  output_frame_rate: 7 #fps, but the actual frames in the video (not 1:1 with input)
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
 component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "bottom"
-  legend_x_pos: "right"
-  legend_y_pos: "bottom"
   outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
     xleft: 0.55
     xright: 0.99

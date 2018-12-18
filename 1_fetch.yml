@@ -17,6 +17,7 @@ sources:
   - 1_fetch/src/fetch_site_locations.R
   - 1_fetch/src/fetch_site_stats.R
   - 1_fetch/src/fetch_dv_data.R
+  - 1_fetch/src/fetch_dv_historic.R
   - 1_fetch/src/fetch_states.R
 
 targets:
@@ -27,6 +28,7 @@ targets:
       - 1_fetch/out/site_locations.rds.ind
       - 1_fetch/out/site_stats.rds.ind
       - 1_fetch/out/dv_data.rds.ind
+      - 1_fetch/out/dv_historic.ind
       - 1_fetch/out/pre_state_boundaries_census.zip
 
   # -- read config --
@@ -38,6 +40,8 @@ targets:
     command: viz_config[[I('projection')]]
   request_limit:
     command: viz_config[[I('request_limit')]]
+  request_limit_historic:
+    command: viz_config[[I('request_limit_historic')]]
   percentiles:
     command: viz_config[[I('percentiles')]]
 
@@ -63,15 +67,14 @@ targets:
   1_fetch/out/site_locations.rds:
     command: gd_get('1_fetch/out/site_locations.rds.ind')
 
-  # -- get site statistics --
-  1_fetch/out/site_stats.rds.ind:
-    command: fetch_site_stats(
+  # -- get dv historic data --
+  1_fetch/out/dv_historic.ind:
+    command: fetch_dv_historic(
       ind_file = target_name,
       sites_ind = '1_fetch/out/sites.rds.ind',
-      request_limit = request_limit,
-      percentiles = percentiles)
-  1_fetch/out/site_stats.rds:
-    command: gd_get('1_fetch/out/site_stats.rds.ind')
+      dates = dates,
+      request_limit = request_limit_historic,
+      tmp_filenames = I("1_fetch/tmp/historic_dv_%s_to_%s.rds"))
 
   # -- get dv data --
   1_fetch/out/dv_data.rds.ind:

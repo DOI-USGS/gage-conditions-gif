@@ -1,0 +1,14 @@
+version: 0.3.0
+name: 1_fetch/out/dv_historic.ind
+type: file
+hash: 88a0f78a231da4064f7636b742589907
+time: 2018-12-15 05:43:45 UTC
+depends:
+  1_fetch/out/sites.rds.ind: ab8d6c5c0dd5a43e754fe373994ac96f
+  dates: 51850bcad164fdae08ec2599388406c8
+  request_limit_historic: dd4ad37ee474732a009111e3456e7ed7
+fixed: b067cfcdefd7bddc1cfc4c7c593869a9
+code:
+  functions:
+    fetch_dv_historic: da13a0a2170f69a306ebe2beec519784
+
