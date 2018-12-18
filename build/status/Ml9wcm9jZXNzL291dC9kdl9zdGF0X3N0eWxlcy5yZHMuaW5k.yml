@@ -1,8 +1,8 @@
 version: 0.3.0
 name: 2_process/out/dv_stat_styles.rds.ind
 type: file
-hash: e3a125af77f12d5aec89b4822ccbf385
-time: 2018-12-17 15:17:18 UTC
+hash: d3d2123c9b3cb364b4067b381bd37ea8
+time: 2018-12-18 15:55:46 UTC
 depends:
   2_process/out/dv_stats.rds.ind: 92cca4065cd9037010c7b3d326cedd1b
   sites_color_palette: f4bda45333f2e464042d4b4851a2ec49
@@ -11,5 +11,5 @@ depends:
 fixed: c826930aa0178f8dac87a2f81ec17062
 code:
   functions:
-    process_dv_stat_styles: 0b812ad58f88f0a43aa7620284e8006e
+    process_dv_stat_styles: 8d6ad0fdd8f93ee82057b79b51ccddd9
 
