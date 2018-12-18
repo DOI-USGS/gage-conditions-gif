@@ -13,13 +13,6 @@ process_dv_stat_styles <- function(ind_file, dv_stats_ind, color_palette, size_p
     mutate(per_adj = ifelse(per >= 0.25 & per <= 0.75,
                             no = per, yes = 0.5))
 
-  # compute the seasonality statistic. this could eventually go in
-  # process_dv_stats if we decide to keep it
-  # dv_stats_scaled <- dv_stats %>%
-  #   group_by(site_no) %>%
-  #   mutate(p50_quantile = ecdf(p50_va)(p50_va)) %>% # produces values between 0 and 1
-  #   ungroup()
-
   # define the styling functions
   col_fun <- colorRamp(color_palette$with_percentile)
   size_fun <- function(percentile) {
