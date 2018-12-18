@@ -3,14 +3,19 @@
 #' @param ind_file character file name where the output should be saved
 #' @param dv_stats_ind indicator file for the data.frame of dv_data
 #' @param color_palette list of colors to use for the color ramp (from viz_config.yml)
-process_dv_stat_styles <- function(ind_file, dv_stats_ind, color_palette, size_palette, gage_style){
+#' @param size_palette range of sizes to use to scale the circles
+#' @param gage_style list indicating point type and size to use for gages with or without percentiles
+#' @param normal_percentiles vector with 2 values giving the range of percentiles to treat as "normal" condition
+process_dv_stat_styles <- function(ind_file, dv_stats_ind, color_palette, size_palette, gage_style, normal_percentiles){
 
   # read in the prepared statistics
   dv_stats <- readRDS(scipiper::sc_retrieve(dv_stats_ind, remake_file = '2_process.yml'))
 
   # widen the range for "normal"
+  norm_per_low <- as.numeric(head(normal_percentiles, 1))/100
+  norm_per_high <- as.numeric(tail(normal_percentiles, 1))/100
   dv_stats_adj <- dv_stats %>%
-    mutate(per_adj = ifelse(per >= 0.25 & per <= 0.75,
+    mutate(per_adj = ifelse(per >= norm_per_low & per <= norm_per_high,
                             no = per, yes = 0.5))
 
   # define the styling functions
