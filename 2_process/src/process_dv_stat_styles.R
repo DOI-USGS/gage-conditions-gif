@@ -10,10 +10,10 @@ process_dv_stat_styles <- function(ind_file, dv_stats_ind, color_palette, size_p
 
   # compute the seasonality statistic. this could eventually go in
   # process_dv_stats if we decide to keep it
-  dv_stats_scaled <- dv_stats %>%
-    group_by(site_no) %>%
-    mutate(p50_quantile = ecdf(p50_va)(p50_va)) %>% # produces values between 0 and 1
-    ungroup()
+  # dv_stats_scaled <- dv_stats %>%
+  #   group_by(site_no) %>%
+  #   mutate(p50_quantile = ecdf(p50_va)(p50_va)) %>% # produces values between 0 and 1
+  #   ungroup()
 
   # define the styling functions
   col_fun <- colorRamp(color_palette$with_percentile)
@@ -26,7 +26,7 @@ process_dv_stat_styles <- function(ind_file, dv_stats_ind, color_palette, size_p
   }
 
   # apply the styling functions to add style columns to the data.frame
-  dv_stats_with_style <- dv_stats_scaled %>%
+  dv_stats_with_style <- dv_stats %>%
     mutate(
       shape = ifelse(
         is.na(per),
@@ -39,8 +39,8 @@ process_dv_stat_styles <- function(ind_file, dv_stats_ind, color_palette, size_p
       color = NA)
   # insert values into the color column. this was not working with ifelse inside
   # mutate, still NAs getting into rgb/col_fun
-  per_na <- is.na(dv_stats_scaled$per)
-  dv_stats_with_style$color[!per_na] <- rgb(col_fun(dv_stats_scaled$per[!per_na]), maxColorValue = 255)
+  per_na <- is.na(dv_stats_with_style$per)
+  dv_stats_with_style$color[!per_na] <- rgb(col_fun(dv_stats_with_style$per[!per_na]), maxColorValue = 255)
   dv_stats_with_style$color[per_na] <- color_palette$no_percentile
 
   # Write the data file and the indicator file
