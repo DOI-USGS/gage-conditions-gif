@@ -42,6 +42,8 @@ targets:
     command: viz_config[[I('sites_size_palette')]]
   gage_style_config:
     command: viz_config[[I('gage_style')]]
+  normal_percentiles:
+    command: viz_config[[I('normal_percentiles')]]
 
   2_process/out/timesteps.rds.ind:
     command: choose_timesteps(target_name, dates = dates)
@@ -72,7 +74,8 @@ targets:
       dv_stats_ind = '2_process/out/dv_stats.rds.ind',
       color_palette = sites_color_palette,
       size_palette = sites_size_palette,
-      gage_style = gage_style_config)
+      gage_style = gage_style_config,
+      normal_percentiles = normal_percentiles)
   2_process/out/dv_stat_styles.rds:
     command: gd_get('2_process/out/dv_stat_styles.rds.ind')
 
