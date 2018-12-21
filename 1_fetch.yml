@@ -42,8 +42,10 @@ targets:
     command: viz_config[[I('request_limit')]]
   request_limit_historic:
     command: viz_config[[I('request_limit_historic')]]
-  percentiles:
+  percentiles_all:
     command: viz_config[[I('percentiles')]]
+  percentiles:
+    command: percentiles_all[[I('calc')]]
 
   # -- view polygon --
   view_config:

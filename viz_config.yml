@@ -22,8 +22,13 @@ shift:
 # fetch site data parameters
 request_limit: 10
 request_limit_historic: 5
-percentiles: ["05","10","20","25","50","75","80","90","95"]
-normal_percentiles: ["25", "75"]
+percentiles:
+  calc: ["05","10","20","25","50","75","80","90","95"]
+  display:
+    normal_range: ["25", "75"]
+    drought_severe: "05"
+    drought_low: "10"
+    flood: "90"
 
 # styling
 background_col: "white"
@@ -31,20 +36,26 @@ basemap:
   lwd: 0.5
   col: "transparent"
   border: "gray40"
-sites_color_palette:
-  with_percentile: ['#ca0020','#f4a582','#efefef','#efefef','#92c5de','#034064']
-  no_percentile: "gray50"
-sites_size_palette: # not actually using this right now (see 2_process/src/process_dv_stat_styles.R, line 22)
-  cex_range: [0.5, 2.5] # both must be formatted as doubles (no integers)
 gage_style:
   with_percentile:
-    pch: 16
-    cex: 1
+    normal:
+      pch: 16
+      cex: 1
+      col: "#efefef"
+    drought:
+      pch: 1
+      cex: [1.5, 2.5]
+      col: "#ca0020"
+    flood:
+      pch: 16
+      cex: 1
+      col: ["#92c5de", "#034064"]
   no_percentile:
-    pch: 16
-    cex: 1
+    pch: 4
+    cex: 0.75
+    col: "#7f7f7f"
 legend_cfg:
-  point_cex: 5
+  point_increase: 3
   text_cex: 1.2
   text_col: "#444444"
   x_pos: 0.11
