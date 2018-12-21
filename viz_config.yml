@@ -49,13 +49,13 @@ gage_style:
     flood:
       pch: 16
       cex: 1
-      col: ["#92c5de", "#034064"]
+      col: ["#92c5de", "#04507d"]
   no_percentile:
     pch: 4
     cex: 0.75
     col: "#7f7f7f"
 legend_cfg:
-  point_increase: 3
+  point_mult: 5
   text_cex: 1.2
   text_col: "#444444"
   x_pos: 0.11

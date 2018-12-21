@@ -98,12 +98,11 @@ targets:
 
   legend_fun:
     command: prep_vertical_legend_fun(
-      percentiles_str = percentiles,
-      sites_color_palette = sites_color_palette,
       x_pos = legend_x_pos,
       y_pos = legend_y_pos,
       legend_cfg = legend_cfg,
-      normal_percentiles = normal_percentiles)
+      gage_style = gage_style_config,
+      display_percentiles = display_percentiles)
 
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)
