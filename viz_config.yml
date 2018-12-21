@@ -55,7 +55,7 @@ gage_style:
     cex: 0.75
     col: "#7f7f7f"
 legend_cfg:
-  point_mult: 5
+  point_mult: 4
   text_cex: 1.2
   text_col: "#444444"
   x_pos: 0.11
