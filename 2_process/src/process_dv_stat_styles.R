@@ -27,6 +27,7 @@ process_dv_stat_styles <- function(ind_file, dv_stats_ind, gage_style, display_p
   dv_stats_with_style$color[per_na] <- gage_style$no_percentile$col
   dv_stats_with_style$size[per_na] <- gage_style$no_percentile$cex
   dv_stats_with_style$shape[per_na] <- gage_style$no_percentile$pch
+  dv_stats_with_style$border[per_na] <- gage_style$no_percentile$col
 
   # Write the data file and the indicator file
   saveRDS(dv_stats_with_style, scipiper::as_data_file(ind_file))
@@ -36,7 +37,7 @@ process_dv_stat_styles <- function(ind_file, dv_stats_ind, gage_style, display_p
 add_style_columns <- function(per_df, gage_style, percentiles) {
   mutate(per_df,
     color = ifelse(per <= min(percentiles$normal_range),
-                   yes = gage_style$with_percentile$drought$col,
+                   yes = NA, # fill for drought is nothing
                    no = ifelse(per >= percentiles$flood,
                                yes = gage_style$with_percentile$flood$col[2],
                                no = ifelse(per >= max(percentiles$normal_range),
@@ -49,6 +50,11 @@ add_style_columns <- function(per_df, gage_style, percentiles) {
                   yes = max(gage_style$with_percentile$drought$cex),
                   no = ifelse(per <= percentiles$drought_low,
                               yes = min(gage_style$with_percentile$drought$cex),
-                              no = gage_style$with_percentile$normal$cex))
+                              no = gage_style$with_percentile$normal$cex)),
+    border = ifelse(per <= min(percentiles$normal_range),
+                    yes = gage_style$with_percentile$drought$col,
+                    no = ifelse(per >= 0.97,
+                                yes = "green",
+                                no = NA))
   )
 }

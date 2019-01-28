@@ -25,10 +25,9 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
     color =  gage_style$no_percentile$col,
     shape = gage_style$no_percentile$pch,
     size =  gage_style$no_percentile$cex,
+    border = NA,
     legend_text = "No data"
   ))
-
-  alpha_hex <- 'CC'
 
   rm(display_percentiles_num, gage_style)
 
@@ -57,9 +56,9 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
       point_height_n <- ifelse(n==1, 0, legend_style$point_height[n-1])
       point_spacing <- ifelse(is.na(legend_style$per[n]), 0.4, 0.7)
       y_loc_n <- y_loc_n - point_height_n*point_spacing
-      points(x_loc, y_loc_n, bg = paste0(legend_style$color[n], alpha_hex),
-             col = legend_style$color[n], pch = legend_style$shape[n],
-             cex = legend_style$size[n]*legend_cfg$point_mult, lwd = 1)
+      points(x_loc, y_loc_n, bg = legend_style$color[n],
+             col = legend_style$border[n], pch = legend_style$shape[n],
+             cex = legend_style$size[n]*legend_cfg$point_mult, lwd = 2)
       text(x_text, y_loc_n,
            labels = legend_style$legend_text[n],
            pos = text_pos, col = legend_cfg$text_col, cex = legend_cfg$text_cex)

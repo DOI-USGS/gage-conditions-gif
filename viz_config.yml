@@ -39,15 +39,15 @@ basemap:
 gage_style:
   with_percentile:
     normal:
-      pch: 16
+      pch: 21
       cex: 1
       col: "#efefef"
     drought:
-      pch: 1
+      pch: 21
       cex: [1.5, 2.5]
       col: "#ca0020"
     flood:
-      pch: 16
+      pch: 21
       cex: 1
       col: ["#92c5de", "#04507d"]
   no_percentile:

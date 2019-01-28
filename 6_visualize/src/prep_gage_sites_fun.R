@@ -8,7 +8,7 @@ prep_gage_sites_fun <- function(percentile_color_data_ind, sites_sp, dateTime){
 
   gage_sites_plot_fun <- function(){
     #single plot of gages w/color
-    plot(sites_sp, add = TRUE, pch = sites_sp$shape, col = sites_sp$color, cex = sites_sp$size)
+    plot(sites_sp, add = TRUE, pch = sites_sp$shape, bg = sites_sp$color, cex = sites_sp$size, col = sites_sp$border)
   }
   return(gage_sites_plot_fun)
 }
