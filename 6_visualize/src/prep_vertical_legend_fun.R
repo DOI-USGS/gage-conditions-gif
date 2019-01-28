@@ -13,8 +13,8 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
         per == max(display_percentiles_num$normal_range) ~ "Wet",
         per == display_percentiles_num$norm ~ "Normal",
         per == min(display_percentiles_num$normal_range) ~ "Dry",
-        per == display_percentiles_num$drought_low ~ "Dryer",
-        per == display_percentiles_num$drought_severe ~ "Dryest",
+        per == display_percentiles_num$drought_low ~ "Drier",
+        per == display_percentiles_num$drought_severe ~ "Driest",
         TRUE ~ ""
       )) %>%
     arrange(desc(per)) # fill top - bottom
