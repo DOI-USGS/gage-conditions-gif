@@ -111,6 +111,7 @@ callouts:
       pos: 4
       cex: 2
     add_box: TRUE
+    wheel_color: "#0011b2"
     polygon:
       file: "6_visualize/in/callout_poly_West_Coast_December.png"
   -
@@ -124,6 +125,7 @@ callouts:
       pos: 3
       cex: 2
     add_box: TRUE
+    wheel_color: "#b20000"
     polygon:
       file: "6_visualize/in/callout_poly_SW_drought.png"
   -
@@ -137,6 +139,7 @@ callouts:
       pos: 1
       cex: 2
     add_box: TRUE
+    wheel_color: "#0097b2"
     polygon:
       file: "6_visualize/in/callout_poly_SW_snowpack.png"
   -
@@ -150,6 +153,7 @@ callouts:
       pos: 1
       cex: 2
     add_box: TRUE
+    wheel_color: "#7900b2"
     polygon:
       file: "6_visualize/in/callout_poly_Florence.png"
   -
@@ -162,5 +166,6 @@ callouts:
       y_loc: 0.18
       pos: 4
       cex: 2
+    wheel_color: "#00b200"
     polygon:
       file: "6_visualize/in/callout_poly_Texas_rain.png"

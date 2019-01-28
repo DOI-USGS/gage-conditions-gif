@@ -1,5 +1,5 @@
 
-prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg){
+prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg, callouts_cfg){
 
   # info to setup wheel
   start_dt <- as.Date(dates_config[["start"]])
@@ -16,6 +16,19 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
   this_date <- as.Date(dateTime)
   this_date_n <- as.numeric(this_date - start_dt) + 1
 
+  # need to create callouts for before and after date.
+  wheel_callouts <- lapply(callouts_cfg, function(x) {
+    if(!is.null(x$wheel_color)) {
+      return(x)
+    } else {
+      return(NULL)
+    }
+  })
+
+  # keep only non-NULL elements
+  wheel_callouts <- wheel_callouts[!unlist(lapply(wheel_callouts, is.null))]
+  n_callouts <- length(wheel_callouts)
+
   make_arc <- function(x0, y0, r, from_angle, to_angle, rot_dir){
     theta <- seq(from_angle, to_angle, by = rot_dir*0.002)
     x_out <- x0 + r*cos(theta)
@@ -24,7 +37,7 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
     return(list(x = x_out, y = y_out))
   }
 
-  rm(viz_config, dates_config)
+  rm(viz_config, dates_config, callouts_cfg)
 
   plot_fun <- function(){
 
@@ -34,6 +47,7 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
     wheel_radius <- datewheel_cfg$wheel_per*diff(coord_space[1:2])/2 # 20% of the x
     inner_radius <- datewheel_cfg$inner_per*wheel_radius
     text_radius <- datewheel_cfg$text_per*inner_radius
+    event_radius <- wheel_radius*1.05
     x_center <- coord_space[1] + datewheel_cfg$x_pos * diff(coord_space[1:2])
     y_center <- coord_space[3] + datewheel_cfg$y_pos * diff(coord_space[3:4])
 
@@ -50,6 +64,35 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
       mutate(x = x_center + text_radius*cos(angle_n),
              y = y_center + text_radius*sin(angle_n)) %>%
       select(month, x, y)
+
+    # Events go on the outside, so are drawn first
+    for(n in 1:n_callouts) {
+      this_callout <- wheel_callouts[[n]]
+
+      # Find event dates
+      start_date_event <- as.Date(this_callout$dates$start)
+      start_date_event_n <- as.numeric(start_date_event - start_dt) + 1
+      end_date_event <- as.Date(this_callout$dates$end)
+      end_date_event_n <- as.numeric(end_date_event - start_dt) + 1
+
+      # Determine where on the wheel the event exists
+      start_angle_event <- start_angle + start_date_event_n*wedge_width*rot_dir
+      end_angle_event <- start_angle + end_date_event_n*wedge_width*rot_dir
+
+      # Create the event wheel
+      callouts_wheel <- make_arc(x_center, y_center,
+                                 r = event_radius,
+                                 from_angle = start_angle_event,
+                                 to_angle = end_angle_event,
+                                 rot_dir = rot_dir)
+      polygon(c(x_center, callouts_wheel$x, x_center),
+              c(y_center, callouts_wheel$y, y_center),
+              border = NA, col = this_callout$wheel_color)
+
+      # need to add changing color if we are passed that event
+      # need to handle overlapping events at some point
+
+    }
 
     # Create the whole wheel
     segments_wheel <- make_arc(x_center, y_center,
