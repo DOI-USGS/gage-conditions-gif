@@ -45,9 +45,9 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
     coord_space <- par()$usr
 
     wheel_radius <- datewheel_cfg$wheel_per*diff(coord_space[1:2])/2 # 20% of the x
+    event_radius <- datewheel_cfg$event_per*wheel_radius
     inner_radius <- datewheel_cfg$inner_per*wheel_radius
     text_radius <- datewheel_cfg$text_per*inner_radius
-    event_radius <- wheel_radius*1.05
     x_center <- coord_space[1] + datewheel_cfg$x_pos * diff(coord_space[1:2])
     y_center <- coord_space[3] + datewheel_cfg$y_pos * diff(coord_space[3:4])
 
@@ -65,7 +65,17 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
              y = y_center + text_radius*sin(angle_n)) %>%
       select(month, x, y)
 
-    # Events go on the outside, so are drawn first
+    # Create the whole wheel
+    segments_wheel <- make_arc(x_center, y_center,
+                               r = wheel_radius,
+                               from_angle = start_angle,
+                               to_angle = end_angle,
+                               rot_dir = rot_dir)
+    polygon(c(x_center, segments_wheel$x, x_center),
+            c(y_center, segments_wheel$y, y_center),
+            border = NA, col = datewheel_cfg$col_empty)
+
+    # Call out arcs are on top of light grey wheel, but below dark grey
     for(n in 1:n_callouts) {
       this_callout <- wheel_callouts[[n]]
 
@@ -90,19 +100,9 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
               border = NA, col = this_callout$wheel_color)
 
       # need to add changing color if we are passed that event
-      # need to handle overlapping events at some point
+      # need to handle overlapping events at some point (use wheel base color as border?)
 
     }
-
-    # Create the whole wheel
-    segments_wheel <- make_arc(x_center, y_center,
-                               r = wheel_radius,
-                               from_angle = start_angle,
-                               to_angle = end_angle,
-                               rot_dir = rot_dir)
-    polygon(c(x_center, segments_wheel$x, x_center),
-            c(y_center, segments_wheel$y, y_center),
-            border = NA, col = datewheel_cfg$col_empty)
 
     # Increment the wheel for the date
     end_angle_n <- start_angle + this_date_n*wedge_width*rot_dir
