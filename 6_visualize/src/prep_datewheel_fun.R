@@ -27,6 +27,9 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
 
   # keep only non-NULL elements
   wheel_callouts <- wheel_callouts[!unlist(lapply(wheel_callouts, is.null))]
+  event_ends <- as.Date(unlist(lapply(lapply(wheel_callouts, `[[`, "dates"), `[[`, "end")))
+  wheel_callouts <- wheel_callouts[order(event_ends)] # order chronologically in case they aren't already
+  event_ends <- event_ends[order(event_ends)]
   n_callouts <- length(wheel_callouts)
 
   make_arc <- function(x0, y0, r, from_angle, to_angle, rot_dir){
@@ -76,7 +79,9 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
             border = NA, col = datewheel_cfg$col_empty)
 
     # Call out arcs are on top of light grey wheel, but below dark grey
-    for(n in 1:n_callouts) {
+    for(n in n_callouts:1) {
+      # loop in reverse order so that potentially overlapping events
+      # events that start after others are drawn first
       this_callout <- wheel_callouts[[n]]
 
       # Find event dates
@@ -85,22 +90,33 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
       end_date_event <- as.Date(this_callout$dates$end)
       end_date_event_n <- as.numeric(end_date_event - start_dt) + 1
 
+      # Increase size of event arc if it overlaps a previous arc
+      event_radius_i <- event_radius
+      i <- which(end_date_event == event_ends)
+      if(i != 1) {
+        # if i==1, then this is the first event, so it won't overlap anything
+        if(any(start_date_event < event_ends[1:i-1])){
+          # if this event starts before any others finish, need to make it 10% bigger
+          # this method currently only works for two overlapping events
+          # and would need to change if there are more
+          event_radius_i <- event_radius + event_radius*0.10
+        }
+      }
+
       # Determine where on the wheel the event exists
       start_angle_event <- start_angle + start_date_event_n*wedge_width*rot_dir
       end_angle_event <- start_angle + end_date_event_n*wedge_width*rot_dir
 
       # Create the event wheel
       callouts_wheel <- make_arc(x_center, y_center,
-                                 r = event_radius,
+                                 r = event_radius_i,
                                  from_angle = start_angle_event,
                                  to_angle = end_angle_event,
                                  rot_dir = rot_dir)
       polygon(c(x_center, callouts_wheel$x, x_center),
               c(y_center, callouts_wheel$y, y_center),
-              border = NA, col = this_callout$wheel_color)
-
-      # need to add changing color if we are passed that event
-      # need to handle overlapping events at some point (use wheel base color as border?)
+              border = datewheel_cfg$col_empty, lwd = 2,
+              col = this_callout$wheel_color)
 
     }
 
