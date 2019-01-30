@@ -84,6 +84,88 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
     ind_dir=folders$log)
 }
 
+create_final_gif_tasks <- function(frame_cfg, folders){
+
+  # prepare a data.frame with one row per task
+  # tricking the final frames to be dates starting with 9999-12-31
+  total_frames <- frame_cfg$fade_count + frame_cfg$show_count
+  timesteps <- as.Date("9999-12-31") - 1*seq_len(total_frames)
+  timesteps <- timesteps[order(timesteps)] # reorder chronologically
+  tasks <- data_frame(timestep=timesteps) %>%
+    mutate(task_name = strftime(timestep, format = '%Y%m%d_%H', tz = 'UTC'),
+           fade_count = c(seq(0, 90, length.out=frame_cfg$fade_count),
+                          rep("100", frame_cfg$show_count)))
+
+  # ---- main target for each task
+
+  final_png <- scipiper::create_task_step(
+    step_name = 'final_png',
+    target_name = function(task_name, step_name, ...){
+      file.path(folders$tmp, sprintf('frame_%s.png', task_name))
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      psprintf(
+        "create_final_frame(",
+        "png_file=target_name,",
+        "file_config=timestep_frame_config,",
+        "frame_config=final_frame_text,",
+        sprintf("fade=%s)", cur_task$fade_count)
+      )
+    }
+  )
+
+  # ---- combine into a task plan ---- #
+
+  gif_task_plan <- scipiper::create_task_plan(
+    task_names=tasks$task_name,
+    task_steps=list(
+      final_png),
+    add_complete=FALSE,
+    final_steps='final_png',
+    ind_dir=folders$log)
+}
+
+create_pause_gif_tasks <- function(date_cfg, frame_cfg, folders){
+
+  # prepare a data.frame with one row per task
+  # tricking the paused frames to be dates starting with 6000-12-31
+  timesteps <- as.Date("6000-12-31") - 1*seq_len(frame_cfg$pause_count)
+  timesteps <- timesteps[order(timesteps)] # reorder chronologically
+  tasks <- data_frame(timestep=timesteps) %>%
+    mutate(task_name = strftime(timestep, format = '%Y%m%d_%H', tz = 'UTC'))
+
+  duplicated_frame_timestep <- strftime(date_cfg$end, format = '%Y%m%d_%H', tz = 'UTC')
+  duplicated_frame_path <- file.path(folders$tmp, sprintf('frame_%s.png', duplicated_frame_timestep))
+
+  # ---- main target for each task
+
+  pause_png <- scipiper::create_task_step(
+    step_name = 'pause_png',
+    target_name = function(task_name, step_name, ...){
+      file.path(folders$tmp, sprintf('frame_%s.png', task_name))
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      psprintf(
+        "file.copy(",
+        sprintf("from='%s',", duplicated_frame_path),
+        "to=target_name)"
+      )
+    }
+  )
+
+  # ---- combine into a task plan ---- #
+
+  gif_task_plan <- scipiper::create_task_plan(
+    task_names=tasks$task_name,
+    task_steps=list(
+      pause_png),
+    add_complete=FALSE,
+    final_steps='pause_png',
+    ind_dir=folders$log)
+}
+
 # helper function to sprintf a bunch of key-value (string-variableVector) pairs,
 # then paste them together with a good separator for constructing remake recipes
 psprintf <- function(..., sep='\n      ') {
