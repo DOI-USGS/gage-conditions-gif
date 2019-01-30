@@ -16,27 +16,36 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
 
   # text will fade in/out before/after their actual date
   this_date_callouts_text <- lapply(callouts_cfg, function(x, this_date) {
+    # Cuts refer to number of timesteps before
+    # Alpha is the corresponding transparency (for both text and background rectangle)
     fade_cuts <- c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
     fade_alpha <- c("E6", "CC", "B3", "99", "80", "66", "4D", "33", "1A") # hex alpha from 90 (E6) to 10 (1A) by 10s
     fade_alpha_rect <- c("59", "4D", "40", "33", "26", "1A", "12", "0D", "08") # this is based on idea that max is 5E
 
     start <- as.POSIXct(x$dates$start, tz = "UTC")
     end <- as.POSIXct(x$dates$end, tz = "UTC")
-    # if(this_date == as.POSIXct("2017-12-11", tz = "UTC")) browser()
+
+    # Figure out how many days before or after an event the current date is
     before_n <- start - this_date
     after_n <- this_date - end
+
+    # If either before or after are negative, that means this date is during the event
     during <- all(c(before_n <= 0, after_n <= 0))
+
     if(before_n > 0 & before_n < 9) {
+      # start fading in text 8 frames before the event starts
       x$text$alpha <- fade_alpha[findInterval(before_n, fade_cuts)]
       x$text$alpha_rect <- fade_alpha_rect[findInterval(before_n, fade_cuts)]
       return(x)
     } else if(after_n > 0 & after_n < 9) {
+      # fade out the text 8 frames after the event ends
       x$text$alpha <- fade_alpha[findInterval(after_n, fade_cuts)]
       x$text$alpha_rect <- fade_alpha_rect[findInterval(after_n, fade_cuts)]
       return(x)
     } else if(during) {
+      # Event text is not transparent at all durng the event
       x$text$alpha <- "FF"
-      x$text$alpha_rect <- "5E"
+      x$text$alpha_rect <- "5E" # rectangle is slightly transparent
       return(x)
     } else {
       return(NULL)
