@@ -119,8 +119,8 @@ final_frame:
 callouts:
   -
     dates:
-      start: "2017-12-10"
-      end: "2017-12-20"
+      start: "2017-12-08"
+      end: "2017-12-22"
     text:
       label: ["Much-below-average", "December precipitation", "along the West Coast"]
       x_loc: 0.32 #this is in percentage space, relative to the plotting device
@@ -133,8 +133,8 @@ callouts:
       file: "6_visualize/in/callout_poly_West_Coast_December.png"
   -
     dates:
-      start: "2018-02-17"
-      end: "2018-02-26"
+      start: "2018-02-15"
+      end: "2018-02-28"
     text:
       label: ["Drought begins to", "develop in UT, CO,", "NM, AZ, north TX,", "OK, and KS"]
       x_loc: 0.58
@@ -161,8 +161,8 @@ callouts:
       file: "6_visualize/in/callout_poly_SW_snowpack.png"
   -
     dates:
-      start: "2018-09-10"
-      end: "2018-09-19"
+      start: "2018-09-8"
+      end: "2018-09-21"
     text:
       label: ["Hurricane Florence", "parks over NC and SC"]
       x_loc: 0.82
@@ -175,8 +175,8 @@ callouts:
       file: "6_visualize/in/callout_poly_Florence.png"
   -
     dates:
-      start: "2018-09-16"
-      end: "2018-09-25"
+      start: "2018-09-14"
+      end: "2018-09-27"
     text:
       label: ["Record September","rainfall in Texas"]
       x_loc: 0.63
