@@ -102,6 +102,7 @@ component_placement:
 
 final_frame:
   cfg:
+    pause_count: 10 # number of frames for which to pause/repeat the final timestep of the animation
     fade_count: 15 # number of frames for which the final frame will fade in
     show_count: 15 # number of frames for which the final frame will be seen
   paragraphs:
