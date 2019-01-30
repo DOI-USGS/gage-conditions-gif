@@ -96,7 +96,7 @@ create_final_gif_tasks <- function(frame_cfg, folders){
            fade_count = c(seq(0, 90, length.out=frame_cfg$fade_count),
                           rep("100", frame_cfg$show_count)))
 
-  # ---- main target for each task: the
+  # ---- main target for each task
 
   final_png <- scipiper::create_task_step(
     step_name = 'final_png',

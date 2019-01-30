@@ -33,13 +33,13 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
 
     if(before_n > 0 & before_n < 9) {
       # start fading in text 8 frames before the event starts
-      x$text$alpha <- perc_to_hexalpha(before_n*(max_fade_text/max_fade_n))
-      x$text$alpha_rect <- perc_to_hexalpha(before_n*(max_fade_rect/max_fade_n))
+      x$text$alpha <- perc_to_hexalpha((max_fade_n-before_n)*(max_fade_text/max_fade_n))
+      x$text$alpha_rect <- perc_to_hexalpha((max_fade_n-before_n)*(max_fade_rect/max_fade_n))
       return(x)
     } else if(after_n > 0 & after_n < 9) {
       # fade out the text 8 frames after the event ends
-      x$text$alpha <- perc_to_hexalpha(after_n*(max_fade_text/max_fade_n))
-      x$text$alpha_rect <- perc_to_hexalpha(after_n*(max_fade_rect/max_fade_n))
+      x$text$alpha <- perc_to_hexalpha((max_fade_n-after_n)*(max_fade_text/max_fade_n))
+      x$text$alpha_rect <- perc_to_hexalpha((max_fade_n-after_n)*(max_fade_rect/max_fade_n))
       return(x)
     } else if(during) {
       # Event text is not transparent at all durng the event
