@@ -16,7 +16,7 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
 
   # text will fade in/out before/after their actual date
   this_date_callouts_text <- lapply(callouts_cfg, function(x, this_date) {
-    # Cuts refer to number of timesteps before
+    # Cuts refer to number of timesteps before/after
     # Alpha is the corresponding transparency (for both text and background rectangle)
     fade_cuts <- c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
     fade_alpha <- c("E6", "CC", "B3", "99", "80", "66", "4D", "33", "1A") # hex alpha from 90 (E6) to 10 (1A) by 10s
@@ -29,7 +29,7 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
     before_n <- start - this_date
     after_n <- this_date - end
 
-    # If either before or after are negative, that means this date is during the event
+    # If both before or after are negative, that means this date is during the event
     during <- all(c(before_n <= 0, after_n <= 0))
 
     if(before_n > 0 & before_n < 9) {
@@ -172,7 +172,7 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
     }
 
   } else {
-    rm(this_date_callouts_cloud, this_date_callouts_text, n_callouts_text)
+    rm(this_date_callouts_cloud, this_date_callouts_text, n_callouts_text, n_callouts_cloud)
     plot_fun <- function() { NULL }
   }
   return(plot_fun)
