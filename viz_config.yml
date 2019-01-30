@@ -161,7 +161,7 @@ callouts:
       file: "6_visualize/in/callout_poly_SW_snowpack.png"
   -
     dates:
-      start: "2018-09-8"
+      start: "2018-09-08"
       end: "2018-09-21"
     text:
       label: ["Hurricane Florence", "parks over NC and SC"]
@@ -183,6 +183,7 @@ callouts:
       y_loc: 0.18
       pos: 4
       cex: 2
+    add_box: TRUE
     wheel_color: "#04507d"
     polygon:
       file: "6_visualize/in/callout_poly_Texas_rain.png"
