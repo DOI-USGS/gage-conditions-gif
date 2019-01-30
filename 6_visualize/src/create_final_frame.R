@@ -1,4 +1,4 @@
-create_final_frame <- function(png_file, file_config, frame_config) {
+create_final_frame <- function(png_file, file_config, frame_config, fade) {
   if(!is.na(png_file)) {
     plot_type <- switch(Sys.info()[['sysname']],
                         Windows= "cairo",
@@ -18,13 +18,15 @@ create_final_frame <- function(png_file, file_config, frame_config) {
 
   # Add text
   n_paragraphs <- length(frame_config)
+  hexalpha <- perc_to_hexalpha(fade)
   for(n in 1:n_paragraphs) {
     par(lheight=frame_config[[n]]$lheight)
-    text(x = 0.5, y = frame_config[[n]]$ypos,
+    text(x = 0.5,
+         y = frame_config[[n]]$ypos,
          labels = paste(frame_config[[n]]$text, collapse = ""),
-         cex = frame_config[[n]]$cex, col = frame_config[[n]]$col)
+         cex = frame_config[[n]]$cex,
+         col = paste0(frame_config[[n]]$col, hexalpha))
   }
-
 
   # close off google fonts
   showtext_end()

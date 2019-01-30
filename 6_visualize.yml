@@ -115,12 +115,12 @@ targets:
     command: viz_config[[I('frame_step')]]
   callouts_cfg:
     command: viz_config[[I('callouts')]]
-  final_frame_cfg:
+  final_frame:
     command: viz_config[[I('final_frame')]]
-  final_frame_count:
-    command: final_frame_cfg[[I('count')]]
+  final_frame_cfg:
+    command: final_frame[[I('cfg')]]
   final_frame_text:
-    command: final_frame_cfg[[I('paragraphs')]]
+    command: final_frame[[I('paragraphs')]]
 
   timestep_gif_tasks:
     command: create_timestep_gif_tasks(
@@ -162,7 +162,7 @@ targets:
   # Create the final frames
   final_gif_tasks:
     command: create_final_gif_tasks(
-      n_frames = final_frame_count,
+      frame_cfg = final_frame_cfg,
       folders = I(list(tmp=I('6_visualize/tmp'), log=I('6_visualize/log'))))
 
   6_final_gif_tasks.yml:

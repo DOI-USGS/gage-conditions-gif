@@ -84,13 +84,17 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
     ind_dir=folders$log)
 }
 
-create_final_gif_tasks <- function(n_frames, folders){
+create_final_gif_tasks <- function(frame_cfg, folders){
 
   # prepare a data.frame with one row per task
   # tricking the final frames to be dates starting with 9999-12-31
-  timesteps <- as.Date("9999-12-31") - 1*seq_len(n_frames)
+  total_frames <- frame_cfg$fade_count + frame_cfg$show_count
+  timesteps <- as.Date("9999-12-31") - 1*seq_len(total_frames)
+  timesteps <- timesteps[order(timesteps)] # reorder chronologically
   tasks <- data_frame(timestep=timesteps) %>%
-    mutate(task_name = strftime(timestep, format = '%Y%m%d_%H', tz = 'UTC'))
+    mutate(task_name = strftime(timestep, format = '%Y%m%d_%H', tz = 'UTC'),
+           fade_count = c(seq(0, 90, length.out=frame_cfg$fade_count),
+                          rep("100", frame_cfg$show_count)))
 
   # ---- main target for each task: the
 
@@ -105,7 +109,8 @@ create_final_gif_tasks <- function(n_frames, folders){
         "create_final_frame(",
         "png_file=target_name,",
         "file_config=timestep_frame_config,",
-        "frame_config=final_frame_text)"
+        "frame_config=final_frame_text,",
+        sprintf("fade=%s)", cur_task$fade_count)
       )
     }
   )
