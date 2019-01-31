@@ -19,13 +19,10 @@ prep_title_fun <- function(title_cfg){
     }
 
     if(!is.null(title_cfg$footnote)) {
-      footnote_text <- paste(title_cfg$footnote, collapse="")
       title_y_foot <- title_y_sub - strheight(title_cfg$subtitle)*2.5
-      par(family = 'sans') # abel cannot be italic, so change font family temporarily
       text(x = title_x, y = title_y_foot,
-           labels = bquote(paste(italic(.(footnote_text)))),
+           labels = paste(title_cfg$footnote, collapse=""),
            cex = title_cfg$foot_cex, pos = 4, col = title_cfg$foot_col)
-      par(family = 'abel')
     }
 
   }
