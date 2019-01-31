@@ -18,6 +18,13 @@ prep_title_fun <- function(title_cfg){
            cex = title_cfg$sub_cex, pos = 4, col = title_cfg$sub_col)
     }
 
+    if(!is.null(title_cfg$footnote)) {
+      title_y_foot <- title_y_sub - strheight(title_cfg$subtitle)*2.5
+      text(x = title_x, y = title_y_foot,
+           labels = paste(title_cfg$footnote, collapse=""),
+           cex = title_cfg$foot_cex, pos = 4, col = title_cfg$foot_col)
+    }
+
   }
   return(plot_fun)
 }

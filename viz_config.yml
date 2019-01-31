@@ -59,16 +59,19 @@ legend_cfg:
   text_cex: 1.2
   text_col: "#444444"
   x_pos: 0.11
-  y_pos: 0.80
+  y_pos: 0.78
 title_cfg:
   main: "U.S. River Conditions"
   subtitle: "Water Year 2018"
+  footnote: ["Conditions are relative to the historic daily record for each gage."]
   x_pos: 0.005
   y_pos: 0.90
   main_cex: 3
   main_col: "#666666"
   sub_cex: 2
-  sub_col: "#939393"
+  sub_col: "#666666"
+  foot_cex: 1.05
+  foot_col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
     y_pos: 0.33 # percentage in the y direction to place the circle center
