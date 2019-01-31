@@ -73,10 +73,11 @@ datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
     y_pos: 0.33 # percentage in the y direction to place the circle center
     wheel_per: 0.15 # percentage in the x direction to make the diameter
+    event_per: 0.80 # percentage of the wheel radius to make the event arcs, skinnier if this is smaller
     inner_per: 0.7 # percentage of the wheel radius to make the donut, skinnier if this is bigger
     text_per: 0.75 # percentage of the inner radius to place the text
     col_empty: "#bdbdbd" # color of the wheel background
-    col_filled: "#5d5d5d" # color to fill in the wheel as time marches on
+    col_filled: "#5d5d5dB3" # color to fill in the wheel as time marches on, last two = hex transparency
     col_text_months: "#383838" # color of month labels inside wheel
     cex_text_months: 0.9
     col_text_datestamp: "#bdbdbd" # color of text inside the wheel
@@ -99,11 +100,30 @@ component_placement:
     ytop_stn: 0.85 # top y coordinate of the text and legend for the short-term network
     ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
 
+final_frame:
+  cfg:
+    pause_count: 8 # number of frames for which to pause/repeat the final timestep of the animation
+    fade_count: 15 # number of frames for which the final frame will fade in
+    show_count: 15 # number of frames for which the final frame will be seen
+  paragraphs:
+    -
+      text: ["Learn more about USGS\n", "stream gages and their role in\n", "science and public safety:"]
+      ypos: 0.70 #percent of the y direction to place text (starting from bottom)
+      lheight: 1.4
+      cex: 7
+      col: "#474747"
+    -
+      text: ["usgs.gov/gwsip"]
+      ypos: 0.20 #percent of the y direction to place text (starting from bottom)
+      lheight: 1
+      cex: 11
+      col: "#04507d"
+
 callouts:
   -
     dates:
-      start: "2017-12-10"
-      end: "2017-12-20"
+      start: "2017-12-08"
+      end: "2017-12-22"
     text:
       label: ["Much-below-average", "December precipitation", "along the West Coast"]
       x_loc: 0.32 #this is in percentage space, relative to the plotting device
@@ -111,12 +131,13 @@ callouts:
       pos: 4
       cex: 2
     add_box: TRUE
+    wheel_color: "#ca0020"
     polygon:
       file: "6_visualize/in/callout_poly_West_Coast_December.png"
   -
     dates:
-      start: "2018-02-17"
-      end: "2018-02-26"
+      start: "2018-02-15"
+      end: "2018-02-28"
     text:
       label: ["Drought begins to", "develop in UT, CO,", "NM, AZ, north TX,", "OK, and KS"]
       x_loc: 0.58
@@ -124,6 +145,7 @@ callouts:
       pos: 3
       cex: 2
     add_box: TRUE
+    wheel_color: "#ca0020"
     polygon:
       file: "6_visualize/in/callout_poly_SW_drought.png"
   -
@@ -137,12 +159,13 @@ callouts:
       pos: 1
       cex: 2
     add_box: TRUE
+    wheel_color: "#ca0020"
     polygon:
       file: "6_visualize/in/callout_poly_SW_snowpack.png"
   -
     dates:
-      start: "2018-09-10"
-      end: "2018-09-19"
+      start: "2018-09-08"
+      end: "2018-09-21"
     text:
       label: ["Hurricane Florence", "parks over NC and SC"]
       x_loc: 0.82
@@ -150,17 +173,20 @@ callouts:
       pos: 1
       cex: 2
     add_box: TRUE
+    wheel_color: "#04507d"
     polygon:
       file: "6_visualize/in/callout_poly_Florence.png"
   -
     dates:
-      start: "2018-09-16"
-      end: "2018-09-25"
+      start: "2018-09-14"
+      end: "2018-09-27"
     text:
       label: ["Record September","rainfall in Texas"]
       x_loc: 0.63
       y_loc: 0.18
       pos: 4
       cex: 2
+    add_box: TRUE
+    wheel_color: "#04507d"
     polygon:
       file: "6_visualize/in/callout_poly_Texas_rain.png"
