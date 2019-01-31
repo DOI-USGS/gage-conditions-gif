@@ -63,7 +63,7 @@ legend_cfg:
 title_cfg:
   main: "U.S. River Conditions"
   subtitle: "Water Year 2018"
-  footnote: ["Conditions are relative to the historic record for each gage."]
+  footnote: ["Conditions are relative to the historic daily record for each gage."]
   x_pos: 0.005
   y_pos: 0.90
   main_cex: 3
