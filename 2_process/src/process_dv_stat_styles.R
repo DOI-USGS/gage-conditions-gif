@@ -50,11 +50,15 @@ add_style_columns <- function(per_df, gage_style, percentiles) {
                   yes = max(gage_style$with_percentile$drought$cex),
                   no = ifelse(per <= percentiles$drought_low,
                               yes = min(gage_style$with_percentile$drought$cex),
-                              no = gage_style$with_percentile$normal$cex)),
+                              no = ifelse(per >= 0.90,
+                                          yes = ifelse(per >= 0.98,
+                                                       yes = 2.0,
+                                                       no = 1),
+                                          no = gage_style$with_percentile$normal$cex))),
     border = ifelse(per <= min(percentiles$normal_range),
                     yes = gage_style$with_percentile$drought$col,
-                    no = ifelse(per >= 0.97,
-                                yes = "green",
+                    no = ifelse(per >= 0.98,
+                                yes = "yellow",
                                 no = NA))
   )
 }
