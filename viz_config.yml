@@ -103,6 +103,25 @@ component_placement:
     ytop_stn: 0.85 # top y coordinate of the text and legend for the short-term network
     ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
 
+final_frame:
+  cfg:
+    pause_count: 8 # number of frames for which to pause/repeat the final timestep of the animation
+    fade_count: 15 # number of frames for which the final frame will fade in
+    show_count: 15 # number of frames for which the final frame will be seen
+  paragraphs:
+    -
+      text: ["Learn more about USGS\n", "stream gages and their role in\n", "science and public safety:"]
+      ypos: 0.70 #percent of the y direction to place text (starting from bottom)
+      lheight: 1.4
+      cex: 7
+      col: "#474747"
+    -
+      text: ["usgs.gov/gwsip"]
+      ypos: 0.20 #percent of the y direction to place text (starting from bottom)
+      lheight: 1
+      cex: 11
+      col: "#04507d"
+
 callouts:
   -
     dates:
@@ -148,7 +167,7 @@ callouts:
       file: "6_visualize/in/callout_poly_SW_snowpack.png"
   -
     dates:
-      start: "2018-09-8"
+      start: "2018-09-08"
       end: "2018-09-21"
     text:
       label: ["Hurricane Florence", "parks over NC and SC"]
@@ -170,6 +189,7 @@ callouts:
       y_loc: 0.18
       pos: 4
       cex: 2
+    add_box: TRUE
     wheel_color: "#04507d"
     polygon:
       file: "6_visualize/in/callout_poly_Texas_rain.png"

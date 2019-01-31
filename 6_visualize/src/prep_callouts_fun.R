@@ -16,11 +16,10 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
 
   # text will fade in/out before/after their actual date
   this_date_callouts_text <- lapply(callouts_cfg, function(x, this_date) {
-    # Cuts refer to number of timesteps before/after
-    # Alpha is the corresponding transparency (for both text and background rectangle)
-    fade_cuts <- c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-    fade_alpha <- c("E6", "CC", "B3", "99", "80", "66", "4D", "33", "1A") # hex alpha from 90 (E6) to 10 (1A) by 10s
-    fade_alpha_rect <- c("59", "4D", "40", "33", "26", "1A", "12", "0D", "08") # this is based on idea that max is 5E
+
+    max_fade_n <- 9 # max days out to start fading in
+    max_fade_text <- 100 # percent maximum transparency for text
+    max_fade_rect <- 37 # maximum transparency for the rect
 
     start <- as.POSIXct(x$dates$start, tz = "UTC")
     end <- as.POSIXct(x$dates$end, tz = "UTC")
@@ -34,18 +33,18 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
 
     if(before_n > 0 & before_n < 9) {
       # start fading in text 8 frames before the event starts
-      x$text$alpha <- fade_alpha[findInterval(before_n, fade_cuts)]
-      x$text$alpha_rect <- fade_alpha_rect[findInterval(before_n, fade_cuts)]
+      x$text$alpha <- perc_to_hexalpha((max_fade_n-before_n)*(max_fade_text/max_fade_n))
+      x$text$alpha_rect <- perc_to_hexalpha((max_fade_n-before_n)*(max_fade_rect/max_fade_n))
       return(x)
     } else if(after_n > 0 & after_n < 9) {
       # fade out the text 8 frames after the event ends
-      x$text$alpha <- fade_alpha[findInterval(after_n, fade_cuts)]
-      x$text$alpha_rect <- fade_alpha_rect[findInterval(after_n, fade_cuts)]
+      x$text$alpha <- perc_to_hexalpha((max_fade_n-after_n)*(max_fade_text/max_fade_n))
+      x$text$alpha_rect <- perc_to_hexalpha((max_fade_n-after_n)*(max_fade_rect/max_fade_n))
       return(x)
     } else if(during) {
       # Event text is not transparent at all durng the event
-      x$text$alpha <- "FF"
-      x$text$alpha_rect <- "5E" # rectangle is slightly transparent
+      x$text$alpha <- perc_to_hexalpha(max_fade_text)
+      x$text$alpha_rect <- perc_to_hexalpha(max_fade_rect) # rectangle is slightly transparent
       return(x)
     } else {
       return(NULL)
@@ -176,4 +175,10 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
     plot_fun <- function() { NULL }
   }
   return(plot_fun)
+}
+
+perc_to_hexalpha <- function(perc_in) {
+  fade_perc <- c(0, 10, 20, 30, 35, 40, 50, 60, 70, 80, 90, 100, Inf)
+  fade_alpha <- c("00", "1A", "33", "4D", "59", "66", "80", "99", "B3", "CC", "E6", "FF")
+  return(fade_alpha[findInterval(perc_in, fade_perc)])
 }

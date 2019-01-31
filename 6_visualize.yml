@@ -36,6 +36,7 @@ targets:
       - font_oswald
       - 6_timestep_gif_tasks.yml
       - 6_visualize/log/6_timestep_gif_tasks.ind
+      - 6_visualize/log/6_final_gif_tasks.ind
       - 6_visualize/out/year_in_review.mp4
 
   #### fonts. not sure how to add these better, but this might do ####
@@ -114,6 +115,12 @@ targets:
     command: viz_config[[I('frame_step')]]
   callouts_cfg:
     command: viz_config[[I('callouts')]]
+  final_frame:
+    command: viz_config[[I('final_frame')]]
+  final_frame_cfg:
+    command: final_frame[[I('cfg')]]
+  final_frame_text:
+    command: final_frame[[I('paragraphs')]]
 
   timestep_gif_tasks:
     command: create_timestep_gif_tasks(
@@ -152,6 +159,32 @@ targets:
   6_visualize/log/6_timestep_gif_tasks.ind:
     command: scmake(I('6_timestep_gif_tasks'), '6_timestep_gif_tasks.yml')
 
+  # Create frames for pausing the last step before the final frame
+  pause_gif_tasks:
+    command: create_pause_gif_tasks(
+      date_cfg = dates,
+      frame_cfg = final_frame_cfg,
+      folders = I(list(tmp=I('6_visualize/tmp'), log=I('6_visualize/log'))))
+  6_pause_gif_tasks.yml:
+    command: create_pause_gif_makefile(
+      makefile = target_name,
+      task_plan = pause_gif_tasks,
+      remake_file = I('6_visualize.yml'))
+  6_visualize/log/6_pause_gif_tasks.ind:
+    command: scmake(I('6_pause_gif_tasks'), '6_pause_gif_tasks.yml')
+
+  # Create the final frames
+  final_gif_tasks:
+    command: create_final_gif_tasks(
+      frame_cfg = final_frame_cfg,
+      folders = I(list(tmp=I('6_visualize/tmp'), log=I('6_visualize/log'))))
+  6_final_gif_tasks.yml:
+    command: create_final_gif_makefile(
+      makefile = target_name,
+      task_plan = final_gif_tasks,
+      remake_file = I('6_visualize.yml'))
+  6_visualize/log/6_final_gif_tasks.ind:
+    command: scmake(I('6_final_gif_tasks'), '6_final_gif_tasks.yml')
 
   # Combine the png files into a gif.
   #
