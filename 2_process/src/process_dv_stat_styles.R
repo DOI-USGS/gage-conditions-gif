@@ -28,6 +28,7 @@ process_dv_stat_styles <- function(ind_file, dv_stats_ind, gage_style, display_p
   dv_stats_with_style$size[per_na] <- gage_style$no_percentile$cex
   dv_stats_with_style$shape[per_na] <- gage_style$no_percentile$pch
   dv_stats_with_style$border[per_na] <- gage_style$no_percentile$col
+  dv_stats_with_style$lwd[per_na] <- gage_style$no_percentile$lwd
 
   # Write the data file and the indicator file
   saveRDS(dv_stats_with_style, scipiper::as_data_file(ind_file))
@@ -64,7 +65,10 @@ add_style_columns <- function(per_df, gage_style, percentiles) {
                                 no = ifelse(per <= min(percentiles$normal_range),
                                             yes = gage_style$with_percentile$drought$col[1],
                                             no = ifelse(per >= 0.98,
-                                                        yes = "yellow",
-                                                        no = NA))))
+                                                        yes = "#AE72E5", #"#9547dd",
+                                                        no = NA)))),
+    lwd = ifelse(per >= 0.98,
+                 yes = 4, # increase line width for floods only
+                 no = 1) # if point doesn't have a border, lwd=1 won't do anything
   )
 }
