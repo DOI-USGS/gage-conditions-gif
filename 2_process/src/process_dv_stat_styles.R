@@ -35,20 +35,26 @@ process_dv_stat_styles <- function(ind_file, dv_stats_ind, gage_style, display_p
 
 add_style_columns <- function(per_df, gage_style, percentiles) {
   mutate(per_df,
-    color = ifelse(per <= min(percentiles$normal_range),
-                   yes = gage_style$with_percentile$drought$col,
-                   no = ifelse(per >= percentiles$flood,
-                               yes = gage_style$with_percentile$flood$col[2],
-                               no = ifelse(per >= max(percentiles$normal_range),
-                                           yes = gage_style$with_percentile$flood$col[1],
-                                           no = gage_style$with_percentile$normal$col))),
+    color = ifelse(per <= percentiles$drought_severe,
+                   yes = gage_style$with_percentile$drought$col[3],
+                   no = ifelse(per <= percentiles$drought_low,
+                               yes = gage_style$with_percentile$drought$col[2],
+                               no = ifelse(per <= min(percentiles$normal_range),
+                                           yes = gage_style$with_percentile$drought$col[1],
+                                           no = ifelse(per >= percentiles$flood,
+                                                       yes = gage_style$with_percentile$flood$col[2],
+                                                       no = ifelse(per >= max(percentiles$normal_range),
+                                                                   yes = gage_style$with_percentile$flood$col[1],
+                                                                   no = gage_style$with_percentile$normal$col))))),
     shape = ifelse(per <= min(percentiles$normal_range),
                    yes = gage_style$with_percentile$drought$pch,
                    no = gage_style$with_percentile$normal$pch),
     size = ifelse(per <= percentiles$drought_severe,
-                  yes = max(gage_style$with_percentile$drought$cex),
+                  yes = gage_style$with_percentile$drought$cex[3],
                   no = ifelse(per <= percentiles$drought_low,
-                              yes = min(gage_style$with_percentile$drought$cex),
-                              no = gage_style$with_percentile$normal$cex))
+                              yes = gage_style$with_percentile$drought$cex[2],
+                              no = ifelse(per <= min(percentiles$normal_range),
+                                          yes = gage_style$with_percentile$drought$cex[1],
+                                          no = gage_style$with_percentile$normal$cex)))
   )
 }
