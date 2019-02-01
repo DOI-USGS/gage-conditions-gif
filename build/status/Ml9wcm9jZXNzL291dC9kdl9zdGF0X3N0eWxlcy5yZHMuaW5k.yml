@@ -1,15 +1,15 @@
 version: 0.3.0
 name: 2_process/out/dv_stat_styles.rds.ind
 type: file
-hash: 519d9ef7a60c24fe116be00d83f9995e
-time: 2019-01-29 19:50:05 UTC
+hash: 47cd7bff849bb518425f8fedde302c0e
+time: 2019-02-01 14:32:52 UTC
 depends:
   2_process/out/dv_stats.rds.ind: 92cca4065cd9037010c7b3d326cedd1b
-  gage_style_config: 2ca1cab7ec6ddf8cbf7cc2b998536640
+  gage_style_config: aa1e572564ab6e94d1eb70774789ec23
   display_percentiles: 92a2653dcfe2c703262472bf358ca6b0
 fixed: c826930aa0178f8dac87a2f81ec17062
 code:
   functions:
-    add_style_columns: ba4b97677a0d71f4b6aea646fb0194b9
+    add_style_columns: ef638be51880a1c4cdf5fae756ea0bc9
     process_dv_stat_styles: bc8465ffd793e41d2becac2f895f57f0
 
