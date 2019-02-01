@@ -88,8 +88,8 @@ datewheel_cfg:
 
 # gif options
 animation:
-  frame_rate: 7 #original input frames per second
-  output_frame_rate: 7 #fps, but the actual frames in the video (not 1:1 with input)
+  frame_rate: 5 #original input frames per second
+  output_frame_rate: 5 #fps, but the actual frames in the video (not 1:1 with input)
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
