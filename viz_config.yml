@@ -44,8 +44,8 @@ gage_style:
       col: "#efefef"
     drought:
       pch: 1
-      cex: [1.5, 2.5]
-      col: "#ca0020"
+      cex: [1.0, 1.5, 2.5]
+      col: ["#efb2bc", "#df6679", "#ca0020"]
     flood:
       pch: 16
       cex: 1
