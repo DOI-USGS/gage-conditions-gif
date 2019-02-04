@@ -25,10 +25,10 @@ request_limit_historic: 5
 percentiles:
   calc: ["05","10","20","25","50","75","80","90","95"]
   display:
-    normal_range: ["25", "75"]
     drought_severe: "05"
     drought_low: "10"
-    flood: "90"
+    normal_range: ["25", "75"]
+    wet: "90"
 
 # styling
 background_col: "white"
@@ -40,21 +40,26 @@ gage_style:
   with_percentile:
     normal:
       pch: 21
-      cex: 1
-      col: "#efefef"
+      cex: 1.0
+      bg: "#efefef"
     drought:
       pch: 21
       cex: [1.0, 1.5, 2.5]
       col: ["#efb2bc", "#df6679", "#ca0020"]
-    flood:
+    wet:
       pch: 21
-      cex: 1
-      col: ["#92c5de", "#04507d"]
+      cex: 1.0
+      bg: ["#92c5de", "#04507d"]
+    flood:    # not based on percentile, based on if above flood stage or not
+      pch: 21
+      cex: 2.0
+      lwd: 4.0
+      bg: "#04507d" # same as second "wet"
+      col: "#AE72E5" #"#9547dd"
   no_percentile:
     pch: 4
     cex: 0.75
     col: "#7f7f7f"
-    lwd: 1
 legend_cfg:
   point_mult: 4
   text_cex: 1.2
