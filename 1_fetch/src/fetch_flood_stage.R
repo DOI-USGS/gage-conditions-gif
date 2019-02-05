@@ -11,8 +11,15 @@ fetch_flood_stage <- function(ind_file, sites_ind){
     mutate(flood_stage = as.numeric(flood_stage)) %>%
     select(site_no, flood_stage)
 
+  # Learned that these sites near Jacksonville, FL were flooding every day.
+  # So, we are ignoring that they have a flood stage.
+  # 02244440: flood_stage = 2, but mininum stage for WY18 = 10.54
+  # 02246459: flood_stage = 2, but mininum stage for WY18 = 10.68
+  # 02246500: flood_stage = 2, but mininum stage for WY18 = 10.17
+
   sites_with_flood_stage <- data.frame(site_no = sites, stringsAsFactors = FALSE) %>%
-    left_join(nws_flood_stage_table, by = "site_no")
+    left_join(nws_flood_stage_table, by = "site_no") %>%
+    filter(!site_no %in% c("02244440", "02246459", "02246500"))
 
   # Write the data file and the indicator file
   data_file <- scipiper::as_data_file(ind_file)
