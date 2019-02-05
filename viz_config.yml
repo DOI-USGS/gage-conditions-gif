@@ -65,13 +65,16 @@ legend_cfg:
   text_cex: 1.2
   text_col: "#444444"
   x_pos: 0.11
-  y_pos: 0.78
+  y_pos: 0.80
 title_cfg:
   main: "U.S. River Conditions"
   subtitle: "Water Year 2018"
-  footnote: ["Conditions are relative to the historic daily record for each gage."]
+  footnote: [
+    "Conditions are relative to the historic daily record for each gage.",
+    "Note that not all gages have flood information available."
+  ]
   x_pos: 0.005
-  y_pos: 0.90
+  y_pos: 0.94
   main_cex: 3
   main_col: "#666666"
   sub_cex: 2
