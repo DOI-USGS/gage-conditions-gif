@@ -8,18 +8,18 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
   # Flood and no data conditions don't have a percentile, so add manually
   additional_conditions <- data.frame(
     per = c(NA, NA),
-    dv_val = c(100, NA),
+    dv_stage = c(100, NA),
     flood_stage = c(1, NA),
     stringsAsFactors = FALSE
   )
 
   legend_style <- data.frame(per = unlist(display_percentiles_num, use.names = FALSE),
-                             dv_val = NA, flood_stage = NA) %>%
+                             dv_val = NA, dv_stage = NA, flood_stage = NA) %>%
     bind_rows(additional_conditions) %>%
     add_style_columns(gage_style, display_percentiles_num) %>%
     mutate(
       legend_text = case_when(
-        is.na(per) & !is.na(dv_val) ~ "Flooding",
+        !is.na(dv_stage) & dv_stage > flood_stage ~ "Flooding",
         per == display_percentiles_num$wet ~ "Wettest",
         per == max(display_percentiles_num$normal_range) ~ "Wet",
         per == display_percentiles_num$norm ~ "Normal",
@@ -29,7 +29,7 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
         is.na(per) & is.na(dv_val) ~ "No data",
         TRUE ~ ""
       )) %>%
-    arrange(dv_val, desc(per)) # fill top - bottom
+    arrange(dv_stage, desc(per)) # fill top - bottom
 
   # Adjust size of legend to actually be the same size as the other dots
   new_size <- legend_style[which(legend_style$legend_text == "Wettest"), "cex"]

@@ -19,7 +19,7 @@ process_dv_stat_styles <- function(ind_file, dv_stats_ind, stage_ind, gage_style
   norm_per_high <- max(display_percentiles_num$normal_range)
   dv_stats_adj <- dv_stats %>%
     mutate(per = ifelse(per >= norm_per_low & per <= norm_per_high,
-                            no = per, yes = 0.5))
+                        no = per, yes = 0.5))
 
   # set the styles
   dv_stats_with_style <- dv_stats_adj %>%
@@ -33,7 +33,7 @@ process_dv_stat_styles <- function(ind_file, dv_stats_ind, stage_ind, gage_style
 add_style_columns <- function(per_df, gage_style, percentiles) {
   mutate(per_df,
     condition = case_when(
-      !is.na(dv_val) & !is.na(flood_stage) & dv_val >= flood_stage ~ "Flooding",
+      !is.na(dv_stage) & !is.na(flood_stage) & dv_stage >= flood_stage ~ "Flooding",
       per >= percentiles$wet ~ "Wettest",
       per >= max(percentiles$normal_range) & per < percentiles$wet ~ "Wet",
       per > min(percentiles$normal_range) & per < max(percentiles$normal_range) ~ "Normal",
