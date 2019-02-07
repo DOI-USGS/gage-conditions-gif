@@ -68,6 +68,7 @@ targets:
     command: process_dv_stat_styles(
       ind_file = target_name,
       dv_stats_ind = '2_process/out/dv_stats.rds.ind',
+      stage_ind = '1_fetch/out/sites_stage.rds.ind',
       gage_style = gage_style_config,
       display_percentiles = display_percentiles)
   2_process/out/dv_stat_styles.rds:

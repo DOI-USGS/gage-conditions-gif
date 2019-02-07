@@ -10,6 +10,7 @@ fetch_dv_data <- function(ind_file, sites_ind, dates, request_limit){
 
   req_bks <- seq(1, length(sites), by=request_limit)
   dv_data <- data.frame()
+
   for(i in req_bks) {
     last_site <- min(i+request_limit-1, length(sites))
     get_sites <- sites[i:last_site]
@@ -18,13 +19,19 @@ fetch_dv_data <- function(ind_file, sites_ind, dates, request_limit){
         service = "dv",
         statCd = "00003", # need this to avoid NAs
         site = get_sites,
-        parameterCd = "00060",
+        parameterCd = c("00065", "00060"),
         startDate = dates$start,
         endDate = dates$end) %>%
       dataRetrieval::renameNWISColumns()
 
     if(nrow(data_i) > 0 && any(names(data_i) == "Flow")) {
-      data_i <- data_i[, c("site_no", "dateTime", "Flow")] # keep only dateTime and Flow columns
+
+      if(!"GH" %in% names(data_i)) {
+        # Not all come back with a GH column, but need it to combine with everything
+        data_i$GH <- NA
+      }
+
+      data_i <- data_i[, c("site_no", "dateTime", "Flow", "GH")] # keep only dateTime, Flow, and gage height columns
     } else {
       data_i <- NULL # no data returned situation
     }
