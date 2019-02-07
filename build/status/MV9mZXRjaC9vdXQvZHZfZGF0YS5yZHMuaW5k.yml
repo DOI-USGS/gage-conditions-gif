@@ -1,8 +1,8 @@
 version: 0.3.0
 name: 1_fetch/out/dv_data.rds.ind
 type: file
-hash: f4d4ea1220a0f5d15b8f53c78a7e44bd
-time: 2018-11-08 16:27:17 UTC
+hash: d970961a3ff1399855309f10763c1a4e
+time: 2019-02-04 23:02:21 UTC
 depends:
   1_fetch/out/sites.rds.ind: ab8d6c5c0dd5a43e754fe373994ac96f
   dates: 51850bcad164fdae08ec2599388406c8
@@ -10,5 +10,5 @@ depends:
 fixed: df6396a8b26184192ecb1f70ffb6bfc3
 code:
   functions:
-    fetch_dv_data: b940f3d2730cc9abba27e858c6aaf535
+    fetch_dv_data: 784ef60730c13c7417bc68a0e062ec53
 

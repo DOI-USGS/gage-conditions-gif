@@ -25,10 +25,10 @@ request_limit_historic: 5
 percentiles:
   calc: ["05","10","20","25","50","75","80","90","95"]
   display:
-    normal_range: ["25", "75"]
     drought_severe: "05"
     drought_low: "10"
-    flood: "90"
+    normal_range: ["25", "75"]
+    wet: "90"
 
 # styling
 background_col: "white"
@@ -39,17 +39,23 @@ basemap:
 gage_style:
   with_percentile:
     normal:
-      pch: 16
-      cex: 1
-      col: "#efefef"
+      pch: 21
+      cex: 1.0
+      bg: "#efefef"
     drought:
-      pch: 1
+      pch: 21
       cex: [1.0, 1.5, 2.5]
       col: ["#efb2bc", "#df6679", "#ca0020"]
-    flood:
-      pch: 16
-      cex: 1
-      col: ["#92c5de", "#04507d"]
+    wet:
+      pch: 21
+      cex: 1.0
+      bg: ["#92c5de", "#04507d"]
+    flood:    # not based on percentile, based on if above flood stage or not
+      pch: 21
+      cex: 2.0
+      lwd: 4.0
+      bg: "#04507d" # same as second "wet"
+      col: "#AE72E5" #"#9547dd"
   no_percentile:
     pch: 4
     cex: 0.75
@@ -59,13 +65,16 @@ legend_cfg:
   text_cex: 1.2
   text_col: "#444444"
   x_pos: 0.11
-  y_pos: 0.78
+  y_pos: 0.80
 title_cfg:
   main: "U.S. River Conditions"
   subtitle: "Water Year 2018"
-  footnote: ["Conditions are relative to the historic daily record for each gage."]
+  footnote: [
+    "Conditions are relative to the historic daily record for each gage.",
+    "Flood status was readily available for 17% of sites when this graphic was produced."
+  ]
   x_pos: 0.005
-  y_pos: 0.90
+  y_pos: 0.94
   main_cex: 3
   main_col: "#666666"
   sub_cex: 2

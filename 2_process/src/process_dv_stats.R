@@ -10,7 +10,7 @@ process_dv_stats <- function(ind_file, dv_data_ind, site_stats_ind, dates){
   site_stats <- readRDS(scipiper::sc_retrieve(site_stats_ind, remake_file = '2_process.yml'))
 
   dv_with_stats <- left_join(dv_data, site_stats, by = "site_no") %>%
-    mutate(dv_val = Flow)
+    mutate(dv_val = Flow, dv_stage = GH)
 
   stat_colnames <- names(site_stats)[grepl("p[0-9]+_va", names(site_stats))]
   stat_perc <- as.numeric(gsub("p([0-9]+)_va", "\\1", stat_colnames))/100
@@ -58,13 +58,13 @@ process_dv_stats <- function(ind_file, dv_data_ind, site_stats_ind, dates){
   dv_data_nas <- dv_with_stats %>%
     filter(is.na(dv_val) | count < 365*3) %>%
     mutate(per = NA) %>%
-    select(site_no, dateTime, dv_val, per, p50_va)
+    select(site_no, dateTime, dv_val, per, p50_va, dv_stage)
 
   # Long enough record and no missing dv_val, so perform interpolation
   dv_stats_data <- dv_with_stats %>%
     filter(!is.na(dv_val) & count >= 365*3) %>%
     mutate(per = interpolate_percentile(.)) %>%
-    select(site_no, dateTime, dv_val, per, p50_va) %>%
+    select(site_no, dateTime, dv_val, per, p50_va, dv_stage) %>%
     bind_rows(dv_data_nas)
 
   # Write the data file and the indicator file

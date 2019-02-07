@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 1_fetch/out/sites_stage.rds.ind
+type: file
+hash: 2f9bbea6c83deb35ceae93d69c4b76d7
+time: 2019-02-05 17:18:40 UTC
+depends:
+  1_fetch/out/sites.rds.ind: ab8d6c5c0dd5a43e754fe373994ac96f
+fixed: 53451268ca2c9d0479db3ce37861792e
+code:
+  functions:
+    fetch_flood_stage: ada60769875129861d2412c9f5b17c33
+
