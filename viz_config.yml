@@ -72,7 +72,7 @@ title_cfg:
   subtitle: "Water Year 2018"
   footnote: [
     "Conditions are relative to the historic daily record for each gage.",
-    "Flood status was readily available for 17% of sites when this graphic was produced."
+    "Flood status available for 38% of sites when this graphic was produced."
   ]
   x_pos: 0.005
   y_pos: 0.94
