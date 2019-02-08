@@ -46,6 +46,8 @@ targets:
     command: viz_config[[I('request_limit')]]
   request_limit_historic:
     command: viz_config[[I('request_limit_historic')]]
+  request_limit_inst:
+    command: viz_config[[I('request_limit_inst')]]
   percentiles_all:
     command: viz_config[[I('percentiles')]]
   percentiles:
@@ -105,7 +107,8 @@ targets:
     command: fetch_inst_stage(
       ind_file = target_name,
       dv_data_ind = '1_fetch/out/dv_data.rds.ind',
-      stage_data_ind = '1_fetch/out/sites_stage.rds.ind')
+      stage_data_ind = '1_fetch/out/sites_stage.rds.ind',
+      request_limit = request_limit_inst)
   1_fetch/out/dv_data_fixed_gh.rds:
     command: gd_get('1_fetch/out/dv_data_fixed_gh.rds.ind')
 

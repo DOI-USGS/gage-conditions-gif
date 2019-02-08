@@ -60,7 +60,7 @@ targets:
   2_process/out/dv_stats.rds.ind:
     command: process_dv_stats(
       ind_file = target_name,
-      dv_data_ind = '1_fetch/out/dv_data_fixed_.rds.ind',
+      dv_data_ind = '1_fetch/out/dv_data.rds.ind',
       site_stats_ind = '2_process/out/dv_historic_quantiles.rds.ind',
       dates = dates)
   2_process/out/dv_stats.rds:

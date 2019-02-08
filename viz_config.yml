@@ -22,6 +22,7 @@ shift:
 # fetch site data parameters
 request_limit: 10
 request_limit_historic: 5
+request_limit_inst: 1
 percentiles:
   calc: ["05","10","20","25","50","75","80","90","95"]
   display:

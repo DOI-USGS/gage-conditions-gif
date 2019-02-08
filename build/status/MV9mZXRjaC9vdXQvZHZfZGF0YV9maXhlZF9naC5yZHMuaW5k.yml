@@ -1,0 +1,14 @@
+version: 0.3.0
+name: 1_fetch/out/dv_data_fixed_gh.rds.ind
+type: file
+hash: ced80db39bb11934d334e2421ce75aa2
+time: 2019-02-08 11:53:10 UTC
+depends:
+  1_fetch/out/dv_data.rds.ind: d970961a3ff1399855309f10763c1a4e
+  1_fetch/out/sites_stage.rds.ind: 2f9bbea6c83deb35ceae93d69c4b76d7
+  request_limit_inst: 4b5630ee914e848e8d07221556b0a2fb
+fixed: 7fe33162a303ac19e285f4ec74de0d41
+code:
+  functions:
+    fetch_inst_stage: 090f8a20c138fdb0245ebf8aea088273
+

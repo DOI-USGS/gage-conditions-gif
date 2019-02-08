@@ -11,7 +11,8 @@ process_add_fixed_gh <- function(ind_file, dv_stats_ind, fixed_gh_ind){
   # Add newly calculated gage heights to dv stats data
   dv_stats_with_fixed_gh <- dv_stats %>%
     left_join(fixed_gh_data, by = c("site_no", "dateTime")) %>%
-    mutate(dv_stage = ifelse(is.na(dv_stage), GH_calc, dv_stage))
+    mutate(dv_stage = ifelse(is.na(dv_stage), GH_mean, dv_stage)) %>%
+    select(-GH_mean)
 
   # Write the data file and the indicator file
   data_file <- scipiper::as_data_file(ind_file)
