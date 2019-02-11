@@ -18,6 +18,7 @@ sources:
   - 2_process/src/choose_timesteps.R
   - 2_process/src/process_dv_historic_quantiles.R
   - 2_process/src/process_dv_stats.R
+  - 2_process/src/process_add_fixed_gh.R
   - 2_process/src/process_dv_stat_styles.R
   - 2_process/src/project_shift_points.R
   - 2_process/src/project_shift_states.R
@@ -29,6 +30,7 @@ targets:
       - 2_process/out/timesteps.rds.ind
       - 2_process/out/dv_historic_quantiles.rds.ind
       - 2_process/out/dv_stats.rds.ind
+      - 2_process/out/dv_stats_fixed_gh.rds.ind
       - 2_process/out/dv_stat_styles.rds.ind
       - states_shifted
       - site_locations_shifted
@@ -64,10 +66,18 @@ targets:
   2_process/out/dv_stats.rds:
     command: gd_get('2_process/out/dv_stats.rds.ind')
 
+  2_process/out/dv_stats_fixed_gh.rds.ind:
+    command: process_add_fixed_gh(
+      ind_file = target_name,
+      dv_stats_ind = '2_process/out/dv_stats.rds.ind',
+      fixed_gh_ind = '1_fetch/out/dv_data_fixed_gh.rds.ind')
+  2_process/out/dv_stats_fixed_gh.rds:
+    command: gd_get('2_process/out/dv_stats.rds.ind')
+
   2_process/out/dv_stat_styles.rds.ind:
     command: process_dv_stat_styles(
       ind_file = target_name,
-      dv_stats_ind = '2_process/out/dv_stats.rds.ind',
+      dv_stats_ind = '2_process/out/dv_stats_fixed_gh.rds.ind',
       stage_ind = '1_fetch/out/sites_stage.rds.ind',
       gage_style = gage_style_config,
       display_percentiles = display_percentiles)

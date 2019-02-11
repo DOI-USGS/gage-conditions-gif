@@ -15,6 +15,7 @@ sources:
   - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_dv_sites.R
   - 1_fetch/src/fetch_flood_stage.R
+  - 1_fetch/src/fetch_inst_stage.R
   - 1_fetch/src/fetch_site_locations.R
   - 1_fetch/src/fetch_site_stats.R
   - 1_fetch/src/fetch_dv_data.R
@@ -30,6 +31,7 @@ targets:
       - 1_fetch/out/site_locations.rds.ind
       - 1_fetch/out/site_stats.rds.ind
       - 1_fetch/out/dv_data.rds.ind
+      - 1_fetch/out/dv_data_fixed_gh.rds.ind
       - 1_fetch/out/dv_historic.ind
       - 1_fetch/out/pre_state_boundaries_census.zip
 
@@ -44,6 +46,8 @@ targets:
     command: viz_config[[I('request_limit')]]
   request_limit_historic:
     command: viz_config[[I('request_limit_historic')]]
+  request_limit_inst:
+    command: viz_config[[I('request_limit_inst')]]
   percentiles_all:
     command: viz_config[[I('percentiles')]]
   percentiles:
@@ -97,6 +101,16 @@ targets:
       request_limit = request_limit)
   1_fetch/out/dv_data.rds:
     command: gd_get('1_fetch/out/dv_data.rds.ind')
+
+  # -- calculate dv stage for gages missing it using instantaneous gage height (gh) --
+  1_fetch/out/dv_data_fixed_gh.rds.ind:
+    command: fetch_inst_stage(
+      ind_file = target_name,
+      dv_data_ind = '1_fetch/out/dv_data.rds.ind',
+      stage_data_ind = '1_fetch/out/sites_stage.rds.ind',
+      request_limit = request_limit_inst)
+  1_fetch/out/dv_data_fixed_gh.rds:
+    command: gd_get('1_fetch/out/dv_data_fixed_gh.rds.ind')
 
   # -- get state boundaries --
   1_fetch/out/pre_state_boundaries_census.zip.ind:

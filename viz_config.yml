@@ -22,6 +22,7 @@ shift:
 # fetch site data parameters
 request_limit: 10
 request_limit_historic: 5
+request_limit_inst: 1
 percentiles:
   calc: ["05","10","20","25","50","75","80","90","95"]
   display:
@@ -71,7 +72,7 @@ title_cfg:
   subtitle: "Water Year 2018"
   footnote: [
     "Conditions are relative to the historic daily record for each gage.",
-    "Flood status was readily available for 17% of sites when this graphic was produced."
+    "Flood status was available for 38% of gages when this graphic was produced."
   ]
   x_pos: 0.005
   y_pos: 0.94
@@ -79,7 +80,7 @@ title_cfg:
   main_col: "#666666"
   sub_cex: 2
   sub_col: "#666666"
-  foot_cex: 1.05
+  foot_cex: 1
   foot_col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
