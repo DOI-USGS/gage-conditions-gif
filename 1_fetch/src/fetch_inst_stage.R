@@ -9,9 +9,6 @@ fetch_inst_stage <- function(ind_file, dv_data_ind, stage_data_ind, request_limi
   dv_data <- readRDS(scipiper::sc_retrieve(dv_data_ind, remake_file = '1_fetch.yml'))
   sites_stage <- readRDS(scipiper::sc_retrieve(stage_data_ind, remake_file = '1_fetch.yml'))
 
-  dv_data <- readRDS("1_fetch/out/dv_data.rds")
-  sites_stage <- readRDS("1_fetch/out/sites_stage.rds")
-
   sites_calc_stage <- dv_data %>%
     left_join(sites_stage, by = "site_no") %>%
     filter(is.na(GH) & !is.na(flood_stage) & !is.na(Flow))
@@ -51,7 +48,7 @@ fetch_inst_stage <- function(ind_file, dv_data_ind, stage_data_ind, request_limi
           group_by(site_no, day) %>%
           summarize(GH_mean = mean(GH_Inst, na.rm = TRUE))
       } else {
-        gh_mean <- gh_mean <- data_i %>%
+        gh_mean <- data_i %>%
           group_by(site_no, day) %>%
           summarize(GH_mean = NA)
       }

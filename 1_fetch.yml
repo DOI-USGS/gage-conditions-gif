@@ -102,7 +102,7 @@ targets:
   1_fetch/out/dv_data.rds:
     command: gd_get('1_fetch/out/dv_data.rds.ind')
 
-  # -- calculate dv stage for gages missing it using inst --
+  # -- calculate dv stage for gages missing it using instantaneous gage height (gh) --
   1_fetch/out/dv_data_fixed_gh.rds.ind:
     command: fetch_inst_stage(
       ind_file = target_name,
