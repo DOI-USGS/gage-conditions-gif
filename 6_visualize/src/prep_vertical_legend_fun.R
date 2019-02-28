@@ -65,6 +65,7 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
       scale_cex_factor <- ifelse(legend_style$legend_text[n] %in% c("Dry", "Drier", "Driest"),
                                  yes = 1.5,
                                  no = legend_cfg$point_mult)
+
       points(x_loc, y_loc_n,
              bg = legend_style$bg[n],
              col = legend_style$col[n],
