@@ -34,15 +34,15 @@ percentiles:
 # styling
 background_col: "white"
 basemap:
-  lwd: 0.5
-  col: "transparent"
-  border: "gray40"
+  lwd: 3.0
+  col: "#e5e5e5" # transparent
+  border: "white" # gray40
 gage_style:
   with_percentile:
     normal:
       pch: 21
       cex: 1.0
-      bg: "#efefef"
+      bg: "#d7d7d7" #efefef
     drought:
       pch: 21
       cex: [1.0, 1.5, 2.5]
