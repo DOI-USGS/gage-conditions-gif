@@ -62,11 +62,14 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
       point_height_n <- ifelse(n==1, 0, legend_style$point_height[n-1])
       point_spacing <- ifelse(is.na(legend_style$per[n]), 0.4, 0.7)
       y_loc_n <- y_loc_n - point_height_n*point_spacing
+      scale_cex_factor <- ifelse(legend_style$legend_text[n] %in% c("Dry", "Drier", "Driest"),
+                                 yes = 1.5,
+                                 no = legend_cfg$point_mult)
       points(x_loc, y_loc_n,
              bg = legend_style$bg[n],
              col = legend_style$col[n],
              pch = legend_style$pch[n],
-             cex = legend_style$cex[n]*legend_cfg$point_mult,
+             cex = legend_style$cex[n]*scale_cex_factor,
              lwd = legend_style$lwd[n])
       text(x_text, y_loc_n,
            labels = legend_style$legend_text[n],
