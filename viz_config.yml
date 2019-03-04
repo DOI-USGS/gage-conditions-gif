@@ -135,71 +135,166 @@ final_frame:
 callouts:
   -
     dates:
-      start: "2017-12-08"
-      end: "2017-12-22"
+      start: "2017-10-01"
+      end: "2017-12-05"
     text:
-      label: ["Low December precipitation", "along the West Coast"]
-      x_loc: 0.32 #this is in percentage space, relative to the plotting device
-      y_loc: 0.7
+      label: ["Lowflows throughout most of the west and east coasts"]
+      x_loc: 0.4 #this is in percentage space, relative to the plotting device
+      y_loc: 0.94
       pos: 4
       cex: 2
-    add_box: TRUE
+    add_box: FALSE
     wheel_color: "#ca0020"
-    polygon:
-      file: "6_visualize/in/callout_poly_West_Coast_December.png"
   -
     dates:
-      start: "2018-02-15"
-      end: "2018-02-28"
+      start: "2017-10-25"
+      end: "2017-12-01"
     text:
-      label: ["Drought begins to", "develop in UT, CO,", "NM, AZ, and KS"]
-      x_loc: 0.58
-      y_loc: 0.6
-      pos: 3
-      cex: 2
-    add_box: TRUE
-    wheel_color: "#ca0020"
-    polygon:
-      file: "6_visualize/in/callout_poly_SW_drought.png"
-  -
-    dates:
-      start: "2018-07-01"
-      end: "2018-07-20"
-    text:
-      label: ["Low snowpack drives", "sustained drought in the", "mountainous Southwest"]
-      x_loc: 0.46
-      y_loc: 0.39
-      pos: 1
-      cex: 2
-    add_box: TRUE
-    wheel_color: "#ca0020"
-    polygon:
-      file: "6_visualize/in/callout_poly_SW_snowpack.png"
-  -
-    dates:
-      start: "2018-09-08"
-      end: "2018-09-21"
-    text:
-      label: ["Hurricane Florence", "hovers over NC and SC"]
-      x_loc: 0.82
-      y_loc: 0.36
-      pos: 1
-      cex: 2
-    add_box: TRUE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/callout_poly_Florence.png"
-  -
-    dates:
-      start: "2018-09-14"
-      end: "2018-09-27"
-    text:
-      label: ["Record September","rainfall in Texas"]
-      x_loc: 0.63
-      y_loc: 0.18
+      label: ["Atmospheric rivers bring rain to northeast"]
+      x_loc: 0.69 #this is in percentage space, relative to the plotting device
+      y_loc: 0.62
       pos: 4
       cex: 2
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
-      file: "6_visualize/in/callout_poly_Texas_rain.png"
+      file: "6_visualize/in/polygons_atmospheric_northeast.png"
+  -
+    dates:
+      start: "2017-12-01"
+      end: "2017-12-31"
+    text:
+      label: ["Most of Nation in lower", "than normal flow"]
+      x_loc: 0.63 #this is in percentage space, relative to the plotting device
+      y_loc: 0.14
+      pos: 4
+      cex: 2
+    add_box: FALSE
+    wheel_color: "#ca0020"
+  -
+    dates:
+      start: "2018-02-07"
+      end: "2018-03-01"
+    text:
+      label: ["Frontal systems and", "snowmelt cause high", "flows in much of", "the east"]
+      x_loc: 0.83 #this is in percentage space, relative to the plotting device
+      y_loc: 0.55
+      pos: 4
+      cex: 2
+    add_box: TRUE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/polygons_snowmelt_east.png"
+  -
+    dates:
+      start: "2018-04-12"
+      end: "2018-04-19"
+    text:
+      label: ["Snowmelt and rainfall", "cause flooding in", "IL and IN"]
+      x_loc: 0.48 #this is in percentage space, relative to the plotting device
+      y_loc: 0.58
+      pos: 4
+      cex: 2
+    add_box: TRUE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/polygons_snowmelt_ilin.png"
+  -
+    dates:
+      start: "2018-04-19"
+      end: "2018-04-21"
+    text:
+      label: ["Hurricane Lane", "passes near HI"]
+      x_loc: 0.4 #this is in percentage space, relative to the plotting device
+      y_loc: 0.1
+      pos: 4
+      cex: 2
+    add_box: TRUE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/polygons_hurricane_lane.png"
+  -
+    dates:
+      start: "2018-05-10"
+      end: "2018-05-11"
+    text:
+      label: ["Snowmelt flooding in the Northwest"]
+      x_loc: 0.4 #this is in percentage space, relative to the plotting device
+      y_loc: 0.93
+      pos: 4
+      cex: 2
+    add_box: FALSE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/polygons_snowmelt_northwest.png"
+  -
+    dates:
+      start: "2018-05-31"
+      end: "2018-06-04"
+    text:
+      label: ["Flooding caused by", "thunderstorms in", "Western NC and VA"]
+      x_loc: 0.84 #this is in percentage space, relative to the plotting device
+      y_loc: 0.44
+      pos: 4
+      cex: 2
+    add_box: TRUE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/polygons_thunderstorms_ncva.png"
+  -
+    dates:
+      start: "2018-06-13"
+      end: "2018-06-20"
+    text:
+      label: ["Flash flooding in VA, WV, and MD"]
+      x_loc: 0.7 #this is in percentage space, relative to the plotting device
+      y_loc: 0.5
+      pos: 4
+      cex: 2
+    add_box: TRUE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/polygons_flashflooding_vawvmd.png"
+  -
+    dates:
+      start: "2018-07-25"
+      end: "2018-07-26"
+    text:
+      label: ["Flooding in MD, VA, and MT"]
+      x_loc: 0.6 #this is in percentage space, relative to the plotting device
+      y_loc: 0.8
+      pos: 4
+      cex: 2
+    add_box: TRUE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/polygons_flooding_vamd_mt.png"
+  -
+    dates:
+      start: "2018-09-05"
+      end: "2018-09-06"
+    text:
+      label: ["Hurricane Gordon passes by FL and MS"]
+      x_loc: 0.67 #this is in percentage space, relative to the plotting device
+      y_loc: 0.07
+      pos: 4
+      cex: 2
+    add_box: TRUE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/polygons_hurricane_gordon.png"
+  -
+    dates:
+      start: "2018-09-25"
+      end: "2018-09-26"
+    text:
+      label: ["Hurricane", "Florence", "lands in NC"]
+      x_loc: 0.89 #this is in percentage space, relative to the plotting device
+      y_loc: 0.47
+      pos: 4
+      cex: 2
+    add_box: FALSE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/polygons_hurricane_florence.png"
+
