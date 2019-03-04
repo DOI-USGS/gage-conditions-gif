@@ -135,7 +135,7 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
                xright = x + x_buffer_right,
                ybottom = y_bot - y_buffer_bottom,
                ytop = y + y_buffer_top,
-               col = paste0("#bdbdbd", callout_text_cfg_n$alpha_rect), border = NA)
+               col = paste0("#979797", callout_text_cfg_n$alpha_rect), border = NA)
           # rect_left <- x - x_buffer_left
           # rect_right <- x + x_buffer_right
           # rect_center_x <- (rect_left + rect_right)/2
@@ -165,7 +165,7 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
           text(x, y_i, labels = callout_text_lines[i],
                cex = callout_text_cfg_n$cex,
                pos = callout_text_cfg_n$pos,
-               col = paste0("#666666", callout_text_cfg_n$alpha))
+               col = paste0("#474747", callout_text_cfg_n$alpha))
         }
       }
     }
