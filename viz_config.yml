@@ -34,15 +34,15 @@ percentiles:
 # styling
 background_col: "white"
 basemap:
-  lwd: 0.5
-  col: "transparent"
-  border: "gray40"
+  lwd: 3.0
+  col: "#e5e5e5" # transparent
+  border: "white" # gray40
 gage_style:
   with_percentile:
     normal:
       pch: 21
       cex: 1.0
-      bg: "#efefef"
+      bg: "#d7d7d7" #efefef
     drought:
       pch: 21
       cex: [1.0, 1.5, 2.5]
@@ -72,7 +72,7 @@ title_cfg:
   subtitle: "Water Year 2018"
   footnote: [
     "Conditions are relative to the historic daily record for each gage.",
-    "Flood status was available for 38% of gages when this graphic was produced."
+    "When this graphic was produced, 40% of gages could show flood status.",
   ]
   x_pos: 0.005
   y_pos: 0.94
