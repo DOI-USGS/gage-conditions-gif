@@ -229,7 +229,7 @@ callouts:
       file: "6_visualize/in/polygons_snowmelt_northwest.png"
   -
     dates:
-      start: "2018-05-29"
+      start: "2018-05-20"
       end: "2018-06-06"
     text:
       label: ["Flooding caused by", "thunderstorms in", "Western NC and VA"]
@@ -243,14 +243,14 @@ callouts:
       file: "6_visualize/in/polygons_thunderstorms_ncva.png"
   -
     dates:
-      start: "2018-06-13"
+      start: "2018-06-05"
       end: "2018-06-20"
     text:
-      label: ["Flash flooding in VA, WV, and MD",
-              "occurred on ungaged rivers and",
-              "cannot be seen on this map"]
+      label: ["Flash flooding in VA, WV, and MD,",
+              "though some flooding is not",
+              "captured by the gages"]
       x_loc: 0.7 #this is in percentage space, relative to the plotting device
-      y_loc: 0.5
+      y_loc: 0.8
       pos: 4
       cex: 2
     add_box: TRUE
