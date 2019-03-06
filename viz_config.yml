@@ -135,8 +135,8 @@ final_frame:
 callouts:
   -
     dates:
-      start: "2017-10-01"
-      end: "2017-12-05"
+      start: "2017-10-05"
+      end: "2017-10-22"
     text:
       label: ["Lowflows throughout most of the west and east coasts"]
       x_loc: 0.4 #this is in percentage space, relative to the plotting device
@@ -148,7 +148,7 @@ callouts:
   -
     dates:
       start: "2017-10-25"
-      end: "2017-12-01"
+      end: "2017-11-10"
     text:
       label: ["Atmospheric rivers bring rain to northeast"]
       x_loc: 0.69 #this is in percentage space, relative to the plotting device
@@ -173,8 +173,8 @@ callouts:
     wheel_color: "#ca0020"
   -
     dates:
-      start: "2018-02-07"
-      end: "2018-03-01"
+      start: "2018-02-19"
+      end: "2018-03-04"
     text:
       label: ["Frontal systems and", "snowmelt cause high", "flows in much of", "the east"]
       x_loc: 0.83 #this is in percentage space, relative to the plotting device
@@ -187,8 +187,8 @@ callouts:
       file: "6_visualize/in/polygons_snowmelt_east.png"
   -
     dates:
-      start: "2018-04-12"
-      end: "2018-04-19"
+      start: "2018-04-03"
+      end: "2018-04-15"
     text:
       label: ["Snowmelt and rainfall", "cause flooding in", "IL and IN"]
       x_loc: 0.48 #this is in percentage space, relative to the plotting device
@@ -201,8 +201,8 @@ callouts:
       file: "6_visualize/in/polygons_snowmelt_ilin.png"
   -
     dates:
-      start: "2018-04-19"
-      end: "2018-04-21"
+      start: "2018-04-14"
+      end: "2018-04-27"
     text:
       label: ["Hurricane Lane", "passes near HI"]
       x_loc: 0.4 #this is in percentage space, relative to the plotting device
@@ -215,8 +215,8 @@ callouts:
       file: "6_visualize/in/polygons_hurricane_lane.png"
   -
     dates:
-      start: "2018-05-10"
-      end: "2018-05-11"
+      start: "2018-05-04"
+      end: "2018-05-18"
     text:
       label: ["Snowmelt flooding in the Northwest"]
       x_loc: 0.4 #this is in percentage space, relative to the plotting device
@@ -229,8 +229,8 @@ callouts:
       file: "6_visualize/in/polygons_snowmelt_northwest.png"
   -
     dates:
-      start: "2018-05-31"
-      end: "2018-06-04"
+      start: "2018-05-29"
+      end: "2018-06-06"
     text:
       label: ["Flooding caused by", "thunderstorms in", "Western NC and VA"]
       x_loc: 0.84 #this is in percentage space, relative to the plotting device
@@ -246,7 +246,9 @@ callouts:
       start: "2018-06-13"
       end: "2018-06-20"
     text:
-      label: ["Flash flooding in VA, WV, and MD"]
+      label: ["Flash flooding in VA, WV, and MD",
+              "occurred on ungaged rivers and",
+              "cannot be seen on this map"]
       x_loc: 0.7 #this is in percentage space, relative to the plotting device
       y_loc: 0.5
       pos: 4
@@ -257,10 +259,12 @@ callouts:
       file: "6_visualize/in/polygons_flashflooding_vawvmd.png"
   -
     dates:
-      start: "2018-07-25"
-      end: "2018-07-26"
+      start: "2018-07-21"
+      end: "2018-07-30"
     text:
-      label: ["Flooding in MD, VA, and MT"]
+      label: ["High flows and flooding in MD, VA,",
+              "and MT, though some flooding is not",
+              "captured by the gages"]
       x_loc: 0.6 #this is in percentage space, relative to the plotting device
       y_loc: 0.8
       pos: 4
@@ -271,8 +275,8 @@ callouts:
       file: "6_visualize/in/polygons_flooding_vamd_mt.png"
   -
     dates:
-      start: "2018-09-05"
-      end: "2018-09-06"
+      start: "2018-08-28"
+      end: "2018-09-12"
     text:
       label: ["Hurricane Gordon passes by FL and MS"]
       x_loc: 0.67 #this is in percentage space, relative to the plotting device
@@ -285,7 +289,7 @@ callouts:
       file: "6_visualize/in/polygons_hurricane_gordon.png"
   -
     dates:
-      start: "2018-09-25"
+      start: "2018-09-15"
       end: "2018-09-26"
     text:
       label: ["Hurricane", "Florence", "lands in NC"]
