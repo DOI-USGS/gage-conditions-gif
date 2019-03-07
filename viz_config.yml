@@ -63,7 +63,7 @@ gage_style:
     col: "#7f7f7f"
 legend_cfg:
   point_mult: 4
-  text_cex: 1.6
+  text_cex: 1.8
   text_col: "#444444"
   x_pos: 0.11
   y_pos: 0.80
@@ -76,11 +76,11 @@ title_cfg:
   ]
   x_pos: 0.005
   y_pos: 0.94
-  main_cex: 4
+  main_cex: 4.5
   main_col: "#666666"
   sub_cex: 3
   sub_col: "#666666"
-  foot_cex: 1.7
+  foot_cex: 1.6
   foot_col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
@@ -92,9 +92,9 @@ datewheel_cfg:
     col_empty: "#bdbdbd" # color of the wheel background
     col_filled: "#5d5d5dB3" # color to fill in the wheel as time marches on, last two = hex transparency
     col_text_months: "#383838" # color of month labels inside wheel
-    cex_text_months: 1.2
+    cex_text_months: 1.4
     col_text_datestamp: "#bdbdbd" # color of text inside the wheel
-    cex_text_datestamp: 1.5
+    cex_text_datestamp: 1.7
 
 # gif options
 animation:
@@ -168,7 +168,7 @@ callouts:
       x_loc: 0.63 #this is in percentage space, relative to the plotting device
       y_loc: 0.14
       pos: 4
-      cex: 2
+      cex: 3
     add_box: FALSE
     wheel_color: "#ca0020"
   -
