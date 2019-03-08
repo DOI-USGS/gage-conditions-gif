@@ -19,7 +19,7 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
     add_style_columns(gage_style, display_percentiles_num) %>%
     mutate(
       legend_text = case_when(
-        !is.na(dv_stage) & dv_stage > flood_stage ~ "Flooding",
+        !is.na(dv_stage) & dv_stage > flood_stage ~ "Flooding*",
         per == display_percentiles_num$wet ~ "Wettest",
         per == max(display_percentiles_num$normal_range) ~ "Wet",
         per == display_percentiles_num$norm ~ "Normal",
@@ -33,7 +33,7 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
 
   # Adjust size of legend to actually be the same size as the other dots
   new_size <- legend_style[which(legend_style$legend_text == "Wettest"), "cex"]
-  legend_style[which(legend_style$legend_text == "Flooding"), "cex"] <- new_size
+  legend_style[which(legend_style$legend_text == "Flooding*"), "cex"] <- new_size
 
   rm(display_percentiles_num, gage_style)
 
@@ -60,7 +60,7 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
     y_loc_n <- y_start
     for(n in 1:nrow(legend_style)) {
       point_height_n <- ifelse(n==1, 0, legend_style$point_height[n-1])
-      point_spacing <- ifelse(is.na(legend_style$per[n]), 0.4, 0.7)
+      point_spacing <- ifelse(is.na(legend_style$per[n]), 0.55, 0.85)
       y_loc_n <- y_loc_n - point_height_n*point_spacing
       scale_cex_factor <- ifelse(legend_style$legend_text[n] %in% c("Dry", "Drier", "Driest"),
                                  yes = 1.5,

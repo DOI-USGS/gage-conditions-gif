@@ -63,25 +63,33 @@ gage_style:
     col: "#7f7f7f"
 legend_cfg:
   point_mult: 4
-  text_cex: 1.2
+  text_cex: 1.8
   text_col: "#444444"
   x_pos: 0.11
-  y_pos: 0.80
+  y_pos: 0.82
 title_cfg:
   main: "U.S. River Conditions"
   subtitle: "Water Year 2018"
   footnote: [
     "Conditions are relative to the historic daily record for each gage.",
-    "When this graphic was produced, 40% of gages could show flood status.",
   ]
   x_pos: 0.005
   y_pos: 0.94
-  main_cex: 3
+  main_cex: 4.5
   main_col: "#666666"
-  sub_cex: 2
+  sub_cex: 3
   sub_col: "#666666"
-  foot_cex: 1
+  foot_cex: 1.6
   foot_col: "#939393"
+footnote_cfg:
+  main: [
+    "* Both USGS gage height and National Weather Service flood stage levels are necessary to determine flooding conditions and were available for 38% of gages at",
+    "   the time this graphic was produced. We used only publicly available data from NWISWeb and some gages are missing gage height even when they have flow."
+  ]
+  x_pos: 0.255 #0.20 # 0.50
+  y_pos: 0.02
+  cex: 1.4
+  col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
     y_pos: 0.33 # percentage in the y direction to place the circle center
@@ -92,9 +100,9 @@ datewheel_cfg:
     col_empty: "#bdbdbd" # color of the wheel background
     col_filled: "#5d5d5dB3" # color to fill in the wheel as time marches on, last two = hex transparency
     col_text_months: "#383838" # color of month labels inside wheel
-    cex_text_months: 0.9
+    cex_text_months: 1.4
     col_text_datestamp: "#bdbdbd" # color of text inside the wheel
-    cex_text_datestamp: 1
+    cex_text_datestamp: 1.7
 
 # gif options
 animation:
@@ -106,12 +114,6 @@ animation:
 component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "bottom"
-  outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
-    xleft: 0.55
-    xright: 0.99
-    ytop_ltn: 0.6 # top y coordinate of the text and legend for the long-term network
-    ytop_stn: 0.85 # top y coordinate of the text and legend for the short-term network
-    ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
 
 final_frame:
   cfg:
@@ -120,16 +122,16 @@ final_frame:
     show_count: 15 # number of frames for which the final frame will be seen
   paragraphs:
     -
-      text: ["Learn more about USGS\n", "stream gages and their role in\n", "science and public safety:"]
+      text: ["Learn more about USGS\n", "streamgages and their role in\n", "science and public safety:"]
       ypos: 0.70 #percent of the y direction to place text (starting from bottom)
-      lheight: 1.4
-      cex: 7
+      lheight: 1.1
+      cex: 11
       col: "#474747"
     -
       text: ["usgs.gov/gwsip"]
-      ypos: 0.20 #percent of the y direction to place text (starting from bottom)
+      ypos: 0.25 #percent of the y direction to place text (starting from bottom)
       lheight: 1
-      cex: 11
+      cex: 15
       col: "#04507d"
 
 callouts:
@@ -142,7 +144,7 @@ callouts:
       x_loc: 0.4 #this is in percentage space, relative to the plotting device
       y_loc: 0.94
       pos: 4
-      cex: 2
+      cex: 3
     add_box: FALSE
     wheel_color: "#ca0020"
   -
@@ -150,11 +152,11 @@ callouts:
       start: "2017-10-25"
       end: "2017-11-10"
     text:
-      label: ["Atmospheric rivers bring rain to northeast"]
+      label: ["Frontal systems bring floods to northeast"]
       x_loc: 0.69 #this is in percentage space, relative to the plotting device
       y_loc: 0.62
       pos: 4
-      cex: 2
+      cex: 3
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
@@ -168,7 +170,7 @@ callouts:
       x_loc: 0.63 #this is in percentage space, relative to the plotting device
       y_loc: 0.14
       pos: 4
-      cex: 2
+      cex: 3
     add_box: FALSE
     wheel_color: "#ca0020"
   -
@@ -180,7 +182,7 @@ callouts:
       x_loc: 0.83 #this is in percentage space, relative to the plotting device
       y_loc: 0.55
       pos: 4
-      cex: 2
+      cex: 3
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
@@ -194,7 +196,7 @@ callouts:
       x_loc: 0.48 #this is in percentage space, relative to the plotting device
       y_loc: 0.58
       pos: 4
-      cex: 2
+      cex: 3
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
@@ -208,7 +210,7 @@ callouts:
       x_loc: 0.4 #this is in percentage space, relative to the plotting device
       y_loc: 0.1
       pos: 4
-      cex: 2
+      cex: 3
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
@@ -222,7 +224,7 @@ callouts:
       x_loc: 0.4 #this is in percentage space, relative to the plotting device
       y_loc: 0.93
       pos: 4
-      cex: 2
+      cex: 3
     add_box: FALSE
     wheel_color: "#04507d"
     polygon:
@@ -236,7 +238,7 @@ callouts:
       x_loc: 0.84 #this is in percentage space, relative to the plotting device
       y_loc: 0.44
       pos: 4
-      cex: 2
+      cex: 3
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
@@ -246,13 +248,11 @@ callouts:
       start: "2018-06-05"
       end: "2018-06-20"
     text:
-      label: ["Flash flooding in VA, WV, and MD,",
-              "though some flooding is not",
-              "captured by the gages"]
+      label: ["Flash flooding in VA, WV, and MD"]
       x_loc: 0.7 #this is in percentage space, relative to the plotting device
       y_loc: 0.8
       pos: 4
-      cex: 2
+      cex: 3
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
@@ -262,17 +262,29 @@ callouts:
       start: "2018-07-21"
       end: "2018-07-30"
     text:
-      label: ["High flows and flooding in MD, VA,",
-              "and MT, though some flooding is not",
-              "captured by the gages"]
-      x_loc: 0.6 #this is in percentage space, relative to the plotting device
-      y_loc: 0.8
+      label: ["Flooding in", "VA and MD"]
+      x_loc: 0.885 #this is in percentage space, relative to the plotting device
+      y_loc: 0.65
       pos: 4
-      cex: 2
-    add_box: TRUE
+      cex: 3
+    add_box: FALSE
     wheel_color: "#04507d"
     polygon:
-      file: "6_visualize/in/polygons_flooding_vamd_mt.png"
+      file: "6_visualize/in/polygons_flooding_vamd.png"
+  -
+    dates:
+      start: "2018-07-21"
+      end: "2018-07-30"
+    text:
+      label: ["High flows and flooding in MT"]
+      x_loc: 0.4 #this is in percentage space, relative to the plotting device
+      y_loc: 0.93
+      pos: 4
+      cex: 3
+    add_box: FALSE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/polygons_flooding_mt.png"
   -
     dates:
       start: "2018-08-28"
@@ -282,7 +294,7 @@ callouts:
       x_loc: 0.67 #this is in percentage space, relative to the plotting device
       y_loc: 0.07
       pos: 4
-      cex: 2
+      cex: 3
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
@@ -296,7 +308,7 @@ callouts:
       x_loc: 0.89 #this is in percentage space, relative to the plotting device
       y_loc: 0.47
       pos: 4
-      cex: 2
+      cex: 3
     add_box: FALSE
     wheel_color: "#04507d"
     polygon:
