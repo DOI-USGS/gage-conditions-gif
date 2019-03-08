@@ -152,7 +152,7 @@ callouts:
       start: "2017-10-25"
       end: "2017-11-10"
     text:
-      label: ["Atmospheric rivers bring rain to northeast"]
+      label: ["Frontal systems bring floods to northeast"]
       x_loc: 0.69 #this is in percentage space, relative to the plotting device
       y_loc: 0.62
       pos: 4
@@ -248,9 +248,7 @@ callouts:
       start: "2018-06-05"
       end: "2018-06-20"
     text:
-      label: ["Flash flooding in VA, WV, and MD,",
-              "though some flooding is not",
-              "captured by the gages"]
+      label: ["Flash flooding in VA, WV, and MD"]
       x_loc: 0.7 #this is in percentage space, relative to the plotting device
       y_loc: 0.8
       pos: 4
@@ -264,17 +262,29 @@ callouts:
       start: "2018-07-21"
       end: "2018-07-30"
     text:
-      label: ["High flows and flooding in MD, VA,",
-              "and MT, though some flooding is not",
-              "captured by the gages"]
-      x_loc: 0.6 #this is in percentage space, relative to the plotting device
-      y_loc: 0.8
+      label: ["Flooding in", "VA and MD"]
+      x_loc: 0.885 #this is in percentage space, relative to the plotting device
+      y_loc: 0.65
       pos: 4
       cex: 2
-    add_box: TRUE
+    add_box: FALSE
     wheel_color: "#04507d"
     polygon:
-      file: "6_visualize/in/polygons_flooding_vamd_mt.png"
+      file: "6_visualize/in/polygons_flooding_vamd.png"
+  -
+    dates:
+      start: "2018-07-21"
+      end: "2018-07-30"
+    text:
+      label: ["High flows and flooding in MT"]
+      x_loc: 0.4 #this is in percentage space, relative to the plotting device
+      y_loc: 0.93
+      pos: 4
+      cex: 2
+    add_box: FALSE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/polygons_flooding_mt.png"
   -
     dates:
       start: "2018-08-28"
