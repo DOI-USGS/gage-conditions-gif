@@ -274,7 +274,7 @@ callouts:
   -
     dates:
       start: "2018-07-21"
-      end: "2018-07-30"
+      end: "2018-07-31" # one day different from prev to avoid warnings
     text:
       label: ["High flows and flooding in MT"]
       x_loc: 0.4 #this is in percentage space, relative to the plotting device
