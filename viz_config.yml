@@ -120,7 +120,7 @@ final_frame:
     show_count: 15 # number of frames for which the final frame will be seen
   paragraphs:
     -
-      text: ["Learn more about USGS\n", "stream gages and their role in\n", "science and public safety:"]
+      text: ["Learn more about USGS\n", "streamgages and their role in\n", "science and public safety:"]
       ypos: 0.70 #percent of the y direction to place text (starting from bottom)
       lheight: 1.4
       cex: 7
