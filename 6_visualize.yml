@@ -21,6 +21,7 @@ sources:
   - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_basemap_fun.R
   - 6_visualize/src/prep_title_fun.R
+  - 6_visualize/src/prep_footnote_fun.R
   - 6_visualize/src/prep_legend_fun.R
   - 6_visualize/src/prep_vertical_legend_fun.R
   - 6_visualize/src/prep_watermark_fun.R
@@ -96,6 +97,11 @@ targets:
     command: viz_config[[I(c('title_cfg'))]]
   title_fun:
     command: prep_title_fun(title_cfg)
+
+  footnote_cfg:
+    command: viz_config[[I(c('footnote_cfg'))]]
+  footnote_fun:
+    command: prep_footnote_fun(footnote_cfg)
 
   legend_fun:
     command: prep_vertical_legend_fun(

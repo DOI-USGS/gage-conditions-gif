@@ -19,7 +19,7 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
     add_style_columns(gage_style, display_percentiles_num) %>%
     mutate(
       legend_text = case_when(
-        !is.na(dv_stage) & dv_stage > flood_stage ~ "Flooding",
+        !is.na(dv_stage) & dv_stage > flood_stage ~ "Flooding*",
         per == display_percentiles_num$wet ~ "Wettest",
         per == max(display_percentiles_num$normal_range) ~ "Wet",
         per == display_percentiles_num$norm ~ "Normal",
@@ -33,7 +33,7 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
 
   # Adjust size of legend to actually be the same size as the other dots
   new_size <- legend_style[which(legend_style$legend_text == "Wettest"), "cex"]
-  legend_style[which(legend_style$legend_text == "Flooding"), "cex"] <- new_size
+  legend_style[which(legend_style$legend_text == "Flooding*"), "cex"] <- new_size
 
   rm(display_percentiles_num, gage_style)
 

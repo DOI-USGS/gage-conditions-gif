@@ -66,13 +66,12 @@ legend_cfg:
   text_cex: 1.2
   text_col: "#444444"
   x_pos: 0.11
-  y_pos: 0.80
+  y_pos: 0.82
 title_cfg:
   main: "U.S. River Conditions"
   subtitle: "Water Year 2018"
   footnote: [
     "Conditions are relative to the historic daily record for each gage.",
-    "When this graphic was produced, 40% of gages could show flood status.",
   ]
   x_pos: 0.005
   y_pos: 0.94
@@ -82,6 +81,16 @@ title_cfg:
   sub_col: "#666666"
   foot_cex: 1
   foot_col: "#939393"
+footnote_cfg:
+  main: [
+    "* Both USGS gage height and National Weather Service flood stage levels are necessary to determine flooding",
+    "   conditions and were only available for 38% of gages at the time this graphic was produced. We used only",
+    "   publicly available data from NWISWeb and some gages are missing gage height even when they have flow."
+  ]
+  x_pos: 0.60
+  y_pos: 0.02
+  cex: 1
+  col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
     y_pos: 0.33 # percentage in the y direction to place the circle center
