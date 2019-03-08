@@ -290,12 +290,12 @@ callouts:
       start: "2018-08-28"
       end: "2018-09-12"
     text:
-      label: ["Hurricane Gordon passes by FL and MS"]
-      x_loc: 0.67 #this is in percentage space, relative to the plotting device
-      y_loc: 0.07
+      label: ["Hurricane Gordon passes", "by FL and MS"]
+      x_loc: 0.63 #this is in percentage space, relative to the plotting device
+      y_loc: 0.14
       pos: 4
       cex: 3
-    add_box: TRUE
+    add_box: FALSE
     wheel_color: "#04507d"
     polygon:
       file: "6_visualize/in/polygons_hurricane_gordon.png"
