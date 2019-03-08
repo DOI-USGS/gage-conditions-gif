@@ -66,13 +66,12 @@ legend_cfg:
   text_cex: 1.8
   text_col: "#444444"
   x_pos: 0.11
-  y_pos: 0.80
+  y_pos: 0.82
 title_cfg:
   main: "U.S. River Conditions"
   subtitle: "Water Year 2018"
   footnote: [
     "Conditions are relative to the historic daily record for each gage.",
-    "When this graphic was produced, 40% of gages could show flood status.",
   ]
   x_pos: 0.005
   y_pos: 0.94
@@ -82,6 +81,15 @@ title_cfg:
   sub_col: "#666666"
   foot_cex: 1.6
   foot_col: "#939393"
+footnote_cfg:
+  main: [
+    "* Both USGS gage height and National Weather Service flood stage levels are necessary to determine flooding conditions and were available for 38% of gages at",
+    "   the time this graphic was produced. We used only publicly available data from NWISWeb and some gages are missing gage height even when they have flow."
+  ]
+  x_pos: 0.255 #0.20 # 0.50
+  y_pos: 0.02
+  cex: 1
+  col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
     y_pos: 0.33 # percentage in the y direction to place the circle center
@@ -106,12 +114,6 @@ animation:
 component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "bottom"
-  outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
-    xleft: 0.55
-    xright: 0.99
-    ytop_ltn: 0.6 # top y coordinate of the text and legend for the long-term network
-    ytop_stn: 0.85 # top y coordinate of the text and legend for the short-term network
-    ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
 
 final_frame:
   cfg:
