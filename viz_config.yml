@@ -88,7 +88,7 @@ footnote_cfg:
   ]
   x_pos: 0.255 #0.20 # 0.50
   y_pos: 0.02
-  cex: 1
+  cex: 1.6
   col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
