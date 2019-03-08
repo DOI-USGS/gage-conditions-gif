@@ -125,13 +125,13 @@ final_frame:
       text: ["Learn more about USGS\n", "streamgages and their role in\n", "science and public safety:"]
       ypos: 0.70 #percent of the y direction to place text (starting from bottom)
       lheight: 1.4
-      cex: 7
+      cex: 11
       col: "#474747"
     -
       text: ["usgs.gov/gwsip"]
-      ypos: 0.20 #percent of the y direction to place text (starting from bottom)
+      ypos: 0.25 #percent of the y direction to place text (starting from bottom)
       lheight: 1
-      cex: 11
+      cex: 15
       col: "#04507d"
 
 callouts:
