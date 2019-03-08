@@ -83,11 +83,10 @@ title_cfg:
   foot_col: "#939393"
 footnote_cfg:
   main: [
-    "* Both USGS gage height and National Weather Service flood stage levels are necessary to determine flooding",
-    "   conditions and were only available for 38% of gages at the time this graphic was produced. We used only",
-    "   publicly available data from NWISWeb and some gages are missing gage height even when they have flow."
+    "* Both USGS gage height and National Weather Service flood stage levels are necessary to determine flooding conditions and were available for 38% of gages at",
+    "   the time this graphic was produced. We used only publicly available data from NWISWeb and some gages are missing gage height even when they have flow."
   ]
-  x_pos: 0.60
+  x_pos: 0.255 #0.20 # 0.50
   y_pos: 0.02
   cex: 1
   col: "#939393"
