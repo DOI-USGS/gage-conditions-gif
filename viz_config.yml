@@ -124,7 +124,7 @@ final_frame:
     -
       text: ["Learn more about USGS\n", "streamgages and their role in\n", "science and public safety:"]
       ypos: 0.70 #percent of the y direction to place text (starting from bottom)
-      lheight: 1.4
+      lheight: 1.1
       cex: 11
       col: "#474747"
     -
