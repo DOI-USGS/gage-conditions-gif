@@ -61,6 +61,7 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
         "view_fun,",
         "basemap_fun,",
         "title_fun,",
+        "footnote_fun,",
         "legend_fun,",
         "watermark_fun,",
         "datewheel_fun_%s,"=cur_task$tn,
