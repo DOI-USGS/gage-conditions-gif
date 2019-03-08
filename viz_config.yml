@@ -115,12 +115,6 @@ animation:
 component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "bottom"
-  outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
-    xleft: 0.55
-    xright: 0.99
-    ytop_ltn: 0.6 # top y coordinate of the text and legend for the long-term network
-    ytop_stn: 0.85 # top y coordinate of the text and legend for the short-term network
-    ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
 
 final_frame:
   cfg:
