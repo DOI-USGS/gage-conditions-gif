@@ -106,6 +106,7 @@ datewheel_cfg:
 
 # gif options
 animation:
+  frame_delay_cs: 14 # delay for gifs
   frame_rate: 5 #original input frames per second
   output_frame_rate: 10 #fps, but the actual frames in the video (not 1:1 with input)
 
