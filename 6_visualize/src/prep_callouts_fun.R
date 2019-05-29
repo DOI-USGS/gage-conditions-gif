@@ -52,13 +52,18 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
   }, this_date)
 
   # keep only non-NULL elements
-  this_date_callouts_cloud <- this_date_callouts_cloud[!unlist(lapply(this_date_callouts_cloud, is.null))]
-  this_date_callouts_text <- this_date_callouts_text[!unlist(lapply(this_date_callouts_text, is.null))]
+  if(length(this_date_callouts_text) > 0) {
+    this_date_callouts_cloud <- this_date_callouts_cloud[!unlist(lapply(this_date_callouts_cloud, is.null))]
+    this_date_callouts_text <- this_date_callouts_text[!unlist(lapply(this_date_callouts_text, is.null))]
+
+    n_callouts_cloud <- length(this_date_callouts_cloud)
+    n_callouts_text <- length(this_date_callouts_text)
+  } else {
+    n_callouts_cloud <- 0
+    n_callouts_text <- 0
+  }
 
   rm(callouts_cfg, dateTime, this_date)
-
-  n_callouts_cloud <- length(this_date_callouts_cloud)
-  n_callouts_text <- length(this_date_callouts_text)
 
   if(n_callouts_text > 0) {
     # there is always text when there will be clouds, but

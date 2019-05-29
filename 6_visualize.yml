@@ -168,7 +168,7 @@ targets:
   # Create frames for pausing the last step before the final frame
   pause_gif_tasks:
     command: create_pause_gif_tasks(
-      date_cfg = dates,
+      date_cfg = vizDates,
       frame_cfg = final_frame_cfg,
       folders = I(list(tmp=I('6_visualize/tmp'), log=I('6_visualize/log'))))
   6_pause_gif_tasks.yml:
