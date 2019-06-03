@@ -34,8 +34,8 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_con
   viz_end_dt_n <- as.numeric(viz_end_dt-start_dt)
 
   # Determine where on the wheel the erasing happens
-  start_angle_erase <-  start_angle + viz_end_dt_n * wedge_width*-1
-  end_angle_erase <- start_angle + viz_start_dt_n * wedge_width*-1
+  start_angle_erase <-  start_angle + viz_end_dt_n * wedge_width*rot_dir
+  end_angle_erase <- start_angle + viz_start_dt_n * wedge_width*rot_dir
 
   # keep only non-NULL elements
   if(length(wheel_callouts)>0) {
@@ -100,10 +100,10 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_con
                                r = wheel_radius,
                                from_angle = end_angle_erase,
                                to_angle = start_angle_erase,
-                               rot_dir = -1)
+                               rot_dir = rot_dir)
     polygon(c(x_center, segments_wheel$x, x_center),
             c(y_center, segments_wheel$y, y_center),
-            border = "black", col = "red", lwd="2")
+            border = "black", col = "white", lwd="2")
 
     if (n_callouts >0) {
     # Call out arcs are on top of light grey wheel, but below dark grey
