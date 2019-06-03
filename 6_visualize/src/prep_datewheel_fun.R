@@ -1,5 +1,5 @@
 
-prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg, callouts_cfg){
+prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_config, datewheel_cfg, callouts_cfg){
 
   # info to setup wheel
   start_dt <- as.Date(dates_config[["start"]])
@@ -25,6 +25,18 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
     }
   })
 
+  # viz start and end dates used for erasing parts of the whole wheel where the viz doesn't cover an entire year
+  viz_start_dt <- as.Date(viz_config$vizDates[["start"]])
+  viz_end_dt <- as.Date(viz_config$vizDates[["end"]])
+
+  # get number of days from water year start date and end date our viz start date and end date are
+  viz_start_dt_n <- as.numeric(viz_start_dt-start_dt) + 1
+  viz_end_dt_n <- as.numeric(viz_end_dt-start_dt)
+
+  # Determine where on the wheel the erasing happens
+  start_angle_erase <-  start_angle + viz_end_dt_n * wedge_width*-1
+  end_angle_erase <- start_angle + viz_start_dt_n * wedge_width*-1
+
   # keep only non-NULL elements
   if(length(wheel_callouts)>0) {
     wheel_callouts <- wheel_callouts[!unlist(lapply(wheel_callouts, is.null))]
@@ -37,6 +49,7 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
     }
 
   make_arc <- function(x0, y0, r, from_angle, to_angle, rot_dir){
+    browser()
     theta <- seq(from_angle, to_angle, by = rot_dir*0.002)
     x_out <- x0 + r*cos(theta)
     y_out <- y0 + r*sin(theta)
@@ -81,6 +94,16 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
     polygon(c(x_center, segments_wheel$x, x_center),
             c(y_center, segments_wheel$y, y_center),
             border = NA, col = datewheel_cfg$col_empty)
+
+    # Erase part of the wheel where data will not be shown
+    segments_wheel <- make_arc(x_center, y_center,
+                               r = wheel_radius,
+                               from_angle = end_angle_erase,
+                               to_angle = start_angle_erase,
+                               rot_dir = -1)
+    polygon(c(x_center, segments_wheel$x, x_center),
+            c(y_center, segments_wheel$y, y_center),
+            border = "black", col = "red", lwd="2")
 
     if (n_callouts >0) {
     # Call out arcs are on top of light grey wheel, but below dark grey
@@ -127,10 +150,11 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, datewheel_cfg
     }
 
     # Increment the wheel for the date
+    start_angle_viz <- start_angle + start_angle*wedge_width*rot_dir
     end_angle_n <- start_angle + this_date_n*wedge_width*rot_dir
     segments_n <- make_arc(x_center, y_center,
                            r = wheel_radius,
-                           from_angle = start_angle,
+                           from_angle = start_angle_viz,
                            to_angle = end_angle_n,
                            rot_dir = rot_dir)
     polygon(c(x_center, segments_n$x, x_center),

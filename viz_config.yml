@@ -3,7 +3,10 @@ dates:
   end: '2018-09-30'
 vizDates:
   start: '2019-01-01'
-  end: '2019-05-28'
+  end: '2019-05-31'
+wheelDates:
+  start: '2018-10-01'
+  end: '2019-09-30'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 3 # hours elapsed between GIF frames
 

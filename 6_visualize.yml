@@ -51,6 +51,8 @@ targets:
 
   dates_config:
     command: viz_config[[I('dates')]]
+  wheel_dates_config:
+    command: viz_config[[I('wheelDates')]]
   date_display_tz:
     command: viz_config[[I('date_display_tz')]]
   intro_config:
