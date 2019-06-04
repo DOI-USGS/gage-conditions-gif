@@ -144,42 +144,42 @@ final_frame:
 callouts:
   -
     dates:
-      start: "2019-01-01"
-      end: "2019-01-31"
+      start: "2019-01-03"
+      end: "2019-01-27"
     text:
-      label: ["January Eastern US: 317 gages above flood stage with 31 days", "max above flood stage"]
-      x_loc: 0.4 #this is in percentage space, relative to the plotting device
-      y_loc: 0.95
+      label: ["January - Eastern US","• 317 gages above flood stage","• 31 days max above flood stage"]
+      x_loc: 0.62 #this is in percentage space, relative to the plotting device
+      y_loc: 0.96
       pos: 4
-      cex: 2
-    add_box: FALSE
+      cex: 1.5
+    add_box: TRUE
     wheel_color: "#04507d"
     polygon:
       file: "6_visualize/in/callouts_EasternUS.png"
   -
     dates:
-      start: "2019-02-01"
-      end: "2019-02-28"
+      start: "2019-02-03"
+      end: "2019-02-26"
     text:
-      label: ["February Eastern US: 435 gages above flood stage and 3 with more", "than 30 years of record set all-time highs. USGS made 114", "flood-flow measurements at NWS forecast locations"]
-      x_loc: 0.4 #this is in percentage space, relative to the plotting device
-      y_loc: 0.95
+      label: ["February - Eastern US","• 435 gages above flood stage","• 3 gages set all-time highs with over 30 years of data","• USGS made 114 flood-flow measurements at NWS forecast locations"]
+      x_loc: 0.62 #this is in percentage space, relative to the plotting device
+      y_loc: 0.96
       pos: 4
-      cex: 2
-    add_box: FALSE
+      cex: 1.5
+    add_box: TRUE
     wheel_color: "#04507d"
     polygon:
       file: "6_visualize/in/callouts_EasternUS.png"
   -
     dates:
-      start: "2019-02-01"
-      end: "2019-02-28"
+      start: "2019-02-03"
+      end: "2019-02-27"
     text:
-      label: ["February California: A stalled 'atmospheric river' brought record rains.  Two CA towns isolated.  37 gages above flood stage with 8-day max above flood stage.  USGS makes both direct flood flow measurements and post-event model estimates to supply needed data."]
-      x_loc: 0.25 #this is in percentage space, relative to the plotting device
+      label: ["February - California","• Stalled 'atmospheric river' brought record rains","• Two CA towns isolated","• 37 gages above flood stage with 8-day max above flood stage","• USGS made direct flood flow measurements and","  post-event model estimates to supply needed data"]
+      x_loc: 0.30 #this is in percentage space, relative to the plotting device
       y_loc: 0.85
       pos: 4
-      cex: 2
+      cex: 1.5
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
@@ -189,11 +189,39 @@ callouts:
       start: "2019-03-01"
       end: "2019-03-31"
     text:
-      label: ["Rapid warm up brings 'rainbomb' and extensive,", "rapid snowmelt on still frozen soils causes ", "widespread intensive flooding.  512", "gages above flood stage and 15", "with more than 30 years", "of record set all-time high.", "USGS makes 327 flood-flow measurements", "at NWS forecast locations"]
-      x_loc: 0.48 #this is in percentage space, relative to the plotting device
-      y_loc: 0.58
+      label: ["March - Midwest","• Rapid warm up brings 'rainbomb'","• Rapid snowmelt on frozen soils causes widespread intensive flooding.","• 512 gages above flood stage","• 15 gages with more than 30 years of record set all-time high","• USGS makes 327 flood-flow measurements at NWS forecast locations"]
+      x_loc: 0.2 #this is in percentage space, relative to the plotting device
+      y_loc: 0.25
       pos: 4
-      cex: 2
+      cex: 1.5
+    add_box: TRUE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/callouts_Midwest.png"
+  -
+    dates:
+      start: "2019-04-01"
+      end: "2019-04-30"
+    text:
+      label: ["April - Midwest","• 376 gages above flood stage","• 3 gages with more than 30 years of record set all-time high","• USGS made 191 flood-flow measurements at NWS forecast locations."]
+      x_loc: 0.2 #this is in percentage space, relative to the plotting device
+      y_loc: 0.25
+      pos: 4
+      cex: 1.5
+    add_box: TRUE
+    wheel_color: "#04507d"
+    polygon:
+      file: "6_visualize/in/callouts_Midwest.png"
+  -
+    dates:
+      start: "2019-05-01"
+      end: "2019-05-31"
+    text:
+      label: ["May - Midwest","• 583 gages above flood stage","• 10 gages with more than 30 years of record set all-time high","•  May sites close in on 1993 records for number of days above flood stage.","• USGS made 396 flood flow measurements at NWS forecast locations."]
+      x_loc: 0.2 #this is in percentage space, relative to the plotting device
+      y_loc: 0.25
+      pos: 4
+      cex: 1.5
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
