@@ -49,7 +49,6 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_con
     }
 
   make_arc <- function(x0, y0, r, from_angle, to_angle, rot_dir){
-    browser()
     theta <- seq(from_angle, to_angle, by = rot_dir*0.002)
     x_out <- x0 + r*cos(theta)
     y_out <- y0 + r*sin(theta)
@@ -95,15 +94,15 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_con
             c(y_center, segments_wheel$y, y_center),
             border = NA, col = datewheel_cfg$col_empty)
 
-    # Erase part of the wheel where data will not be shown
-    segments_wheel <- make_arc(x_center, y_center,
-                               r = wheel_radius,
-                               from_angle = end_angle_erase,
-                               to_angle = start_angle_erase,
-                               rot_dir = rot_dir)
-    polygon(c(x_center, segments_wheel$x, x_center),
-            c(y_center, segments_wheel$y, y_center),
-            border = "black", col = "white", lwd="2")
+    # # Erase part of the wheel where data will not be shown
+    # segments_wheel <- make_arc(x_center, y_center,
+    #                            r = wheel_radius,
+    #                            from_angle = end_angle_erase,
+    #                            to_angle = start_angle_erase,
+    #                            rot_dir = rot_dir)
+    # polygon(c(x_center, segments_wheel$x, x_center),
+    #         c(y_center, segments_wheel$y, y_center),
+    #         border = "black", col = "white", lwd="2")
 
     if (n_callouts >0) {
     # Call out arcs are on top of light grey wheel, but below dark grey

@@ -1,12 +1,12 @@
 version: 0.3.0
 name: 2_process/out/dv_stats.rds.ind
 type: file
-hash: 06fa2f4f99fba2d19515245b68fe0b5e
-time: 2019-05-28 22:08:10 UTC
+hash: 1b3936af7ddab0891bbee08d62323470
+time: 2019-06-03 17:31:01 UTC
 depends:
-  1_fetch/out/dv_data.rds.ind: 6a8992b7cf5382a8f12563e56ba182f8
+  1_fetch/out/dv_data.rds.ind: 819ee3b8122d315b3b8d3ea903b17362
   2_process/out/dv_historic_quantiles.rds.ind: bc89acba20fa157313928de8a1c08a12
-  vizDates: 51a2e0d6eec884b2383b9f08a8843338
+  vizDates: 1f2497ef40a3dfce7a3c52fb768ad3b6
 fixed: d68b248e742da518189e972bd02d3d7b
 code:
   functions:
