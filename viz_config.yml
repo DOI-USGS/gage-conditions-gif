@@ -161,7 +161,7 @@ callouts:
       start: "2019-02-01"
       end: "2019-02-26"
     text:
-      label: ["February - Eastern US","• 435 gages above flood stage","• 3 gages set all-time highs with over 30 years of data","• USGS made 114 flood-flow measurements at NWS forecast locations"]
+      label: ["February - Eastern US","• 435 gages above flood stage","• 3 gages set all-time highs with over 30 years of data"]
       x_loc: 0.62 #this is in percentage space, relative to the plotting device
       y_loc: 0.96
       pos: 4
@@ -175,7 +175,7 @@ callouts:
       start: "2019-02-03"
       end: "2019-02-27"
     text:
-      label: ["February - California","• Stalled 'atmospheric river' brought record rains","• Two CA towns isolated","• 37 gages above flood stage with 8-day max above flood stage","• USGS made direct flood flow measurements and","  post-event model estimates to supply needed data"]
+      label: ["February - California","• Stalled 'atmospheric river' brought record rains - two CA towns isolated","• 37 gages above flood stage with 8-day max above flood stage"]
       x_loc: 0.30 #this is in percentage space, relative to the plotting device
       y_loc: 0.85
       pos: 4
@@ -189,7 +189,7 @@ callouts:
       start: "2019-03-01"
       end: "2019-03-31"
     text:
-      label: ["March - Midwest","• Rapid warm up brings 'rainbomb'","• Rapid snowmelt on frozen soils causes widespread intensive flooding.","• 512 gages above flood stage","• 15 gages with more than 30 years of record set all-time high","• USGS makes 327 flood-flow measurements at NWS forecast locations"]
+      label: ["March - Midwest","• Rapid warm up brings 'rainbomb'","• Rapid snowmelt on frozen soils causes widespread flooding.","• 512 gages above flood stage","• 15 gages with more than 30 years of record set all-time high"]
       x_loc: 0.2 #this is in percentage space, relative to the plotting device
       y_loc: 0.25
       pos: 4
@@ -203,7 +203,7 @@ callouts:
       start: "2019-04-01"
       end: "2019-04-30"
     text:
-      label: ["April - Midwest","• 376 gages above flood stage","• 3 gages with more than 30 years of record set all-time high","• USGS made 191 flood-flow measurements at NWS forecast locations."]
+      label: ["April - Midwest","• 376 gages above flood stage","• 3 gages with more than 30 years of record set all-time high"]
       x_loc: 0.2 #this is in percentage space, relative to the plotting device
       y_loc: 0.25
       pos: 4
@@ -217,7 +217,7 @@ callouts:
       start: "2019-05-01"
       end: "2019-05-31"
     text:
-      label: ["May - Midwest","• 583 gages above flood stage","• 10 gages with more than 30 years of record set all-time high","• May sites close in on 1993 records for number of days above flood stage.","• USGS made 396 flood flow measurements at NWS forecast locations."]
+      label: ["May - Midwest","• 583 gages above flood stage","• 10 gages with more than 30 years of record set all-time high","• Sites close in on 1993 records for number of days above flood stage"]
       x_loc: 0.2 #this is in percentage space, relative to the plotting device
       y_loc: 0.25
       pos: 4
