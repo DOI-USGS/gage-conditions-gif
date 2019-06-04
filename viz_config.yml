@@ -145,7 +145,7 @@ callouts:
   -
     dates:
       start: "2019-01-03"
-      end: "2019-01-27"
+      end: "2019-01-31"
     text:
       label: ["January - Eastern US","• 317 gages above flood stage","• 31 days max above flood stage"]
       x_loc: 0.62 #this is in percentage space, relative to the plotting device
@@ -158,7 +158,7 @@ callouts:
       file: "6_visualize/in/callouts_EasternUS.png"
   -
     dates:
-      start: "2019-02-03"
+      start: "2019-02-01"
       end: "2019-02-26"
     text:
       label: ["February - Eastern US","• 435 gages above flood stage","• 3 gages set all-time highs with over 30 years of data","• USGS made 114 flood-flow measurements at NWS forecast locations"]
@@ -217,7 +217,7 @@ callouts:
       start: "2019-05-01"
       end: "2019-05-31"
     text:
-      label: ["May - Midwest","• 583 gages above flood stage","• 10 gages with more than 30 years of record set all-time high","•  May sites close in on 1993 records for number of days above flood stage.","• USGS made 396 flood flow measurements at NWS forecast locations."]
+      label: ["May - Midwest","• 583 gages above flood stage","• 10 gages with more than 30 years of record set all-time high","• May sites close in on 1993 records for number of days above flood stage.","• USGS made 396 flood flow measurements at NWS forecast locations."]
       x_loc: 0.2 #this is in percentage space, relative to the plotting device
       y_loc: 0.25
       pos: 4
