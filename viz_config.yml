@@ -144,11 +144,11 @@ final_frame:
 callouts:
   -
     dates:
-      start: "2019-01-03"
+      start: "2019-01-01"
       end: "2019-01-31"
     text:
-      label: ["January - Eastern US","• 317 gages above flood stage","• 31 days max above flood stage"]
-      x_loc: 0.62 #this is in percentage space, relative to the plotting device
+      label: ["January - East","• Flood stage locations: 317","• Days over max flood stage: 31"]
+      x_loc: 0.70 #this is in percentage space, relative to the plotting device
       y_loc: 0.96
       pos: 4
       cex: 1.5
@@ -159,10 +159,10 @@ callouts:
   -
     dates:
       start: "2019-02-01"
-      end: "2019-02-26"
+      end: "2019-02-28"
     text:
-      label: ["February - Eastern US","• 435 gages above flood stage","• 3 gages set all-time highs with over 30 years of data"]
-      x_loc: 0.62 #this is in percentage space, relative to the plotting device
+      label: ["February - East","• Flood stage locations: 435","• Stage at highest level in 30 yrs: 3"]
+      x_loc: 0.70 #this is in percentage space, relative to the plotting device
       y_loc: 0.96
       pos: 4
       cex: 1.5
@@ -172,12 +172,12 @@ callouts:
       file: "6_visualize/in/callouts_EasternUS.png"
   -
     dates:
-      start: "2019-02-03"
-      end: "2019-02-27"
+      start: "2019-02-01"
+      end: "2019-02-28"
     text:
-      label: ["February - California","• Stalled 'atmospheric river' brought record rains - two CA towns isolated","• 37 gages above flood stage with 8-day max above flood stage"]
-      x_loc: 0.30 #this is in percentage space, relative to the plotting device
-      y_loc: 0.85
+      label: ["February - California","• 'Atmospheric river' = record rain","• Two CA towns isolated","• Flood stage locations: 37","• Days over flood stage: 31 "]
+      x_loc: 0.2 #this is in percentage space, relative to the plotting device
+      y_loc: 0.25
       pos: 4
       cex: 1.5
     add_box: TRUE
@@ -189,9 +189,9 @@ callouts:
       start: "2019-03-01"
       end: "2019-03-31"
     text:
-      label: ["March - Midwest","• Rapid warm up brings 'rainbomb'","• Rapid snowmelt on frozen soils causes widespread flooding.","• 512 gages above flood stage","• 15 gages with more than 30 years of record set all-time high"]
-      x_loc: 0.2 #this is in percentage space, relative to the plotting device
-      y_loc: 0.25
+      label: ["March - Midwest","• 'Rainbomb' from rapid warming","• Frozen soil + rapid snowmelt = widespread flooding","• Flood stage locations: 512","• Stage at highest level in 30 yrs: 15"]
+      x_loc: 0.70 #this is in percentage space, relative to the plotting device
+      y_loc: 0.96
       pos: 4
       cex: 1.5
     add_box: TRUE
@@ -203,9 +203,9 @@ callouts:
       start: "2019-04-01"
       end: "2019-04-30"
     text:
-      label: ["April - Midwest","• 376 gages above flood stage","• 3 gages with more than 30 years of record set all-time high"]
-      x_loc: 0.2 #this is in percentage space, relative to the plotting device
-      y_loc: 0.25
+      label: ["April - Midwest","• Flood stage locations: 376","• Stage at highest level in 30 yrs: 3"]
+      x_loc: 0.70 #this is in percentage space, relative to the plotting device
+      y_loc: 0.96
       pos: 4
       cex: 1.5
     add_box: TRUE
@@ -217,9 +217,9 @@ callouts:
       start: "2019-05-01"
       end: "2019-05-31"
     text:
-      label: ["May - Midwest","• 583 gages above flood stage","• 10 gages with more than 30 years of record set all-time high","• Sites close in on 1993 records for number of days above flood stage"]
-      x_loc: 0.2 #this is in percentage space, relative to the plotting device
-      y_loc: 0.25
+      label: ["May - Midwest","• Flood stage locations: 583","• Stage at highest level in 30 yrs: 10","• Close to record levels set in 1993"]
+      x_loc: 0.70 #this is in percentage space, relative to the plotting device
+      y_loc: 0.96
       pos: 4
       cex: 1.5
     add_box: TRUE
