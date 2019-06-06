@@ -94,16 +94,6 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_con
             c(y_center, segments_wheel$y, y_center),
             border = NA, col = datewheel_cfg$col_empty)
 
-    # # Erase part of the wheel where data will not be shown
-    # segments_wheel <- make_arc(x_center, y_center,
-    #                            r = wheel_radius,
-    #                            from_angle = end_angle_erase,
-    #                            to_angle = start_angle_erase,
-    #                            rot_dir = rot_dir)
-    # polygon(c(x_center, segments_wheel$x, x_center),
-    #         c(y_center, segments_wheel$y, y_center),
-    #         border = "black", col = "white", lwd="2")
-
     if (n_callouts >0) {
     # Call out arcs are on top of light grey wheel, but below dark grey
       for(n in n_callouts:1) {
@@ -160,6 +150,16 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_con
             c(y_center, segments_n$y, y_center),
             border = NA, col = datewheel_cfg$col_filled)
 
+    #make oct-jan same color as base light grey wheel
+    segments_wheel <- make_arc(x_center, y_center,
+                               r = wheel_radius,
+                               from_angle = pi,
+                               to_angle = end_angle_erase,
+                               rot_dir = rot_dir)
+    polygon(c(x_center, segments_wheel$x, x_center),
+            c(y_center, segments_wheel$y, y_center),
+            border = NA, col = datewheel_cfg$col_empty)
+
     # Make it a donut
     segments_middle <- make_arc(x_center, y_center,
                                 r = inner_radius,
@@ -185,6 +185,7 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_con
          col = datewheel_cfg$col_text_datestamp,
          cex = datewheel_cfg$cex_text_datestamp,
          label = format(this_date, "%Y"), pos = 1)
+
   }
   return(plot_fun)
 }

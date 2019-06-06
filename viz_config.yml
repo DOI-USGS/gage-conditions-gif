@@ -211,7 +211,7 @@ callouts:
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
-      file: "6_visualize/in/callouts_Midwest.png"
+      file: "6_visualize/in/callouts_MidwestApril.png"
   -
     dates:
       start: "2019-05-01"
@@ -225,4 +225,4 @@ callouts:
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
-      file: "6_visualize/in/callouts_Midwest.png"
+      file: "6_visualize/in/callouts_MidwestMay.png"
