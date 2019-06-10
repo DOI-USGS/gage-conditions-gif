@@ -1,6 +1,12 @@
 dates:
   start: '2017-10-01'
   end: '2018-09-30'
+vizDates:
+  start: '2019-01-01'
+  end: '2019-06-01'
+wheelDates:
+  start: '2018-10-01'
+  end: '2019-09-30'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 3 # hours elapsed between GIF frames
 
@@ -69,7 +75,7 @@ legend_cfg:
   y_pos: 0.82
 title_cfg:
   main: "U.S. River Conditions"
-  subtitle: "Water Year 2018"
+  subtitle: "January-May 2019"
   footnote: [
     "Conditions are relative to the historic daily record for each gage.",
   ]
@@ -138,180 +144,85 @@ final_frame:
 callouts:
   -
     dates:
-      start: "2017-10-05"
-      end: "2017-10-22"
+      start: "2019-01-01"
+      end: "2019-01-31"
     text:
-      label: ["Lowflows throughout most of the west and east coasts"]
-      x_loc: 0.4 #this is in percentage space, relative to the plotting device
-      y_loc: 0.94
+      label: ["January - East","• Flood stage locations: 317","• Days over max flood stage: 31"]
+      x_loc: 0.70 #this is in percentage space, relative to the plotting device
+      y_loc: 0.96
       pos: 4
-      cex: 2
-    add_box: FALSE
-    wheel_color: "#ca0020"
-  -
-    dates:
-      start: "2017-10-25"
-      end: "2017-11-10"
-    text:
-      label: ["Frontal systems bring floods to northeast"]
-      x_loc: 0.69 #this is in percentage space, relative to the plotting device
-      y_loc: 0.62
-      pos: 4
-      cex: 2
+      cex: 1.5
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
-      file: "6_visualize/in/polygons_atmospheric_northeast.png"
+      file: "6_visualize/in/callouts_EasternUS.png"
   -
     dates:
-      start: "2017-12-01"
-      end: "2017-12-31"
+      start: "2019-02-01"
+      end: "2019-02-28"
     text:
-      label: ["Most of Nation in lower", "than normal flow"]
-      x_loc: 0.63 #this is in percentage space, relative to the plotting device
-      y_loc: 0.14
+      label: ["February - East","• Flood stage locations: 435","• Stage at highest level in 30 yrs: 3"]
+      x_loc: 0.70 #this is in percentage space, relative to the plotting device
+      y_loc: 0.96
       pos: 4
-      cex: 2
-    add_box: FALSE
-    wheel_color: "#ca0020"
-  -
-    dates:
-      start: "2018-02-19"
-      end: "2018-03-04"
-    text:
-      label: ["Frontal systems and", "snowmelt cause high", "flows in much of", "the east"]
-      x_loc: 0.83 #this is in percentage space, relative to the plotting device
-      y_loc: 0.55
-      pos: 4
-      cex: 2
+      cex: 1.5
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
-      file: "6_visualize/in/polygons_snowmelt_east.png"
+      file: "6_visualize/in/callouts_EasternUS.png"
   -
     dates:
-      start: "2018-04-03"
-      end: "2018-04-15"
+      start: "2019-02-01"
+      end: "2019-02-28"
     text:
-      label: ["Snowmelt and rainfall", "cause flooding in", "IL and IN"]
-      x_loc: 0.48 #this is in percentage space, relative to the plotting device
-      y_loc: 0.58
+      label: ["February - California","• 'Atmospheric river' = record rain","• Two CA towns isolated","• Flood stage locations: 37","• Days over flood stage: 31 "]
+      x_loc: 0.2 #this is in percentage space, relative to the plotting device
+      y_loc: 0.25
       pos: 4
-      cex: 2
+      cex: 1.5
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
-      file: "6_visualize/in/polygons_snowmelt_ilin.png"
+      file: "6_visualize/in/callouts_CA.png"
   -
     dates:
-      start: "2018-04-14"
-      end: "2018-04-27"
+      start: "2019-03-01"
+      end: "2019-03-31"
     text:
-      label: ["Hurricane Lane", "passes near HI"]
-      x_loc: 0.4 #this is in percentage space, relative to the plotting device
-      y_loc: 0.1
+      label: ["March - Midwest","• 'Rainbomb' from rapid warming","• Frozen soil + rapid snowmelt = widespread flooding","• Flood stage locations: 512","• Stage at highest level in 30 yrs: 15"]
+      x_loc: 0.70 #this is in percentage space, relative to the plotting device
+      y_loc: 0.96
       pos: 4
-      cex: 2
+      cex: 1.5
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
-      file: "6_visualize/in/polygons_hurricane_lane.png"
+      file: "6_visualize/in/callouts_Midwest.png"
   -
     dates:
-      start: "2018-05-04"
-      end: "2018-05-18"
+      start: "2019-04-01"
+      end: "2019-04-30"
     text:
-      label: ["Snowmelt flooding in the Northwest"]
-      x_loc: 0.4 #this is in percentage space, relative to the plotting device
-      y_loc: 0.93
+      label: ["April - Midwest","• Flood stage locations: 376","• Stage at highest level in 30 yrs: 3"]
+      x_loc: 0.70 #this is in percentage space, relative to the plotting device
+      y_loc: 0.96
       pos: 4
-      cex: 2
-    add_box: FALSE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_snowmelt_northwest.png"
-  -
-    dates:
-      start: "2018-05-20"
-      end: "2018-06-06"
-    text:
-      label: ["Flooding caused by", "thunderstorms in", "Western NC and VA"]
-      x_loc: 0.84 #this is in percentage space, relative to the plotting device
-      y_loc: 0.44
-      pos: 4
-      cex: 2
+      cex: 1.5
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
-      file: "6_visualize/in/polygons_thunderstorms_ncva.png"
+      file: "6_visualize/in/callouts_MidwestApril.png"
   -
     dates:
-      start: "2018-06-05"
-      end: "2018-06-20"
+      start: "2019-05-01"
+      end: "2019-05-31"
     text:
-      label: ["Flash flooding in VA, WV, and MD"]
-      x_loc: 0.7 #this is in percentage space, relative to the plotting device
-      y_loc: 0.8
+      label: ["May - Midwest","• Flood stage locations: 583","• Stage at highest level in 30 yrs: 10","• Close to record levels set in 1993"]
+      x_loc: 0.70 #this is in percentage space, relative to the plotting device
+      y_loc: 0.96
       pos: 4
-      cex: 2
+      cex: 1.5
     add_box: TRUE
     wheel_color: "#04507d"
     polygon:
-      file: "6_visualize/in/polygons_flashflooding_vawvmd.png"
-  -
-    dates:
-      start: "2018-07-21"
-      end: "2018-07-30"
-    text:
-      label: ["Flooding in", "VA and MD"]
-      x_loc: 0.885 #this is in percentage space, relative to the plotting device
-      y_loc: 0.65
-      pos: 4
-      cex: 2
-    add_box: FALSE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_flooding_vamd.png"
-  -
-    dates:
-      start: "2018-07-21"
-      end: "2018-07-31" # one day different from prev to avoid warnings
-    text:
-      label: ["High flows and flooding in MT"]
-      x_loc: 0.4 #this is in percentage space, relative to the plotting device
-      y_loc: 0.93
-      pos: 4
-      cex: 2
-    add_box: FALSE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_flooding_mt.png"
-  -
-    dates:
-      start: "2018-08-28"
-      end: "2018-09-12"
-    text:
-      label: ["Hurricane Gordon passes", "by FL and MS"]
-      x_loc: 0.63 #this is in percentage space, relative to the plotting device
-      y_loc: 0.14
-      pos: 4
-      cex: 2
-    add_box: FALSE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_hurricane_gordon.png"
-  -
-    dates:
-      start: "2018-09-15"
-      end: "2018-09-26"
-    text:
-      label: ["Hurricane", "Florence", "lands in NC"]
-      x_loc: 0.89 #this is in percentage space, relative to the plotting device
-      y_loc: 0.47
-      pos: 4
-      cex: 2
-    add_box: FALSE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_hurricane_florence.png"
-
+      file: "6_visualize/in/callouts_MidwestMay.png"

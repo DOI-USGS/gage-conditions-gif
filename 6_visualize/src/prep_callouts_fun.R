@@ -52,13 +52,18 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
   }, this_date)
 
   # keep only non-NULL elements
-  this_date_callouts_cloud <- this_date_callouts_cloud[!unlist(lapply(this_date_callouts_cloud, is.null))]
-  this_date_callouts_text <- this_date_callouts_text[!unlist(lapply(this_date_callouts_text, is.null))]
+  if(length(this_date_callouts_text) > 0) {
+    this_date_callouts_cloud <- this_date_callouts_cloud[!unlist(lapply(this_date_callouts_cloud, is.null))]
+    this_date_callouts_text <- this_date_callouts_text[!unlist(lapply(this_date_callouts_text, is.null))]
+
+    n_callouts_cloud <- length(this_date_callouts_cloud)
+    n_callouts_text <- length(this_date_callouts_text)
+  } else {
+    n_callouts_cloud <- 0
+    n_callouts_text <- 0
+  }
 
   rm(callouts_cfg, dateTime, this_date)
-
-  n_callouts_cloud <- length(this_date_callouts_cloud)
-  n_callouts_text <- length(this_date_callouts_text)
 
   if(n_callouts_text > 0) {
     # there is always text when there will be clouds, but
@@ -92,8 +97,8 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
         x <- coord_space[1] + callout_text_cfg_n$x_loc * diff(coord_space[1:2])
         y <- coord_space[3] + callout_text_cfg_n$y_loc * diff(coord_space[3:4])
         callout_text_lines <- callout_text_cfg_n$label
-        font_x_multiplier <- 2.1 # for Abel
-        font_y_multiplier <- 3 # for Abel
+        font_x_multiplier <- 1.6 # for Abel
+        font_y_multiplier <- 2.2 # for Abel
         y_bot <- y - (length(callout_text_lines)-1)*strheight(callout_text_lines[1])*font_y_multiplier
 
         # Add the box behind the text if applicable
