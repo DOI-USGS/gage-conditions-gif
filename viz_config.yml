@@ -144,10 +144,10 @@ final_frame:
 callouts:
   -
     dates:
-      start: "2019-02-20"
-      end: "2019-02-27"
+      start: "2019-02-10"
+      end: "2019-02-24"
     text:
-      label: ["3 locations in TN broke","record water levels over","February 23-24."]
+      label: ["3 locations in TN broke","record water levels near","the end of February."]
       x_loc: 0.75 #this is in percentage space, relative to the plotting device
       y_loc: 0.32
       pos: 4
@@ -158,10 +158,10 @@ callouts:
       file: "6_visualize/in/callouts_feb_tn_record.png"
   -
     dates:
-      start: "2019-02-22"
-      end: "2019-02-28"
+      start: "2019-02-20"
+      end: "2019-03-04"
     text:
-      label: ["Stalled 'atmospheric river' brought", "record rains, leaving two CA towns","along the Russian River isolated."]
+      label: ["Flooding from record rains", "isolated two CA towns along", "the Russian River."]
       x_loc: 0.20 #this is in percentage space, relative to the plotting device
       y_loc: 0.76
       pos: 4
@@ -173,9 +173,9 @@ callouts:
   -
     dates:
       start: "2019-03-15"
-      end: "2019-03-31"
+      end: "2019-04-02"
     text:
-      label: ["A ‘rainbomb’ + frozen soil + rapid snowmelt","resulted in widespread flooding in the Midwest"]
+      label: ["A ‘rainbomb’ + frozen soil + rapid snowmelt","resulted in widespread flooding in the Midwest."]
       x_loc: 0.59 #this is in percentage space, relative to the plotting device
       y_loc: 0.96
       pos: "center" # special word to cause code to select correct pos & adj
@@ -186,10 +186,10 @@ callouts:
       file: "6_visualize/in/callouts_Midwest.png"
   -
     dates:
-      start: "2019-04-16"
-      end: "2019-04-22"
+      start: "2019-04-14"
+      end: "2019-04-29"
     text:
-      label: ["The WI River near the city of", "Wisconsin Rapids broke the","1938 record streamflow","on April 19, 2019."]
+      label: ["The WI River near the city of", "Wisconsin Rapids broke a","1938 record streamflow","on April 19, 2019."]
       x_loc: 0.70 #this is in percentage space, relative to the plotting device
       y_loc: 0.95
       pos: 4
@@ -200,11 +200,11 @@ callouts:
       file: "6_visualize/in/callouts_apr_wi_record.png"
   -
     dates:
-      start: "2019-05-01"
+      start: "2019-05-05"
       end: "2019-05-31"
     text:
-      label: ["Continued wet conditions in the Midwest","cause rivers to approach records","set during the Great Mississippi","and Missouri Rivers Flood of 1993."]
-      x_loc: 0.75 #this is in percentage space, relative to the plotting device
+      label: ["Continued wet conditions in the Midwest","cause rivers to approach records set","during the Great Mississippi and","Missouri Rivers Flood of 1993."]
+      x_loc: 0.74 #this is in percentage space, relative to the plotting device
       y_loc: 0.52
       pos: 4
       cex: 2
