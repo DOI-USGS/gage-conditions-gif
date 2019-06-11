@@ -19,7 +19,7 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
 
     max_fade_n <- 9 # max days out to start fading in
     max_fade_text <- 100 # percent maximum transparency for text
-    max_fade_rect <- 37 # maximum transparency for the rect
+    max_fade_rect <- 75 # maximum transparency for the rect
 
     start <- as.POSIXct(x$dates$start, tz = "UTC")
     end <- as.POSIXct(x$dates$end, tz = "UTC")
@@ -140,7 +140,7 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
                xright = x + x_buffer_right,
                ybottom = y_bot - y_buffer_bottom,
                ytop = y + y_buffer_top,
-               col = paste0("#979797", callout_text_cfg_n$alpha_rect), border = NA)
+               col = paste0("#a1a1a1", callout_text_cfg_n$alpha_rect), border = NA)
           # rect_left <- x - x_buffer_left
           # rect_right <- x + x_buffer_right
           # rect_center_x <- (rect_left + rect_right)/2
@@ -180,7 +180,7 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
                cex = callout_text_cfg_n$cex,
                adj = adj,
                pos = pos,
-               col = paste0("#474747", callout_text_cfg_n$alpha))
+               col = paste0("#383838", callout_text_cfg_n$alpha))
         }
       }
     }
