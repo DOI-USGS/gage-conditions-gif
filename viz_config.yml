@@ -68,8 +68,8 @@ gage_style:
     cex: 0.75
     col: "#7f7f7f"
 legend_cfg:
-  point_mult: 4
-  text_cex: 1.2
+  point_mult: 5
+  text_cex: 1.5
   text_col: "#444444"
   x_pos: 0.11
   y_pos: 0.82
@@ -85,7 +85,7 @@ title_cfg:
   main_col: "#666666"
   sub_cex: 1.8
   sub_col: "#666666"
-  foot_cex: 1
+  foot_cex: 1.2
   foot_col: "#939393"
 footnote_cfg:
   main: [
@@ -107,9 +107,9 @@ datewheel_cfg:
     col_filled: "#5d5d5dB3" # color to fill in the wheel as time marches on, last two = hex transparency
     col_text_months: "#383838" # color of month labels inside wheel
     col_text_months_outside: "#bdbdbd" # color of month labels inside wheel NOT during viz dates
-    cex_text_months: 0.9
+    cex_text_months: 1.1
     col_text_datestamp: "#5f5f5f" # color of text inside the wheel
-    cex_text_datestamp: 1
+    cex_text_datestamp: 1.3
 
 # gif options
 animation:

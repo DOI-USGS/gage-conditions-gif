@@ -7,8 +7,8 @@
 #' @return an sf polygon that based on coordinates of `bbox`
 bbox_to_polygon <- function(bbox, bbox_crs = "+init=epsg:4326", return_crs = NULL) {
   names(bbox) <- c("xmin","ymin","xmax","ymax")
-  class(bbox) <- "bbox"
-  bbox_poly <- sf::st_as_sfc(bbox)
+  #class(bbox) <- "bbox"
+  bbox_poly <- sf::st_as_sfc(sf::st_bbox(bbox))
   st_crs(bbox_poly) <- st_crs(bbox_crs)
   if (!is.null(return_crs)) {
     sf::st_transform(bbox_poly, return_crs)
