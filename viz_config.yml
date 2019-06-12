@@ -145,8 +145,10 @@ final_frame:
 callouts:
   -
     dates:
-      start: "2019-02-10"
+      start: "2019-02-15"
       end: "2019-02-24"
+    fade_in: 20
+    fade_out: 5
     text:
       label: ["3 locations in TN broke","record water levels near","the end of February."]
       x_loc: 0.75 #this is in percentage space, relative to the plotting device
