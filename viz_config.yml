@@ -145,8 +145,8 @@ final_frame:
 callouts:
   -
     dates:
-      start: "2019-02-15"
-      end: "2019-02-24"
+      start: "2019-02-10"
+      end: "2019-02-20"
     fade_in: 20
     fade_out: 5
     text:
@@ -161,8 +161,10 @@ callouts:
       file: "6_visualize/in/callouts_feb_tn_record.png"
   -
     dates:
-      start: "2019-02-20"
-      end: "2019-03-04"
+      start: "2019-02-15"
+      end: "2019-02-26"
+    fade_in: 20
+    fade_out: 7
     text:
       label: ["Flooding from record rains", "isolated two CA towns along", "the Russian River."]
       x_loc: 0.20 #this is in percentage space, relative to the plotting device
@@ -175,8 +177,10 @@ callouts:
       file: "6_visualize/in/callouts_feb_ca_isolated.png"
   -
     dates:
-      start: "2019-03-05"
-      end: "2019-03-16"
+      start: "2019-03-12"
+      end: "2019-03-18"
+    fade_in: 18
+    fade_out: 5
     text:
       label: ["Spencer Dam on the","Niobrara River in NE fails."]
       x_loc: 0.46 #this is in percentage space, relative to the plotting device
@@ -189,8 +193,10 @@ callouts:
       file: "6_visualize/in/callouts_mar_ne_damfailure.png"
   -
     dates:
-      start: "2019-03-18"
-      end: "2019-04-02"
+      start: "2019-03-24"
+      end: "2019-04-07"
+    fade_in: 8
+    fade_out: 10
     text:
       label: ["A ‘rainbomb’ + frozen soil + rapid snowmelt","resulted in widespread flooding in the Midwest."]
       x_loc: 0.59 #this is in percentage space, relative to the plotting device
@@ -203,8 +209,10 @@ callouts:
       file: "6_visualize/in/callouts_Midwest.png"
   -
     dates:
-      start: "2019-04-14"
-      end: "2019-04-29"
+      start: "2019-04-15"
+      end: "2019-04-25"
+    fade_in: 6
+    fade_out: 16
     text:
       label: ["The WI River near the city of", "Wisconsin Rapids broke a","1938 record streamflow","on April 19, 2019."]
       x_loc: 0.70 #this is in percentage space, relative to the plotting device
@@ -218,7 +226,7 @@ callouts:
   -
     dates:
       start: "2019-05-05"
-      end: "2019-05-31"
+      end: "2019-06-01"
     text:
       label: ["Continued wet conditions in the Midwest","cause rivers to approach records set","during the Great Mississippi and","Missouri Rivers Flood of 1993."]
       x_loc: 0.74 #this is in percentage space, relative to the plotting device
