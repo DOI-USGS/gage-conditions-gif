@@ -75,7 +75,7 @@ legend_cfg:
   y_pos: 0.82
 title_cfg:
   main: "U.S. River Conditions"
-  subtitle: "January-May 2019"
+  subtitle: "January 1 - June 1, 2019"
   footnote: [
     "Conditions are relative to the historic daily record for each gage.",
   ]
@@ -83,7 +83,7 @@ title_cfg:
   y_pos: 0.94
   main_cex: 3
   main_col: "#666666"
-  sub_cex: 2
+  sub_cex: 1.8
   sub_col: "#666666"
   foot_cex: 1
   foot_col: "#939393"
