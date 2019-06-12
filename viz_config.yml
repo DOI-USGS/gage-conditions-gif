@@ -173,13 +173,13 @@ callouts:
       file: "6_visualize/in/callouts_feb_ca_isolated.png"
   -
     dates:
-      start: "2019-03-07"
+      start: "2019-03-05"
       end: "2019-03-16"
     text:
-      label: ["Failure of the Spencer Dam","on the Niobrara River in NE."]
-      x_loc: 0.74 #this is in percentage space, relative to the plotting device
-      y_loc: 0.52
-      pos: 4
+      label: ["Spencer Dam on the","Niobrara River in NE fails."]
+      x_loc: 0.46 #this is in percentage space, relative to the plotting device
+      y_loc: 0.66
+      pos: "center"
       cex: 2
     add_box: TRUE
     wheel_color: "#04507d"
