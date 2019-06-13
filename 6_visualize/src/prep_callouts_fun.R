@@ -141,7 +141,7 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
                xright = x + x_buffer_right,
                ybottom = y_bot - y_buffer_bottom,
                ytop = y + y_buffer_top,
-               col = paste0("#a1a1a1", callout_text_cfg_n$alpha_rect), border = NA)
+               col = paste0("#aaaaaa", callout_text_cfg_n$alpha_rect), border = NA)
           # rect_left <- x - x_buffer_left
           # rect_right <- x + x_buffer_right
           # rect_center_x <- (rect_left + rect_right)/2
