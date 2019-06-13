@@ -145,12 +145,12 @@ final_frame:
 callouts:
   -
     dates:
-      start: "2019-02-10"
+      start: "2019-02-08"
       end: "2019-02-20"
     fade_in: 20
     fade_out: 5
     text:
-      label: ["3 locations in TN broke","record water levels near","the end of February."]
+      label: ["3 locations in TN broke record","water levels in February."]
       x_loc: 0.75 #this is in percentage space, relative to the plotting device
       y_loc: 0.32
       pos: 4
@@ -161,8 +161,8 @@ callouts:
       file: "6_visualize/in/callouts_feb_tn_record.png"
   -
     dates:
-      start: "2019-02-15"
-      end: "2019-02-26"
+      start: "2019-02-14"
+      end: "2019-02-27"
     fade_in: 20
     fade_out: 7
     text:
@@ -210,9 +210,9 @@ callouts:
   -
     dates:
       start: "2019-04-15"
-      end: "2019-04-25"
+      end: "2019-04-27"
     fade_in: 6
-    fade_out: 16
+    fade_out: 15
     text:
       label: ["The WI River near the city of", "Wisconsin Rapids broke a","1938 record streamflow","on April 19, 2019."]
       x_loc: 0.70 #this is in percentage space, relative to the plotting device
