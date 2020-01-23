@@ -108,7 +108,9 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_con
 
     if (n_callouts >0) {
     # Call out arcs are on top of light grey wheel, but below dark grey
-      for(n in n_callouts:1) {
+      tall_callouts <- which(sapply(wheel_callouts, function(x) x$tall_wheel_shape))
+      reg_callouts <- which(sapply(wheel_callouts, function(x) !x$tall_wheel_shape))
+      for(n in c(tall_callouts, reg_callouts)) {
         # loop in reverse order so that potentially overlapping events
         # events that start after others are drawn first
         this_callout <- wheel_callouts[[n]]
@@ -119,18 +121,11 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_con
         end_date_event <- as.Date(this_callout$dates$end)
         end_date_event_n <- as.numeric(end_date_event - start_dt) #+ 1
 
-        # Increase size of event arc if it overlaps a previous arc
-        event_radius_i <- event_radius
-        i <- which(end_date_event == event_ends)
-        if(i != 1) {
-          # if i==1, then this is the first event, so it won't overlap anything
-          if(any(start_date_event < event_ends[1:i-1])){
-            # if this event starts before any others finish, need to make it 10% bigger
-            # this method currently only works for two overlapping events
-            # and would need to change if there are more
-            event_radius_i <- event_radius + event_radius*0.10
-          }
-        }
+        # User input in callout cfg file will say if the callout on the event
+        #   wheel should be tall or not
+        event_radius_i <- ifelse(this_callout$tall_wheel_shape,
+                                 event_radius + event_radius*0.10,
+                                 event_radius)
 
         # Determine where on the wheel the event exists
         start_angle_event <- start_angle + start_date_event_n*wedge_width*rot_dir
