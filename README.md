@@ -27,6 +27,16 @@ scipiper::scmake('6_visualize/log/6_final_gif_tasks.ind', remake_file = '6_visua
 scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
 ```
 
+# Steps for using script-based process for creating callouts
+
+It is not currently built into the `scipiper` code yet. BUT here is what you need to do:
+
+1. Once you have a basic video (see code chunk above), run the script `auto_generate_excel_file_for_review.R`. Upload this to OneDrive and share with the people who will help make the callouts.
+2. Once the callouts are complete in this file. Download it and run the script `auto_callouts_cfg_from_excel_file.R`. Please note the filenames of your Excel files.
+3. Now go manually edit `callouts_cfg.yml`.
+
+Eventually, it would be nice to get this download/read/upload process into the pipeline, but for now it is not.
+
 # To create a template for making the overlays, run the following
 
 You can make it with or without the basemap. The important part is that it is the right dimensions.
