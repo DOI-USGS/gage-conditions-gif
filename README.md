@@ -27,3 +27,25 @@ scipiper::scmake('6_visualize/log/6_final_gif_tasks.ind', remake_file = '6_visua
 scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
 ```
 
+# To create a template for making the overlays, run the following
+
+You can make it with or without the basemap. The important part is that it is the right dimensions.
+
+```r
+source("1_fetch/src/map_utils.R")
+source("2_process/src/project_shift_states.R")
+source("6_visualize/src/prep_basemap_fun.R")
+source("6_visualize/src/prep_view_fun.R")
+source("6_visualize/src/create_animation_frame.R")
+
+viz_config <- yaml::yaml.load_file("viz_config.yml")
+viz_config[['basemap']][["border"]] <- viz_config[['basemap']][["col"]] # No outlines on states
+states_projected <- project_states('1_fetch/out/pre_state_boundaries_census.zip.ind', viz_config[['projection']])
+states_shifted <- shift_states(states_projected, viz_config[['shift']])
+
+create_animation_frame(
+      png_file="6_visualize/in/overlay_template.png",
+      config=viz_config[c('width','height')],
+      prep_view_fun(as_view_polygon(viz_config[c('bbox', 'projection', 'width', 'height')]), viz_config['background_col']),
+      prep_basemap_fun(states_shifted, viz_config[['basemap']]))
+```
