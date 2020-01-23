@@ -122,7 +122,7 @@ targets:
   timestep_frame_step:
     command: viz_config[[I('frame_step')]]
   callouts_cfg:
-    command: viz_config[[I('callouts')]]
+    command: yaml.load_file("callouts_cfg.yml") # viz_config[[I('callouts')]]
   final_frame:
     command: viz_config[[I('final_frame')]]
   final_frame_cfg:
