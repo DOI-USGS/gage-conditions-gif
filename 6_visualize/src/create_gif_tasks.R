@@ -17,7 +17,7 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_datewheel_fun(I('%s'), viz_config, dates_config, datewheel_cfg, callouts_cfg)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+      sprintf("prep_datewheel_fun(I('%s'), viz_config, wheel_dates_config, dates_config, datewheel_cfg, callouts_cfg)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
     }
   )
 

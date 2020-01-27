@@ -51,6 +51,8 @@ targets:
 
   dates_config:
     command: viz_config[[I('dates')]]
+  wheel_dates_config:
+    command: viz_config[[I('wheelDates')]]
   date_display_tz:
     command: viz_config[[I('date_display_tz')]]
   intro_config:
@@ -120,7 +122,7 @@ targets:
   timestep_frame_step:
     command: viz_config[[I('frame_step')]]
   callouts_cfg:
-    command: viz_config[[I('callouts')]]
+    command: yaml.load_file("callouts_cfg.yml") # viz_config[[I('callouts')]]
   final_frame:
     command: viz_config[[I('final_frame')]]
   final_frame_cfg:
@@ -168,7 +170,7 @@ targets:
   # Create frames for pausing the last step before the final frame
   pause_gif_tasks:
     command: create_pause_gif_tasks(
-      date_cfg = dates,
+      date_cfg = vizDates,
       frame_cfg = final_frame_cfg,
       folders = I(list(tmp=I('6_visualize/tmp'), log=I('6_visualize/log'))))
   6_pause_gif_tasks.yml:

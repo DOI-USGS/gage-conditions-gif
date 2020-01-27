@@ -1,0 +1,168 @@
+-
+  dates:
+    start: "2019-10-03"
+    end: "2019-10-15"
+  # Defaults to 9
+  fade_in: 2
+  # Defaults to 9
+  fade_out:
+  text:
+    label: ["Dry conditions through", "most of the East"]
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.60
+    y_loc: 0.40
+    # Numeric indicating where to place text relative to location
+    pos: "center"
+    cex: 2
+  # TRUE or FALSE, defaults to FALSE
+  add_box: TRUE
+  # "#04507d" for wet event, "#ca0020" for a dry event
+  wheel_color: "#ca0020"
+  # TRUE or FALSE, defaults to FALSE
+  tall_wheel_shape: FALSE
+  polygon:
+    file: "6_visualize/in/callout_1.png" # REQUIRED FIELD
+-
+  dates:
+    start: "2019-10-10"
+    end: "2019-11-01"
+  # Defaults to 9
+  fade_in: 3
+  # Defaults to 9
+  fade_out: 5
+  text:
+    label: Higher flows in the Upper Midwest
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.63
+    y_loc: 0.93
+    # Numeric indicating where to place text relative to location
+    pos: "center"
+    cex: 2
+  # TRUE or FALSE, defaults to FALSE
+  add_box:
+  # "#04507d" for wet event, "#ca0020" for a dry event
+  wheel_color: "#04507d"
+  # TRUE or FALSE, defaults to FALSE
+  tall_wheel_shape: TRUE
+  polygon:
+    file: "6_visualize/in/callout_2.png" # REQUIRED FIELD
+-
+  dates:
+    start: "2019-10-26"
+    end: "2019-11-06"
+  # Defaults to 9
+  fade_in:
+  # Defaults to 9
+  fade_out:
+  text:
+    label: ["Frontal systems", "bring some relief", "to the East"]
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.94
+    y_loc: 0.60
+    # Numeric indicating where to place text relative to location
+    pos: "center"
+    cex: 1.8
+  # TRUE or FALSE, defaults to FALSE
+  add_box:
+  # "#04507d" for wet event, "#ca0020" for a dry event
+  wheel_color: "#04507d"
+  # TRUE or FALSE, defaults to FALSE
+  tall_wheel_shape: FALSE
+  polygon:
+    file: "6_visualize/in/callout_3.png" # REQUIRED FIELD
+-
+  dates:
+    start: "2019-11-28"
+    end: "2019-12-04"
+  # Defaults to 9
+  fade_in: 14
+  # Defaults to 9
+  fade_out:
+  text:
+    label: ["Storms in the Ohio", "and Tennessee valleys"]
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.75
+    y_loc: 0.37
+    # Numeric indicating where to place text relative to location
+    pos: "center"
+    cex: 2
+  # TRUE or FALSE, defaults to FALSE
+  add_box: TRUE
+  # "#04507d" for wet event, "#ca0020" for a dry event
+  wheel_color: "#04507d"
+  # TRUE or FALSE, defaults to FALSE
+  tall_wheel_shape: FALSE
+  polygon:
+    file: "6_visualize/in/callout_4.png" # REQUIRED FIELD
+-
+  dates:
+    start: "2019-12-10"
+    end: "2019-12-17"
+  # Defaults to 9
+  fade_in:
+  # Defaults to 9
+  fade_out:
+  text:
+    label: ["Higher flows", "in New", "England"]
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.95
+    y_loc: 0.80
+    # Numeric indicating where to place text relative to location
+    pos: "center"
+    cex: 1.9
+  # TRUE or FALSE, defaults to FALSE
+  add_box:
+  # "#04507d" for wet event, "#ca0020" for a dry event
+  wheel_color: "#04507d"
+  # TRUE or FALSE, defaults to FALSE
+  tall_wheel_shape: FALSE
+  polygon:
+    file: "6_visualize/in/callout_5.png" # REQUIRED FIELD
+-
+  dates:
+    start: "2019-12-18"
+    end: "2019-12-27"
+  # Defaults to 9
+  fade_in: 4
+  # Defaults to 9
+  fade_out:
+  text:
+    label: ["Multiple fronts bring", "higher flows to parts", "of the Southeast"]
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.72
+    y_loc: 0.19
+    # Numeric indicating where to place text relative to location
+    pos: "center"
+    cex: 2.2
+  # TRUE or FALSE, defaults to FALSE
+  add_box:
+  # "#04507d" for wet event, "#ca0020" for a dry event
+  wheel_color: "#04507d"
+  # TRUE or FALSE, defaults to FALSE
+  tall_wheel_shape: FALSE
+  polygon:
+    file: "6_visualize/in/callout_6.png" # REQUIRED FIELD
+-
+  dates:
+    start: "2019-12-27"
+    end: "2019-12-31"
+  # Defaults to 9
+  fade_in: 4
+  # Defaults to 9
+  fade_out:
+  text:
+    label: ["Large low-pressure system brings", "higher flows to the Midwest"]
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.42
+    y_loc: 0.70
+    # Numeric indicating where to place text relative to location
+    pos: "center"
+    cex: 2
+  # TRUE or FALSE, defaults to FALSE
+  add_box: TRUE
+  # "#04507d" for wet event, "#ca0020" for a dry event
+  wheel_color: "#04507d"
+  # TRUE or FALSE, defaults to FALSE
+  tall_wheel_shape: FALSE
+  polygon:
+    file: "6_visualize/in/callout_7.png" # REQUIRED FIELD
