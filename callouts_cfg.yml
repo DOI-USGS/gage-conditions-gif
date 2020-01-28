@@ -13,7 +13,7 @@
     y_loc: 0.40
     # Numeric indicating where to place text relative to location
     pos: "center"
-    cex: 2
+    cex: 3
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event, "#ca0020" for a dry event
@@ -37,7 +37,7 @@
     y_loc: 0.93
     # Numeric indicating where to place text relative to location
     pos: "center"
-    cex: 2
+    cex: 3
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event, "#ca0020" for a dry event
@@ -61,7 +61,7 @@
     y_loc: 0.60
     # Numeric indicating where to place text relative to location
     pos: "center"
-    cex: 1.8
+    cex: 2.5
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event, "#ca0020" for a dry event
@@ -85,7 +85,7 @@
     y_loc: 0.37
     # Numeric indicating where to place text relative to location
     pos: "center"
-    cex: 2
+    cex: 3
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event, "#ca0020" for a dry event
@@ -109,7 +109,7 @@
     y_loc: 0.80
     # Numeric indicating where to place text relative to location
     pos: "center"
-    cex: 1.9
+    cex: 2.8
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event, "#ca0020" for a dry event
@@ -133,7 +133,7 @@
     y_loc: 0.19
     # Numeric indicating where to place text relative to location
     pos: "center"
-    cex: 2.2
+    cex: 3.3
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event, "#ca0020" for a dry event
@@ -157,7 +157,7 @@
     y_loc: 0.70
     # Numeric indicating where to place text relative to location
     pos: "center"
-    cex: 2
+    cex: 3
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event, "#ca0020" for a dry event
