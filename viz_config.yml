@@ -126,6 +126,10 @@ component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "bottom"
 
+intro_frame:
+  cfg:
+    show_count: 15
+
 final_frame:
   cfg:
     pause_count: 10 # number of frames for which to pause/repeat the final timestep of the animation
