@@ -37,6 +37,7 @@ targets:
       - font_oswald
       - 6_timestep_gif_tasks.yml
       - 6_visualize/log/6_timestep_gif_tasks.ind
+      - 6_visualize/log/6_intro_gif_tasks.ind
       - 6_visualize/log/6_final_gif_tasks.ind
       - 6_visualize/out/year_in_review.mp4
 
@@ -115,6 +116,9 @@ targets:
 
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)
+  watermark_intro_fun:
+    command: prep_watermark_for_intro_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)
+
   #### animation frames ####
 
   timestep_frame_config:
@@ -123,6 +127,10 @@ targets:
     command: viz_config[[I('frame_step')]]
   callouts_cfg:
     command: yaml.load_file("callouts_cfg.yml") # viz_config[[I('callouts')]]
+  intro_frame:
+    command: viz_config[[I('intro_frame')]]
+  intro_frame_cfg:
+    command: intro_frame[[I('cfg')]]
   final_frame:
     command: viz_config[[I('final_frame')]]
   final_frame_cfg:
@@ -193,6 +201,19 @@ targets:
       remake_file = I('6_visualize.yml'))
   6_visualize/log/6_final_gif_tasks.ind:
     command: scmake(I('6_final_gif_tasks'), '6_final_gif_tasks.yml')
+
+  # Create the intro frames
+  intro_gif_tasks:
+    command: create_intro_gif_tasks(
+      frame_cfg = intro_frame_cfg,
+      folders = I(list(tmp=I('6_visualize/tmp'), log=I('6_visualize/log'))))
+  6_intro_gif_tasks.yml:
+    command: create_intro_gif_makefile(
+      makefile = target_name,
+      task_plan = intro_gif_tasks,
+      remake_file = I('6_visualize.yml'))
+  6_visualize/log/6_intro_gif_tasks.ind:
+    command: scmake(I('6_intro_gif_tasks'), '6_intro_gif_tasks.yml')
 
   # Combine the png files into a gif.
   #
