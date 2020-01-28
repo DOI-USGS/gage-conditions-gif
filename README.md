@@ -15,6 +15,9 @@ scipiper::scmake("2_process/out/dv_stat_styles.rds.ind", "2_process.yml")
 #####################
 ## Build ALL frames and then make video
 
+# To make absolutely sure that your video will use the right font, you may need to run:
+sysfonts::font_add_google('Abel','abel')
+
 scipiper::scmake('6_timestep_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
 scipiper::scmake('6_visualize/log/6_timestep_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
 
