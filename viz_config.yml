@@ -128,7 +128,7 @@ component_placement:
 
 intro_frame:
   cfg:
-    show_count: 15
+    show_count: 8
 
 final_frame:
   cfg:
