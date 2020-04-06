@@ -6,7 +6,7 @@ create_animation_frame <- function(png_file, config, ...) {
                         Linux  = "Xlib",
                         Darwin = "quartz")
     # open the plotting device
-    png(filename=png_file, width=config$width, height=config$height, units='px', type = plot_type)
+    png(filename=png_file, width=config$width, height=config$height, units='px', type = plot_type, res=400)
   }
 
   # begin using google fonts

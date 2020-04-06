@@ -43,36 +43,36 @@ percentiles:
 # styling
 background_col: "white"
 basemap:
-  lwd: 3.0
+  lwd: 1.0
   col: "#e5e5e5" # transparent
   border: "white" # gray40
 gage_style:
   with_percentile:
     normal:
       pch: 21
-      cex: 1.0
+      cex: 0.5
       bg: "#d7d7d7" #efefef
     drought:
       pch: 21
-      cex: [1.0, 1.5, 2.5]
+      cex: [0.25, 0.4, 0.6]
       col: ["#efb2bc", "#df6679", "#ca0020"]
     wet:
       pch: 21
-      cex: 1.0
+      cex: 0.5
       bg: ["#92c5de", "#04507d"]
     flood:    # not based on percentile, based on if above flood stage or not
       pch: 21
-      cex: 2.0
-      lwd: 4.0
+      cex: 0.75
+      lwd: 1.0
       bg: "#04507d" # same as second "wet"
       col: "#AE72E5" #"#9547dd"
   no_percentile:
     pch: 4
-    cex: 0.75
+    cex: 0.25
     col: "#7f7f7f"
 legend_cfg:
-  point_mult: 4
-  text_cex: 1.8
+  point_mult: 2
+  text_cex: 1.2
   text_col: "#444444"
   x_pos: 0.11
   y_pos: 0.81
@@ -84,11 +84,11 @@ title_cfg:
   ]
   x_pos: 0.005
   y_pos: 0.94
-  main_cex: 4.5
+  main_cex: 3.0
   main_col: "#666666"
-  sub_cex: 3
+  sub_cex: 2.0
   sub_col: "#666666"
-  foot_cex: 1.6
+  foot_cex: 1.0
   foot_col: "#939393"
 footnote_cfg:
   main: [
@@ -97,7 +97,7 @@ footnote_cfg:
   ]
   x_pos: 0.255 #0.20 # 0.50
   y_pos: 0.02
-  cex: 1.4
+  cex: 0.8
   col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
