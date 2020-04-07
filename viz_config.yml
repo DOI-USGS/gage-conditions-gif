@@ -1,12 +1,15 @@
+# Used for pulling historic data
 dates:
   start: '2017-10-01'
   end: '2018-09-30'
+# Actual dates of the viz frames
 vizDates:
   start: '2020-01-01'
   end: '2020-03-31'
+# Dates that make up the wheel (usually a full year)
 wheelDates:
-  start: '2018-10-01'
-  end: '2019-09-30'
+  start: '2019-10-01'
+  end: '2020-09-30'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 3 # hours elapsed between GIF frames
 
@@ -114,8 +117,8 @@ datewheel_cfg:
 # gif options
 animation:
   frame_delay_cs: 14 # delay for gifs
-  frame_rate: 4 #original input frames per second
-  output_frame_rate: 9 #fps, but the actual frames in the video (not 1:1 with input)
+  frame_rate: 3.25 #original input frames per second
+  output_frame_rate: 3.25 # if > input fps, duplicates some frames; if < input fps, drops some frames
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
@@ -123,14 +126,18 @@ component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "bottom"
 
+intro_frame:
+  cfg:
+    show_count: 8
+
 final_frame:
   cfg:
-    pause_count: 8 # number of frames for which to pause/repeat the final timestep of the animation
+    pause_count: 10 # number of frames for which to pause/repeat the final timestep of the animation
     fade_count: 15 # number of frames for which the final frame will fade in
     show_count: 15 # number of frames for which the final frame will be seen
   paragraphs:
     -
-      text: ["Learn more about USGS\n", "stream gages and their role in\n", "science and public safety:"]
+      text: ["Learn more about USGS\n", "streamgages and their role in\n", "science and public safety:"]
       ypos: 0.70 #percent of the y direction to place text (starting from bottom)
       lheight: 1.4
       cex: 7
