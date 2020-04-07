@@ -1,10 +1,10 @@
 version: 0.3.0
 name: 1_fetch/out/sites.rds.ind
 type: file
-hash: ab8d6c5c0dd5a43e754fe373994ac96f
-time: 2018-11-08 15:52:00 UTC
+hash: 0a03eef07264325fa190d475076fa7f9
+time: 2020-01-02 17:20:33 UTC
 depends:
-  dates: 51850bcad164fdae08ec2599388406c8
+  vizDates: c1e1518aaf9042494bdf39983e376af0
 fixed: 7b38a85f946fecf4cde480abb9a88a9b
 code:
   functions:

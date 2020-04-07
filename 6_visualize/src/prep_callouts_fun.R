@@ -17,9 +17,10 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
   # text will fade in/out before/after their actual date
   this_date_callouts_text <- lapply(callouts_cfg, function(x, this_date) {
 
-    max_fade_n <- 9 # max days out to start fading in
+    max_fade_in <- ifelse(is.null(x$fade_in), 9, x$fade_in) # max days before to start fading in
+    max_fade_out <- ifelse(is.null(x$fade_out), 9, x$fade_out) # max days after to start fading in
     max_fade_text <- 100 # percent maximum transparency for text
-    max_fade_rect <- 37 # maximum transparency for the rect
+    max_fade_rect <- 75 # maximum transparency for the rect
 
     start <- as.POSIXct(x$dates$start, tz = "UTC")
     end <- as.POSIXct(x$dates$end, tz = "UTC")
@@ -31,15 +32,15 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
     # If both before or after are negative, that means this date is during the event
     during <- all(c(before_n <= 0, after_n <= 0))
 
-    if(before_n > 0 & before_n < 9) {
-      # start fading in text 8 frames before the event starts
-      x$text$alpha <- perc_to_hexalpha((max_fade_n-before_n)*(max_fade_text/max_fade_n))
-      x$text$alpha_rect <- perc_to_hexalpha((max_fade_n-before_n)*(max_fade_rect/max_fade_n))
+    if(before_n > 0 & before_n < max_fade_in) {
+      # start fading in text n frames before the event starts
+      x$text$alpha <- perc_to_hexalpha((max_fade_in-before_n)*(max_fade_text/max_fade_in))
+      x$text$alpha_rect <- perc_to_hexalpha((max_fade_in-before_n)*(max_fade_rect/max_fade_in))
       return(x)
-    } else if(after_n > 0 & after_n < 9) {
-      # fade out the text 8 frames after the event ends
-      x$text$alpha <- perc_to_hexalpha((max_fade_n-after_n)*(max_fade_text/max_fade_n))
-      x$text$alpha_rect <- perc_to_hexalpha((max_fade_n-after_n)*(max_fade_rect/max_fade_n))
+    } else if(after_n > 0 & after_n < max_fade_out) {
+      # fade out the text n frames after the event ends
+      x$text$alpha <- perc_to_hexalpha((max_fade_out-after_n)*(max_fade_text/max_fade_out))
+      x$text$alpha_rect <- perc_to_hexalpha((max_fade_out-after_n)*(max_fade_rect/max_fade_out))
       return(x)
     } else if(during) {
       # Event text is not transparent at all durng the event
@@ -52,13 +53,18 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
   }, this_date)
 
   # keep only non-NULL elements
-  this_date_callouts_cloud <- this_date_callouts_cloud[!unlist(lapply(this_date_callouts_cloud, is.null))]
-  this_date_callouts_text <- this_date_callouts_text[!unlist(lapply(this_date_callouts_text, is.null))]
+  if(length(this_date_callouts_text) > 0) {
+    this_date_callouts_cloud <- this_date_callouts_cloud[!unlist(lapply(this_date_callouts_cloud, is.null))]
+    this_date_callouts_text <- this_date_callouts_text[!unlist(lapply(this_date_callouts_text, is.null))]
+
+    n_callouts_cloud <- length(this_date_callouts_cloud)
+    n_callouts_text <- length(this_date_callouts_text)
+  } else {
+    n_callouts_cloud <- 0
+    n_callouts_text <- 0
+  }
 
   rm(callouts_cfg, dateTime, this_date)
-
-  n_callouts_cloud <- length(this_date_callouts_cloud)
-  n_callouts_text <- length(this_date_callouts_text)
 
   if(n_callouts_text > 0) {
     # there is always text when there will be clouds, but
@@ -135,7 +141,7 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
                xright = x + x_buffer_right,
                ybottom = y_bot - y_buffer_bottom,
                ytop = y + y_buffer_top,
-               col = paste0("#979797", callout_text_cfg_n$alpha_rect), border = NA)
+               col = paste0("#aaaaaa", callout_text_cfg_n$alpha_rect), border = NA)
           # rect_left <- x - x_buffer_left
           # rect_right <- x + x_buffer_right
           # rect_center_x <- (rect_left + rect_right)/2
@@ -159,13 +165,23 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
 
         }
 
+        # Enable text centering
+        if(callout_text_cfg_n$pos == "center") {
+          pos <- NULL
+          adj <- 0.5
+        } else {
+          pos <- callout_text_cfg_n$pos
+          adj <- NULL
+        }
+
         # Add the text
         for (i in 1:length(callout_text_lines)) {
           y_i <- y - (i-1)*strheight(callout_text_lines[i])*font_y_multiplier
           text(x, y_i, labels = callout_text_lines[i],
                cex = callout_text_cfg_n$cex,
-               pos = callout_text_cfg_n$pos,
-               col = paste0("#474747", callout_text_cfg_n$alpha))
+               adj = adj,
+               pos = pos,
+               col = paste0("#383838", callout_text_cfg_n$alpha))
         }
       }
     }

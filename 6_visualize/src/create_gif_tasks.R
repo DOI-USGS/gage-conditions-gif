@@ -17,7 +17,7 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_datewheel_fun(I('%s'), viz_config, dates_config, datewheel_cfg, callouts_cfg)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+      sprintf("prep_datewheel_fun(I('%s'), viz_config, wheel_dates_config, dates_config, datewheel_cfg, callouts_cfg)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
     }
   )
 
@@ -82,6 +82,46 @@ create_timestep_gif_tasks <- function(timestep_ind, folders){
       complete_png),
     add_complete=FALSE,
     final_steps='complete_png',
+    ind_dir=folders$log)
+}
+
+create_intro_gif_tasks <- function(frame_cfg, folders){
+
+  # prepare a data.frame with one row per task
+  # tricking the final frames to be dates starting with 0000-01-01
+  total_frames <- frame_cfg$show_count
+  timesteps <- as.Date("0000-01-01") + 1*seq_len(total_frames)
+  timesteps <- timesteps[order(timesteps)] # reorder chronologically
+  tasks <- data_frame(timestep=timesteps) %>%
+    mutate(task_name = strftime(timestep, format = '%Y%m%d_%H', tz = 'UTC'))
+
+  # ---- main target for each task
+
+  intro_png <- scipiper::create_task_step(
+    step_name = 'intro_png',
+    target_name = function(task_name, step_name, ...){
+      file.path(folders$tmp, sprintf('frame_%s.png', task_name))
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      psprintf(
+        "create_intro_frame(",
+        "png_file=target_name,",
+        "file_config=timestep_frame_config,",
+        "frame_config=title_cfg,",
+        "watermark_fun=watermark_intro_fun)"
+      )
+    }
+  )
+
+  # ---- combine into a task plan ---- #
+
+  gif_task_plan <- scipiper::create_task_plan(
+    task_names=tasks$task_name,
+    task_steps=list(
+      intro_png),
+    add_complete=FALSE,
+    final_steps='intro_png',
     ind_dir=folders$log)
 }
 

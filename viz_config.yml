@@ -1,6 +1,15 @@
+# Used for pulling historic data
 dates:
   start: '2017-10-01'
   end: '2018-09-30'
+# Actual dates of the viz frames
+vizDates:
+  start: '2020-01-01'
+  end: '2020-03-31'
+# Dates that make up the wheel (usually a full year)
+wheelDates:
+  start: '2019-10-01'
+  end: '2020-09-30'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 3 # hours elapsed between GIF frames
 
@@ -34,52 +43,52 @@ percentiles:
 # styling
 background_col: "white"
 basemap:
-  lwd: 3.0
+  lwd: 1.0
   col: "#e5e5e5" # transparent
   border: "white" # gray40
 gage_style:
   with_percentile:
     normal:
       pch: 21
-      cex: 1.0
+      cex: 0.5
       bg: "#d7d7d7" #efefef
     drought:
       pch: 21
-      cex: [1.0, 1.5, 2.5]
+      cex: [0.25, 0.4, 0.6]
       col: ["#efb2bc", "#df6679", "#ca0020"]
     wet:
       pch: 21
-      cex: 1.0
+      cex: 0.5
       bg: ["#92c5de", "#04507d"]
     flood:    # not based on percentile, based on if above flood stage or not
       pch: 21
-      cex: 2.0
-      lwd: 4.0
+      cex: 0.75
+      lwd: 1.0
       bg: "#04507d" # same as second "wet"
       col: "#AE72E5" #"#9547dd"
   no_percentile:
     pch: 4
-    cex: 0.75
+    cex: 0.25
     col: "#7f7f7f"
 legend_cfg:
-  point_mult: 4
-  text_cex: 1.8
+  point_mult: 2
+  text_cex: 1.2
   text_col: "#444444"
   x_pos: 0.11
   y_pos: 0.81
 title_cfg:
   main: "U.S. River Conditions"
-  subtitle: "Water Year 2018"
+  subtitle: "October 1 - December 31, 2019"
   footnote: [
     "Conditions are relative to the historic daily record for each gage.",
   ]
   x_pos: 0.005
   y_pos: 0.94
-  main_cex: 4.5
+  main_cex: 3.0
   main_col: "#666666"
-  sub_cex: 3
+  sub_cex: 2.0
   sub_col: "#666666"
-  foot_cex: 1.6
+  foot_cex: 1.0
   foot_col: "#939393"
 footnote_cfg:
   main: [
@@ -88,7 +97,7 @@ footnote_cfg:
   ]
   x_pos: 0.255 #0.20 # 0.50
   y_pos: 0.02
-  cex: 1.4
+  cex: 0.8
   col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
@@ -100,15 +109,16 @@ datewheel_cfg:
     col_empty: "#bdbdbd" # color of the wheel background
     col_filled: "#5d5d5dB3" # color to fill in the wheel as time marches on, last two = hex transparency
     col_text_months: "#383838" # color of month labels inside wheel
+    col_text_months_outside: "#bdbdbd" # color of month labels inside wheel NOT during viz dates
     cex_text_months: 1.4
-    col_text_datestamp: "#bdbdbd" # color of text inside the wheel
+    col_text_datestamp: "#5f5f5f" # color of text inside the wheel
     cex_text_datestamp: 1.7
 
 # gif options
 animation:
   frame_delay_cs: 14 # delay for gifs
-  frame_rate: 5 #original input frames per second
-  output_frame_rate: 10 #fps, but the actual frames in the video (not 1:1 with input)
+  frame_rate: 3.25 #original input frames per second
+  output_frame_rate: 3.25 # if > input fps, duplicates some frames; if < input fps, drops some frames
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
@@ -116,9 +126,13 @@ component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "bottom"
 
+intro_frame:
+  cfg:
+    show_count: 8
+
 final_frame:
   cfg:
-    pause_count: 8 # number of frames for which to pause/repeat the final timestep of the animation
+    pause_count: 10 # number of frames for which to pause/repeat the final timestep of the animation
     fade_count: 15 # number of frames for which the final frame will fade in
     show_count: 15 # number of frames for which the final frame will be seen
   paragraphs:
@@ -134,184 +148,3 @@ final_frame:
       lheight: 1
       cex: 15
       col: "#04507d"
-
-callouts:
-  -
-    dates:
-      start: "2017-10-05"
-      end: "2017-10-22"
-    text:
-      label: ["Lowflows throughout most of the west and east coasts"]
-      x_loc: 0.4 #this is in percentage space, relative to the plotting device
-      y_loc: 0.94
-      pos: 4
-      cex: 3
-    add_box: FALSE
-    wheel_color: "#ca0020"
-  -
-    dates:
-      start: "2017-10-25"
-      end: "2017-11-10"
-    text:
-      label: ["Frontal systems bring floods to northeast"]
-      x_loc: 0.69 #this is in percentage space, relative to the plotting device
-      y_loc: 0.62
-      pos: 4
-      cex: 3
-    add_box: TRUE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_atmospheric_northeast.png"
-  -
-    dates:
-      start: "2017-12-01"
-      end: "2017-12-31"
-    text:
-      label: ["Most of Nation in lower", "than normal flow"]
-      x_loc: 0.63 #this is in percentage space, relative to the plotting device
-      y_loc: 0.14
-      pos: 4
-      cex: 3
-    add_box: FALSE
-    wheel_color: "#ca0020"
-  -
-    dates:
-      start: "2018-02-19"
-      end: "2018-03-04"
-    text:
-      label: ["Frontal systems and", "snowmelt cause high", "flows in much of", "the east"]
-      x_loc: 0.83 #this is in percentage space, relative to the plotting device
-      y_loc: 0.55
-      pos: 4
-      cex: 3
-    add_box: TRUE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_snowmelt_east.png"
-  -
-    dates:
-      start: "2018-04-03"
-      end: "2018-04-15"
-    text:
-      label: ["Snowmelt and rainfall", "cause flooding in", "IL and IN"]
-      x_loc: 0.48 #this is in percentage space, relative to the plotting device
-      y_loc: 0.58
-      pos: 4
-      cex: 3
-    add_box: TRUE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_snowmelt_ilin.png"
-  -
-    dates:
-      start: "2018-04-14"
-      end: "2018-04-27"
-    text:
-      label: ["Hurricane Lane", "passes near HI"]
-      x_loc: 0.4 #this is in percentage space, relative to the plotting device
-      y_loc: 0.1
-      pos: 4
-      cex: 3
-    add_box: TRUE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_hurricane_lane.png"
-  -
-    dates:
-      start: "2018-05-04"
-      end: "2018-05-18"
-    text:
-      label: ["Snowmelt flooding in the Northwest"]
-      x_loc: 0.4 #this is in percentage space, relative to the plotting device
-      y_loc: 0.93
-      pos: 4
-      cex: 3
-    add_box: FALSE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_snowmelt_northwest.png"
-  -
-    dates:
-      start: "2018-05-20"
-      end: "2018-06-06"
-    text:
-      label: ["Flooding caused by", "thunderstorms in", "Western NC and VA"]
-      x_loc: 0.84 #this is in percentage space, relative to the plotting device
-      y_loc: 0.44
-      pos: 4
-      cex: 3
-    add_box: TRUE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_thunderstorms_ncva.png"
-  -
-    dates:
-      start: "2018-06-05"
-      end: "2018-06-20"
-    text:
-      label: ["Flash flooding in VA, WV, and MD"]
-      x_loc: 0.7 #this is in percentage space, relative to the plotting device
-      y_loc: 0.8
-      pos: 4
-      cex: 3
-    add_box: TRUE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_flashflooding_vawvmd.png"
-  -
-    dates:
-      start: "2018-07-21"
-      end: "2018-07-30"
-    text:
-      label: ["Flooding in", "VA and MD"]
-      x_loc: 0.885 #this is in percentage space, relative to the plotting device
-      y_loc: 0.65
-      pos: 4
-      cex: 3
-    add_box: FALSE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_flooding_vamd.png"
-  -
-    dates:
-      start: "2018-07-21"
-      end: "2018-07-31" # one day different from prev to avoid warnings
-    text:
-      label: ["High flows and flooding in MT"]
-      x_loc: 0.4 #this is in percentage space, relative to the plotting device
-      y_loc: 0.93
-      pos: 4
-      cex: 3
-    add_box: FALSE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_flooding_mt.png"
-  -
-    dates:
-      start: "2018-08-28"
-      end: "2018-09-12"
-    text:
-      label: ["Hurricane Gordon passes", "by FL and MS"]
-      x_loc: 0.63 #this is in percentage space, relative to the plotting device
-      y_loc: 0.14
-      pos: 4
-      cex: 3
-    add_box: FALSE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_hurricane_gordon.png"
-  -
-    dates:
-      start: "2018-09-15"
-      end: "2018-09-26"
-    text:
-      label: ["Hurricane", "Florence", "lands in NC"]
-      x_loc: 0.89 #this is in percentage space, relative to the plotting device
-      y_loc: 0.47
-      pos: 4
-      cex: 3
-    add_box: FALSE
-    wheel_color: "#04507d"
-    polygon:
-      file: "6_visualize/in/polygons_hurricane_florence.png"
-
