@@ -6,7 +6,6 @@ viz_config <- yaml::yaml.load_file('viz_config.yml')
 start_date <- as.Date(viz_config$vizDates$start)
 end_date <- as.Date(viz_config$vizDates$end)
 timesteps <- seq(start_date, end_date, by = 'days')
-timesteps <- timesteps[1:10]
 
 ## Create a new workbook & add a worksheet
 wb <- createWorkbook()
@@ -50,5 +49,4 @@ fn <- sprintf("river_conditions_%s_%s_%s.xlsx",
               format(start_date, "%b"),
               format(end_date, "%b"),
               format(start_date, "%Y"))
-fn <- "river_conditions_example.xlsx"
 saveWorkbook(wb, fn, overwrite = TRUE)
