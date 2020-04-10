@@ -16,6 +16,7 @@ combine_animation_frames_video <- function(out_file, animation_cfg) {
     "ffmpeg -y -framerate %s -i 6_visualize/tmp/frame_%%03d.png -r %s -pix_fmt yuv420p -vcodec libx264 -crf 27 %s",
     animation_cfg$frame_rate, animation_cfg$output_frame_rate, out_file)
   system(shell_command)
+  system(sprintf("ffmpeg -i %s -vf scale=iw/2:-1 %s", out_file, out_file))
 
   file.rename(from = file_name_df$newName, to = file_name_df$origName)
 }
