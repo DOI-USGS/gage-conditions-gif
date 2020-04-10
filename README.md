@@ -38,6 +38,7 @@ scipiper::scmake('6_final_gif_tasks.yml', remake_file = '6_visualize.yml', force
 scipiper::scmake('6_visualize/log/6_final_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
 
 scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
+
 ```
 
 # Steps for using script-based process for creating callouts

@@ -24,12 +24,12 @@ create_intro_frame <- function(png_file, file_config, frame_config, watermark_fu
   text(x = 0.5,
        y = 0.75,
        labels = frame_config$main,
-       cex = 9,
+       cex = 18,
        col = "#474747")
   text(x = 0.5,
        y = 0.45,
        labels = frame_config$subtitle,
-       cex = 6,
+       cex = 12,
        col = "#04507d")
 
   # close off google fonts

@@ -16,8 +16,8 @@ frame_step: 3 # hours elapsed between GIF frames
 # view, dimensions
 bbox: [-130.0, 20.0, -77.0, 49.0]
 projection: "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs "
-height: 1024
-width: 2048
+height: 2048
+width: 4096
 shift:
   STATEFP:
     - '02'
@@ -50,29 +50,30 @@ gage_style:
   with_percentile:
     normal:
       pch: 21
-      cex: 1.0
+      cex: 2.0
       bg: "#d7d7d7" #efefef
     drought:
       pch: 21
-      cex: [1.0, 1.5, 2.5]
+      cex: [2.0, 3.0, 5.0]
       col: ["#efb2bc", "#df6679", "#ca0020"]
+      lwd: 2.0
     wet:
       pch: 21
-      cex: 1.0
+      cex: 2.0
       bg: ["#92c5de", "#04507d"]
     flood:    # not based on percentile, based on if above flood stage or not
       pch: 21
-      cex: 2.0
-      lwd: 4.0
+      cex: 4.0
+      lwd: 5.0
       bg: "#04507d" # same as second "wet"
       col: "#AE72E5" #"#9547dd"
   no_percentile:
     pch: 4
-    cex: 0.75
+    cex: 1.5
     col: "#7f7f7f"
 legend_cfg:
   point_mult: 4
-  text_cex: 1.2
+  text_cex: 2.4
   text_col: "#444444"
   x_pos: 0.11
   y_pos: 0.82
@@ -84,11 +85,11 @@ title_cfg:
   ]
   x_pos: 0.005
   y_pos: 0.94
-  main_cex: 3
+  main_cex: 6
   main_col: "#666666"
-  sub_cex: 1.8
+  sub_cex: 3.6
   sub_col: "#666666"
-  foot_cex: 1
+  foot_cex: 2
   foot_col: "#939393"
 footnote_cfg:
   main: [
@@ -97,7 +98,7 @@ footnote_cfg:
   ]
   x_pos: 0.255 #0.20 # 0.50
   y_pos: 0.02
-  cex: 1
+  cex: 2
   col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
@@ -110,9 +111,9 @@ datewheel_cfg:
     col_filled: "#5d5d5dB3" # color to fill in the wheel as time marches on, last two = hex transparency
     col_text_months: "#383838" # color of month labels inside wheel
     col_text_months_outside: "#bdbdbd" # color of month labels inside wheel NOT during viz dates
-    cex_text_months: 0.9
+    cex_text_months: 1.8
     col_text_datestamp: "#5f5f5f" # color of text inside the wheel
-    cex_text_datestamp: 1
+    cex_text_datestamp: 2.0
 
 # gif options
 animation:
@@ -140,11 +141,11 @@ final_frame:
       text: ["Learn more about USGS\n", "streamgages and their role in\n", "science and public safety:"]
       ypos: 0.70 #percent of the y direction to place text (starting from bottom)
       lheight: 1.4
-      cex: 7
+      cex: 14
       col: "#474747"
     -
       text: ["usgs.gov/gwsip"]
       ypos: 0.20 #percent of the y direction to place text (starting from bottom)
       lheight: 1
-      cex: 11
+      cex: 22
       col: "#04507d"
