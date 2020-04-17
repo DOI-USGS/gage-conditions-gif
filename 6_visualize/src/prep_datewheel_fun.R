@@ -36,7 +36,7 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_con
   # keep only non-NULL elements
   if(length(wheel_callouts)>0) {
     wheel_callouts <- wheel_callouts[!unlist(lapply(wheel_callouts, is.null))]
-    event_ends <- as.Date(unlist(lapply(lapply(wheel_callouts, `[[`, "dates"), `[[`, "end")))
+    event_ends <- as.Date(unlist(lapply(lapply(wheel_callouts, `[[`, "event_dates"), `[[`, "end")))
     wheel_callouts <- wheel_callouts[order(event_ends)] # order chronologically in case they aren't already
     event_ends <- event_ends[order(event_ends)]
     n_callouts <- length(wheel_callouts)
@@ -116,10 +116,12 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_con
         this_callout <- wheel_callouts[[n]]
 
         # Find event dates
-        start_date_event <- as.Date(this_callout$dates$start)
+        start_date_event <- as.Date(this_callout$event_dates$start)
         start_date_event_n <- as.numeric(start_date_event - start_dt) + 1
-        end_date_event <- as.Date(this_callout$dates$end)
-        end_date_event_n <- as.numeric(end_date_event - start_dt) #+ 1
+        end_date_event <- as.Date(this_callout$event_dates$end)
+        end_date_event_n <- ifelse(start_date_event == end_date_event,
+                                   start_date_event_n,
+                                   as.numeric(end_date_event - start_dt)) #+ 1
 
         # User input in callout cfg file will say if the callout on the event
         #   wheel should be tall or not
