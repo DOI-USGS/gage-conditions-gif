@@ -118,8 +118,8 @@ datewheel_cfg:
 # gif options
 animation:
   frame_delay_cs: 14 # delay for gifs
-  frame_rate: 3.25 #original input frames per second
-  output_frame_rate: 3.25 # if > input fps, duplicates some frames; if < input fps, drops some frames
+  frame_rate: 2.25 #original input frames per second
+  output_frame_rate: 2.25 # if > input fps, duplicates some frames; if < input fps, drops some frames
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
