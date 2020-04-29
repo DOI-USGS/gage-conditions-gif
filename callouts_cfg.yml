@@ -48,7 +48,7 @@
             "Indianapolis office deploys crews to",
             "respond to flooding."]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.76
+    x_loc: 0.77
     y_loc: 0.65
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
@@ -80,8 +80,8 @@
             "the West Coast causing major",
             "flooding in NW Washington"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.32
-    y_loc: 0.85
+    x_loc: 0.34
+    y_loc: 0.84
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 4
