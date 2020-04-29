@@ -29,42 +29,10 @@
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/callout_5.png"
-#-
-#  event_dates:
-#    start: "2020-01-07"
-#    end: "2020-01-07"
-#  text_dates:
-#    # Adjust these if the text + callout shape should appear for
-#    #   different dates than the event appears on the date wheel
-#    start: "2020-01-01"
-#    end: "2020-01-12"
-#  # Defaults to 9
-#  fade_in:
-#  # Defaults to 9
-#  fade_out:
-#  text:
-#    label: ["Jan 7, 2020: Ten USGS",
-#            "streamgages in WA reach",
-#            " flood stage"]
-#    # This is in percentage space, relative to the plotting device
-#    x_loc: 0.35
-#    y_loc: 0.80
-#    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-#    pos: 4
-#    cex: 4
-#  # TRUE or FALSE, defaults to FALSE
-#  add_box: TRUE
-#  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-#  wheel_color: "#04507d"
-#  # TRUE or FALSE, defaults to FALSE
-#  tall_wheel_shape: TRUE
-#  polygon:
-#    # Defaults to existing small NE shape
-#    file: "6_visualize/in/callout_5.png"
 -
   event_dates:
     start: "2020-01-10"
-    end: "2020-01-10"
+    end: "2020-01-12"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
@@ -126,39 +94,6 @@
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/callout_5.png"
-#-
-#  event_dates:
-#    start: "2020-02-07"
-#    end: "2020-02-07"
-#  text_dates:
-#    # Adjust these if the text + callout shape should appear for
-#    #   different dates than the event appears on the date wheel
-#    start: "2020-02-04"
-#    end: "2020-02-12"
-#  # Defaults to 9
-#  fade_in:
-#  # Defaults to 9
-#  fade_out:
-#  text:
-#    label: ["Feb 7, 2020: USGS crews",
-#            "measure decade-high waters",
-#            "at several locations in",
-#            "southeastern Kentucky"]
-#    # This is in percentage space, relative to the plotting device
-#    x_loc: 0.75
-#    y_loc: 0.65
-#    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-#    pos: 3
-#    cex: 4
-#  # TRUE or FALSE, defaults to FALSE
-#  add_box: TRUE
-#  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-#  wheel_color: "#04507d"
-#  # TRUE or FALSE, defaults to FALSE
-#  tall_wheel_shape: TRUE
-#  polygon:
-#    # Defaults to existing small NE shape
-#    file: "6_visualize/in/callout_5.png"
 -
   event_dates:
     start: "2020-02-11"
