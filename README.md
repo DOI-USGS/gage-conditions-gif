@@ -41,6 +41,21 @@ scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualiz
 
 ```
 
+# Steps for testing individual frames
+
+Sometimes it is useful to build just a single frame, or subset of frames. Below is some code that helps with that.
+
+```r
+
+# Build a specific subset of days
+days <- c(211:215)
+scipiper::scmake(sprintf('6_visualize/tmp/frame_20200%s_00.png', days), '6_timestep_gif_tasks.yml')
+
+# Build a single frame:
+scipiper::scmake('6_visualize/tmp/frame_20200210_00.png', '6_timestep_gif_tasks.yml')
+
+```
+
 # Steps for using script-based process for creating callouts
 
 It is not currently built into the `scipiper` code yet. BUT here is what you need to do:
