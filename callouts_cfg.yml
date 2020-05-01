@@ -28,7 +28,7 @@
   tall_wheel_shape: FALSE
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/callout_5.png"
+    file: "6_visualize/in/callout_1.png"
 -
   event_dates:
     start: "2020-01-10"
@@ -61,7 +61,7 @@
   tall_wheel_shape: TRUE
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/callout_5.png"
+    file: "6_visualize/in/callout_2.png"
 -
   event_dates:
     start: "2020-01-31"
@@ -93,7 +93,7 @@
   tall_wheel_shape: TRUE
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/callout_5.png"
+    file: "6_visualize/in/callout_3.png"
 -
   event_dates:
     start: "2020-02-11"
@@ -126,7 +126,7 @@
   tall_wheel_shape: TRUE
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/callout_5.png"
+    file: "6_visualize/in/callout_4.png"
 -
   event_dates:
     start: "2020-03-10"
@@ -195,7 +195,7 @@
   tall_wheel_shape: TRUE
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/callout_5.png"
+    file: "6_visualize/in/callout_6.png"
 -
   event_dates:
     start: "2020-03-10"
@@ -229,4 +229,4 @@
   tall_wheel_shape: FALSE
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/callout_5.png"
+    file: "6_visualize/in/callout_7.png"
