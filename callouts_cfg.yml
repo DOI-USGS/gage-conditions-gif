@@ -108,13 +108,17 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["18 USGS crews measure",
-            "several record-breaking",
-            "flows and repair gages",
-            "during flooding in the SE"]
+    label: ["18 USGS crews ",
+            "measure flood",
+            "flows, including",
+            "several record-",
+            "breaking highs",
+            "that cause",
+            "existing USGS",
+            "models to change."]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.86
-    y_loc: 0.45
+    x_loc: 0.895
+    y_loc: 0.56
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 3.6
@@ -134,7 +138,7 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-03-07"
+    start: "2020-03-05"
     end: "2020-03-14"
   # Defaults to 9
   fade_in:
@@ -167,20 +171,18 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-03-14"
-    end: "2020-03-31"
+    start: "2020-03-10"
+    end: "2020-03-26"
   # Defaults to 9
   fade_in:
   # Defaults to 9
-  fade_out:
+  fade_out: 5
   text:
-    label: ["Mar 20, 2020: 3-5 in of rain",
-            "fell overnight, resulting in",
-            "collapse of OH State Route",
-            "79 in Licking County.",
-            "",
-            "USGS gages provided flood",
-            "guidance in the area"]
+    label: ["USGS gages provided flood",
+            "guidance as 3-5 in of rain",
+            "fell overnight on March 20, ",
+            "resulting in the collapse of",
+            "a state route in Ohio."]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.82
     y_loc: 0.75
@@ -203,10 +205,10 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-03-16"
+    start: "2020-03-18"
     end: "2020-03-31"
   # Defaults to 9
-  fade_in:
+  fade_in: 5
   # Defaults to 9
   fade_out:
   text:
