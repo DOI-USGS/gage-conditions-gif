@@ -108,14 +108,13 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["18 USGS crews ",
+    label: ["To improve",
+            "data accuracy,",
+            "18 USGS crews",
             "measure flood",
             "flows, including",
             "several record-",
-            "breaking highs",
-            "that cause",
-            "existing USGS",
-            "models to change."]
+            "breaking highs."]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.895
     y_loc: 0.56
