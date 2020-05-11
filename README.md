@@ -88,3 +88,23 @@ create_animation_frame(
       prep_view_fun(as_view_polygon(viz_config[c('bbox', 'projection', 'width', 'height')]), viz_config['background_col']),
       prep_basemap_fun(states_shifted, viz_config[['basemap']]))
 ```
+
+# To create a Drupal carousel-optimized image, run the following
+
+```
+version_info <- "river_conditions_jan_mar_2020"
+frame_to_use <- "6_visualize/tmp/frame_20200101_00.png"
+
+run_magick_cmd <- function(command_str) {
+  if(Sys.info()[['sysname']] == "Windows") {
+    magick_command <- sprintf('magick %s', command_str)
+  } else {
+    magick_command <- command_str
+  }
+  system(magick_command)
+}
+
+run_magick_cmd("convert -size 11400x3721 canvas:white carousel_background.png")
+run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.png %s %s_carousel.png", frame_to_use, version_info))
+
+```
