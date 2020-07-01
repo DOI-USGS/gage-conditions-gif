@@ -1,9 +1,9 @@
 
-prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_config, datewheel_cfg, callouts_cfg){
+prep_datewheel_fun <- function(dateTime, viz_config, wheel_dates_config, datewheel_cfg, callouts_cfg){
 
   # info to setup wheel
-  wheel_start_dt <- as.Date(dates_config[["start"]])
-  wheel_end_dt <- as.Date(dates_config[["end"]])
+  wheel_start_dt <- as.Date(wheel_dates_config[["start"]])
+  wheel_end_dt <- as.Date(wheel_dates_config[["end"]])
   n_days <- as.numeric(wheel_end_dt - wheel_start_dt) + 1 # add one to count the day you are subtracting from
 
   # viz start and end dates used for erasing parts of the whole wheel where the viz doesn't cover an entire year
@@ -52,7 +52,7 @@ prep_datewheel_fun <- function(dateTime, viz_config, dates_config, viz_dates_con
     return(list(x = x_out, y = y_out))
   }
 
-  rm(viz_config, dates_config, callouts_cfg)
+  rm(viz_config, wheel_dates_config, callouts_cfg)
 
   plot_fun <- function(){
 

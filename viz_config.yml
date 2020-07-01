@@ -1,7 +1,3 @@
-# Used for pulling historic data
-dates:
-  start: '2017-10-01'
-  end: '2018-09-30'
 # Actual dates of the viz frames
 vizDates:
   start: '2020-04-01'
