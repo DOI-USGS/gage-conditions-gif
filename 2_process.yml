@@ -13,6 +13,7 @@ packages:
   - googledrive
   - rgdal
   - rgeos
+  - purrr
 
 file_extensions:
   - feather
@@ -53,10 +54,17 @@ targets:
     command: gd_get('2_process/out/timesteps.rds.ind')
 
   # -- process site data --
+  2_process/out/dv_historic_data_for_sites.rds.ind:
+    command: filter_historic_to_current_sites(
+      ind_file = target_name,
+      dv_historic_fn = '1_fetch/out/dv_historic.rds',
+      site_ind = '1_fetch/out/sites.rds.ind')
+  2_process/out/dv_historic_data_for_sites.rds:
+    command: gd_get('2_process/out/dv_historic_data_for_sites.rds.ind')
   2_process/out/dv_historic_quantiles.rds.ind:
     command: process_dv_historic_quantiles(
       ind_file = target_name,
-      dv_historic_ind = I('1_fetch/out/dv_historic.rds.ind'),
+      dv_historic_ind = '2_process/out/dv_historic_data_for_sites.rds.ind',
       percentiles = percentiles)
   2_process/out/dv_historic_quantiles.rds:
     command: gd_get('2_process/out/dv_historic_quantiles.rds.ind')

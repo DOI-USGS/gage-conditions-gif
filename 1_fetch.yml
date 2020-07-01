@@ -7,6 +7,8 @@ packages:
   - sf
   - tidyr
   - yaml
+  - aws.s3
+  - aws.signature
 
 file_extensions:
   - ind
@@ -32,7 +34,7 @@ targets:
       - 1_fetch/out/site_stats.rds.ind
       - 1_fetch/out/dv_data.rds.ind
       - 1_fetch/out/dv_data_fixed_gh.rds.ind
-      #- 1_fetch/out/dv_historic.rds.ind
+      - 1_fetch/out/dv_historic.rds
       - 1_fetch/out/pre_state_boundaries_census.zip
 
   # -- read config --
@@ -85,16 +87,16 @@ targets:
   1_fetch/out/site_locations.rds:
     command: gd_get('1_fetch/out/site_locations.rds.ind')
 
-  # -- get dv historic data --
-#1_fetch/out/dv_historic.rds.ind:
-#  command: fetch_dv_historic(
-#    ind_file = target_name,
-#    sites_ind = '1_fetch/out/sites.rds.ind',
-#    dates = dates,
-#    request_limit = request_limit_historic,
-#    tmp_filenames = I("1_fetch/tmp/historic_dv_%s_to_%s.rds"))
-#1_fetch/out/dv_historic.rds:
-#    command: gd_get('1_fetch/out/dv_historic.rds.ind')
+  # -- get dv historic data from `national-flow-observations` pipeline --
+  # Setup known info
+  s3_bucket:
+    command: c(I("ds-pipeline-national-flow-observations"))
+
+  1_fetch/out/dv_historic.rds:
+    command: save_object(
+      file = target_name,
+      object = I("20_data_munge/out/daily_flow.rds"),
+      bucket = s3_bucket)
 
   # -- get dv data --
   1_fetch/out/dv_data.rds.ind:
