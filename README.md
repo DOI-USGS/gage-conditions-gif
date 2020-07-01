@@ -1,9 +1,11 @@
 # gage conditions
 
 
-The master repo is setup to build a video file. I (Lindsay) have been running the following lines of code to build the big pieces individually. One version of the final product can be found [here](www.usgs.gov/media/videos/us-river-conditions-water-year-2018).
+The master repo is setup to build a video file. I (Lindsay) have been running the following lines of code to build the big pieces individually. One version of the final product can be found [here](www.usgs.gov/media/videos/us-river-conditions-water-year-2018). Before running this, you need delete the old contents of `6_visualize/tmp`. 
 
 ```r
+#####################
+## Download data
 
 scipiper::scmake("1_fetch/out/dv_data.rds.ind", "1_fetch.yml")
 scipiper::scmake("1_fetch/out/dv_data_fixed_gh.rds.ind", "1_fetch.yml")
@@ -11,6 +13,11 @@ scipiper::scmake('1_fetch/out/sites_stage.rds.ind', remake_file = '1_fetch.yml')
 scipiper::scmake("2_process/out/dv_stats.rds.ind", "2_process.yml")
 scipiper::scmake("2_process/out/dv_stats_fixed_gh.rds.ind", "2_process.yml")
 scipiper::scmake("2_process/out/dv_stat_styles.rds.ind", "2_process.yml")
+
+#####################
+## Create a callouts file (it can be empty if there are none)
+
+file.create("callouts_cgf.yml")
 
 #####################
 ## Build ALL frames and then make video
@@ -31,6 +38,22 @@ scipiper::scmake('6_final_gif_tasks.yml', remake_file = '6_visualize.yml', force
 scipiper::scmake('6_visualize/log/6_final_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
 
 scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
+
+```
+
+# Steps for testing individual frames
+
+Sometimes it is useful to build just a single frame, or subset of frames. Below is some code that helps with that.
+
+```r
+
+# Build a specific subset of days
+days <- c(211:215)
+scipiper::scmake(sprintf('6_visualize/tmp/frame_20200%s_00.png', days), '6_timestep_gif_tasks.yml')
+
+# Build a single frame:
+scipiper::scmake('6_visualize/tmp/frame_20200210_00.png', '6_timestep_gif_tasks.yml')
+
 ```
 
 # Steps for using script-based process for creating callouts
@@ -64,4 +87,24 @@ create_animation_frame(
       config=viz_config[c('width','height')],
       prep_view_fun(as_view_polygon(viz_config[c('bbox', 'projection', 'width', 'height')]), viz_config['background_col']),
       prep_basemap_fun(states_shifted, viz_config[['basemap']]))
+```
+
+# To create a Drupal carousel-optimized image, run the following
+
+```
+version_info <- "river_conditions_jan_mar_2020"
+frame_to_use <- "6_visualize/tmp/frame_20200101_00.png"
+
+run_magick_cmd <- function(command_str) {
+  if(Sys.info()[['sysname']] == "Windows") {
+    magick_command <- sprintf('magick %s', command_str)
+  } else {
+    magick_command <- command_str
+  }
+  system(magick_command)
+}
+
+run_magick_cmd("convert -size 11400x3721 canvas:white carousel_background.png")
+run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.png %s %s_carousel.png", frame_to_use, version_info))
+
 ```

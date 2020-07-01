@@ -5,8 +5,8 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
 
   # The callouts cloud (highlighting the sites) will only appear during the event
   this_date_callouts_cloud <- lapply(callouts_cfg, function(x, this_date) {
-    start <- as.POSIXct(x$dates$start, tz = "UTC")
-    end <- as.POSIXct(x$dates$end, tz = "UTC")
+    start <- as.POSIXct(x$text_dates$start, tz = "UTC")
+    end <- as.POSIXct(x$text_dates$end, tz = "UTC")
     if(this_date >= start & this_date <= end) {
       return(x)
     } else {
@@ -22,8 +22,8 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
     max_fade_text <- 100 # percent maximum transparency for text
     max_fade_rect <- 75 # maximum transparency for the rect
 
-    start <- as.POSIXct(x$dates$start, tz = "UTC")
-    end <- as.POSIXct(x$dates$end, tz = "UTC")
+    start <- as.POSIXct(x$text_dates$start, tz = "UTC")
+    end <- as.POSIXct(x$text_dates$end, tz = "UTC")
 
     # Figure out how many days before or after an event the current date is
     before_n <- start - this_date
@@ -98,8 +98,8 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
         x <- coord_space[1] + callout_text_cfg_n$x_loc * diff(coord_space[1:2])
         y <- coord_space[3] + callout_text_cfg_n$y_loc * diff(coord_space[3:4])
         callout_text_lines <- callout_text_cfg_n$label
-        font_x_multiplier <- 2.1 # for Abel
-        font_y_multiplier <- 3 # for Abel
+        font_x_multiplier <- 4.1 # for Abel w cex=4
+        font_y_multiplier <- 5 # for Abel w cex=4
         y_bot <- y - (length(callout_text_lines)-1)*strheight(callout_text_lines[1])*font_y_multiplier
 
         # Add the box behind the text if applicable

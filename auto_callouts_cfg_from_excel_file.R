@@ -4,13 +4,13 @@
 # Then, manually edit the rest of `callouts_cfg.yml` to get text looking correct
 
 library(dplyr)
-fn_in <- "river_conditions_Oct_Dec_2019_edited.xlsx"
+fn_in <- "river_conditions_Jan_Mar_2020_reviewers.xlsx"
 callout_data_raw <- openxlsx::read.xlsx(fn_in, fillMergedCells = TRUE, detectDates = TRUE)
 
 callout_data <- callout_data_raw
 
 callouts_cfg <- callout_data_raw %>%
-  filter(!is.na(Callout_1)) %>%
+  # filter(!is.na(Callout_1)) %>%
   select(-Image)
 
 callouts_cfg_fmt <- callouts_cfg %>%

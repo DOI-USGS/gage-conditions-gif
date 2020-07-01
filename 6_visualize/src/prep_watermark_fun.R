@@ -39,6 +39,10 @@ prep_watermark_fun <- function(watermark_file, x_pos = c('left','right'), y_pos 
 
 
     rasterImage(d, x1, y1, x1+ncol(d)*img_scale, y1+nrow(d)*img_scale)
+
+    # Add visid logo
+    # polygon <- png::readPNG("6_visualize/in/usgs_av_lower_left_temp_1080.png")
+    # rasterImage(polygon, xleft=coord_space[1], ybottom=coord_space[3], xright=coord_space[2], ytop=coord_space[4])
   }
   return(plot_fun)
 }

@@ -81,6 +81,7 @@ add_style_columns <- function(per_df, gage_style, percentiles) {
 
     lwd = case_when(
       condition == "Flooding" ~ gage_style$with_percentile$flood$lwd,
+      condition %in% c("Dry", "Drier", "Driest") ~ gage_style$with_percentile$drought$lwd,
       TRUE ~ 1.0 # Everything else
     )
   )
