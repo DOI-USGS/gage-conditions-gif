@@ -17,7 +17,7 @@ scipiper::scmake("2_process/out/dv_stat_styles.rds.ind", "2_process.yml")
 #####################
 ## Create a callouts file (it can be empty if there are none)
 
-file.create("callouts_cgf.yml")
+file.create("callouts_cfg.yml")
 
 #####################
 ## Build ALL frames and then make video
