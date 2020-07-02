@@ -108,3 +108,51 @@ run_magick_cmd("convert -size 11400x3721 canvas:white carousel_background.png")
 run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.png %s %s_carousel.png", frame_to_use, version_info))
 
 ```
+
+# To create a USGS VisID compliant video version
+
+```
+# This works very well for viz_config height and width of 2048 & 4096.
+# Unsure about what changes may be needed for other dimensions.
+
+# Get viz frame dimensions and then divide by 2 bc we 
+# double them in combine_animation_frame
+timestep_frame_config <- remake::fetch("timestep_frame_config")
+viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
+
+# Identify files
+video_file <- "6_visualize/out/river_conditions_apr_jun_2020_draft.mp4"
+video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
+video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
+visid_file <- "6_visualize/in/visid_overlay.png"
+video_w_visid_file <- "6_visualize/out/river_conditions_apr_jun_2020_visid.mp4"
+
+# Cover up the existing USGS logo
+system(sprintf(
+  'ffmpeg -y -i %s -vf "drawbox=x=0:y=ih-h:w=%s/6:h=%s/8:t=max:color=white" %s', 
+  video_file, 
+  viz_config_dim$width, 
+  viz_config_dim$height,
+  video_logo_cover_file
+))
+
+# Scale and pad the existing video to fit the black bottom bar
+# without changing aspect ratio
+system(sprintf(
+    'ffmpeg -y -i %s -vf "scale=%s:%s,pad=%s:%s:(ow-iw)/2:color=white" %s', 
+    video_logo_cover_file,
+    viz_config_dim$width-viz_config_dim$width*0.08691406, 
+    viz_config_dim$height-viz_config_dim$height*0.08691406,
+    viz_config_dim$width, 
+    viz_config_dim$height,
+    video_scaled_for_visid_file
+))
+
+# Overlay the visid black bar onto video
+system(sprintf(
+    'ffmpeg -y -i %s -i %s -filter_complex "overlay" -c:v libx264  %s', 
+    video_scaled_for_visid_file,
+    visid_file,
+    video_w_visid_file))
+
+```
