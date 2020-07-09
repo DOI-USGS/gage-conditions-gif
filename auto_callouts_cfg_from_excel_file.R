@@ -18,6 +18,7 @@ callouts_cfg_fmt <- callouts_cfg %>%
   tidyr::unite("Callout_1Region_1", "Callout_1", "Region_1", sep="_") %>%
   tidyr::unite("Callout_2Region_2", "Callout_2", "Region_2", sep="_") %>%
   tidyr::unite("Callout_3Region_3", "Callout_3", "Region_3", sep="_") %>%
+  tidyr::unite("Callout_4Region_4", "Callout_4", "Region_4", sep="_") %>%
   tidyr::gather(key = "Num", value = "CalloutRegion", -Frame_Date) %>%
   select(-Num) %>%
   # `convert=TRUE` will put NAs back as NAs rather than the string, "NA"
