@@ -108,11 +108,12 @@ prep_datewheel_fun <- function(dateTime, viz_config, wheel_dates_config, datewhe
 
     if (n_callouts >0) {
     # Call out arcs are on top of light grey wheel, but below dark grey
-      tall_callouts <- which(sapply(wheel_callouts, function(x) x$tall_wheel_shape))
-      reg_callouts <- which(sapply(wheel_callouts, function(x) !x$tall_wheel_shape))
-      for(n in c(tall_callouts, reg_callouts)) {
-        # loop in reverse order so that potentially overlapping events
-        # events that start after others are drawn first
+
+      # draw taller callouts first (taller = higher wheel_hierarchy)
+      callout_hierarchy_num <- sapply(wheel_callouts, function(x) x$wheel_hierarchy)
+      callout_draw_order <- order(callout_hierarchy_num, decreasing = TRUE)
+
+      for(n in callout_draw_order) {
         this_callout <- wheel_callouts[[n]]
 
         # Find event dates
@@ -123,11 +124,10 @@ prep_datewheel_fun <- function(dateTime, viz_config, wheel_dates_config, datewhe
                                    start_date_event_n,
                                    as.numeric(end_date_event - start_dt)) #+ 1
 
-        # User input in callout cfg file will say if the callout on the event
-        #   wheel should be tall or not
-        event_radius_i <- ifelse(this_callout$tall_wheel_shape,
-                                 event_radius + event_radius*0.10,
-                                 event_radius)
+        # User input in callout cfg file will say how tall the callout
+        #   on the event wheel should be (wheel hierarchy is integer starting at 0)
+        size_factor <- this_callout$wheel_hierarchy * 0.07
+        event_radius_i <- event_radius + event_radius*size_factor
 
         # Determine where on the wheel the event exists
         start_angle_event <- start_angle + start_date_event_n*wedge_width*rot_dir
