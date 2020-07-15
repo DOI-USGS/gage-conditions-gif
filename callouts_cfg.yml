@@ -27,7 +27,7 @@
   wheel_hierarchy: 1
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/callout_01.png"
 -
   event_dates:
     start: "2020-04-01"
@@ -35,12 +35,12 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-04-20"
-    end: "2020-05-06"
+    start: "2020-04-28"
+    end: "2020-05-10"
   # Defaults to 9
   fade_in: 3
   # Defaults to 9
-  fade_out: 5
+  fade_out: 3
   text:
     label: [
       "Flooding in the Red", "River of the North,", "the James River, and", "the Sioux River"]
@@ -58,7 +58,7 @@
   wheel_hierarchy: 2
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/callout_02.png"
 -
   event_dates:
     start: "2020-04-13"
@@ -67,11 +67,11 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2020-04-13"
-    end: "2020-04-29"
+    end: "2020-05-08"
   # Defaults to 9
   fade_in: 5
   # Defaults to 9
-  fade_out: 5
+  fade_out: 3
   text:
     label: ["Frontal systems", "cause high water", "in much of the", "Eastern U.S."]
     # This is in percentage space, relative to the plotting device
@@ -88,7 +88,7 @@
   wheel_hierarchy: 0
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/callout_03.png"
 -
   event_dates:
     start: "2020-05-15"
@@ -96,7 +96,7 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-05-12"
+    start: "2020-05-16"
     end: "2020-05-31"
   # Defaults to 9
   fade_in:
@@ -118,7 +118,7 @@
   wheel_hierarchy: 1
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/callout_04_opt2.png"
 -
   event_dates:
     start: "2020-05-20"
@@ -148,7 +148,7 @@
   wheel_hierarchy: 0
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/callout_05.png"
 -
   event_dates:
     start: "2020-05-24"
@@ -156,10 +156,10 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-05-26"
+    start: "2020-05-28"
     end: "2020-06-30"
   # Defaults to 9
-  fade_in: 6
+  fade_in: 5
   # Defaults to 9
   fade_out:
   text:
@@ -178,7 +178,7 @@
   wheel_hierarchy: 3
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/callout_06.png"
 -
   event_dates:
     start: "2020-06-05"
@@ -186,10 +186,10 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-06-23"
+    start: "2020-06-27"
     end: "2020-06-30"
   # Defaults to 9
-  fade_in: 5
+  fade_in: 3
   # Defaults to 9
   fade_out:
   text:
@@ -208,7 +208,7 @@
   wheel_hierarchy: 2
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/callout_07.png"
 -
   event_dates:
     start: "2020-06-08"
@@ -229,20 +229,20 @@
       "from the Gulf Coast to",
       "the Upper Midwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.72
-    y_loc: 0.60
+    x_loc: 0.64
+    y_loc: 0.17
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 3.7
   # TRUE or FALSE, defaults to FALSE
-  add_box: TRUE
+  add_box: FALSE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # TRUE or FALSE, defaults to FALSE
   wheel_hierarchy: 0
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/callout_08.png"
 -
   event_dates:
     start: "2020-06-09"
@@ -250,10 +250,10 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-06-15"
+    start: "2020-06-17"
     end: "2020-06-30"
   # Defaults to 9
-  fade_in:
+  fade_in: 3
   # Defaults to 9
   fade_out:
   text:
@@ -272,7 +272,7 @@
   wheel_hierarchy: 1
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/callout_09.png"
 -
   event_dates:
     start: "2020-06-20"
@@ -280,17 +280,17 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-06-20"
+    start: "2020-06-23"
     end: "2020-06-30"
   # Defaults to 9
-  fade_in: 7
+  fade_in: 3
   # Defaults to 9
   fade_out:
   text:
     label: ["Drought", "conditions", "in New", "England"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.93
-    y_loc: 0.85
+    y_loc: 0.75
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 4
@@ -302,4 +302,4 @@
   wheel_hierarchy: 0
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/callout_10.png"
