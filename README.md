@@ -92,8 +92,8 @@ create_animation_frame(
 # To create a Drupal carousel-optimized image, run the following
 
 ```
-version_info <- "river_conditions_jan_mar_2020"
-frame_to_use <- "6_visualize/tmp/frame_20200101_00.png"
+version_info <- "river_conditions_apr_jun_2020"
+frame_to_use <- "6_visualize/tmp/frame_20200401_00.png"
 
 run_magick_cmd <- function(command_str) {
   if(Sys.info()[['sysname']] == "Windows") {
@@ -121,7 +121,7 @@ timestep_frame_config <- remake::fetch("timestep_frame_config")
 viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
 
 # Identify files
-video_file <- "6_visualize/out/river_conditions_apr_jun_2020_draft.mp4"
+video_file <- "6_visualize/out/river_conditions_apr_jun_2020.mp4"
 video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
 video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
 visid_file <- "6_visualize/in/visid_overlay.png"
@@ -154,5 +154,29 @@ system(sprintf(
     video_scaled_for_visid_file,
     visid_file,
     video_w_visid_file))
+
+```
+
+
+# Create a visID version that isn't too big for Facebook
+
+```
+video_file <- "6_visualize/out/river_conditions_apr_jun_2020_visid.mp4"
+video_scaled_for_facebook <- "6_visualize/out/river_conditions_apr_jun_2020_facebook.mp4"
+
+# Get viz frame dimensions and then divide by 2 bc we 
+# double them in combine_animation_frame
+timestep_frame_config <- remake::fetch("timestep_frame_config")
+viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
+
+scale_factor <- 1280 / viz_config_dim$width # 1280 = optimal facebook width
+
+system(sprintf(
+    'ffmpeg -y -i %s -vf "scale=%s:%s" %s', 
+    video_file,
+    viz_config_dim$width * scale_factor,
+    viz_config_dim$height * scale_factor,
+    video_scaled_for_facebook
+))
 
 ```
