@@ -162,21 +162,39 @@ system(sprintf(
 
 ```
 video_file <- "6_visualize/out/river_conditions_apr_jun_2020_visid.mp4"
-video_scaled_for_facebook <- "6_visualize/out/river_conditions_apr_jun_2020_facebook.mp4"
+video_resized_for_facebook <- "6_visualize/tmp/video_facebook_aspect_ratio.mp4"
+video_downscaled_for_facebook <- "6_visualize/out/river_conditions_apr_jun_2020_facebook.mp4"
 
 # Get viz frame dimensions and then divide by 2 bc we 
 # double them in combine_animation_frame
 timestep_frame_config <- remake::fetch("timestep_frame_config")
 viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
 
-scale_factor <- 1280 / viz_config_dim$width # 1280 = optimal facebook width
+# need to have 16:9, not 2:1
+new_height <- viz_config_dim$width * 9/16
+
+# Scale and pad the existing video to fit 16:9 aspect ratio
+#   0.8691406 is the scale factor from above for the width
+#     of the logo black bar. Using it here means that we are centering
+#     the image and taking that black bar into account. It's a bit
+#     of a mystery to me still but it worked!
+system(sprintf(
+    'ffmpeg -y -i %s -vf "pad=%s:%s:0:(oh-ih)*0.8691406:color=black" %s', 
+    video_file,
+    viz_config_dim$width, 
+    new_height,
+    video_resized_for_facebook
+))
+
+# Scale down size so it doesn't upload as a 360 video
+scale_factor <- 1280 / viz_config_dim$width # 1280 = optimal facebook width 
 
 system(sprintf(
     'ffmpeg -y -i %s -vf "scale=%s:%s" %s', 
-    video_file,
+    video_resized_for_facebook,
     viz_config_dim$width * scale_factor,
-    viz_config_dim$height * scale_factor,
-    video_scaled_for_facebook
+    new_height * scale_factor,
+    video_downscaled_for_facebook
 ))
 
 ```
