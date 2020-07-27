@@ -17,7 +17,7 @@ scipiper::scmake("2_process/out/dv_stat_styles.rds.ind", "2_process.yml")
 #####################
 ## Create a callouts file (it can be empty if there are none)
 
-file.create("callouts_cgf.yml")
+file.create("callouts_cfg.yml")
 
 #####################
 ## Build ALL frames and then make video
@@ -92,8 +92,8 @@ create_animation_frame(
 # To create a Drupal carousel-optimized image, run the following
 
 ```
-version_info <- "river_conditions_jan_mar_2020"
-frame_to_use <- "6_visualize/tmp/frame_20200101_00.png"
+version_info <- "river_conditions_apr_jun_2020"
+frame_to_use <- "6_visualize/tmp/frame_20200401_00.png"
 
 run_magick_cmd <- function(command_str) {
   if(Sys.info()[['sysname']] == "Windows") {
@@ -106,5 +106,95 @@ run_magick_cmd <- function(command_str) {
 
 run_magick_cmd("convert -size 11400x3721 canvas:white carousel_background.png")
 run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.png %s %s_carousel.png", frame_to_use, version_info))
+
+```
+
+# To create a USGS VisID compliant video version
+
+```
+# This works very well for viz_config height and width of 2048 & 4096.
+# Unsure about what changes may be needed for other dimensions.
+
+# Get viz frame dimensions and then divide by 2 bc we 
+# double them in combine_animation_frame
+timestep_frame_config <- remake::fetch("timestep_frame_config")
+viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
+
+# Identify files
+video_file <- "6_visualize/out/river_conditions_apr_jun_2020.mp4"
+video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
+video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
+visid_file <- "6_visualize/in/visid_overlay.png"
+video_w_visid_file <- "6_visualize/out/river_conditions_apr_jun_2020_visid.mp4"
+
+# Cover up the existing USGS logo
+system(sprintf(
+  'ffmpeg -y -i %s -vf "drawbox=x=0:y=ih-h:w=%s/6:h=%s/8:t=max:color=white" %s', 
+  video_file, 
+  viz_config_dim$width, 
+  viz_config_dim$height,
+  video_logo_cover_file
+))
+
+# Scale and pad the existing video to fit the black bottom bar
+# without changing aspect ratio
+system(sprintf(
+    'ffmpeg -y -i %s -vf "scale=%s:%s,pad=%s:%s:(ow-iw)/2:color=white" %s', 
+    video_logo_cover_file,
+    viz_config_dim$width-viz_config_dim$width*0.08691406, 
+    viz_config_dim$height-viz_config_dim$height*0.08691406,
+    viz_config_dim$width, 
+    viz_config_dim$height,
+    video_scaled_for_visid_file
+))
+
+# Overlay the visid black bar onto video
+system(sprintf(
+    'ffmpeg -y -i %s -i %s -filter_complex "overlay" -c:v libx264  %s', 
+    video_scaled_for_visid_file,
+    visid_file,
+    video_w_visid_file))
+
+```
+
+
+# Create a visID version that isn't too big for Facebook
+
+```
+video_file <- "6_visualize/out/river_conditions_apr_jun_2020_visid.mp4"
+video_resized_for_facebook <- "6_visualize/tmp/video_facebook_aspect_ratio.mp4"
+video_downscaled_for_facebook <- "6_visualize/out/river_conditions_apr_jun_2020_facebook.mp4"
+
+# Get viz frame dimensions and then divide by 2 bc we 
+# double them in combine_animation_frame
+timestep_frame_config <- remake::fetch("timestep_frame_config")
+viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
+
+# need to have 16:9, not 2:1
+new_height <- viz_config_dim$width * 9/16
+
+# Scale and pad the existing video to fit 16:9 aspect ratio
+#   0.8691406 is the scale factor from above for the width
+#     of the logo black bar. Using it here means that we are centering
+#     the image and taking that black bar into account. It's a bit
+#     of a mystery to me still but it worked!
+system(sprintf(
+    'ffmpeg -y -i %s -vf "pad=%s:%s:0:(oh-ih)*0.8691406:color=black" %s', 
+    video_file,
+    viz_config_dim$width, 
+    new_height,
+    video_resized_for_facebook
+))
+
+# Scale down size so it doesn't upload as a 360 video
+scale_factor <- 1280 / viz_config_dim$width # 1280 = optimal facebook width 
+
+system(sprintf(
+    'ffmpeg -y -i %s -vf "scale=%s:%s" %s', 
+    video_resized_for_facebook,
+    viz_config_dim$width * scale_factor,
+    new_height * scale_factor,
+    video_downscaled_for_facebook
+))
 
 ```
