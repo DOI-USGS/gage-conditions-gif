@@ -121,11 +121,11 @@ timestep_frame_config <- remake::fetch("timestep_frame_config")
 viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
 
 # Identify files
-video_file <- "6_visualize/out/river_conditions_apr_jun_2020.mp4"
+video_file <- "6_visualize/out/river_conditions_jul_sep_2020.mp4"
 video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
 video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
 visid_file <- "6_visualize/in/visid_overlay.png"
-video_w_visid_file <- "6_visualize/out/river_conditions_apr_jun_2020_visid.mp4"
+video_w_visid_file <- "6_visualize/out/river_conditions_jul_sep_2020_visid.mp4"
 
 # Cover up the existing USGS logo
 system(sprintf(
@@ -161,9 +161,9 @@ system(sprintf(
 # Create a visID version that isn't too big for Facebook
 
 ```
-video_file <- "6_visualize/out/river_conditions_apr_jun_2020_visid.mp4"
+video_file <- "6_visualize/out/river_conditions_jul_sep_2020_visid.mp4"
 video_resized_for_facebook <- "6_visualize/tmp/video_facebook_aspect_ratio.mp4"
-video_downscaled_for_facebook <- "6_visualize/out/river_conditions_apr_jun_2020_facebook.mp4"
+video_downscaled_for_facebook <- "6_visualize/out/river_conditions_jul_sep_2020_facebook.mp4"
 
 # Get viz frame dimensions and then divide by 2 bc we 
 # double them in combine_animation_frame
