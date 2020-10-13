@@ -92,8 +92,8 @@ create_animation_frame(
 # To create a Drupal carousel-optimized image, run the following
 
 ```
-version_info <- "river_conditions_apr_jun_2020"
-frame_to_use <- "6_visualize/tmp/frame_20200401_00.png"
+version_info <- "river_conditions_jul_sep_2020"
+frame_to_use <- "6_visualize/tmp/frame_20200924_00.png"
 
 run_magick_cmd <- function(command_str) {
   if(Sys.info()[['sysname']] == "Windows") {
@@ -107,6 +107,39 @@ run_magick_cmd <- function(command_str) {
 run_magick_cmd("convert -size 11400x3721 canvas:white carousel_background.png")
 run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.png %s %s_carousel.png", frame_to_use, version_info))
 
+```
+
+# To create a Drupal thumbnail-optimized image, run the following
+
+```
+version_info <- "river_conditions_jul_sep_2020"
+frame_to_use <- "6_visualize/tmp/frame_20200929_00.png"
+thumbnail_dim <- 500
+
+viz_config <- yaml::yaml.load_file("viz_config.yml")
+width <- viz_config[["width"]]
+height <- viz_config[["height"]]
+x_pos <- viz_config[["footnote_cfg"]][["x_pos"]]
+y_pos <- viz_config[["footnote_cfg"]][["y_pos"]]
+
+run_magick_cmd <- function(command_str) {
+  if(Sys.info()[['sysname']] == "Windows") {
+    magick_command <- sprintf('magick %s', command_str)
+  } else {
+    magick_command <- command_str
+  }
+  system(magick_command)
+}
+
+# Crop frame to map only view & resize so that width is 500
+run_magick_cmd(sprintf("convert %s -gravity West -chop %sx0 -gravity South -chop 0x%s -resize %sx%s drupal_thumbnail_intermediate.png", frame_to_use, width*x_pos*0.80, height*y_pos*2, thumbnail_dim, thumbnail_dim))
+
+# Create a square white image
+run_magick_cmd(sprintf("convert -size %sx%s canvas:white drupal_thumbnail.png", thumbnail_dim, thumbnail_dim))
+
+# Paste the map centered in the square white image
+run_magick_cmd(sprintf("convert -composite -gravity center drupal_thumbnail.png drupal_thumbnail_intermediate.png %s_thumbnail.png", version_info))
+      
 ```
 
 # To create a USGS VisID compliant video version
