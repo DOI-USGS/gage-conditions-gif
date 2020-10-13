@@ -12,10 +12,10 @@
   # Defaults to 9
   fade_out: 3
   text:
-    label: ["Extreme drought in", "southern Colorado"]
+    label: ["Extreme drought in", "parts of the Southwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.42
-    y_loc: 0.68
+    x_loc: 0.36
+    y_loc: 0.65
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 4
@@ -315,7 +315,7 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-08-27"
+    start: "2020-09-04"
     end: "2020-09-13"
   # Defaults to 9
   fade_in: 0
