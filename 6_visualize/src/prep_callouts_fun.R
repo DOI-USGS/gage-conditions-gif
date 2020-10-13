@@ -177,11 +177,23 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
         # Add the text
         for (i in 1:length(callout_text_lines)) {
           y_i <- y - (i-1)*strheight(callout_text_lines[i])*font_y_multiplier
-          text(x, y_i, labels = callout_text_lines[i],
+          txt_label <- callout_text_lines[i]
+
+          # Some lines can be specified using `*` as bold
+          # However, Abel doesn't have a bold option, so we are going to
+          # change the color instead.
+          if(grepl("\\*", txt_label)) {
+            txt_label <- gsub("\\*", "", txt_label)
+            txt_col <- "#04507d" # Using blue for now because I know I implemented this for storms only
+          } else {
+            txt_col <- "#383838"
+          }
+
+          text(x, y_i, labels = txt_label,
                cex = callout_text_cfg_n$cex,
                adj = adj,
                pos = pos,
-               col = paste0("#383838", callout_text_cfg_n$alpha))
+               col = paste0(txt_col, callout_text_cfg_n$alpha))
         }
       }
     }

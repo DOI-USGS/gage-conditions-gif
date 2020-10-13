@@ -258,7 +258,7 @@
   fade_out: 0
   text:
     label: [
-        "Aug 24: Hurricane Marco"
+        "*Aug 24: Hurricane Marco*"
       ]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.72
@@ -291,7 +291,7 @@
   text:
     label: [
         "Aug 24: Hurricane Marco",
-        "Aug 27: Hurricane Laura"
+        "*Aug 27: Hurricane Laura*"
       ]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.72
@@ -358,7 +358,7 @@
     label: [
         "Aug 24: Hurricane Marco",
         "Aug 27: Hurricane Laura",
-        "Sep 16: Hurricane Sally"
+        "*Sep 16: Hurricane Sally*"
       ]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.72
@@ -393,7 +393,7 @@
         "Aug 24: Hurricane Marco",
         "Aug 27: Hurricane Laura",
         "Sep 16: Hurricane Sally",
-        "Sep 21: Tropical Storm Beta"
+        "*Sep 21: Tropical Storm Beta*"
       ]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.72
