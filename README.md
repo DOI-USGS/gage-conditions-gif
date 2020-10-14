@@ -260,7 +260,7 @@ height <- viz_config[["height"]]/2
 
 # Find edge of map
 x_pos <- viz_config[["footnote_cfg"]][["x_pos"]]
-map_info_cutoff <- width*x_pos*0.80
+map_info_cutoff <- width*x_pos*0.90
 
 # Now crop to map
 system(sprintf(
@@ -322,7 +322,7 @@ system(sprintf(
 ## Create a video that contains only the title
 
 # Find title location
-title_guess_width <- wheel_radius*2*1.5 # diameter of wheel + some
+title_guess_width <- wheel_radius*2*1.8 # diameter of wheel + some
 title_guess_height <- 0.15*height #15% height of video
 title_x <- viz_config[["title_cfg"]][["x_pos"]]*width
 title_y <- viz_config[["title_cfg"]][["y_pos"]]*height
@@ -374,10 +374,10 @@ system(sprintf(
   "(W/2)-(w/2)", # Center 
   sprintf("(H-h-%s)/2", height), # Center in white space above map
   # Add title
-  "(W/6)",# Just in from the left
+  "(W*0.05)",# Just in from the left
   sprintf("(H-%s)/2", height), # Center in white space above map
   # Add logo
-  "(W/6)",# Just in from the left
+  "(W*0.05)",# Just in from the left
   sprintf("(H-%s)/2-%s", height, legend_guess_height/3), # Center in white space above map #""
   insta_dim,
   sprintf("%02d", reg_animation_start), # start animation
@@ -416,4 +416,5 @@ system(sprintf(
   files_to_cat_fn,
   video_insta
 ))
+
 ```
