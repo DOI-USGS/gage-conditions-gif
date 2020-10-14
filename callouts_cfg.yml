@@ -66,7 +66,7 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2020-07-15"
-    end: "2020-08-01"
+    end: "2020-07-27"
   # Defaults to 9
   fade_in: 1
   # Defaults to 9
@@ -194,8 +194,8 @@
   text:
     label: ["Severe", "drought", "in New", "England"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.71
-    y_loc: 0.97
+    x_loc: 0.70
+    y_loc: 0.96
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 7
@@ -396,7 +396,7 @@
       ]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.62
-    y_loc: 0.16
+    y_loc: 0.17
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 4.5
