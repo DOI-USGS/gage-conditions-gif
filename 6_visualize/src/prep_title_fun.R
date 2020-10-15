@@ -20,7 +20,7 @@ prep_title_fun <- function(title_cfg){
     }
 
     if(!is.null(title_cfg$footnote)) {
-      start_footnote <- title_y_sub - str_height*title_cfg$sub_cex*font_y_multiplier
+      start_footnote <- title_y_sub - str_height*title_cfg$sub_cex*font_y_multiplier*1.2
       for(i in 1:length(title_cfg$footnote)) {
         title_y_foot <- start_footnote - (i-1)*str_height*1.6*title_cfg$foot_cex
         text(x = title_x, y = title_y_foot,

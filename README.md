@@ -154,11 +154,11 @@ timestep_frame_config <- remake::fetch("timestep_frame_config")
 viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
 
 # Identify files
-video_file <- "6_visualize/out/river_conditions_jul_sep_2020.mp4"
+video_file <- "6_visualize/out/river_conditions_jul_sep_2020_largetext_twitter.mp4"
 video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
 video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
 visid_file <- "6_visualize/in/visid_overlay.png"
-video_w_visid_file <- "6_visualize/out/river_conditions_jul_sep_2020_visid.mp4"
+video_w_visid_file <- "6_visualize/out/river_conditions_jul_sep_2020_visid_largetext.mp4"
 
 # Cover up the existing USGS logo
 system(sprintf(
@@ -194,9 +194,9 @@ system(sprintf(
 # Create a visID version that isn't too big for Facebook
 
 ```
-video_file <- "6_visualize/out/river_conditions_jul_sep_2020_visid.mp4"
+video_file <- "6_visualize/out/river_conditions_jul_sep_2020_visid_largetext.mp4"
 video_resized_for_facebook <- "6_visualize/tmp/video_facebook_aspect_ratio.mp4"
-video_downscaled_for_facebook <- "6_visualize/out/river_conditions_jul_sep_2020_facebook.mp4"
+video_downscaled_for_facebook <- "6_visualize/out/river_conditions_jul_sep_2020_largetext_facebook.mp4"
 
 # Get viz frame dimensions and then divide by 2 bc we 
 # double them in combine_animation_frame
@@ -235,7 +235,7 @@ system(sprintf(
 # Create an Instagram square version by cutting, pasting, and moving datewheel, title, and legend
 
 ```
-video_file <- "6_visualize/out/river_conditions_jul_sep_2020_largetext.mp4"
+video_file <- "6_visualize/out/river_conditions_jul_sep_2020_largetext_twitter.mp4"
 video_map_only <- "6_visualize/tmp/map_only.mp4"
 video_map_square <- "6_visualize/tmp/map_square.mp4"
 video_datewheel <- "6_visualize/tmp/datewheel.mp4"
@@ -245,7 +245,7 @@ video_logo <- "6_visualize/tmp/logo.mp4"
 video_stitched <- "6_visualize/tmp/stitched.mp4"
 video_intro <- "6_visualize/tmp/intro.mp4"
 video_outro <- "6_visualize/tmp/outro.mp4"
-video_insta <- "6_visualize/out/river_conditions_jul_sep_2020_insta.mp4"
+video_insta <- "6_visualize/out/river_conditions_jul_sep_2020_largetext_insta.mp4"
 
 reg_animation_start <- 4 # seconds into animation that map is first shown
 reg_animation_end <- 49 # seconds into animation that map is last shown
@@ -323,7 +323,7 @@ system(sprintf(
 
 # Find title location
 title_guess_width <- wheel_radius*2*1.8 # diameter of wheel + some
-title_guess_height <- 0.15*height #15% height of video
+title_guess_height <- 0.20*height #20% height of video
 title_x <- viz_config[["title_cfg"]][["x_pos"]]*width
 title_y <- viz_config[["title_cfg"]][["y_pos"]]*height
 

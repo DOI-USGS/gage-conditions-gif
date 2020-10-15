@@ -72,12 +72,13 @@ legend_cfg:
   text_cex: 2.4
   text_col: "#444444"
   x_pos: 0.11
-  y_pos: 0.82
+  y_pos: 0.79
 title_cfg:
   main: "U.S. River Conditions"
   subtitle: "July 1 - September 30, 2020"
   footnote: [
-    "Conditions are relative to the historic daily record for each gage.",
+    "Conditions are relative to the historic",
+    "daily record for each gage.",
   ]
   x_pos: 0.005
   y_pos: 0.94
@@ -85,7 +86,7 @@ title_cfg:
   main_col: "#666666"
   sub_cex: 3.6
   sub_col: "#666666"
-  foot_cex: 2
+  foot_cex: 2.6
   foot_col: "#939393"
 footnote_cfg:
   main: [
@@ -94,7 +95,7 @@ footnote_cfg:
   ]
   x_pos: 0.255 # 0.30 (visid image)
   y_pos: 0.02
-  cex: 2
+  cex: 2.5
   col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
