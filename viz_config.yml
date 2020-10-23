@@ -1,7 +1,7 @@
 # Actual dates of the viz frames
 vizDates:
-  start: '2020-04-01'
-  end: '2020-06-30'
+  start: '2020-07-01'
+  end: '2020-09-30'
 # Dates that make up the wheel (usually a full year)
 wheelDates:
   start: '2019-10-01'
@@ -72,12 +72,13 @@ legend_cfg:
   text_cex: 2.4
   text_col: "#444444"
   x_pos: 0.11
-  y_pos: 0.82
+  y_pos: 0.79
 title_cfg:
   main: "U.S. River Conditions"
-  subtitle: "April 1 - June 30, 2020"
+  subtitle: "July 1 - September 30, 2020"
   footnote: [
-    "Conditions are relative to the historic daily record for each gage.",
+    "Conditions are relative to the historic",
+    "daily record for each gage.",
   ]
   x_pos: 0.005
   y_pos: 0.94
@@ -85,7 +86,7 @@ title_cfg:
   main_col: "#666666"
   sub_cex: 3.6
   sub_col: "#666666"
-  foot_cex: 2
+  foot_cex: 2.6
   foot_col: "#939393"
 footnote_cfg:
   main: [
@@ -94,7 +95,7 @@ footnote_cfg:
   ]
   x_pos: 0.255 # 0.30 (visid image)
   y_pos: 0.02
-  cex: 2
+  cex: 2.5
   col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
@@ -107,9 +108,9 @@ datewheel_cfg:
     col_filled: "#5d5d5dB3" # color to fill in the wheel as time marches on, last two = hex transparency
     col_text_months: "#383838" # color of month labels inside wheel
     col_text_months_outside: "#bdbdbd" # color of month labels inside wheel NOT during viz dates
-    cex_text_months: 1.8
+    cex_text_months: 2.2
     col_text_datestamp: "#5f5f5f" # color of text inside the wheel
-    cex_text_datestamp: 2.0
+    cex_text_datestamp: 2.5
 
 # gif options
 animation:
@@ -130,8 +131,8 @@ intro_frame:
 final_frame:
   cfg:
     pause_count: 10 # number of frames for which to pause/repeat the final timestep of the animation
-    fade_count: 15 # number of frames for which the final frame will fade in
-    show_count: 15 # number of frames for which the final frame will be seen
+    fade_count: 12 # number of frames for which the final frame will fade in
+    show_count: 12 # number of frames for which the final frame will be seen
   paragraphs:
     -
       text: ["Learn more about USGS\n", "streamgages and their role in\n", "science and public safety:"]

@@ -92,8 +92,8 @@ create_animation_frame(
 # To create a Drupal carousel-optimized image, run the following
 
 ```
-version_info <- "river_conditions_apr_jun_2020"
-frame_to_use <- "6_visualize/tmp/frame_20200401_00.png"
+version_info <- "river_conditions_jul_sep_2020"
+frame_to_use <- "6_visualize/tmp/frame_20200924_00.png"
 
 run_magick_cmd <- function(command_str) {
   if(Sys.info()[['sysname']] == "Windows") {
@@ -109,6 +109,39 @@ run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.p
 
 ```
 
+# To create a Drupal thumbnail-optimized image, run the following
+
+```
+version_info <- "river_conditions_jul_sep_2020"
+frame_to_use <- "6_visualize/tmp/frame_20200929_00.png"
+thumbnail_dim <- 500
+
+viz_config <- yaml::yaml.load_file("viz_config.yml")
+width <- viz_config[["width"]]
+height <- viz_config[["height"]]
+x_pos <- viz_config[["footnote_cfg"]][["x_pos"]]
+y_pos <- viz_config[["footnote_cfg"]][["y_pos"]]
+
+run_magick_cmd <- function(command_str) {
+  if(Sys.info()[['sysname']] == "Windows") {
+    magick_command <- sprintf('magick %s', command_str)
+  } else {
+    magick_command <- command_str
+  }
+  system(magick_command)
+}
+
+# Crop frame to map only view & resize so that width is 500
+run_magick_cmd(sprintf("convert %s -gravity West -chop %sx0 -gravity South -chop 0x%s -resize %sx%s drupal_thumbnail_intermediate.png", frame_to_use, width*x_pos*0.80, height*y_pos*2, thumbnail_dim, thumbnail_dim))
+
+# Create a square white image
+run_magick_cmd(sprintf("convert -size %sx%s canvas:white drupal_thumbnail.png", thumbnail_dim, thumbnail_dim))
+
+# Paste the map centered in the square white image
+run_magick_cmd(sprintf("convert -composite -gravity center drupal_thumbnail.png drupal_thumbnail_intermediate.png %s_thumbnail.png", version_info))
+      
+```
+
 # To create a USGS VisID compliant video version
 
 ```
@@ -121,11 +154,11 @@ timestep_frame_config <- remake::fetch("timestep_frame_config")
 viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
 
 # Identify files
-video_file <- "6_visualize/out/river_conditions_apr_jun_2020.mp4"
+video_file <- "6_visualize/out/river_conditions_jul_sep_2020_largetext_twitter.mp4"
 video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
 video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
 visid_file <- "6_visualize/in/visid_overlay.png"
-video_w_visid_file <- "6_visualize/out/river_conditions_apr_jun_2020_visid.mp4"
+video_w_visid_file <- "6_visualize/out/river_conditions_jul_sep_2020_visid_largetext.mp4"
 
 # Cover up the existing USGS logo
 system(sprintf(
@@ -161,9 +194,9 @@ system(sprintf(
 # Create a visID version that isn't too big for Facebook
 
 ```
-video_file <- "6_visualize/out/river_conditions_apr_jun_2020_visid.mp4"
+video_file <- "6_visualize/out/river_conditions_jul_sep_2020_visid_largetext.mp4"
 video_resized_for_facebook <- "6_visualize/tmp/video_facebook_aspect_ratio.mp4"
-video_downscaled_for_facebook <- "6_visualize/out/river_conditions_apr_jun_2020_facebook.mp4"
+video_downscaled_for_facebook <- "6_visualize/out/river_conditions_jul_sep_2020_largetext_facebook.mp4"
 
 # Get viz frame dimensions and then divide by 2 bc we 
 # double them in combine_animation_frame
@@ -195,6 +228,193 @@ system(sprintf(
     viz_config_dim$width * scale_factor,
     new_height * scale_factor,
     video_downscaled_for_facebook
+))
+
+```
+
+# Create an Instagram square version by cutting, pasting, and moving datewheel, title, and legend
+
+```
+video_file <- "6_visualize/out/river_conditions_jul_sep_2020_largetext_twitter.mp4"
+video_map_only <- "6_visualize/tmp/map_only.mp4"
+video_map_square <- "6_visualize/tmp/map_square.mp4"
+video_datewheel <- "6_visualize/tmp/datewheel.mp4"
+video_legend <- "6_visualize/tmp/legend.mp4"
+video_title <- "6_visualize/tmp/title.mp4"
+video_logo <- "6_visualize/tmp/logo.mp4"
+video_stitched <- "6_visualize/tmp/stitched.mp4"
+video_intro <- "6_visualize/tmp/intro.mp4"
+video_outro <- "6_visualize/tmp/outro.mp4"
+video_insta <- "6_visualize/out/river_conditions_jul_sep_2020_largetext_insta.mp4"
+
+reg_animation_start <- 4 # seconds into animation that map is first shown
+reg_animation_end <- 49 # seconds into animation that map is last shown
+
+insta_dim <- 600 # square shape
+
+viz_config <- yaml::yaml.load_file("viz_config.yml")
+width <- viz_config[["width"]]/2
+height <- viz_config[["height"]]/2
+
+## Crop video to create a map version
+
+# Find edge of map
+x_pos <- viz_config[["footnote_cfg"]][["x_pos"]]
+map_info_cutoff <- width*x_pos*0.90
+
+# Now crop to map
+system(sprintf(
+  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', 
+  video_file,
+  width - map_info_cutoff, 
+  height,
+  map_info_cutoff,
+  0,
+  video_map_only
+))
+
+## Make map video a square with white space on top by
+#   increasing height to be the same as width
+system(sprintf(
+  'ffmpeg -y -i %s -vf "pad=iw:iw:0:(oh-ih):color=white" %s', 
+  video_map_only,
+  video_map_square
+))
+
+## Create a video that contains only the datewheel
+
+# Find wheel location
+wheel_radius <- viz_config[["datewheel_cfg"]][["wheel_per"]]*width/2
+wheel_center_x <- viz_config[["datewheel_cfg"]][["x_pos"]]*width
+wheel_center_y <- viz_config[["datewheel_cfg"]][["y_pos"]]*height
+
+# Now crop out just wheel
+buffer<-1.2
+system(sprintf(
+  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', 
+  video_file,
+  wheel_radius*2*buffer, # diameter of wheel 
+  wheel_radius*2*buffer,
+  wheel_center_x - wheel_radius*buffer,
+  wheel_center_y + wheel_radius,
+  video_datewheel
+))
+
+## Create a video that contains only the legend
+
+# Find legend location
+legend_guess_width <- 0.08*width #10% width of video
+legend_guess_height <- 0.32*height #30% height of video
+legend_x <- viz_config[["legend_cfg"]][["x_pos"]]*width
+legend_y <- viz_config[["legend_cfg"]][["y_pos"]]*height
+
+# Now crop out just legend and scale to be bigger
+system(sprintf(
+  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', 
+  video_file,
+  legend_guess_width,  
+  legend_guess_height,
+  legend_x - legend_guess_width/1.5,
+  height - legend_y*1.05,
+  video_legend
+))
+
+## Create a video that contains only the title
+
+# Find title location
+title_guess_width <- wheel_radius*2*1.8 # diameter of wheel + some
+title_guess_height <- 0.20*height #20% height of video
+title_x <- viz_config[["title_cfg"]][["x_pos"]]*width
+title_y <- viz_config[["title_cfg"]][["y_pos"]]*height
+
+# Now crop out just title
+system(sprintf(
+  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', # scale=%s:-1
+  video_file,
+  title_guess_width,  
+  title_guess_height,
+  0,
+  0,
+  # width/3, # Scale to fit 1/3 of the final video
+  video_title
+))
+
+# Create a video that contains only the logo
+
+# Find logo location
+logo_guess_width <- wheel_radius*2*1.2 # diameter of wheel
+logo_guess_height <- 0.10*height #10% height of video
+logo_x <- 0
+logo_y <- 0
+
+# Now crop out just title
+system(sprintf(
+  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', # scale=%s:-1
+  video_file,
+  logo_guess_width,  
+  logo_guess_height,
+  0,
+  height,
+  video_logo
+))
+
+# Overlay these videos on top of existing video
+# And cut out intro & outro (reg animation starts at 4 seconds, ends at 45)
+system(sprintf(
+  'ffmpeg -y -i %s -i %s -i %s -i %s -i %s -filter_complex "overlay=%s:%s,overlay=%s:%s,overlay=%s:%s,overlay=%s:%s,scale=%s:-1" -ss 00:00:%s  -t 00:00:%s %s', 
+  video_map_square,
+  video_datewheel,
+  video_legend,
+  video_title,
+  video_logo,
+  # Add date wheel
+  "(W-(W/3))",# Center in right half
+  sprintf("(H-h-%s)/2", height), # Center in white space above map
+  # Add legend
+  "(W/2)-(w/2)", # Center 
+  sprintf("(H-h-%s)/2", height), # Center in white space above map
+  # Add title
+  "(W*0.05)",# Just in from the left
+  sprintf("(H-%s)/2", height), # Center in white space above map
+  # Add logo
+  "(W*0.05)",# Just in from the left
+  sprintf("(H-%s)/2-%s", height, legend_guess_height/3), # Center in white space above map #""
+  insta_dim,
+  sprintf("%02d", reg_animation_start), # start animation
+  sprintf("%02d", reg_animation_end-reg_animation_start), # end animation
+  video_stitched
+))
+
+
+# Need intro text centered
+# So cutting video and then adding in at the beginning
+system(sprintf(
+  'ffmpeg -y -i %s -ss 00:00:00 -t 00:00:%s -vf "crop=iw:(ih-%s):0:0,pad=iw:iw:(ow-iw)/2:(oh-ih)/2:color=white,scale=%s:-1" %s', # scale=%s:-1
+  video_file,
+  sprintf("%02d", reg_animation_start-1),
+  logo_guess_height,  
+  insta_dim,
+  video_intro
+))
+
+# Now do the same thing to the outro
+system(sprintf(
+  'ffmpeg -y -i %s -ss 00:00:%s -vf "crop=iw:(ih-%s):0:0,pad=iw:iw:(ow-iw)/2:(oh-ih)/2:color=white,scale=%s:-1" %s', # scale=%s:-1
+  video_file,
+  sprintf("%02d", reg_animation_end+1),
+  logo_guess_height,  
+  insta_dim,
+  video_outro
+))
+
+# Bring them all together
+files_to_cat_fn <- "6_visualize/tmp/videos_to_concat.txt"
+writeLines(sprintf("file '%s'", c(basename(video_intro), basename(video_stitched), basename(video_outro))), files_to_cat_fn)
+
+system(sprintf(
+  'ffmpeg -y -safe 0 -f concat -i %s -c copy %s',
+  files_to_cat_fn,
+  video_insta
 ))
 
 ```
