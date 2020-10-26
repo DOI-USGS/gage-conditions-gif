@@ -392,12 +392,12 @@
 -
   event_dates:
     start: "2020-03-10"
-    end: "2020-03-30"
+    end: "2020-04-30"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-03-18"
-    end: "2020-03-31"
+    start: "2020-03-25"
+    end: "2020-04-15"
   # Defaults to 9
   fade_in: 5
   # Defaults to 9
@@ -423,36 +423,6 @@
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/q2_callout_07.png"
--
-  event_dates:
-    start: "2020-04-01"
-    end: "2020-04-30"
-  text_dates:
-    # Adjust these if the text + callout shape should appear for
-    #   different dates than the event appears on the date wheel
-    start: "2020-04-05"
-    end: "2020-04-30"
-  # Defaults to 9
-  fade_in: 4
-  # Defaults to 9
-  fade_out:
-  text:
-    label: ["Drought", "conditions", "in Florida"]
-    # This is in percentage space, relative to the plotting device
-    x_loc: 0.76
-    y_loc: 0.19
-    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 1
-    cex: 4
-  # TRUE or FALSE, defaults to FALSE
-  add_box:
-  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#ca0020"
-  # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
-  polygon:
-    # Defaults to existing small NE shape
-    file: "6_visualize/in/q3_callout_01.png"
 -
   event_dates:
     start: "2020-04-01"
@@ -510,7 +480,7 @@
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # TRUE or FALSE, defaults to FALSE
-  wheel_hierarchy: 0
+  wheel_hierarchy: 1
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/q3_callout_03.png"
@@ -582,7 +552,7 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2020-05-28"
-    end: "2020-06-30"
+    end: "2020-06-15"
   # Defaults to 9
   fade_in: 5
   # Defaults to 9
@@ -748,7 +718,7 @@
     y_loc: 0.73
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -778,7 +748,7 @@
     y_loc: 0.52
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -808,7 +778,7 @@
     y_loc: 0.93
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -835,10 +805,10 @@
     label: ["Hurricane Hanna", "brings rain to", "the Texas coast"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.68
-    y_loc: 0.21
+    y_loc: 0.19
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -864,11 +834,11 @@
   text:
     label: ["Remnants of", "Hurricane Isaias", "bring high flows", "to parts of", "the Northeast"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.58
+    x_loc: 0.70
     y_loc: 0.75
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -894,11 +864,11 @@
   text:
     label: ["Growing area of", "extreme drought", "in the West"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.45
+    x_loc: 0.50
     y_loc: 0.94
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -922,13 +892,13 @@
   # Defaults to 9
   fade_out: 2
   text:
-    label: ["Severe", "drought", "in New", "England"]
+    label: ["Severe drought", "in New England"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.70
-    y_loc: 0.96
+    x_loc: 0.75
+    y_loc: 0.90
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -958,11 +928,11 @@
         "parts of the Southeast U.S."
       ]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.255
+    x_loc: 0.35
     y_loc: 0.25
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6.8
+    cex: 4.5
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -994,7 +964,7 @@
     y_loc: 0.17
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 4.5
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -1027,7 +997,7 @@
     y_loc: 0.17
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 4.5
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -1060,7 +1030,7 @@
     y_loc: 0.17
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 4.5
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -1094,7 +1064,7 @@
     y_loc: 0.17
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 4.5
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -1129,7 +1099,7 @@
     y_loc: 0.17
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 4.5
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -1155,11 +1125,11 @@
   text:
     label: ["On Sep 30, the", "James River falls", "below flood stage", "after 545 days"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.32
+    x_loc: 0.42
     y_loc: 0.80
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 4
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
