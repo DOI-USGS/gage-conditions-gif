@@ -54,6 +54,18 @@ scipiper::scmake(sprintf('6_visualize/tmp/frame_20200%s_00.png', days), '6_times
 # Build a single frame:
 scipiper::scmake('6_visualize/tmp/frame_20200210_00.png', '6_timestep_gif_tasks.yml')
 
+# Build a frame for the middle of each event
+
+dates_to_build <- lapply(lapply(yaml::read_yaml("callouts_cfg.yml"), '[[', "text_dates"), function(x) {
+  endDate <- as.Date(x$end)
+  startDate <- as.Date(x$start)
+  halfwayDate <- startDate + (endDate - startDate)/2
+  return(halfwayDate)
+}) %>% unlist() %>% as.Date(origin = "1970-01-01") %>% format("%Y%m%d")
+
+scipiper::scmake(sprintf('6_visualize/tmp/frame_%s_00.png', dates_to_build), '6_timestep_gif_tasks.yml')
+
+
 ```
 
 # Steps for using script-based process for creating callouts
