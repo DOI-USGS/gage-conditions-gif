@@ -98,8 +98,15 @@ prep_callouts_fun <- function(callouts_cfg, dateTime){
         x <- coord_space[1] + callout_text_cfg_n$x_loc * diff(coord_space[1:2])
         y <- coord_space[3] + callout_text_cfg_n$y_loc * diff(coord_space[3:4])
         callout_text_lines <- callout_text_cfg_n$label
-        font_x_multiplier <- approx(c(4,7), c(4.1, 7.2), callout_text_cfg_n$cex)$y # for Abel
-        font_y_multiplier <- approx(c(4,7), c(5, 11), callout_text_cfg_n$cex)$y # for Abel
+        if(callout_text_cfg_n$cex < 4 | callout_text_cfg_n$cex > 7) {
+          warning("Unsupported `cex` used. Should be between 4 and 7 for best spacing. Otherwise, new spacing needs to be tested with `cex` or wonky spacing will be in final image. See `prep_callouts_fun`")
+          font_x_multiplier <- 1
+          font_y_multiplier <- 1
+        } else {
+          font_x_multiplier <- approx(c(4,7), c(4.1, 7.2), callout_text_cfg_n$cex)$y # for Abel
+          font_y_multiplier <- approx(c(4,7), c(5, 11), callout_text_cfg_n$cex)$y # for Abel
+        }
+
         y_bot <- y - (length(callout_text_lines)-1)*strheight(callout_text_lines[1])*font_y_multiplier
 
         # Add the box behind the text if applicable
