@@ -1,11 +1,11 @@
 # Actual dates of the viz frames
 vizDates:
-  start: '2019-10-01'
-  end: '2020-09-30'
+  start: '2020-10-01'
+  end: '2020-12-31'
 # Dates that make up the wheel (usually a full year)
 wheelDates:
-  start: '2019-10-01'
-  end: '2020-09-30'
+  start: '2020-10-01'
+  end: '2021-09-30'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 3 # hours elapsed between GIF frames
 
