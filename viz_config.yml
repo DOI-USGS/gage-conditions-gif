@@ -75,7 +75,7 @@ legend_cfg:
   y_pos: 0.79
 title_cfg:
   main: "U.S. River Conditions"
-  subtitle: "October 1, 2019 - September 30, 2020"
+  subtitle: "October 1, 2020 - December 31, 2020"
   footnote: [
     "Conditions are relative to the historic",
     "daily record for each gage.",

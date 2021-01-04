@@ -22,7 +22,9 @@ file.create("callouts_cfg.yml")
 #####################
 ## Build ALL frames and then make video
 
-# Make sure to delete the contents of `callouts_cfg.yml` before building or you will have old events on the new frames. 
+# Prior to building the frames:
+#   1. Make sure to delete the contents of `callouts_cfg.yml` before building or you will have old events on the new frames. 
+#   2. Make sure the title in `viz_config.yml` is correct.
 
 # To make absolutely sure that your video will use the right font, you may need to run:
 sysfonts::font_add_google('Abel','abel')
