@@ -14,10 +14,10 @@
   text:
     label: ["Drought in", "New England"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.75
-    y_loc: 0.85
+    x_loc: 0.78
+    y_loc: 0.94
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
+    pos: 1
     cex: 6
   # TRUE or FALSE, defaults to FALSE
   add_box: FALSE
@@ -42,12 +42,12 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["Dry conditions in Hawaii", "October to mid-November"]
+    label: ["Dry conditions", "in Hawaii from", "October to", "mid-November"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.5
-    y_loc: 0.35
+    x_loc: 0.27
+    y_loc: 0.25
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 3
+    pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
@@ -72,10 +72,10 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["Extreme drought over", "much of the West"]
+    label: ["Extreme drought", "over much of", "the West"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.60
-    y_loc: 0.70
+    x_loc: 0.52
+    y_loc: 0.67
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -102,9 +102,9 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["Hurricane Delta brings", "flooding to Louisiana"]
+    label: ["Hurricane Delta", "brings flooding", "to Louisiana"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.70
+    x_loc: 0.72
     y_loc: 0.20
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 1
@@ -134,8 +134,8 @@
   text:
     label: ["Pacific moisture brings relief", "to parts of the Northwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.35
-    y_loc: 0.92
+    x_loc: 0.375
+    y_loc: 0.975
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -162,13 +162,13 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["Hurricane Eta brings", "flooding to the", "Florida peninsula"]
+    label: ["Hurricane Eta", "brings flooding", "to the Florida", "peninsula"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.87
-    y_loc: 0.40
+    x_loc: 0.85
+    y_loc: 0.39
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 5.5
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -192,12 +192,12 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["Drought worsens across", "the Southwest"]
+    label: ["Drought", "worsens", "across the", "Southwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.62
+    x_loc: 0.52
     y_loc: 0.50
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 1
+    pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
@@ -222,10 +222,10 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["Additional systems prolong high", "flows in the Northwest"]
+    label: ["Additional systems prolong", "high flows in the Northwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.40
-    y_loc: 0.85
+    x_loc: 0.35
+    y_loc: 0.95
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -287,7 +287,7 @@
     label: ["Multiple", "frontal", "systems", "in the", "Eastern", "U.S."]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.90
-    y_loc: 0.64
+    y_loc: 0.66
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 5
