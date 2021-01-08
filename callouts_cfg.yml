@@ -61,21 +61,21 @@
 -
   event_dates:
     start: "2020-10-01"
-    end: "2020-11-23"
+    end: "2020-12-31"
   text_dates:
-    # Adjust these if the text + callout shape should appear for
-    #   different dates than the event appears on the date wheel
-    start: "2020-10-01"
-    end: "2020-11-23"
+    # Combined two Western drought events into 1 and having the
+    #   text pop up during a slow part
+    start: "2020-11-30"
+    end: "2020-12-12"
   # Defaults to 9
   fade_in:
   # Defaults to 9
   fade_out:
   text:
-    label: ["Extreme drought", "over much of", "the West"]
+    label: ["Drought in", "the West", "worsens"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.52
-    y_loc: 0.67
+    y_loc: 0.60
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -175,36 +175,6 @@
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
   wheel_hierarchy: 1
-  polygon:
-    # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
--
-  event_dates:
-    start: "2020-11-26"
-    end: "2020-12-31"
-  text_dates:
-    # Adjust these if the text + callout shape should appear for
-    #   different dates than the event appears on the date wheel
-    start: "2020-11-26"
-    end: "2020-12-31"
-  # Defaults to 9
-  fade_in:
-  # Defaults to 9
-  fade_out:
-  text:
-    label: ["Drought", "worsens", "across the", "Southwest"]
-    # This is in percentage space, relative to the plotting device
-    x_loc: 0.52
-    y_loc: 0.50
-    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
-    cex: 6
-  # TRUE or FALSE, defaults to FALSE
-  add_box: TRUE
-  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#ca0020"
-  # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 3
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
