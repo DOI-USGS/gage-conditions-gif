@@ -12,19 +12,19 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Drought in New England
+    label: ["Drought in", "New England"]
     # This is in percentage space, relative to the plotting device
-    x_loc: # REQUIRED FIELD
-    y_loc: # REQUIRED FIELD
+    x_loc: 0.75
+    y_loc: 0.85
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: # REQUIRED FIELD
+    pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: FALSE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#04507d"
+  wheel_color: "#ca0020"
   # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
+  wheel_hierarchy: 2
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
@@ -42,19 +42,19 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Dry conditions in Hawaii from October to mid-November
+    label: ["Dry conditions in Hawaii", "October to mid-November"]
     # This is in percentage space, relative to the plotting device
-    x_loc: # REQUIRED FIELD
-    y_loc: # REQUIRED FIELD
+    x_loc: 0.5
+    y_loc: 0.35
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: # REQUIRED FIELD
+    pos: 3
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#04507d"
+  wheel_color: "#ca0020"
   # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
+  wheel_hierarchy: 3
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
@@ -72,19 +72,19 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Extreme drought over much of the West
+    label: ["Extreme drought over", "much of the West"]
     # This is in percentage space, relative to the plotting device
-    x_loc: # REQUIRED FIELD
-    y_loc: # REQUIRED FIELD
+    x_loc: 0.60
+    y_loc: 0.70
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: # REQUIRED FIELD
+    pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#04507d"
+  wheel_color: "#ca0020"
   # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
+  wheel_hierarchy: 4
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
@@ -102,15 +102,15 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Hurricane Delta brings flooding to Louisiana
+    label: ["Hurricane Delta brings", "flooding to Louisiana"]
     # This is in percentage space, relative to the plotting device
-    x_loc: # REQUIRED FIELD
-    y_loc: # REQUIRED FIELD
+    x_loc: 0.70
+    y_loc: 0.20
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: # REQUIRED FIELD
+    pos: 1
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: FALSE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
@@ -132,19 +132,19 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Multiple frontal systems in the Eastern U.S.
+    label: ["Multiple frontal", "systems in the", "Eastern U.S."]
     # This is in percentage space, relative to the plotting device
-    x_loc: # REQUIRED FIELD
-    y_loc: # REQUIRED FIELD
+    x_loc: 0.88
+    y_loc: 0.64
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: # REQUIRED FIELD
+    pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: FALSE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
+  wheel_hierarchy: 0
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
@@ -162,19 +162,19 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Pacific moisture brings relief to parts of the Northwest
+    label: ["Pacific moisture brings relief", "to parts of the Northwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: # REQUIRED FIELD
-    y_loc: # REQUIRED FIELD
+    x_loc: 0.35
+    y_loc: 0.92
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: # REQUIRED FIELD
+    pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: FALSE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
+  wheel_hierarchy: 2
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
@@ -192,15 +192,15 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Hurricane Eta brings flooding to the Florida peninsula
+    label: ["Hurricane Eta brings", "flooding to the", "Florida peninsula"]
     # This is in percentage space, relative to the plotting device
-    x_loc: # REQUIRED FIELD
-    y_loc: # REQUIRED FIELD
+    x_loc: 0.87
+    y_loc: 0.40
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: # REQUIRED FIELD
+    pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
@@ -210,31 +210,31 @@
     file: "6_visualize/in/overlay_callouts_dummy.png"
 -
   event_dates:
-    start: "2020-11-24"
+    start: "2020-11-26"
     end: "2020-12-31"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-11-24"
+    start: "2020-11-26"
     end: "2020-12-31"
   # Defaults to 9
   fade_in:
   # Defaults to 9
   fade_out:
   text:
-    label: Drought worsens across the Southwest
+    label: ["Drought worsens across", "the Southwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: # REQUIRED FIELD
-    y_loc: # REQUIRED FIELD
+    x_loc: 0.62
+    y_loc: 0.50
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: # REQUIRED FIELD
+    pos: 1
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#04507d"
+  wheel_color: "#ca0020"
   # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
+  wheel_hierarchy: 3
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
@@ -252,19 +252,19 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Additional systems prolong high flows in the Northwest
+    label: ["Additional systems prolong high", "flows in the Northwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: # REQUIRED FIELD
-    y_loc: # REQUIRED FIELD
+    x_loc: 0.40
+    y_loc: 0.85
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: # REQUIRED FIELD
+    pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
+  wheel_hierarchy: 2
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
