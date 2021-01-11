@@ -27,7 +27,7 @@
   wheel_hierarchy: 2
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/fy21_q1_callout_01.png"
 -
   event_dates:
     start: "2020-10-01"
@@ -57,7 +57,7 @@
   wheel_hierarchy: 3
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/fy21_q1_callout_02.png"
 -
   event_dates:
     start: "2020-10-01"
@@ -87,7 +87,7 @@
   wheel_hierarchy: 4
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/fy21_q1_callout_03.png"
 -
   event_dates:
     start: "2020-10-09"
@@ -117,7 +117,7 @@
   wheel_hierarchy: 1
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/fy21_q1_callout_04.png"
 -
   event_dates:
     start: "2020-11-04"
@@ -126,11 +126,11 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2020-11-04"
-    end: "2020-11-24"
+    end: "2020-11-20"
   # Defaults to 9
   fade_in: 3
   # Defaults to 9
-  fade_out:
+  fade_out: 4
   text:
     label: ["Pacific moisture brings relief", "to parts of the Northwest"]
     # This is in percentage space, relative to the plotting device
@@ -147,7 +147,7 @@
   wheel_hierarchy: 2
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/fy21_q1_callout_05.png"
 -
   event_dates:
     start: "2020-11-09"
@@ -177,7 +177,7 @@
   wheel_hierarchy: 1
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/fy21_q1_callout_06.png"
 -
   event_dates:
     start: "2020-12-17"
@@ -207,10 +207,39 @@
   wheel_hierarchy: 2
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/fy21_q1_callout_07.png"
 
 ##-- Multiple frontal systems - leave text up for the full animation but show different small
 ##-- events on the time wheel. Don't include a shape with this one.
+-
+  event_dates:
+    start: "2020-10-25"
+    end: "2020-11-06"
+  text_dates:
+    # Show text for full length of animation along with this frontal evt.
+    start: "2020-10-29"
+    end: "2020-12-31"
+  # Defaults to 9
+  fade_in: 3
+  # Defaults to 9
+  fade_out: 0
+  text:
+    label: ["Multiple", "frontal", "systems", "in the", "Eastern", "U.S."]
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.90
+    y_loc: 0.66
+    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
+    pos: 4
+    cex: 5
+  # TRUE or FALSE, defaults to FALSE
+  add_box: FALSE
+  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
+  wheel_color: "#04507d"
+  # Integer, starting with 0 (use >= 1 to increase height)
+  wheel_hierarchy: 0
+  polygon:
+    # Defaults to existing small NE shape
+    file: "6_visualize/in/overlay_callouts_dummy.png"
 -
   event_dates:
     start: "2020-10-10"
@@ -219,7 +248,7 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2020-10-10"
-    end: "2020-12-31"
+    end: "2020-10-17"
   # Defaults to 9
   fade_in:
   # Defaults to 9
@@ -248,13 +277,13 @@
   text_dates:
     # Show text for full length of animation along with this frontal evt.
     start: "2020-10-25"
-    end: "2020-12-31"
+    end: "2020-11-06"
   # Defaults to 9
   fade_in: 3
   # Defaults to 9
   fade_out: 0
   text:
-    label: ["Multiple", "frontal", "systems", "in the", "Eastern", "U.S."]
+    label: ""
     # This is in percentage space, relative to the plotting device
     x_loc: 0.90
     y_loc: 0.66
@@ -269,7 +298,7 @@
   wheel_hierarchy: 0
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/fy21_q1_callout_09.png"
 -
   event_dates:
     start: "2020-11-11"
@@ -277,8 +306,8 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-10-10"
-    end: "2020-12-31"
+    start: "2020-11-11"
+    end: "2020-11-26"
   # Defaults to 9
   fade_in:
   # Defaults to 9
@@ -299,7 +328,7 @@
   wheel_hierarchy: 0
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/fy21_q1_callout_10.png"
 -
   event_dates:
     start: "2020-11-30"
@@ -307,8 +336,8 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-10-10"
-    end: "2020-12-31"
+    start: "2020-11-30"
+    end: "2020-12-10"
   # Defaults to 9
   fade_in:
   # Defaults to 9
@@ -329,7 +358,7 @@
   wheel_hierarchy: 0
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/fy21_q1_callout_11.png"
 -
   event_dates:
     start: "2020-12-14"
@@ -337,7 +366,7 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-10-10"
+    start: "2020-12-14"
     end: "2020-12-31"
   # Defaults to 9
   fade_in:
@@ -359,4 +388,4 @@
   wheel_hierarchy: 0
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
+    file: "6_visualize/in/fy21_q1_callout_12.png"
