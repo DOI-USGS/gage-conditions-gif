@@ -6,7 +6,7 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2020-10-03"
-    end: "2020-11-01"
+    end: "2020-10-22"
   # Defaults to 9
   fade_in: 2
   # Defaults to 9
@@ -276,10 +276,10 @@
     end: "2020-11-06"
   text_dates:
     # Show text for full length of animation along with this frontal evt.
-    start: "2020-10-25"
+    start: "2020-10-29"
     end: "2020-11-06"
   # Defaults to 9
-  fade_in: 3
+  fade_in: 2
   # Defaults to 9
   fade_out: 0
   text:
