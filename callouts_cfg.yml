@@ -68,7 +68,7 @@
     start: "2020-11-30"
     end: "2020-12-12"
   # Defaults to 9
-  fade_in:
+  fade_in: 4
   # Defaults to 9
   fade_out:
   text:
@@ -128,7 +128,7 @@
     start: "2020-11-04"
     end: "2020-11-20"
   # Defaults to 9
-  fade_in: 3
+  fade_in:
   # Defaults to 9
   fade_out: 4
   text:
@@ -277,7 +277,7 @@
   text_dates:
     # Show text for full length of animation along with this frontal evt.
     start: "2020-10-29"
-    end: "2020-11-06"
+    end: "2020-11-05"
   # Defaults to 9
   fade_in: 2
   # Defaults to 9
@@ -307,7 +307,7 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2020-11-11"
-    end: "2020-11-26"
+    end: "2020-11-24"
   # Defaults to 9
   fade_in:
   # Defaults to 9
@@ -366,7 +366,7 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-12-14"
+    start: "2020-12-24"
     end: "2020-12-31"
   # Defaults to 9
   fade_in:
@@ -388,4 +388,4 @@
   wheel_hierarchy: 0
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/fy21_q1_callout_12.png"
+    file: "6_visualize/in/fy20_q1_callout_01.png"
