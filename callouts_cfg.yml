@@ -10,7 +10,7 @@
   # Defaults to 9
   fade_in: 2
   # Defaults to 9
-  fade_out:
+  fade_out: 3
   text:
     label: ["Drought in", "New England"]
     # This is in percentage space, relative to the plotting device
@@ -31,16 +31,46 @@
 -
   event_dates:
     start: "2020-10-01"
+    end: "2020-11-02"
+  text_dates:
+    # Combined two Western drought events into 1 and having the
+    #   text pop up during a slow part
+    start: "2020-10-03"
+    end: "2020-10-22"
+  # Defaults to 9
+  fade_in: 2
+  # Defaults to 9
+  fade_out: 3
+  text:
+    label: ["Drought continues", "in the West"]
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.52
+    y_loc: 0.55
+    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
+    pos: 4
+    cex: 6
+  # TRUE or FALSE, defaults to FALSE
+  add_box: TRUE
+  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
+  wheel_color: "#ca0020"
+  # Integer, starting with 0 (use >= 1 to increase height)
+  wheel_hierarchy: 4
+  polygon:
+    # Defaults to existing small NE shape
+    file: "6_visualize/in/fy21_q1_callout_03.png"
+-
+  event_dates:
+    start: "2020-10-01"
     end: "2020-11-17"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2020-10-20"
-    end: "2020-11-17"
+    end: "2020-11-05"
   # Defaults to 9
-  fade_in: 3
+  fade_in: 5
   # Defaults to 9
-  fade_out:
+  fade_out: 3
   text:
     label: ["Dry conditions", "in Hawaii from", "October to", "mid-November"]
     # This is in percentage space, relative to the plotting device
@@ -60,22 +90,22 @@
     file: "6_visualize/in/fy21_q1_callout_02.png"
 -
   event_dates:
-    start: "2020-10-01"
+    start: "2020-11-01"
     end: "2020-12-31"
   text_dates:
     # Combined two Western drought events into 1 and having the
     #   text pop up during a slow part
-    start: "2020-11-30"
-    end: "2020-12-12"
+    start: "2020-11-26"
+    end: "2020-12-10"
   # Defaults to 9
-  fade_in: 4
+  fade_in: 2
   # Defaults to 9
-  fade_out:
+  fade_out: 5
   text:
-    label: ["Drought in", "the West", "worsens"]
+    label: ["Drought worsens in", "parts of the West"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.52
-    y_loc: 0.60
+    y_loc: 0.55
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -100,7 +130,7 @@
   # Defaults to 9
   fade_in: 2
   # Defaults to 9
-  fade_out:
+  fade_out: 3
   text:
     label: ["Hurricane Delta", "brings flooding", "to Louisiana"]
     # This is in percentage space, relative to the plotting device
@@ -126,7 +156,7 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2020-11-04"
-    end: "2020-11-20"
+    end: "2020-11-17"
   # Defaults to 9
   fade_in:
   # Defaults to 9
@@ -158,7 +188,7 @@
     start: "2020-11-09"
     end: "2020-11-21"
   # Defaults to 9
-  fade_in: 1
+  fade_in: 5
   # Defaults to 9
   fade_out:
   text:
@@ -217,10 +247,10 @@
     end: "2020-11-06"
   text_dates:
     # Show text for full length of animation along with this frontal evt.
-    start: "2020-10-29"
+    start: "2020-10-27"
     end: "2020-12-31"
   # Defaults to 9
-  fade_in: 3
+  fade_in: 6
   # Defaults to 9
   fade_out: 0
   text:
@@ -366,7 +396,7 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2020-12-24"
+    start: "2020-12-23"
     end: "2020-12-31"
   # Defaults to 9
   fade_in:
@@ -388,4 +418,4 @@
   wheel_hierarchy: 0
   polygon:
     # Defaults to existing small NE shape
-    file: "6_visualize/in/fy20_q1_callout_01.png"
+    file: "6_visualize/in/fy21_q1_callout_12.png"
