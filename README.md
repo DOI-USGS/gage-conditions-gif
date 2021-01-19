@@ -158,6 +158,56 @@ run_magick_cmd(sprintf("convert -composite -gravity center drupal_thumbnail.png 
       
 ```
 
+# Create a VisID compliant still image to be the paused frame view on Drupal
+
+```
+frame_to_use <- "6_visualize/tmp/frame_20201021_00.png"
+version_info <- "river_conditions_oct_dec_2020"
+visid_file <- "6_visualize/in/visid_overlay.png"
+
+# Get viz frame dimensions and then divide by 2 bc we 
+# double them in combine_animation_frame
+timestep_frame_config <- remake::fetch("timestep_frame_config")
+viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
+
+run_magick_cmd <- function(command_str) {
+  if(Sys.info()[['sysname']] == "Windows") {
+    magick_command <- sprintf('magick %s', command_str)
+  } else {
+    magick_command <- command_str
+  }
+  system(magick_command)
+}
+
+# TODO: Add code to cover logo! Manually doing that for now due to time.
+
+# Resize the existing frame to fit the black bottom bar
+# without changing aspect ratio
+run_magick_cmd(sprintf(
+    "convert %s -resize %sx%s %s",
+    frame_to_use, 
+    viz_config_dim$width - viz_config_dim$width*0.08691406,
+    viz_config_dim$height - viz_config_dim$height*0.08691406,
+    "6_visualize/tmp/frame_resized.png"))
+
+# Put resized frame into an appropriately sized image but with
+#  space at the bottom for the bar
+#   1. Create image that is the right size but just blank
+run_magick_cmd(sprintf("convert -size %sx%s canvas:white 6_visualize/tmp/drupal_still.png", viz_config_dim$width, viz_config_dim$height))
+# Now add the new frame
+run_magick_cmd(sprintf(
+    "convert -composite -gravity north %s %s %s",
+    "6_visualize/tmp/drupal_still.png", 
+    "6_visualize/tmp/frame_resized.png", 
+    "6_visualize/tmp/frame_resized_ready.png"))
+
+run_magick_cmd(sprintf(
+    "convert -composite -gravity southwest %s %s %s_visid_drupal.png",
+    "6_visualize/tmp/frame_resized_ready.png", 
+    visid_file, 
+    version_info))
+```
+
 # To create a USGS VisID compliant video version
 
 ```
@@ -170,7 +220,7 @@ timestep_frame_config <- remake::fetch("timestep_frame_config")
 viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
 
 # Identify files
-video_file <- "6_visualize/out/river_conditions_oct_dec_2020.mp4"
+video_file <- "6_visualize/out/river_conditions_oct_dec_2020_twitter.mp4"
 video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
 video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
 visid_file <- "6_visualize/in/visid_overlay.png"
@@ -251,7 +301,7 @@ system(sprintf(
 # Create an Instagram square version by cutting, pasting, and moving datewheel, title, and legend
 
 ```
-video_file <- "6_visualize/out/river_conditions_oct_dec_2020.mp4"
+video_file <- "6_visualize/out/river_conditions_oct_dec_2020_twitter.mp4"
 video_map_only <- "6_visualize/tmp/map_only.mp4"
 video_map_square <- "6_visualize/tmp/map_square.mp4"
 video_datewheel <- "6_visualize/tmp/datewheel.mp4"
@@ -338,7 +388,7 @@ system(sprintf(
 ## Create a video that contains only the title
 
 # Find title location
-title_guess_width <- wheel_radius*2*1.8 # diameter of wheel + some
+title_guess_width <- wheel_radius*2*1.6# diameter of wheel + some
 title_guess_height <- 0.20*height #20% height of video
 title_x <- viz_config[["title_cfg"]][["x_pos"]]*width
 title_y <- viz_config[["title_cfg"]][["y_pos"]]*height
