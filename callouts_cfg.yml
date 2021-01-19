@@ -12,13 +12,13 @@
   # Defaults to 9
   fade_out: 3
   text:
-    label: ["Drought in", "New England"]
+    label: ["Drought in the", "Northeastern U.S."]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.78
-    y_loc: 0.94
+    y_loc: 0.95
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 1
-    cex: 6
+    cex: 5.8
   # TRUE or FALSE, defaults to FALSE
   add_box: FALSE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
