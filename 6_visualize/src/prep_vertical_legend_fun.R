@@ -51,16 +51,17 @@ prep_vertical_legend_fun <- function(x_pos, y_pos, legend_cfg, gage_style,
     # used for spacing circles along the x and y directions
     point_width <- legend_cfg$point_mult*strwidth("O")
     point_height <- legend_cfg$point_mult*strheight("O")
-    legend_style$point_height <- legend_style$cex*strheight("O")*legend_cfg$point_mult
+    # legend_style$point_height <- legend_style$cex*strheight("O")*legend_cfg$point_mult
+    legend_style$point_height <- median(legend_style$cex)*strheight("O")*legend_cfg$point_mult
 
     text_pos <- 2
-    x_text <- x_loc - point_width*0.55
+    x_text <- x_loc - point_width*0.75
 
     y_start <- y_loc - strheight(legend_style$legend_text[1])
     y_loc_n <- y_start
     for(n in 1:nrow(legend_style)) {
       point_height_n <- ifelse(n==1, 0, legend_style$point_height[n-1])
-      point_spacing <- ifelse(is.na(legend_style$per[n]), 0.4, 0.7)
+      point_spacing <- ifelse(is.na(legend_style$per[n]), 0.7, 0.7)
       y_loc_n <- y_loc_n - point_height_n*point_spacing
       scale_cex_factor <- ifelse(legend_style$legend_text[n] %in% c("Dry", "Drier", "Driest"),
                                  yes = 1.5,

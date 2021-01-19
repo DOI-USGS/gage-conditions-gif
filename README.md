@@ -298,15 +298,36 @@ system(sprintf(
 
 ```
 
-# Create an Instagram square version by cutting, pasting, and moving datewheel, title, and legend
+# Create an Instagram square version by rebuilding with bigger text and then
+#   cutting, pasting, and moving datewheel, title, and legend
 
 ```
-video_file <- "6_visualize/out/river_conditions_oct_dec_2020_twitter.mp4"
+# First, need to overwrite the frames and rebuild the regular video.
+# Go to `viz_config.yml` and comment out the regular specs & then uncomment the Instagram ones
+# CTRL+F for "instagram" to find it
+
+# REBUILD FRAMES & VIDEO (you will probably need to delete pause frames before they rebuild)
+sysfonts::font_add_google('Abel','abel')
+
+scipiper::scmake('6_intro_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
+scipiper::scmake('6_visualize/log/6_intro_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+
+scipiper::scmake('6_timestep_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
+scipiper::scmake('6_visualize/log/6_timestep_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+
+scipiper::scmake('6_pause_gif_tasks.yml', remake_file = '6_visualize.yml', force=TRUE)
+scipiper::scmake('6_visualize/log/6_pause_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+
+scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
+
+video_file <- "6_visualize/out/year_in_review.mp4"
+video_title_covered <- "6_visualize/tmp/no_title.mp4"
 video_map_only <- "6_visualize/tmp/map_only.mp4"
 video_map_square <- "6_visualize/tmp/map_square.mp4"
 video_datewheel <- "6_visualize/tmp/datewheel.mp4"
 video_legend <- "6_visualize/tmp/legend.mp4"
 video_title <- "6_visualize/tmp/title.mp4"
+video_footnote <- "6_visualize/tmp/footnote.mp4"
 video_logo <- "6_visualize/tmp/logo.mp4"
 video_stitched <- "6_visualize/tmp/stitched.mp4"
 video_intro <- "6_visualize/tmp/intro.mp4"
@@ -322,31 +343,6 @@ viz_config <- yaml::yaml.load_file("viz_config.yml")
 width <- viz_config[["width"]]/2
 height <- viz_config[["height"]]/2
 
-## Crop video to create a map version
-
-# Find edge of map
-x_pos <- viz_config[["footnote_cfg"]][["x_pos"]]
-map_info_cutoff <- width*x_pos*0.90
-
-# Now crop to map
-system(sprintf(
-  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', 
-  video_file,
-  width - map_info_cutoff, 
-  height,
-  map_info_cutoff,
-  0,
-  video_map_only
-))
-
-## Make map video a square with white space on top by
-#   increasing height to be the same as width
-system(sprintf(
-  'ffmpeg -y -i %s -vf "pad=iw:iw:0:(oh-ih):color=white" %s', 
-  video_map_only,
-  video_map_square
-))
-
 ## Create a video that contains only the datewheel
 
 # Find wheel location
@@ -355,22 +351,22 @@ wheel_center_x <- viz_config[["datewheel_cfg"]][["x_pos"]]*width
 wheel_center_y <- viz_config[["datewheel_cfg"]][["y_pos"]]*height
 
 # Now crop out just wheel
-buffer<-1.2
+buffer<-1.05
 system(sprintf(
   'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', 
   video_file,
   wheel_radius*2*buffer, # diameter of wheel 
   wheel_radius*2*buffer,
   wheel_center_x - wheel_radius*buffer,
-  wheel_center_y + wheel_radius,
+  wheel_center_y + wheel_radius*1.65,
   video_datewheel
 ))
 
 ## Create a video that contains only the legend
 
 # Find legend location
-legend_guess_width <- 0.08*width #10% width of video
-legend_guess_height <- 0.32*height #30% height of video
+legend_guess_width <- 0.10*width #10% width of video
+legend_guess_height <- 0.35*height #30% height of video
 legend_x <- viz_config[["legend_cfg"]][["x_pos"]]*width
 legend_y <- viz_config[["legend_cfg"]][["y_pos"]]*height
 
@@ -381,15 +377,15 @@ system(sprintf(
   legend_guess_width,  
   legend_guess_height,
   legend_x - legend_guess_width/1.5,
-  height - legend_y*1.05,
+  height - legend_y*1.02,
   video_legend
 ))
 
 ## Create a video that contains only the title
 
 # Find title location
-title_guess_width <- wheel_radius*2*1.6# diameter of wheel + some
-title_guess_height <- 0.20*height #20% height of video
+title_guess_width <- wheel_radius*2*1.46 # diameter of wheel + some
+title_guess_height <- 0.17*height #20% height of video
 title_x <- viz_config[["title_cfg"]][["x_pos"]]*width
 title_y <- viz_config[["title_cfg"]][["y_pos"]]*height
 
@@ -405,6 +401,62 @@ system(sprintf(
   video_title
 ))
 
+
+# Create a video that contains only the footnote
+
+# Find logo location
+footnote_guess_width <- 0.60*width #10% width of video
+footnote_guess_height <- 0.05*height #3% height of video
+footnote_x <- viz_config[["footnote_cfg"]][["x_pos"]]*width
+footnote_y <- viz_config[["footnote_cfg"]][["y_pos"]]*height
+
+# Now crop out just logo
+system(sprintf(
+  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:(ih-%s)" %s', # scale=%s:-1
+  video_file,
+  footnote_guess_width,  
+  footnote_guess_height,
+  footnote_x,
+  footnote_y,
+  video_footnote
+))
+
+## Crop video to create a map version
+
+# Title bleeds into map a bit, so need to cover title part with drawbox
+system(sprintf(
+  'ffmpeg -y -i %s -vf "drawbox=x=0:y=0:w=%s:h=%s:t=max:color=white" %s', 
+  video_file,
+  title_guess_width, 
+  title_guess_height,
+  video_title_covered
+))
+
+# Find edge of map
+x_pos <- viz_config[["footnote_cfg"]][["x_pos"]]
+map_info_cutoff <- width*x_pos*0.90
+map_guess_width <- width*0.98 - map_info_cutoff
+map_guess_height <- height - footnote_guess_height
+
+# Now crop to map
+system(sprintf(
+  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', 
+  video_title_covered,
+  map_guess_width, 
+  map_guess_height,
+  map_info_cutoff,
+  0,
+  video_map_only
+))
+
+## Make map video a square with white space on top by
+#   increasing height to be the same as width
+system(sprintf(
+  'ffmpeg -y -i %s -vf "pad=iw:iw:(ow-iw)/2:0:color=white" %s', 
+  video_map_only,
+  video_map_square
+))
+
 # Create a video that contains only the logo
 
 # Find logo location
@@ -413,7 +465,7 @@ logo_guess_height <- 0.10*height #10% height of video
 logo_x <- 0
 logo_y <- 0
 
-# Now crop out just title
+# Now crop out just logo
 system(sprintf(
   'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', # scale=%s:-1
   video_file,
@@ -424,27 +476,34 @@ system(sprintf(
   video_logo
 ))
 
+center_under_map <- sprintf("%s + (H-%s)/2", map_guess_height, map_guess_height)
+center_under_map_with_another <- sprintf("%s + (H-%s)/3", map_guess_height, map_guess_height)
+
 # Overlay these videos on top of existing video
 # And cut out intro & outro (reg animation starts at 4 seconds, ends at 45)
 system(sprintf(
-  'ffmpeg -y -i %s -i %s -i %s -i %s -i %s -filter_complex "overlay=%s:%s,overlay=%s:%s,overlay=%s:%s,overlay=%s:%s,scale=%s:-1" -ss 00:00:%s  -t 00:00:%s %s', 
+  'ffmpeg -y -i %s -i %s -i %s -i %s -i %s -i %s -filter_complex "overlay=%s:%s,overlay=%s:%s,overlay=%s:%s,overlay=%s:%s,overlay=%s:%s,scale=%s:-1" -ss 00:00:%s  -t 00:00:%s %s', 
   video_map_square,
   video_datewheel,
   video_legend,
   video_title,
   video_logo,
+  video_footnote,
   # Add date wheel
   "(W-(W/3))",# Center in right half
-  sprintf("(H-h-%s)/2", height), # Center in white space above map
+  sprintf("%s - (h/2)", center_under_map), # Center in white space below map
   # Add legend
-  "(W/2)-(w/2)", # Center 
-  sprintf("(H-h-%s)/2", height), # Center in white space above map
+  "(W/2)-(w/4)", # Center (but ever so slightly to the right since the title is wider than the wheel)
+  sprintf("%s - (h/2)", center_under_map), # Center in white space below map
   # Add title
   "(W*0.05)",# Just in from the left
-  sprintf("(H-%s)/2", height), # Center in white space above map
+  sprintf("%s - (h/2)", center_under_map_with_another), # Center in white space below map & above logo
   # Add logo
-  "(W*0.05)",# Just in from the left
-  sprintf("(H-%s)/2-%s", height, legend_guess_height/3), # Center in white space above map #""
+  "(W*0.05)",# Left
+  sprintf("%s + (H-%s)*2/3 - (h/2)", map_guess_height, map_guess_height), # Center in white space below map & below title
+  # Add footnote
+  sprintf("(W/2)-(w/2)", footnote_guess_width), # Center
+  sprintf("(H-%s)", footnote_guess_height*1.1), # Just up from bottom
   insta_dim,
   sprintf("%02d", reg_animation_start), # start animation
   sprintf("%02d", reg_animation_end-reg_animation_start), # end animation
