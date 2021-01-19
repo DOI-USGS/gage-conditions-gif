@@ -24,14 +24,22 @@ combine_animation_frames_video <- function(out_file, animation_cfg) {
 combine_animation_frames_gif <- function(out_file, animation_cfg) {
   #build gif from pngs with magick and simplify with gifsicle
   #note that this will use all frames in 6_visualize/tmp
-  png_files <- paste(list.files('6_visualize/tmp', full.names = TRUE), collapse=' ')
+  png_files <- list.files('6_visualize/tmp', pattern = "*.png", full.names = TRUE)
   tmp_dir <- '6_visualize/tmp/magick'
   if(!dir.exists(tmp_dir)) dir.create(tmp_dir)
 
+  # Resize to more reasonable resolutions for a gif
+  file.copy(from = png_files, to = tmp_dir)
+  moved_pngs <- gsub('6_visualize/tmp', tmp_dir, png_files)
+  lapply(moved_pngs, function(fn) {
+    system(sprintf('magick convert %s -resize 1024x512 %s', fn, fn))
+  })
+
+  png_str <- paste(moved_pngs, collapse=' ')
   # create gif using magick
   magick_command <- sprintf(
     'convert -define registry:temporary-path=%s -limit memory 24GiB -delay %d -loop 0 %s %s',
-    tmp_dir, animation_cfg$frame_delay_cs, png_files, out_file)
+    tmp_dir, animation_cfg$frame_delay_cs, png_str, out_file)
   if(Sys.info()[['sysname']] == "Windows") {
     magick_command <- sprintf('magick %s', magick_command)
   }
