@@ -332,6 +332,7 @@ video_logo <- "6_visualize/tmp/logo.mp4"
 video_stitched <- "6_visualize/tmp/stitched.mp4"
 video_intro <- "6_visualize/tmp/intro.mp4"
 video_outro <- "6_visualize/tmp/outro.mp4"
+video_stitched_full_length <- "6_visualize/tmp/stitched_full.mp4"
 video_insta <- "6_visualize/out/river_conditions_oct_dec_2020_insta.mp4"
 
 reg_animation_start <- 4 # seconds into animation that map is first shown
@@ -539,6 +540,13 @@ writeLines(sprintf("file '%s'", c(basename(video_intro), basename(video_stitched
 system(sprintf(
   'ffmpeg -y -safe 0 -f concat -i %s -c copy %s',
   files_to_cat_fn,
+  video_stitched_full_length
+))
+
+# Now edit to be 29 fps as we learned 1/21/2021 - Insta won't let you post too low of an fps
+system(sprintf(
+  'ffmpeg -y -i %s -r 29 %s',
+  video_square_together,
   video_insta
 ))
 
