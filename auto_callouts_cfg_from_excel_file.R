@@ -4,7 +4,7 @@
 # Then, manually edit the rest of `callouts_cfg.yml` to get text looking correct
 
 library(dplyr)
-fn_in <- "river_conditions_Jul_Sep_2020_reviewers_reconciliation.xlsx"
+fn_in <- "river_conditions_Oct_Dec_2020_reviewers_reconciled.xlsx"
 callout_data_raw <- openxlsx::read.xlsx(fn_in, fillMergedCells = TRUE, detectDates = TRUE)
 
 callout_data <- callout_data_raw
@@ -19,6 +19,7 @@ callouts_cfg_fmt <- callouts_cfg %>%
   tidyr::unite("Callout_2Region_2", "Callout_2", "Region_2", sep="_") %>%
   tidyr::unite("Callout_3Region_3", "Callout_3", "Region_3", sep="_") %>%
   tidyr::unite("Callout_4Region_4", "Callout_4", "Region_4", sep="_") %>%
+  tidyr::unite("Callout_5Region_5", "Callout_5", "Region_5", sep="_") %>%
   tidyr::gather(key = "Num", value = "CalloutRegion", -Frame_Date) %>%
   select(-Num) %>%
   # `convert=TRUE` will put NAs back as NAs rather than the string, "NA"
