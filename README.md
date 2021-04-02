@@ -7,7 +7,10 @@ The master repo is setup to build a video file. I (Lindsay) have been running th
 #####################
 ## Download data
 
+# Uses GD still so need to do this first one separately
 scipiper::scmake("1_fetch/out/dv_data.rds.ind", "1_fetch.yml")
+
+# Then all the rest
 scipiper::scmake("1_fetch/out/dv_data_fixed_gh.rds.ind", "1_fetch.yml")
 scipiper::scmake('1_fetch/out/sites_stage.rds.ind', remake_file = '1_fetch.yml')
 scipiper::scmake("2_process/out/dv_stats.rds.ind", "2_process.yml")
