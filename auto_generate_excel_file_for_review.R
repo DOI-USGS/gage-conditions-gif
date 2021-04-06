@@ -20,6 +20,8 @@ x <- data.frame(Image = rep("", length(timesteps)),
                 Region_2 = rep(NA, length(timesteps)),
                 Callout_3 = rep(NA, length(timesteps)),
                 Region_3 = rep(NA, length(timesteps)),
+                Callout_4 = rep(NA, length(timesteps)),
+                Region_4 = rep(NA, length(timesteps)),
                 stringsAsFactors = FALSE)
 writeData(wb, 1, x)
 
@@ -31,7 +33,7 @@ for(i in seq_along(timesteps)) {
 }
 
 # Resize cells
-setColWidths(wb, 1, cols = 1:8, widths = c(83, 14.6, rep(c(75, 25), 3)))
+setColWidths(wb, 1, cols = 1:10, widths = c(83, 14.6, rep(c(75, 25), 4)))
 setRowHeights(wb, 1, rows = 1:(length(timesteps)+1),
               heights = c(20, rep(222, length(timesteps))))
 
@@ -40,12 +42,12 @@ headerStyle <- createStyle(fontSize = 14, textDecoration = "bold", halign = "lef
 dateColStyle <- createStyle(numFmt = "DATE", halign = "left", valign = "center")
 commentStyle <- createStyle(halign = "left", valign = "center", wrapText = TRUE)
 
-addStyle(wb, 1, headerStyle, 1, 1:8)
+addStyle(wb, 1, headerStyle, 1, 1:10)
 addStyle(wb, 1, dateColStyle, 2:(length(timesteps)+1), 2)
-addStyle(wb, 1, commentStyle, 2:(length(timesteps)+1), 3:8, gridExpand = TRUE)
+addStyle(wb, 1, commentStyle, 2:(length(timesteps)+1), 3:10, gridExpand = TRUE)
 
 # Save the file
-fn <- sprintf("river_conditions_%s_%s_%s.xlsx",
+fn <- sprintf("river_conditions_%s_%s_%s2.xlsx",
               format(start_date, "%b"),
               format(end_date, "%b"),
               format(start_date, "%Y"))
