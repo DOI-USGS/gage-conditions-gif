@@ -61,6 +61,24 @@ scipiper::scmake(sprintf('6_visualize/tmp/frame_20200%s_00.png', days), '6_times
 # Build a single frame:
 scipiper::scmake('6_visualize/tmp/frame_20200210_00.png', '6_timestep_gif_tasks.yml')
 
+# Understand events timing through a line chart
+
+dates_of_events <- lapply(yaml::read_yaml("callouts_cfg.yml"), function(x) {
+  tibble(label = paste(x$text$label, collapse = " "), 
+         start = as.Date(x$event_dates$start), end = as.Date(x$event_dates$end))
+}) %>% bind_rows()
+
+library(ggplot2)
+ggplot(dates_of_events, aes(y = 1, yend = 1)) +
+  geom_segment(aes(x = start, xend = end), size = 3) + 
+  ylim(0, 2) +
+  geom_text(aes(x = start, y = 1.5, label = label), hjust = 0) +
+  facet_grid(label ~ .) + 
+  theme(axis.text=element_blank(), axis.ticks=element_blank(),
+        strip.background = element_blank(), strip.text = element_blank(),
+        axis.title = element_blank(), panel.grid = element_blank(),
+        panel.spacing = unit(0, "lines"))
+
 # Build a frame for the middle of each event
 
 dates_to_build <- lapply(lapply(yaml::read_yaml("callouts_cfg.yml"), '[[', "text_dates"), function(x) {
