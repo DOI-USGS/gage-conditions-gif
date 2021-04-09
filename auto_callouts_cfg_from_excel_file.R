@@ -4,7 +4,7 @@
 # Then, manually edit the rest of `callouts_cfg.yml` to get text looking correct
 
 library(dplyr)
-fn_in <- "river_conditions_Oct_Dec_2020_reviewers_reconciled.xlsx"
+fn_in <- "river_conditions_Jan_Mar_2021_reviewers_reconciled.xlsx"
 callout_data_raw <- openxlsx::read.xlsx(fn_in, fillMergedCells = TRUE, detectDates = TRUE)
 
 callout_data <- callout_data_raw
