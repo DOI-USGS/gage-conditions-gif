@@ -332,6 +332,7 @@ system(sprintf(
 ```
 # First, need to overwrite the frames and rebuild the regular video.
 # Go to `viz_config.yml` and comment out the regular specs & then uncomment the Instagram ones
+#   --> Don't forget to update the "subtitle" field <--
 # CTRL+F for "instagram" to find it
 
 # REBUILD FRAMES & VIDEO (you will probably need to delete pause frames before they rebuild)
@@ -574,7 +575,7 @@ system(sprintf(
 # Now edit to be 29 fps as we learned 1/21/2021 - Insta won't let you post too low of an fps
 system(sprintf(
   'ffmpeg -y -i %s -r 29 %s',
-  video_square_together,
+  video_stitched_full_length,
   video_insta
 ))
 
