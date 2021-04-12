@@ -200,13 +200,20 @@ run_magick_cmd <- function(command_str) {
   system(magick_command)
 }
 
-# TODO: Add code to cover logo! Manually doing that for now due to time.
+# Add cover over logo!
+run_magick_cmd(sprintf(
+    'convert %s -fill white -draw "rectangle 0,%s %s,%s" %s',
+    frame_to_use, 
+    timestep_frame_config$height,
+    timestep_frame_config$width/6,
+    timestep_frame_config$height - timestep_frame_config$height/8,
+    "6_visualize/tmp/frame_logo_covered.png"))
 
 # Resize the existing frame to fit the black bottom bar
 # without changing aspect ratio
 run_magick_cmd(sprintf(
     "convert %s -resize %sx%s %s",
-    frame_to_use, 
+    "6_visualize/tmp/frame_logo_covered.png", 
     viz_config_dim$width - viz_config_dim$width*0.08691406,
     viz_config_dim$height - viz_config_dim$height*0.08691406,
     "6_visualize/tmp/frame_resized.png"))
