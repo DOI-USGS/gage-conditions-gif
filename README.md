@@ -347,6 +347,9 @@ scipiper::scmake('6_visualize/log/6_timestep_gif_tasks.ind', remake_file = '6_vi
 scipiper::scmake('6_pause_gif_tasks.yml', remake_file = '6_visualize.yml', force=TRUE)
 scipiper::scmake('6_visualize/log/6_pause_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
 
+scipiper::scmake('6_final_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
+scipiper::scmake('6_visualize/log/6_final_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+
 scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
 
 video_file <- "6_visualize/out/year_in_review.mp4"
@@ -365,7 +368,7 @@ video_stitched_full_length <- "6_visualize/tmp/stitched_full.mp4"
 video_insta <- "6_visualize/out/river_conditions_jan_mar_2021_insta.mp4"
 
 reg_animation_start <- 4 # seconds into animation that map is first shown
-reg_animation_end <- 49 # seconds into animation that map is last shown
+reg_animation_end <- 47 # seconds into animation that map is last shown
 
 insta_dim <- 600 # square shape
 

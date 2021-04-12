@@ -15,10 +15,10 @@
     label: ["Atmospheric river brings high", "water to the Pacific Northwest"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.35
-    y_loc: 0.92
+    y_loc: 0.93
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -45,10 +45,10 @@
     label: ["High", "water", "in the", "Carolinas"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.92
-    y_loc: 0.52
+    y_loc: 0.56
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 3
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -75,10 +75,10 @@
     label: ["Over 90 percent", "of Utah is in", "extreme drought"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.48
-    y_loc: 0.59
+    y_loc: 0.63
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -105,12 +105,12 @@
     label: ["Atmospheric river", "brings relief to", "parts of California"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.255
-    y_loc: 0.32
+    y_loc: 0.31
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
@@ -134,11 +134,11 @@
   text:
     label: ["Drought persists", "through much of", "the Southwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.47
-    y_loc: 0.75
+    x_loc: 0.37
+    y_loc: 0.87
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -164,11 +164,11 @@
   text:
     label: ["Successive fronts bring", "high water to the", "Southeastern coast"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.75
-    y_loc: 0.77
+    x_loc: 0.68
+    y_loc: 0.81
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -192,15 +192,15 @@
   # Defaults to 9
   fade_out: 5
   text:
-    label: ["Heavy rainfall and", "snowmelt cause flooding", "in Washington"]
+    label: ["Heavy rainfall and", "snowmelt cause", "flooding in WA"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.35
-    y_loc: 0.95
+    y_loc: 0.94
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
@@ -224,11 +224,11 @@
   text:
     label: ["Moderate", "drought in", "Puerto Rico"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.86
+    x_loc: 0.835
     y_loc: 0.24
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -252,13 +252,13 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["High water in parts of", "the Midwest and Northeast"]
+    label: ["High water in parts", "of the Midwest", "and Northeast"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.70
-    y_loc: 0.86
+    y_loc: 0.94
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -282,13 +282,13 @@
   # Defaults to 9
   fade_out: 5
   text:
-    label: ["Record-breaking", "streamflow", "at 108 year-old", "gage in Hawaii"]
+    label: ["Record-breaking", "streamflow at", "108 year-old", "gage in Hawaii"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.54
+    x_loc: 0.55
     y_loc: 0.30
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
