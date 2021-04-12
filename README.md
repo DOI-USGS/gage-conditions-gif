@@ -129,8 +129,8 @@ create_animation_frame(
 # To create a Drupal carousel-optimized image, run the following
 
 ```
-version_info <- "river_conditions_oct_dec_2020"
-frame_to_use <- "6_visualize/tmp/frame_20201021_00.png"
+version_info <- "river_conditions_jan_mar_2021"
+frame_to_use <- "6_visualize/tmp/frame_20210115_00.png"
 
 run_magick_cmd <- function(command_str) {
   if(Sys.info()[['sysname']] == "Windows") {
@@ -149,8 +149,8 @@ run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.p
 # To create a Drupal thumbnail-optimized image, run the following
 
 ```
-version_info <- "river_conditions_oct_dec_2020"
-frame_to_use <- "6_visualize/tmp/frame_20201021_00.png"
+version_info <- "river_conditions_jan_mar_2021"
+frame_to_use <- "6_visualize/tmp/frame_20210115_00.png"
 thumbnail_dim <- 500
 
 viz_config <- yaml::yaml.load_file("viz_config.yml")
@@ -182,8 +182,8 @@ run_magick_cmd(sprintf("convert -composite -gravity center drupal_thumbnail.png 
 # Create a VisID compliant still image to be the paused frame view on Drupal
 
 ```
-frame_to_use <- "6_visualize/tmp/frame_20201021_00.png"
-version_info <- "river_conditions_oct_dec_2020"
+frame_to_use <- "6_visualize/tmp/frame_20210115_00.png"
+version_info <- "river_conditions_jan_mar_2021"
 visid_file <- "6_visualize/in/visid_overlay.png"
 
 # Get viz frame dimensions and then divide by 2 bc we 
@@ -248,11 +248,11 @@ timestep_frame_config <- remake::fetch("timestep_frame_config")
 viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
 
 # Identify files
-video_file <- "6_visualize/out/river_conditions_oct_dec_2020_twitter.mp4"
+video_file <- "6_visualize/out/river_conditions_jan_mar_2021_twitter.mp4"
 video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
 video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
 visid_file <- "6_visualize/in/visid_overlay.png"
-video_w_visid_file <- "6_visualize/out/river_conditions_oct_dec_2020_visid.mp4"
+video_w_visid_file <- "6_visualize/out/river_conditions_jan_mar_2021_visid.mp4"
 
 # Cover up the existing USGS logo
 system(sprintf(
@@ -288,9 +288,9 @@ system(sprintf(
 # Create a visID version that isn't too big for Facebook
 
 ```
-video_file <- "6_visualize/out/river_conditions_oct_dec_2020_visid.mp4"
+video_file <- "6_visualize/out/river_conditions_jan_mar_2021_visid.mp4"
 video_resized_for_facebook <- "6_visualize/tmp/video_facebook_aspect_ratio.mp4"
-video_downscaled_for_facebook <- "6_visualize/out/river_conditions_oct_dec_2020_facebook.mp4"
+video_downscaled_for_facebook <- "6_visualize/out/river_conditions_jan_mar_2021_facebook.mp4"
 
 # Get viz frame dimensions and then divide by 2 bc we 
 # double them in combine_animation_frame
@@ -361,7 +361,7 @@ video_stitched <- "6_visualize/tmp/stitched.mp4"
 video_intro <- "6_visualize/tmp/intro.mp4"
 video_outro <- "6_visualize/tmp/outro.mp4"
 video_stitched_full_length <- "6_visualize/tmp/stitched_full.mp4"
-video_insta <- "6_visualize/out/river_conditions_oct_dec_2020_insta.mp4"
+video_insta <- "6_visualize/out/river_conditions_jan_mar_2021_insta.mp4"
 
 reg_animation_start <- 4 # seconds into animation that map is first shown
 reg_animation_end <- 49 # seconds into animation that map is last shown
