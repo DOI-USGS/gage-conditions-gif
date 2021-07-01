@@ -47,7 +47,7 @@ addStyle(wb, 1, dateColStyle, 2:(length(timesteps)+1), 2)
 addStyle(wb, 1, commentStyle, 2:(length(timesteps)+1), 3:10, gridExpand = TRUE)
 
 # Save the file
-fn <- sprintf("river_conditions_%s_%s_%s2.xlsx",
+fn <- sprintf("river_conditions_%s_%s_%s.xlsx",
               format(start_date, "%b"),
               format(end_date, "%b"),
               format(start_date, "%Y"))
