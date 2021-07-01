@@ -7,7 +7,10 @@ The master repo is setup to build a video file. I (Lindsay) have been running th
 #####################
 ## Download data
 
+# Uses GD still so need to do this first one separately
 scipiper::scmake("1_fetch/out/dv_data.rds.ind", "1_fetch.yml")
+
+# Then all the rest
 scipiper::scmake("1_fetch/out/dv_data_fixed_gh.rds.ind", "1_fetch.yml")
 scipiper::scmake('1_fetch/out/sites_stage.rds.ind', remake_file = '1_fetch.yml')
 scipiper::scmake("2_process/out/dv_stats.rds.ind", "2_process.yml")
@@ -29,17 +32,17 @@ file.create("callouts_cfg.yml")
 # To make absolutely sure that your video will use the right font, you may need to run:
 sysfonts::font_add_google('Abel','abel')
 
-scipiper::scmake('6_timestep_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-scipiper::scmake('6_visualize/log/6_timestep_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
 scipiper::scmake('6_intro_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
 scipiper::scmake('6_visualize/log/6_intro_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
 
-scipiper::scmake('6_pause_gif_tasks.yml', remake_file = '6_visualize.yml', force=TRUE)
-scipiper::scmake('6_visualize/log/6_pause_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
 scipiper::scmake('6_final_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
 scipiper::scmake('6_visualize/log/6_final_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+
+scipiper::scmake('6_timestep_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
+scipiper::scmake('6_visualize/log/6_timestep_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+
+scipiper::scmake('6_pause_gif_tasks.yml', remake_file = '6_visualize.yml', force=TRUE)
+scipiper::scmake('6_visualize/log/6_pause_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
 
 scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
 
@@ -57,6 +60,24 @@ scipiper::scmake(sprintf('6_visualize/tmp/frame_20200%s_00.png', days), '6_times
 
 # Build a single frame:
 scipiper::scmake('6_visualize/tmp/frame_20200210_00.png', '6_timestep_gif_tasks.yml')
+
+# Understand events timing through a line chart
+
+dates_of_events <- lapply(yaml::read_yaml("callouts_cfg.yml"), function(x) {
+  tibble(label = paste(x$text$label, collapse = " "), 
+         start = as.Date(x$event_dates$start), end = as.Date(x$event_dates$end))
+}) %>% bind_rows()
+
+library(ggplot2)
+ggplot(dates_of_events, aes(y = 1, yend = 1)) +
+  geom_segment(aes(x = start, xend = end), size = 3) + 
+  ylim(0, 2) +
+  geom_text(aes(x = start, y = 1.5, label = label), hjust = 0) +
+  facet_grid(label ~ .) + 
+  theme(axis.text=element_blank(), axis.ticks=element_blank(),
+        strip.background = element_blank(), strip.text = element_blank(),
+        axis.title = element_blank(), panel.grid = element_blank(),
+        panel.spacing = unit(0, "lines"))
 
 # Build a frame for the middle of each event
 
@@ -108,8 +129,8 @@ create_animation_frame(
 # To create a Drupal carousel-optimized image, run the following
 
 ```
-version_info <- "river_conditions_oct_dec_2020"
-frame_to_use <- "6_visualize/tmp/frame_20201021_00.png"
+version_info <- "river_conditions_jan_mar_2021"
+frame_to_use <- "6_visualize/tmp/frame_20210115_00.png"
 
 run_magick_cmd <- function(command_str) {
   if(Sys.info()[['sysname']] == "Windows") {
@@ -128,8 +149,8 @@ run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.p
 # To create a Drupal thumbnail-optimized image, run the following
 
 ```
-version_info <- "river_conditions_oct_dec_2020"
-frame_to_use <- "6_visualize/tmp/frame_20201021_00.png"
+version_info <- "river_conditions_jan_mar_2021"
+frame_to_use <- "6_visualize/tmp/frame_20210115_00.png"
 thumbnail_dim <- 500
 
 viz_config <- yaml::yaml.load_file("viz_config.yml")
@@ -161,8 +182,8 @@ run_magick_cmd(sprintf("convert -composite -gravity center drupal_thumbnail.png 
 # Create a VisID compliant still image to be the paused frame view on Drupal
 
 ```
-frame_to_use <- "6_visualize/tmp/frame_20201021_00.png"
-version_info <- "river_conditions_oct_dec_2020"
+frame_to_use <- "6_visualize/tmp/frame_20210115_00.png"
+version_info <- "river_conditions_jan_mar_2021"
 visid_file <- "6_visualize/in/visid_overlay.png"
 
 # Get viz frame dimensions and then divide by 2 bc we 
@@ -179,13 +200,20 @@ run_magick_cmd <- function(command_str) {
   system(magick_command)
 }
 
-# TODO: Add code to cover logo! Manually doing that for now due to time.
+# Add cover over logo!
+run_magick_cmd(sprintf(
+    'convert %s -fill white -draw "rectangle 0,%s %s,%s" %s',
+    frame_to_use, 
+    timestep_frame_config$height,
+    timestep_frame_config$width/6,
+    timestep_frame_config$height - timestep_frame_config$height/8,
+    "6_visualize/tmp/frame_logo_covered.png"))
 
 # Resize the existing frame to fit the black bottom bar
 # without changing aspect ratio
 run_magick_cmd(sprintf(
     "convert %s -resize %sx%s %s",
-    frame_to_use, 
+    "6_visualize/tmp/frame_logo_covered.png", 
     viz_config_dim$width - viz_config_dim$width*0.08691406,
     viz_config_dim$height - viz_config_dim$height*0.08691406,
     "6_visualize/tmp/frame_resized.png"))
@@ -220,11 +248,11 @@ timestep_frame_config <- remake::fetch("timestep_frame_config")
 viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
 
 # Identify files
-video_file <- "6_visualize/out/river_conditions_oct_dec_2020_twitter.mp4"
+video_file <- "6_visualize/out/river_conditions_jan_mar_2021_twitter.mp4"
 video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
 video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
 visid_file <- "6_visualize/in/visid_overlay.png"
-video_w_visid_file <- "6_visualize/out/river_conditions_oct_dec_2020_visid.mp4"
+video_w_visid_file <- "6_visualize/out/river_conditions_jan_mar_2021_visid.mp4"
 
 # Cover up the existing USGS logo
 system(sprintf(
@@ -260,9 +288,9 @@ system(sprintf(
 # Create a visID version that isn't too big for Facebook
 
 ```
-video_file <- "6_visualize/out/river_conditions_oct_dec_2020_visid.mp4"
+video_file <- "6_visualize/out/river_conditions_jan_mar_2021_visid.mp4"
 video_resized_for_facebook <- "6_visualize/tmp/video_facebook_aspect_ratio.mp4"
-video_downscaled_for_facebook <- "6_visualize/out/river_conditions_oct_dec_2020_facebook.mp4"
+video_downscaled_for_facebook <- "6_visualize/out/river_conditions_jan_mar_2021_facebook.mp4"
 
 # Get viz frame dimensions and then divide by 2 bc we 
 # double them in combine_animation_frame
@@ -304,6 +332,7 @@ system(sprintf(
 ```
 # First, need to overwrite the frames and rebuild the regular video.
 # Go to `viz_config.yml` and comment out the regular specs & then uncomment the Instagram ones
+#   --> Don't forget to update the "subtitle" field <--
 # CTRL+F for "instagram" to find it
 
 # REBUILD FRAMES & VIDEO (you will probably need to delete pause frames before they rebuild)
@@ -317,6 +346,9 @@ scipiper::scmake('6_visualize/log/6_timestep_gif_tasks.ind', remake_file = '6_vi
 
 scipiper::scmake('6_pause_gif_tasks.yml', remake_file = '6_visualize.yml', force=TRUE)
 scipiper::scmake('6_visualize/log/6_pause_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+
+scipiper::scmake('6_final_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
+scipiper::scmake('6_visualize/log/6_final_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
 
 scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
 
@@ -333,10 +365,10 @@ video_stitched <- "6_visualize/tmp/stitched.mp4"
 video_intro <- "6_visualize/tmp/intro.mp4"
 video_outro <- "6_visualize/tmp/outro.mp4"
 video_stitched_full_length <- "6_visualize/tmp/stitched_full.mp4"
-video_insta <- "6_visualize/out/river_conditions_oct_dec_2020_insta.mp4"
+video_insta <- "6_visualize/out/river_conditions_jan_mar_2021_insta.mp4"
 
 reg_animation_start <- 4 # seconds into animation that map is first shown
-reg_animation_end <- 49 # seconds into animation that map is last shown
+reg_animation_end <- 47 # seconds into animation that map is last shown
 
 insta_dim <- 600 # square shape
 
@@ -546,8 +578,40 @@ system(sprintf(
 # Now edit to be 29 fps as we learned 1/21/2021 - Insta won't let you post too low of an fps
 system(sprintf(
   'ffmpeg -y -i %s -r 29 %s',
-  video_square_together,
+  video_stitched_full_length,
   video_insta
 ))
 
+```
+
+# Create a Reddit appropriate one
+Do this by adding one single still image before the video
+
+```r
+# Make video with still image before
+viz_config <- scmake("viz_config")
+frame_to_use_t <- 11
+video_reddit <- "6_visualize/out/river_conditions_jan_mar_2021_reddit.mp4"
+video_in <- "6_visualize/out/river_conditions_jan_mar_2021_twitter.mp4"
+video_still_frame <- "6_visualize/tmp/video_still_frame.mp4"
+
+# First, cut out just this frame from video
+system(sprintf(
+  'ffmpeg -y -i %s -ss 00:00:%s -t 00:00:01 %s', 
+  video_in,
+  sprintf("%02d", frame_to_use_t),
+  video_still_frame
+))
+
+# Then, add to video
+# Bring them all together
+file.copy(video_in, sprintf("6_visualize/tmp/%s", basename(video_in)))
+files_to_cat_fn <- "6_visualize/tmp/videos_to_concat.txt"
+writeLines(sprintf("file '%s'", c(basename(video_still_frame), basename(video_in))), files_to_cat_fn)
+
+system(sprintf(
+  'ffmpeg -y -safe 0 -f concat -i %s -c copy %s',
+  files_to_cat_fn,
+  video_reddit
+))
 ```
