@@ -583,3 +583,35 @@ system(sprintf(
 ))
 
 ```
+
+# Create a Reddit appropriate one
+Do this by adding one single still image before the video
+
+```r
+# Make video with still image before
+viz_config <- scmake("viz_config")
+frame_to_use_t <- 11
+video_reddit <- "6_visualize/out/river_conditions_jan_mar_2021_reddit.mp4"
+video_in <- "6_visualize/out/river_conditions_jan_mar_2021_twitter.mp4"
+video_still_frame <- "6_visualize/tmp/video_still_frame.mp4"
+
+# First, cut out just this frame from video
+system(sprintf(
+  'ffmpeg -y -i %s -ss 00:00:%s -t 00:00:01 %s', 
+  video_in,
+  sprintf("%02d", frame_to_use_t),
+  video_still_frame
+))
+
+# Then, add to video
+# Bring them all together
+file.copy(video_in, sprintf("6_visualize/tmp/%s", basename(video_in)))
+files_to_cat_fn <- "6_visualize/tmp/videos_to_concat.txt"
+writeLines(sprintf("file '%s'", c(basename(video_still_frame), basename(video_in))), files_to_cat_fn)
+
+system(sprintf(
+  'ffmpeg -y -safe 0 -f concat -i %s -c copy %s',
+  files_to_cat_fn,
+  video_reddit
+))
+```
