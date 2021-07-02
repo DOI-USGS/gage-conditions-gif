@@ -7,7 +7,7 @@ The master repo is setup to build a video file. I (Lindsay) have been running th
 #####################
 ## Download data
 
-# Uses GD still so need to do this first one separately
+# Uses GD still so need to do this first one separately so it can log in
 scipiper::scmake("1_fetch/out/dv_data.rds.ind", "1_fetch.yml")
 
 # Then all the rest
