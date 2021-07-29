@@ -65,12 +65,19 @@ scipiper::scmake('6_visualize/tmp/frame_20200210_00.png', '6_timestep_gif_tasks.
 
 dates_of_events <- lapply(yaml::read_yaml("callouts_cfg.yml"), function(x) {
   tibble(label = paste(x$text$label, collapse = " "), 
-         start = as.Date(x$event_dates$start), end = as.Date(x$event_dates$end))
+         start = as.Date(x$event_dates$start), end = as.Date(x$event_dates$end),
+         txt_s = as.Date(x$text_dates$start), txt_e = as.Date(x$text_dates$end)) %>% 
+      mutate(
+          txt_in = txt_s - ifelse(is.null(x$fade_in), 9, x$fade_in), 
+          txt_out = txt_e + ifelse(is.null(x$fade_out), 9, x$fade_out)
+      )
 }) %>% bind_rows()
 
 library(ggplot2)
 ggplot(dates_of_events, aes(y = 1, yend = 1)) +
-  geom_segment(aes(x = start, xend = end), size = 3) + 
+  geom_segment(aes(x = start, xend = end), size = 3) +
+  geom_segment(aes(y = 0.5, yend = 0.5, x = txt_s, xend = txt_e), size = 2, color = "blue") +
+  geom_segment(aes(y = 0.5, yend = 0.5, x = txt_in, xend = txt_out), size = 1, color = "red", linetype = "dotted") +
   ylim(0, 2) +
   geom_text(aes(x = start, y = 1.5, label = label), hjust = 0) +
   facet_grid(label ~ .) + 
