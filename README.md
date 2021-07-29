@@ -53,6 +53,8 @@ scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualiz
 Sometimes it is useful to build just a single frame, or subset of frames. Below is some code that helps with that.
 
 ```r
+# Don't forget that you need the font!
+sysfonts::font_add_google('Abel','abel')
 
 # Build a specific subset of days
 days <- c(211:215)
@@ -95,7 +97,9 @@ dates_to_build <- lapply(lapply(yaml::read_yaml("callouts_cfg.yml"), '[[', "text
   return(halfwayDate)
 }) %>% unlist() %>% as.Date(origin = "1970-01-01") %>% format("%Y%m%d")
 
-scipiper::scmake(sprintf('6_visualize/tmp/frame_%s_00.png', dates_to_build), '6_timestep_gif_tasks.yml')
+# Don't forget the font: 
+sysfonts::font_add_google('Abel','abel')
+scipiper::scmake(sprintf('6_visualize/tmp/frame_%s_00.png', dates_to_build), '6_timestep_gif_tasks.yml', force=TRUE)
 
 
 ```
