@@ -68,7 +68,7 @@ gage_style:
     cex: 1.5
     col: "#7f7f7f"
 
-## Comment this out when building the Instagram version
+# Comment this out when building the Instagram version
 legend_cfg:
   point_mult: 4
   text_cex: 2.4
@@ -113,11 +113,11 @@ datewheel_cfg:
     cex_text_months: 2.2
     col_text_datestamp: "#5f5f5f" # color of text inside the wheel
     cex_text_datestamp: 2.5
-## End of regular version specs
+# End of regular version specs
 
-## Leave this commented when building the regular version
-# Mostly just editing text size & datewheel dims
-# Insta version!
+# # Leave this commented when building the regular version
+# # Mostly just editing text size & datewheel dims
+# # Insta version!
 # legend_cfg:
 #   point_mult: 5.7
 #   text_cex: 3.7
@@ -165,7 +165,7 @@ datewheel_cfg:
 #     cex_text_months: 3.5
 #     col_text_datestamp: "#5f5f5f" # color of text inside the wheel
 #     cex_text_datestamp: 4.0
-## End of instagram version specs
+# # End of instagram version specs
 
 # gif options
 animation:
