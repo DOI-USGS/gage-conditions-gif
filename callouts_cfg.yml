@@ -18,7 +18,7 @@
     y_loc: 0.75
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -48,7 +48,7 @@
     y_loc: 0.18
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -78,7 +78,7 @@
     y_loc: 0.92
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -108,7 +108,7 @@
     y_loc: 0.70
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -138,7 +138,7 @@
     y_loc: 0.60
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -165,10 +165,10 @@
     label: ["Tropical Storm", "Claudette renews", "flooding in the Gulf Coast"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.63
-    y_loc: 0.18
+    y_loc: 0.19
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 7.75
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -198,7 +198,7 @@
     y_loc: 0.80
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 3
-    cex: 6
+    cex: 8
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
