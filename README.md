@@ -479,7 +479,7 @@ system(sprintf(
 # Find edge of map
 x_pos <- viz_config[["footnote_cfg"]][["x_pos"]]
 map_info_cutoff <- width*x_pos*0.90
-map_guess_width <- width*0.98 - map_info_cutoff
+map_guess_width <- width*0.992 - map_info_cutoff
 map_guess_height <- height - footnote_guess_height
 
 # Now crop to map
