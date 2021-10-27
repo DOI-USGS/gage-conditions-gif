@@ -7,7 +7,7 @@ The master repo is setup to build a video file. I (Lindsay) have been running th
 #####################
 ## Download data
 
-# Uses GD still so need to do this first one separately
+# Uses GD still so need to do this first one separately so it can log in
 scipiper::scmake("1_fetch/out/dv_data.rds.ind", "1_fetch.yml")
 
 # Then all the rest
@@ -53,6 +53,8 @@ scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualiz
 Sometimes it is useful to build just a single frame, or subset of frames. Below is some code that helps with that.
 
 ```r
+# Don't forget that you need the font!
+sysfonts::font_add_google('Abel','abel')
 
 # Build a specific subset of days
 days <- c(211:215)
@@ -65,12 +67,19 @@ scipiper::scmake('6_visualize/tmp/frame_20200210_00.png', '6_timestep_gif_tasks.
 
 dates_of_events <- lapply(yaml::read_yaml("callouts_cfg.yml"), function(x) {
   tibble(label = paste(x$text$label, collapse = " "), 
-         start = as.Date(x$event_dates$start), end = as.Date(x$event_dates$end))
+         start = as.Date(x$event_dates$start), end = as.Date(x$event_dates$end),
+         txt_s = as.Date(x$text_dates$start), txt_e = as.Date(x$text_dates$end)) %>% 
+      mutate(
+          txt_in = txt_s - ifelse(is.null(x$fade_in), 9, x$fade_in), 
+          txt_out = txt_e + ifelse(is.null(x$fade_out), 9, x$fade_out)
+      )
 }) %>% bind_rows()
 
 library(ggplot2)
 ggplot(dates_of_events, aes(y = 1, yend = 1)) +
-  geom_segment(aes(x = start, xend = end), size = 3) + 
+  geom_segment(aes(x = start, xend = end), size = 3) +
+  geom_segment(aes(y = 0.5, yend = 0.5, x = txt_s, xend = txt_e), size = 2, color = "blue") +
+  geom_segment(aes(y = 0.5, yend = 0.5, x = txt_in, xend = txt_out), size = 1, color = "red", linetype = "dotted") +
   ylim(0, 2) +
   geom_text(aes(x = start, y = 1.5, label = label), hjust = 0) +
   facet_grid(label ~ .) + 
@@ -88,7 +97,9 @@ dates_to_build <- lapply(lapply(yaml::read_yaml("callouts_cfg.yml"), '[[', "text
   return(halfwayDate)
 }) %>% unlist() %>% as.Date(origin = "1970-01-01") %>% format("%Y%m%d")
 
-scipiper::scmake(sprintf('6_visualize/tmp/frame_%s_00.png', dates_to_build), '6_timestep_gif_tasks.yml')
+# Don't forget the font: 
+sysfonts::font_add_google('Abel','abel')
+scipiper::scmake(sprintf('6_visualize/tmp/frame_%s_00.png', dates_to_build), '6_timestep_gif_tasks.yml', force=TRUE)
 
 
 ```
@@ -129,8 +140,8 @@ create_animation_frame(
 # To create a Drupal carousel-optimized image, run the following
 
 ```
-version_info <- "river_conditions_jan_mar_2021"
-frame_to_use <- "6_visualize/tmp/frame_20210115_00.png"
+version_info <- "river_conditions_apr_jun_2021"
+frame_to_use <- "6_visualize/tmp/frame_20210514_00.png"
 
 run_magick_cmd <- function(command_str) {
   if(Sys.info()[['sysname']] == "Windows") {
@@ -149,8 +160,8 @@ run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.p
 # To create a Drupal thumbnail-optimized image, run the following
 
 ```
-version_info <- "river_conditions_jan_mar_2021"
-frame_to_use <- "6_visualize/tmp/frame_20210115_00.png"
+version_info <- "river_conditions_apr_jun_2021"
+frame_to_use <- "6_visualize/tmp/frame_20210514_00.png"
 thumbnail_dim <- 500
 
 viz_config <- yaml::yaml.load_file("viz_config.yml")
@@ -182,8 +193,8 @@ run_magick_cmd(sprintf("convert -composite -gravity center drupal_thumbnail.png 
 # Create a VisID compliant still image to be the paused frame view on Drupal
 
 ```
-frame_to_use <- "6_visualize/tmp/frame_20210115_00.png"
-version_info <- "river_conditions_jan_mar_2021"
+frame_to_use <- "6_visualize/tmp/frame_20210514_00.png"
+version_info <- "river_conditions_apr_jun_2021"
 visid_file <- "6_visualize/in/visid_overlay.png"
 
 # Get viz frame dimensions and then divide by 2 bc we 
@@ -248,11 +259,11 @@ timestep_frame_config <- remake::fetch("timestep_frame_config")
 viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
 
 # Identify files
-video_file <- "6_visualize/out/river_conditions_jan_mar_2021_twitter.mp4"
+video_file <- "6_visualize/out/river_conditions_apr_jun_2021_twitter.mp4"
 video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
 video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
 visid_file <- "6_visualize/in/visid_overlay.png"
-video_w_visid_file <- "6_visualize/out/river_conditions_jan_mar_2021_visid.mp4"
+video_w_visid_file <- "6_visualize/out/river_conditions_apr_jun_2021_visid.mp4"
 
 # Cover up the existing USGS logo
 system(sprintf(
@@ -288,9 +299,9 @@ system(sprintf(
 # Create a visID version that isn't too big for Facebook
 
 ```
-video_file <- "6_visualize/out/river_conditions_jan_mar_2021_visid.mp4"
+video_file <- "6_visualize/out/river_conditions_apr_jun_2021_visid.mp4"
 video_resized_for_facebook <- "6_visualize/tmp/video_facebook_aspect_ratio.mp4"
-video_downscaled_for_facebook <- "6_visualize/out/river_conditions_jan_mar_2021_facebook.mp4"
+video_downscaled_for_facebook <- "6_visualize/out/river_conditions_apr_jun_2021_facebook.mp4"
 
 # Get viz frame dimensions and then divide by 2 bc we 
 # double them in combine_animation_frame
@@ -365,7 +376,7 @@ video_stitched <- "6_visualize/tmp/stitched.mp4"
 video_intro <- "6_visualize/tmp/intro.mp4"
 video_outro <- "6_visualize/tmp/outro.mp4"
 video_stitched_full_length <- "6_visualize/tmp/stitched_full.mp4"
-video_insta <- "6_visualize/out/river_conditions_jan_mar_2021_insta.mp4"
+video_insta <- "6_visualize/out/river_conditions_apr_jun_2021_insta.mp4"
 
 reg_animation_start <- 4 # seconds into animation that map is first shown
 reg_animation_end <- 47 # seconds into animation that map is last shown
@@ -590,14 +601,14 @@ Do this by adding one single still image before the video
 ```r
 # Make video with still image before
 viz_config <- scmake("viz_config")
-frame_to_use_t <- 11
-video_reddit <- "6_visualize/out/river_conditions_jan_mar_2021_reddit.mp4"
-video_in <- "6_visualize/out/river_conditions_jan_mar_2021_twitter.mp4"
+frame_to_use_t <- 22
+video_reddit <- "6_visualize/out/river_conditions_apr_jun_2021_reddit.mp4"
+video_in <- "6_visualize/out/river_conditions_apr_jun_2021_twitter.mp4"
 video_still_frame <- "6_visualize/tmp/video_still_frame.mp4"
 
 # First, cut out just this frame from video
 system(sprintf(
-  'ffmpeg -y -i %s -ss 00:00:%s -t 00:00:01 %s', 
+  'ffmpeg -y -i %s -ss 00:00:%s -t 00:00:00.5 %s', 
   video_in,
   sprintf("%02d", frame_to_use_t),
   video_still_frame
