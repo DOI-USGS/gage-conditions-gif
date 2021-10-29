@@ -1,6 +1,6 @@
 # Actual dates of the viz frames
 vizDates:
-  start: '2021-07-01'
+  start: '2020-10-01'
   end: '2021-09-30'
 # Dates that make up the wheel (usually a full year)
 wheelDates:
@@ -77,7 +77,7 @@ legend_cfg:
   y_pos: 0.79
 title_cfg:
   main: "U.S. River Conditions"
-  subtitle: "July 1, 2021 - September 30, 2021"
+  subtitle: "October 1, 2020 - September 30, 2021"
   footnote: [
     "Conditions are relative to the historic",
     "daily record for each gage.",
