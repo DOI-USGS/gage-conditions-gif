@@ -645,7 +645,7 @@
   text:
     label: ["Moderate", "drought in", "Puerto Rico"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.85
+    x_loc: 0.87
     y_loc: 0.24
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
@@ -911,7 +911,7 @@
   # Defaults to 9
   fade_in: 3
   # Defaults to 9
-  fade_out:
+  fade_out: 2
   text:
     label: ["Flooding", "in the", "Midwest"]
     # This is in percentage space, relative to the plotting device

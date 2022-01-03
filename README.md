@@ -57,8 +57,8 @@ Sometimes it is useful to build just a single frame, or subset of frames. Below 
 sysfonts::font_add_google('Abel','abel')
 
 # Build a specific subset of days
-days <- c(211:215)
-scipiper::scmake(sprintf('6_visualize/tmp/frame_20200%s_00.png', days), '6_timestep_gif_tasks.yml')
+days <- c(707:717)
+scipiper::scmake(sprintf('6_visualize/tmp/frame_20210%s_00.png', days), '6_timestep_gif_tasks.yml')
 
 # Build a single frame:
 scipiper::scmake('6_visualize/tmp/frame_20200210_00.png', '6_timestep_gif_tasks.yml')
@@ -140,8 +140,8 @@ create_animation_frame(
 # To create a Drupal carousel-optimized image, run the following
 
 ```
-version_info <- "river_conditions_jul_sep_2021"
-frame_to_use <- "6_visualize/tmp/frame_20210903_00.png"
+version_info <- "us_river_conditions_water_year_2021"
+frame_to_use <- "6_visualize/tmp/frame_20210716_00.png"
 
 run_magick_cmd <- function(command_str) {
   if(Sys.info()[['sysname']] == "Windows") {
@@ -160,8 +160,8 @@ run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.p
 # To create a Drupal thumbnail-optimized image, run the following
 
 ```
-version_info <- "river_conditions_jul_sep_2021"
-frame_to_use <- "6_visualize/tmp/frame_20210903_00.png"
+version_info <- "us_river_conditions_water_year_2021"
+frame_to_use <- "6_visualize/tmp/frame_20210716_00.png"
 thumbnail_dim <- 500
 
 viz_config <- yaml::yaml.load_file("viz_config.yml")
@@ -193,8 +193,8 @@ run_magick_cmd(sprintf("convert -composite -gravity center drupal_thumbnail.png 
 # Create a VisID compliant still image to be the paused frame view on Drupal
 
 ```
-frame_to_use <- "6_visualize/tmp/frame_20210903_00.png"
-version_info <- "river_conditions_jul_sep_2021"
+frame_to_use <- "6_visualize/tmp/frame_20210716_00.png"
+version_info <- "us_river_conditions_water_year_2021"
 visid_file <- "6_visualize/in/visid_overlay.png"
 
 # Get viz frame dimensions and then divide by 2 bc we 
@@ -259,11 +259,11 @@ timestep_frame_config <- remake::fetch("timestep_frame_config")
 viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
 
 # Identify files
-video_file <- "6_visualize/out/river_conditions_jul_sep_2021_twitter.mp4"
+video_file <- "6_visualize/out/us_river_conditions_water_year_2021.mp4"
 video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
 video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
 visid_file <- "6_visualize/in/visid_overlay.png"
-video_w_visid_file <- "6_visualize/out/river_conditions_jul_sep_2021_visid.mp4"
+video_w_visid_file <- "6_visualize/out/us_river_conditions_water_year_2021_visid.mp4"
 
 # Cover up the existing USGS logo
 system(sprintf(
@@ -299,9 +299,9 @@ system(sprintf(
 # Create a visID version that isn't too big for Facebook
 
 ```
-video_file <- "6_visualize/out/river_conditions_jul_sep_2021_visid.mp4"
+video_file <- "6_visualize/out/us_river_conditions_water_year_2021_visid.mp4"
 video_resized_for_facebook <- "6_visualize/tmp/video_facebook_aspect_ratio.mp4"
-video_downscaled_for_facebook <- "6_visualize/out/river_conditions_jul_sep_2021_facebook.mp4"
+video_downscaled_for_facebook <- "6_visualize/out/us_river_conditions_water_year_2021_facebook.mp4"
 
 # Get viz frame dimensions and then divide by 2 bc we 
 # double them in combine_animation_frame
@@ -602,8 +602,8 @@ Do this by adding one single still image before the video
 # Make video with still image before
 viz_config <- scmake("viz_config")
 frame_to_use_t <- 22
-video_reddit <- "6_visualize/out/river_conditions_jul_sep_2021_reddit.mp4"
-video_in <- "6_visualize/out/river_conditions_jul_sep_2021_twitter.mp4"
+video_reddit <- "6_visualize/out/us_river_conditions_water_year_2021_reddit.mp4"
+video_in <- "6_visualize/out/us_river_conditions_water_year_2021.mp4"
 video_still_frame <- "6_visualize/tmp/video_still_frame.mp4"
 
 # First, cut out just this frame from video
