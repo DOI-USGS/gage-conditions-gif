@@ -5,10 +5,10 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2021-10-01"
+    start: "2021-10-03"
     end: "2021-10-16"
   # Defaults to 9
-  fade_in:
+  fade_in: 2
   # Defaults to 9
   fade_out: 3
   text:
@@ -68,9 +68,9 @@
     start: "2021-10-24"
     end: "2021-10-31"
   # Defaults to 9
-  fade_in: 6
+  fade_in:
   # Defaults to 9
-  fade_out:
+  fade_out: 3
   text:
     label: ["Atmospheric river", "brings high water to", "California & Nevada"]
     # This is in percentage space, relative to the plotting device
@@ -95,12 +95,12 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2021-10-25"
-    end: "2021-11-01"
+    start: "2021-10-28"
+    end: "2021-11-05"
   # Defaults to 9
   fade_in: 3
   # Defaults to 9
-  fade_out:
+  fade_out: 3
   text:
     label: ["High", "water", "between", "D.C. &", "New York"]
     # This is in percentage space, relative to the plotting device
@@ -126,11 +126,11 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2021-11-11"
-    end: "2021-12-01"
+    end: "2021-11-28"
   # Defaults to 9
-  fade_in:
+  fade_in: 6
   # Defaults to 9
-  fade_out:
+  fade_out: 4
   text:
     label: ["Atmospheric rivers", "cause flooding in", "Washington & Oregon"]
     # This is in percentage space, relative to the plotting device
@@ -158,7 +158,7 @@
     start: "2021-12-10"
     end: "2021-12-16"
   # Defaults to 9
-  fade_in:
+  fade_in: 5
   # Defaults to 9
   fade_out:
   text:
@@ -222,10 +222,10 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["High", "water", "in the", "Eastern", "U.S."]
+    label: ["High", "water", "in parts", "of the", "Eastern", "U.S."]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.90
-    y_loc: 0.65
+    y_loc: 0.67
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 7
