@@ -74,7 +74,7 @@
   text:
     label: ["Atmospheric river", "brings high water to", "California & Nevada"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.35
+    x_loc: 0.39
     y_loc: 0.65
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
@@ -102,12 +102,12 @@
   # Defaults to 9
   fade_out: 3
   text:
-    label: ["High", "water", "between", "D.C. &", "New York"]
+    label: ["Flooding in the", "Northeast and", "Midwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.89
-    y_loc: 0.67
+    x_loc: 0.795
+    y_loc: 0.915
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
+    pos: 3
     cex: 7
   # TRUE or FALSE, defaults to FALSE
   add_box:
@@ -156,7 +156,7 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2021-12-10"
-    end: "2021-12-16"
+    end: "2021-12-19"
   # Defaults to 9
   fade_in: 5
   # Defaults to 9
@@ -210,15 +210,15 @@
     file: "6_visualize/in/overlay_callouts_dummy.png"
 -
   event_dates:
-    start: "2021-12-25"
+    start: "2021-12-07"
     end: "2021-12-31"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2021-12-25"
+    start: "2021-12-07"
     end: "2021-12-31"
   # Defaults to 9
-  fade_in:
+  fade_in: 7
   # Defaults to 9
   fade_out:
   text:
