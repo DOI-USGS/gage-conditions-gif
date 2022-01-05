@@ -101,7 +101,6 @@ dates_to_build <- lapply(lapply(yaml::read_yaml("callouts_cfg.yml"), '[[', "text
 sysfonts::font_add_google('Abel','abel')
 scipiper::scmake(sprintf('6_visualize/tmp/frame_%s_00.png', dates_to_build), '6_timestep_gif_tasks.yml', force=TRUE)
 
-
 ```
 
 # Steps for using script-based process for creating callouts
@@ -113,6 +112,20 @@ It is not currently built into the `scipiper` code yet. BUT here is what you nee
 3. Now go manually edit `callouts_cfg.yml`.
 
 Eventually, it would be nice to get this download/read/upload process into the pipeline, but for now it is not.
+
+```r
+# Create a table from the final callouts to share as needed
+lapply(yaml.load_file("callouts_cfg.yml"), function(x) {
+  tibble(EventDescription = paste(x$text$label, collapse = " "),
+         EventStart = x$event_dates$start,
+         EventEnd = x$event_dates$end)
+}) %>% 
+  bind_rows() %>% 
+  filter(nchar(EventDescription) > 0) %>% 
+  arrange(EventStart, EventEnd) %>% 
+  View()
+
+```
 
 # To create a template for making the overlays, run the following
 
