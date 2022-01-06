@@ -389,7 +389,7 @@ video_stitched <- "6_visualize/tmp/stitched.mp4"
 video_intro <- "6_visualize/tmp/intro.mp4"
 video_outro <- "6_visualize/tmp/outro.mp4"
 video_stitched_full_length <- "6_visualize/tmp/stitched_full.mp4"
-video_insta <- "6_visualize/out/river_conditions_jul_sep_2021_insta.mp4"
+video_insta <- "6_visualize/out/river_conditions_oct_dec_2021_insta.mp4"
 
 reg_animation_start <- 4 # seconds into animation that map is first shown
 reg_animation_end <- 49 # seconds into animation that map is last shown
