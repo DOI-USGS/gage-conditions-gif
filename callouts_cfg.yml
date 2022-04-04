@@ -5,8 +5,8 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2022-01-01"
-    end: "2022-03-31"
+    start: "2022-01-21"
+    end: "2022-02-01"
   # Defaults to 9
   fade_in:
   # Defaults to 9
@@ -35,10 +35,10 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2022-01-02"
-    end: "2022-01-10"
+    start: "2022-01-04"
+    end: "2022-01-12"
   # Defaults to 9
-  fade_in:
+  fade_in: 3
   # Defaults to 9
   fade_out:
   text:
@@ -144,40 +144,40 @@
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 2
-  polygon:
-    # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
--
-  event_dates:
-    start: "2022-02-15"
-    end: "2022-03-09"
-  text_dates:
-    # Adjust these if the text + callout shape should appear for
-    #   different dates than the event appears on the date wheel
-    start: "2022-02-15"
-    end: "2022-03-09"
-  # Defaults to 9
-  fade_in:
-  # Defaults to 9
-  fade_out:
-  text:
-    label: ["Much of the", "Mid-Atlantic", "abnormally", "dry"]
-    # This is in percentage space, relative to the plotting device
-    x_loc: 0.885
-    y_loc: 0.55
-    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
-    cex: 6.5
-  # TRUE or FALSE, defaults to FALSE
-  add_box:
-  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#ca0020"
-  # Integer, starting with 0 (use >= 1 to increase height)
   wheel_hierarchy: 1
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
+#-
+#  event_dates:
+#    start: "2022-02-15"
+#    end: "2022-03-09"
+#  text_dates:
+#    # Adjust these if the text + callout shape should appear for
+#    #   different dates than the event appears on the date wheel
+#    start: "2022-02-15"
+#    end: "2022-03-09"
+#  # Defaults to 9
+#  fade_in:
+#  # Defaults to 9
+#  fade_out:
+#  text:
+#    label: ["Much of the", "Mid-Atlantic", "abnormally", "dry"]
+#    # This is in percentage space, relative to the plotting device
+#    x_loc: 0.885
+#    y_loc: 0.55
+#    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
+#    pos: 4
+#    cex: 6.5
+#  # TRUE or FALSE, defaults to FALSE
+#  add_box:
+#  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
+#  wheel_color: "#ca0020"
+#  # Integer, starting with 0 (use >= 1 to increase height)
+#  wheel_hierarchy: 1
+#  polygon:
+#    # Defaults to existing small NE shape
+#    file: "6_visualize/in/overlay_callouts_dummy.png"
 -
   event_dates:
     start: "2022-02-26"
@@ -192,10 +192,10 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["Atmospheric river causes flooding", "in the Pacific Northwest"]
+    label: ["Atmospheric river causes", "flooding in the", "Pacific Northwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.38
-    y_loc: 0.92
+    x_loc: 0.39
+    y_loc: 0.93
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 7
@@ -204,7 +204,7 @@
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 3
+  wheel_hierarchy: 2
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
@@ -234,7 +234,7 @@
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 2
+  wheel_hierarchy: 1
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
