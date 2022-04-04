@@ -12,10 +12,10 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["Extreme drought persists", "in much of the West"]
+    label: ["Extreme drought", "persists in much", "of the West"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.45
-    y_loc: 0.77
+    x_loc: 0.48
+    y_loc: 0.73
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 7
@@ -42,10 +42,10 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Long duration atmospheric river brings rain to the Pacific Northwest
+    label: ["Long duration", "atmospheric", "river brings", "rain to the", "Pacific", "Northwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.38
-    y_loc: 0.83
+    x_loc: 0.32
+    y_loc: 0.95
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 7
@@ -72,13 +72,13 @@
   # Defaults to 9
   fade_out:
   text:
-    label: System brings temporary relief to dry conditions in the Northeast
+    label: ["System brings temporary", "relief to dry conditions", "in the Northeast"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.795
-    y_loc: 0.915
+    x_loc: 0.86
+    y_loc: 0.95
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 3
-    cex: 7
+    pos: 2
+    cex: 6.5
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -102,13 +102,13 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Frontal system brings high water to parts of the Eastern U.S.
+    label: ["Frontal", "system", "brings", "high water", "to parts", "of the", "Eastern U.S."]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.90
-    y_loc: 0.67
+    x_loc: 0.885
+    y_loc: 0.68
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 6.5
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -132,12 +132,12 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Frontal systems bring high water to the Northeast and Midwest
+    label: ["Frontal systems bring high", "water to the Northeast", "and Midwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.795
-    y_loc: 0.915
+    x_loc: 0.70
+    y_loc: 0.95
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 3
+    pos: 4
     cex: 7
   # TRUE or FALSE, defaults to FALSE
   add_box:
@@ -162,13 +162,13 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Much of the Mid-Atlantic region abnormally dry
+    label: ["Much of the", "Mid-Atlantic", "abnormally", "dry"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.90
-    y_loc: 0.67
+    x_loc: 0.885
+    y_loc: 0.55
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 6.5
   # TRUE or FALSE, defaults to FALSE
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -192,10 +192,10 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Atmospheric river causes flooding in the Pacific Northwest
+    label: ["Atmospheric river causes flooding", "in the Pacific Northwest"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.38
-    y_loc: 0.83
+    y_loc: 0.92
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 7
@@ -222,12 +222,12 @@
   # Defaults to 9
   fade_out:
   text:
-    label: Frontal systems bring high water to the Northeast and Midwest
+    label: ["Frontal systems bring high", "water to the Northeast", "and Midwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.795
-    y_loc: 0.915
+    x_loc: 0.70
+    y_loc: 0.95
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 3
+    pos: 4
     cex: 7
   # TRUE or FALSE, defaults to FALSE
   add_box:
