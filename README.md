@@ -153,8 +153,8 @@ create_animation_frame(
 # To create a Drupal carousel-optimized image, run the following
 
 ```
-version_info <- "river_conditions_oct_dec_2021"
-frame_to_use <- "6_visualize/tmp/frame_20211214_00.png"
+version_info <- "river_conditions_jan_mar_2022"
+frame_to_use <- "6_visualize/tmp/frame_20220325_00.png"
 
 run_magick_cmd <- function(command_str) {
   if(Sys.info()[['sysname']] == "Windows") {
@@ -173,8 +173,8 @@ run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.p
 # To create a Drupal thumbnail-optimized image, run the following
 
 ```
-version_info <- "river_conditions_oct_dec_2021"
-frame_to_use <- "6_visualize/tmp/frame_20211214_00.png"
+version_info <- "river_conditions_jan_mar_2022"
+frame_to_use <- "6_visualize/tmp/frame_20220325_00.png"
 thumbnail_dim <- 500
 
 viz_config <- yaml::yaml.load_file("viz_config.yml")
@@ -206,8 +206,8 @@ run_magick_cmd(sprintf("convert -composite -gravity center drupal_thumbnail.png 
 # Create a VisID compliant still image to be the paused frame view on Drupal
 
 ```
-frame_to_use <- "6_visualize/tmp/frame_20211214_00.png"
-version_info <- "river_conditions_oct_dec_2021"
+version_info <- "river_conditions_jan_mar_2022"
+frame_to_use <- "6_visualize/tmp/frame_20220325_00.png"
 visid_file <- "6_visualize/in/visid_overlay.png"
 
 # Get viz frame dimensions and then divide by 2 bc we 
@@ -263,6 +263,8 @@ run_magick_cmd(sprintf(
 # To create a USGS VisID compliant video version
 
 ```
+version_info <- "river_conditions_jan_mar_2022"
+
 # This works very well for viz_config height and width of 2048 & 4096.
 # Unsure about what changes may be needed for other dimensions.
 
@@ -272,11 +274,11 @@ timestep_frame_config <- remake::fetch("timestep_frame_config")
 viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
 
 # Identify files
-video_file <- "6_visualize/out/river_conditions_oct_dec_2021_twitter.mp4"
+video_file <- sprintf("6_visualize/out/%s_twitter.mp4", version_info)
 video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
 video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
 visid_file <- "6_visualize/in/visid_overlay.png"
-video_w_visid_file <- "6_visualize/out/river_conditions_oct_dec_2021_visid.mp4"
+video_w_visid_file <- sprintf("6_visualize/out/%s_visid.mp4", version_info)
 
 # Cover up the existing USGS logo
 system(sprintf(
@@ -312,9 +314,11 @@ system(sprintf(
 # Create a visID version that isn't too big for Facebook
 
 ```
-video_file <- "6_visualize/out/river_conditions_oct_dec_2021_visid.mp4"
+version_info <- "river_conditions_jan_mar_2022"
+
+video_file <- sprintf("6_visualize/out/%s_visid.mp4", version_info)
 video_resized_for_facebook <- "6_visualize/tmp/video_facebook_aspect_ratio.mp4"
-video_downscaled_for_facebook <- "6_visualize/out/river_conditions_oct_dec_2021_facebook.mp4"
+video_downscaled_for_facebook <- sprintf("6_visualize/out/%s_facebook.mp4", version_info)
 
 # Get viz frame dimensions and then divide by 2 bc we 
 # double them in combine_animation_frame
@@ -389,10 +393,12 @@ video_stitched <- "6_visualize/tmp/stitched.mp4"
 video_intro <- "6_visualize/tmp/intro.mp4"
 video_outro <- "6_visualize/tmp/outro.mp4"
 video_stitched_full_length <- "6_visualize/tmp/stitched_full.mp4"
-video_insta <- "6_visualize/out/river_conditions_oct_dec_2021_insta.mp4"
+
+version_info <- "river_conditions_jan_mar_2022"
+video_insta <- sprintf("6_visualize/out/%s_insta.mp4", version_info)
 
 reg_animation_start <- 4 # seconds into animation that map is first shown
-reg_animation_end <- 49 # seconds into animation that map is last shown
+reg_animation_end <- 48 # seconds into animation that map is last shown
 
 insta_dim <- 600 # square shape
 
@@ -612,11 +618,13 @@ system(sprintf(
 Do this by adding one single still image before the video
 
 ```r
+version_info <- "river_conditions_jan_mar_2022"
+
 # Make video with still image before
 viz_config <- scmake("viz_config")
 frame_to_use_t <- 38 # TODO: pick the frame you want
-video_reddit <- "6_visualize/out/river_conditions_oct_dec_2021_reddit.mp4"
-video_in <- "6_visualize/out/river_conditions_oct_dec_2021_twitter.mp4"
+video_reddit <- sprintf("6_visualize/out/%s_reddit.mp4", version_info)
+video_in <- sprintf("6_visualize/out/%s_twitter.mp4", version_info)
 video_still_frame <- "6_visualize/tmp/video_still_frame.mp4"
 
 # First, cut out just this frame from video
