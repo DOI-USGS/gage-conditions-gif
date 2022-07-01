@@ -27,7 +27,12 @@ create_intro_frame <- function(png_file, file_config, frame_config, watermark_fu
        cex = 18,
        col = "#474747")
   text(x = 0.5,
-       y = 0.45,
+       y = 0.60,
+       labels = "at USGS streamgages",
+       cex = 12,
+       col = "#474747")
+  text(x = 0.5,
+       y = 0.35,
        labels = frame_config$subtitle,
        cex = 12,
        col = "#04507d")
