@@ -44,8 +44,8 @@
   text:
     label: ["Fronts bring high water", "to parts of the Eastern", "and Southern U.S."]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.73
-    y_loc: 0.16
+    x_loc: 0.715
+    y_loc: 0.18
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 1
     cex: 6
@@ -252,7 +252,7 @@
   # Defaults to 9
   fade_out: 5
   text:
-    label: ["Atmospheric river brings high water", "to the Pacific Northwest and to", "record flooding on the Yellowstone River"]
+    label: ["Atmospheric river brings high water", "to the Pacific Northwest and leads to", "record flooding on the Yellowstone River"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.40
     y_loc: 0.96
