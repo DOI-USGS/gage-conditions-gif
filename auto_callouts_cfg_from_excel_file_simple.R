@@ -5,7 +5,7 @@
 # Then, manually edit the rest of `callouts_cfg.yml` to get text looking correct
 
 library(dplyr)
-fn_in <- "river_conditions_Jul_Sep_2021_list.xlsx"
+fn_in <- "river_conditions_Apr_Jun_2022_list.xlsx"
 
 callout_data <- readxl::read_excel(fn_in) %>%
   # Make columns match what the mustache template expects
