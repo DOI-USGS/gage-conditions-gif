@@ -2,6 +2,7 @@
 vizDates:
   start: '2022-01-01'
   end: '2022-03-31'
+
 # Dates that make up the wheel (usually a full year)
 wheelDates:
   start: '2021-10-01'

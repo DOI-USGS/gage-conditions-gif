@@ -21,6 +21,8 @@ process_dv_stats <- function(ind_file, dv_data_ind, site_stats_ind, dates){
     df <- select(df, "dv_val", one_of(stat_colnames))
     out <- rep(NA, nrow(df))
 
+    progress_bar <- txtProgressBar(min = 1, max = length(out), style = 3)
+
     for (i in 1:length(out)){
       dv_val <- df$dv_val[i]
 
@@ -48,9 +50,11 @@ process_dv_stats <- function(ind_file, dv_data_ind, site_stats_ind, dates){
       } else {
         out[i] <- approx(x, y, xout = dv_val)$y
       }
-      print(i)
+
+      setTxtProgressBar(progress_bar, i)
     }
     return(out)
+    close(progress_bar)
 
   }
 
