@@ -15,7 +15,7 @@
     label: ["Drought persists in", "much of the West"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.50
-    y_loc: 0.75
+    y_loc: 0.67
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -44,8 +44,8 @@
   text:
     label: ["Fronts bring high water", "to parts of the Eastern", "and Southern U.S."]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.70
-    y_loc: 0.22
+    x_loc: 0.73
+    y_loc: 0.16
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 1
     cex: 6
@@ -80,7 +80,7 @@
     pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
@@ -104,7 +104,7 @@
   text:
     label: ["A dry period", 'for the', "Mid-Atlantic"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.87
+    x_loc: 0.885
     y_loc: 0.67
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
@@ -140,7 +140,7 @@
     pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#ca0020"
   # Integer, starting with 0 (use >= 1 to increase height)
@@ -195,7 +195,7 @@
     label: ["A dry period", "for New England"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.80
-    y_loc: 0.80
+    y_loc: 0.90
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 3
     cex: 6
