@@ -5,17 +5,17 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2022-04-03"
-    end: "2022-04-22"
+    start: "2022-04-05"
+    end: "2022-04-20"
   # Defaults to 9
   fade_in: 2
   # Defaults to 9
-  fade_out:
+  fade_out: 5
   text:
     label: ["Drought persists in", "much of the West"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.50
-    y_loc: 0.67
+    x_loc: 0.46
+    y_loc: 0.68
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -35,12 +35,12 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2022-04-07"
+    start: "2022-04-12"
     end: "2022-04-21"
   # Defaults to 9
-  fade_in: 2
+  fade_in: 3
   # Defaults to 9
-  fade_out:
+  fade_out: 5
   text:
     label: ["Fronts bring high water", "to parts of the Eastern", "and Southern U.S."]
     # This is in percentage space, relative to the plotting device
@@ -65,10 +65,10 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2022-04-27"
+    start: "2022-05-10"
     end: "2022-05-20"
   # Defaults to 9
-  fade_in: 4
+  fade_in: 3
   # Defaults to 9
   fade_out: 5
   text:
@@ -98,7 +98,7 @@
     start: "2022-04-27"
     end: "2022-05-03"
   # Defaults to 9
-  fade_in:
+  fade_in: 3
   # Defaults to 9
   fade_out: 2
   text:
@@ -125,10 +125,10 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2022-05-28"
+    start: "2022-05-31"
     end: "2022-06-15"
   # Defaults to 9
-  fade_in: 5
+  fade_in: 3
   # Defaults to 9
   fade_out: 5
   text:
@@ -158,7 +158,7 @@
     start: "2022-05-04"
     end: "2022-05-11"
   # Defaults to 9
-  fade_in: 3
+  fade_in: 5
   # Defaults to 9
   fade_out:
   text:
@@ -186,7 +186,7 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2022-05-20"
-    end: "2022-06-08"
+    end: "2022-05-31"
   # Defaults to 9
   fade_in: 5
   # Defaults to 9
@@ -195,7 +195,7 @@
     label: ["A dry period", "for New England"]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.80
-    y_loc: 0.90
+    y_loc: 0.92
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 3
     cex: 6
@@ -215,10 +215,10 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2022-06-05"
-    end: "2022-06-11"
+    start: "2022-06-08"
+    end: "2022-06-13"
   # Defaults to 9
-  fade_in: 5
+  fade_in: 3
   # Defaults to 9
   fade_out: 0
   text:
@@ -245,12 +245,12 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2022-06-11"
-    end: "2022-06-22"
+    start: "2022-06-15"
+    end: "2022-06-30"
   # Defaults to 9
-  fade_in: 0
+  fade_in: 2
   # Defaults to 9
-  fade_out: 5
+  fade_out: 0
   text:
     label: ["Atmospheric river brings high water", "to the Pacific Northwest and leads to", "record flooding on the Yellowstone River"]
     # This is in percentage space, relative to the plotting device
