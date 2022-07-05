@@ -134,8 +134,8 @@
   text:
     label: ["Drought deepens", "in the Southwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.50
-    y_loc: 0.65
+    x_loc: 0.46
+    y_loc: 0.55
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -245,7 +245,7 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2022-06-15"
+    start: "2022-06-13"
     end: "2022-06-30"
   # Defaults to 9
   fade_in: 2
