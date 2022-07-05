@@ -73,7 +73,10 @@ dates_of_events <- lapply(yaml::read_yaml("callouts_cfg.yml"), function(x) {
           txt_in = txt_s - ifelse(is.null(x$fade_in), 9, x$fade_in), 
           txt_out = txt_e + ifelse(is.null(x$fade_out), 9, x$fade_out)
       )
-}) %>% bind_rows()
+}) %>% bind_rows() %>% 
+    # Order the figure output based on event start date
+    arrange(start) %>% 
+    mutate(label = factor(label, levels = label, ordered = TRUE))
 
 library(ggplot2)
 ggplot(dates_of_events, aes(y = 1, yend = 1)) +
