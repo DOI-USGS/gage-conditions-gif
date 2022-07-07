@@ -104,10 +104,10 @@
   text:
     label: ["A dry period", 'for the', "Mid-Atlantic"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.885
-    y_loc: 0.67
+    x_loc: 0.94
+    y_loc: 0.55
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
+    pos: 3
     cex: 6
   # TRUE or FALSE, defaults to FALSE
   add_box:
