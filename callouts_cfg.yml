@@ -181,7 +181,7 @@
 -
   event_dates:
     start: "2022-05-09"
-    end: "2022-06-08"
+    end: "2022-06-07"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
@@ -201,6 +201,39 @@
     cex: 6
   # TRUE or FALSE, defaults to FALSE
   add_box:
+  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
+  wheel_color: "#ca0020"
+  # Integer, starting with 0 (use >= 1 to increase height)
+  wheel_hierarchy: 2
+  polygon:
+    # Defaults to existing small NE shape
+    file: "6_visualize/in/overlay_callouts_dummy.png"
+-
+  event_dates:
+    # Choosing same start/end date so this doesn't appear on the wheel
+    # as a separate event from the next one. This is only separate so
+    # that we can fade in the text separately.
+    start: "2022-06-08"
+    end: "2022-06-26"
+  text_dates:
+    # Adjust these if the text + callout shape should appear for
+    #   different dates than the event appears on the date wheel
+    start: "2022-06-11"
+    end: "2022-06-20"
+  # Defaults to 9
+  fade_in: 4
+  # Defaults to 9
+  fade_out: 3
+  text:
+    label: ["Drought", "conditions", "expand in", "Puerto Rico"]
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.92
+    y_loc: 0.275
+    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
+    pos: 1
+    cex: 6
+  # TRUE or FALSE, defaults to FALSE
+  add_box: FALSE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#ca0020"
   # Integer, starting with 0 (use >= 1 to increase height)
@@ -233,7 +266,7 @@
     pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
@@ -263,7 +296,7 @@
     pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
