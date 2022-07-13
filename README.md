@@ -57,11 +57,11 @@ Sometimes it is useful to build just a single frame, or subset of frames. Below 
 sysfonts::font_add_google('Abel','abel')
 
 # Build a specific subset of days
-days <- c(707:717)
-scipiper::scmake(sprintf('6_visualize/tmp/frame_20210%s_00.png', days), '6_timestep_gif_tasks.yml')
+days <- c(607:617)
+scipiper::scmake(sprintf('6_visualize/tmp/frame_20220%s_00.png', days), '6_timestep_gif_tasks.yml')
 
 # Build a single frame:
-scipiper::scmake('6_visualize/tmp/frame_20200210_00.png', '6_timestep_gif_tasks.yml')
+scipiper::scmake('6_visualize/tmp/frame_20220530_00.png', '6_timestep_gif_tasks.yml')
 
 # Understand events timing through a line chart
 
@@ -176,8 +176,8 @@ run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.p
 # To create a Drupal thumbnail-optimized image, run the following
 
 ```
-version_info <- "river_conditions_jan_mar_2022"
-frame_to_use <- "6_visualize/tmp/frame_20220325_00.png"
+version_info <- "river_conditions_apr_jun_2022"
+frame_to_use <- "6_visualize/tmp/frame_20220616_00.png"
 thumbnail_dim <- 500
 
 viz_config <- yaml::yaml.load_file("viz_config.yml")
@@ -209,8 +209,8 @@ run_magick_cmd(sprintf("convert -composite -gravity center drupal_thumbnail.png 
 # Create a VisID compliant still image to be the paused frame view on Drupal
 
 ```
-version_info <- "river_conditions_jan_mar_2022"
-frame_to_use <- "6_visualize/tmp/frame_20220325_00.png"
+version_info <- "river_conditions_apr_jun_2022"
+frame_to_use <- "6_visualize/tmp/frame_20220616_00.png"
 visid_file <- "6_visualize/in/visid_overlay.png"
 
 # Get viz frame dimensions and then divide by 2 bc we 
@@ -266,7 +266,7 @@ run_magick_cmd(sprintf(
 # To create a USGS VisID compliant video version
 
 ```
-version_info <- "river_conditions_jan_mar_2022"
+version_info <- "river_conditions_apr_jun_2022"
 
 # This works very well for viz_config height and width of 2048 & 4096.
 # Unsure about what changes may be needed for other dimensions.
@@ -317,7 +317,7 @@ system(sprintf(
 # Create a visID version that isn't too big for Facebook
 
 ```
-version_info <- "river_conditions_jan_mar_2022"
+version_info <- "river_conditions_apr_jun_2022"
 
 video_file <- sprintf("6_visualize/out/%s_visid.mp4", version_info)
 video_resized_for_facebook <- "6_visualize/tmp/video_facebook_aspect_ratio.mp4"
@@ -397,7 +397,7 @@ video_intro <- "6_visualize/tmp/intro.mp4"
 video_outro <- "6_visualize/tmp/outro.mp4"
 video_stitched_full_length <- "6_visualize/tmp/stitched_full.mp4"
 
-version_info <- "river_conditions_jan_mar_2022"
+version_info <- "river_conditions_apr_jun_2022"
 video_insta <- sprintf("6_visualize/out/%s_insta.mp4", version_info)
 
 reg_animation_start <- 4 # seconds into animation that map is first shown
