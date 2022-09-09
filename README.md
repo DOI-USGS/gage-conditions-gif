@@ -484,8 +484,8 @@ system(sprintf(
 This still image is used on the GWSIP home page in the image carousel when the new animation is linked there by the Web Communications team. It is an awkwardly large size, so this creates the appropriately sized image with a white background and then centers our still frame on it.
 
 ```r
-run_magick_cmd("convert -size 11400x3721 canvas:white carousel_background.png")
-run_magick_cmd(sprintf("convert -composite -gravity center carousel_background.png %s 6_visualize/out/%s_carousel.png", frame_to_use, version_info))
+run_magick_cmd("convert -size 11400x3721 canvas:white 6_visualize/tmp/carousel_background.png")
+run_magick_cmd(sprintf("convert -composite -gravity center 6_visualize/tmp/carousel_background.png %s 6_visualize/out/%s_carousel.png", frame_to_use, version_info))
 ```
 
 #### USGS VisID thumbnail
@@ -550,13 +550,13 @@ x_pos <- viz_config[["footnote_cfg"]][["x_pos"]]
 y_pos <- viz_config[["footnote_cfg"]][["y_pos"]]
 
 # Crop frame to map only view & resize so that width is 500
-run_magick_cmd(sprintf("convert %s -gravity West -chop %sx0 -gravity South -chop 0x%s -resize %sx%s drupal_thumbnail_intermediate.png", frame_to_use, width*x_pos*0.80, height*y_pos*2, thumbnail_dim, thumbnail_dim))
+run_magick_cmd(sprintf("convert %s -gravity West -chop %sx0 -gravity South -chop 0x%s -resize %sx%s 6_visualize/tmp/drupal_thumbnail_intermediate.png", frame_to_use, width*x_pos*0.80, height*y_pos*2, thumbnail_dim, thumbnail_dim))
 
 # Create a square white image
-run_magick_cmd(sprintf("convert -size %sx%s canvas:white drupal_thumbnail.png", thumbnail_dim, thumbnail_dim))
+run_magick_cmd(sprintf("convert -size %sx%s canvas:white 6_visualize/tmp/drupal_thumbnail.png", thumbnail_dim, thumbnail_dim))
 
 # Paste the map centered in the square white image
-run_magick_cmd(sprintf("convert -composite -gravity center drupal_thumbnail.png drupal_thumbnail_intermediate.png 6_visualize/out/%s_square_thumbnail.png", version_info))
+run_magick_cmd(sprintf("convert -composite -gravity center 6_visualize/tmp/drupal_thumbnail.png 6_visualize/tmp/drupal_thumbnail_intermediate.png 6_visualize/out/%s_square_thumbnail.png", version_info))
 ```
 
 ### Restructure code and build a new Instagram version
