@@ -14,11 +14,11 @@ The process to create this animation is almost entirely automated using the (now
 
 1. Change the animation dates and download/process the new data (*notify Web Comms and GWSIP team that this process has begun*)
 1. Create a new blank animation to use for event callout inspiration
-1. Gather event callouts and add to the animation (*work with GWSIP collaborators involve IIDD reviewers as necessary*)
+1. Gather event callouts and add to the animation (*work with GWSIP collaborators & involve IIDD reviewers as necessary*)
 1. Tweak event callout timing and appearance
-1. Generate final video animation (*get it approved by IIDD reviewers during this step*)
-1. Run code for simple-to-produce outreach artifacts (*Ask Web Comms to upload the VisID thumbnail to Drupal, then submit Drupal video upload form*)
-1. Restructure code and build a new Instagram version (*share this and the other outreach artifacts with Web Comms so the release package can be ready*)
+1. Generate final video animation (*get it approved by IIDD reviewers during this step, after approval ask Web Comms to start the video description paragraph*)
+1. Run code for simple-to-produce outreach artifacts (*ask Web Comms to upload the VisID thumbnail to Drupal, then submit Drupal video upload form with link to that thumbnail*)
+1. Restructure code and build a new Instagram version (*share this and other outreach artifacts with Web Comms so the release package can be ready*)
 
 *I plan to come back later and add instructions for how to generate the full water year animation*
 
