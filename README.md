@@ -59,16 +59,8 @@ googledrive::drive_auth()
 Next, actually download the data by running the following code which kicks off the lengthy data processing steps. Note that this will take multiple hours. I usually plan on kicking this off in the morning and then getting back to it right at the end of the day, or even the next day. It also prints a lot to the console.
 
 ```
-# TODO: I think that there is a way to do this without specifying all of 
-# these individually, but this has been working for me so let's save that 
-# change for a rainy day.
-
-scipiper::scmake("1_fetch/out/dv_data.rds.ind", "1_fetch.yml")
-scipiper::scmake("1_fetch/out/dv_data_fixed_gh.rds.ind", "1_fetch.yml")
-scipiper::scmake("1_fetch/out/sites_stage.rds.ind", remake_file = "1_fetch.yml")
-scipiper::scmake("2_process/out/dv_stats.rds.ind", "2_process.yml")
-scipiper::scmake("2_process/out/dv_stats_fixed_gh.rds.ind", "2_process.yml")
-scipiper::scmake("2_process/out/dv_stat_styles.rds.ind", "2_process.yml")
+source('helper_fxns_pipeline.R')
+rebuild_gage_data()
 ```
 ### Create a new blank animation to use for event callout inspiration
 
@@ -88,12 +80,6 @@ The animation's event callouts are added via the `callouts_cfg.yml` file. This f
 
 Now that you don't have any files in `6_visualize/tmp` or any content in `callouts_cfg.yml`, you can build the initial, blank version of the animation. Note that this repo was one of the first `scipiper` repos that we constructed and is not following all of the best practices that were learned later (*ahem* the over use of `force=TRUE` *ahem*). In the spirit of "if it's not broken, don't fix it" and prioritization of future projects rather than this known technical debt, we will just ignore such quirks here unless they disrupt our ability to create the animation from this repo.
 
-First, in order for the frames to use the appropriate font, we need to load it in each R session where we are building the frames using the function below. If you don't do this, the code won't error but your final frame(s) will not have the correct font.
-
-```r
-sysfonts::font_add_google('Abel','abel')
-```
-
 The animation is chunked into four sections:
 
 1. `intro` - the title slide that fades in and out
@@ -104,34 +90,25 @@ The animation is chunked into four sections:
 The intro and final frames should only need to be build once when you are kicking off a new version since they only depend on the date range and won't be impacted by tweaks in callouts. To build the intro and final frames, run the following:
 
 ```r
-# Build the intro frames
-scipiper::scmake('6_intro_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-scipiper::scmake('6_visualize/log/6_intro_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
-# Build the final frames
-scipiper::scmake('6_final_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-scipiper::scmake('6_visualize/log/6_final_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+source('helper_fxns_pipeline.R')
+rebuild_frame_sections(intro = TRUE, final = TRUE)
 ```
 
 The frames that are impacted by changes in callouts will be the timestep and pause sections. You will likely need to rebuild these frames a number of times as you work on the appearance and timing of callouts. To build the timestep and pause frames, run the following:
 
 ```r
-# Build the timestep frames
-scipiper::scmake('6_timestep_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-scipiper::scmake('6_visualize/log/6_timestep_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
-# Build the pause frames
-scipiper::scmake('6_pause_gif_tasks.yml', remake_file = '6_visualize.yml', force=TRUE)
-scipiper::scmake('6_visualize/log/6_pause_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+source('helper_fxns_pipeline.R')
+rebuild_frame_sections(timestep = TRUE, pause = TRUE)
 ```
 
-To stitch the completed frames together into a single video animation, run the following:
+To stitch the completed frames together into a single video animation, run the following but updated the `new_name` argument to follow this pattern: `river_conditions_[month start]_[month end]_[year]_draft.mp4`.
 
 ```r
-scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
+source('helper_fxns_pipeline.R')
+rebuild_video(new_name = 'river_conditions_apr_jun_2022_draft.mp4')
 ```
 
-Now, you can go view the draft animation at `6_visualize/out/year_in_review.mp4`. Before sharing with collaborators, I usually rename this to `river_conditions_[month start]_[month end]_[year]_draft.mp4`.
+Now, you can go view the draft animation and then share with collaborators to get event callout input.
 
 ### Gather event callouts and add to the animation
 
@@ -148,24 +125,8 @@ Start | End | Label
 Then, save the callouts table in an Excel file called `input_callouts.xlsx` and run the following code to generate the initial `callouts_cfg.yml` file.
 
 ```r
-library(dplyr)
-
-callout_data <- readxl::read_excel("input_callouts.xlsx") %>%
-  # Make columns match what the mustache template expects
-  rename(start_date = Start,
-         end_date = End,
-         label = Label)
-
-# Turn data frame into list
-callouts_list <- split(callout_data, seq(nrow(callout_data)))
-callouts_string_list <- lapply(callouts_list, function(x) {
-  callout_list_t <- t(x)
-  callout_list_data <- setNames(split(callout_list_t, seq(nrow(callout_list_t))), rownames(callout_list_t))
-  whisker::whisker.render(readLines("1_fetch/in/callout_template.mustache"), data = callout_list_data)
-})
-
-# Save output as file
-writeLines(unlist(lapply(callouts_string_list, paste, collapse=" ")), "callouts_cfg.yml")
+source('helper_fxns_pipeline.R')
+generate_callout_cfg_from_xlsx()
 ```
 
 #### Update the `callouts_cfg.yml`
@@ -186,19 +147,9 @@ These are the only elements you need to change right now. We will iterate on the
 Using the initial callouts timing and placement, generate a new animation by updating the appropriate frames and then rebuilding the video using the code below.
 
 ```r
-# Ensure the correct font is still loaded
-sysfonts::font_add_google('Abel','abel')
-
-# Build the timestep frames
-scipiper::scmake('6_timestep_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-scipiper::scmake('6_visualize/log/6_timestep_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
-# Build the pause frames
-scipiper::scmake('6_pause_gif_tasks.yml', remake_file = '6_visualize.yml', force=TRUE)
-scipiper::scmake('6_visualize/log/6_pause_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
-# Build the animation
-scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
+source('helper_fxns_pipeline.R')
+rebuild_frame_sections(timestep = TRUE, pause = TRUE)
+rebuild_video()
 ```
 
 Sometimes, I notice that the `pause` frames are not updating as they should. There are not many of them, so if this happens I delete the individual frames manually and then rebuild. To delete manually, find any frame in `6_visualize/tmp` prefixed with `frame_6000`.
@@ -212,31 +163,8 @@ This is usually where I spend the most hands-on time because it is where you ite
 To understand how events overlap and what you may want to update about them, run this code to generate a plot showing all the events and when they appear in the animation. It uses the dates in `callouts_cfg.yml`, so if you update those and save that file, rerun this code to see the new plot.
 
 ```r
-dates_of_events <- lapply(yaml::read_yaml("callouts_cfg.yml"), function(x) {
-  tibble(label = paste(x$text$label, collapse = " "), 
-         start = as.Date(x$event_dates$start), end = as.Date(x$event_dates$end),
-         txt_s = as.Date(x$text_dates$start), txt_e = as.Date(x$text_dates$end)) %>% 
-      mutate(
-          txt_in = txt_s - ifelse(is.null(x$fade_in), 9, x$fade_in), 
-          txt_out = txt_e + ifelse(is.null(x$fade_out), 9, x$fade_out)
-      )
-}) %>% bind_rows() %>% 
-    # Order the figure output based on event start date
-    arrange(start) %>% 
-    mutate(label = factor(label, levels = label, ordered = TRUE))
-
-library(ggplot2)
-ggplot(dates_of_events, aes(y = 1, yend = 1)) +
-  geom_segment(aes(x = start, xend = end), size = 3) +
-  geom_segment(aes(y = 0.5, yend = 0.5, x = txt_s, xend = txt_e), size = 2, color = "blue") +
-  geom_segment(aes(y = 0.5, yend = 0.5, x = txt_in, xend = txt_out), size = 1, color = "red", linetype = "dotted") +
-  ylim(0, 2) +
-  geom_text(aes(x = start, y = 1.5, label = label), hjust = 0) +
-  facet_grid(label ~ .) + 
-  theme(axis.text=element_blank(), axis.ticks=element_blank(),
-        strip.background = element_blank(), strip.text = element_blank(),
-        axis.title = element_blank(), panel.grid = element_blank(),
-        panel.spacing = unit(0, "lines"))
+source('helper_fxns_pipeline.R')
+generate_event_graph()
 ```
 
 * **Event appearance on the datewheel.** The `event_dates` and `wheel_hierarchy` attributes determine how an event will appear on the datewheel in the bottomleft of the animation frame. The goal is for us to see all of the events in one view. You should mostly be adjusting `wheel_hierarchy` (which defaults to 1 but ranges from 0-3) to change which appear in front and short (`wheel_hierarchy=0`) or behind and tall (`wheel_hierarchy=3`). Sometimes, two events overlap by 1 day and you want them to be the same `wheel_hierarchy`. In this rare instance, I adjust the `event_dates` on one of them to be 1-2 days earlier or later for visual separation. While this is not ideal, it provides for the visual separation we need on the datewheel.
@@ -248,31 +176,20 @@ As you iterate through other parts of the text appearance, you probably don't wa
 
 ```r
 # Build a frame for the middle of each event
-
-dates_to_build <- lapply(lapply(yaml::read_yaml("callouts_cfg.yml"), '[[', "text_dates"), function(x) {
-  endDate <- as.Date(x$end)
-  startDate <- as.Date(x$start)
-  halfwayDate <- startDate + (endDate - startDate)/2
-  return(halfwayDate)
-}) %>% unlist() %>% as.Date(origin = "1970-01-01") %>% format("%Y%m%d")
-
-# Don't forget the font: 
-sysfonts::font_add_google('Abel','abel')
-scipiper::scmake(sprintf('6_visualize/tmp/frame_%s_00.png', dates_to_build), '6_timestep_gif_tasks.yml', force=TRUE)
+source('helper_fxns_pipeline.R')
+rebuild_event_frames()
 ```
 
 You may even have a specific frame or range of frames you want to build. Here's some code to do that:
 
 ```r
-# Don't forget that you need the font!
-sysfonts::font_add_google('Abel','abel')
+source('helper_fxns_pipeline.R')
 
 # Build a specific subset of days
 days <- c(20220607:20220617)
-scipiper::scmake(sprintf('6_visualize/tmp/frame_%s_00.png', days), '6_timestep_gif_tasks.yml')
+rebuild_timestep_frames(days)
 
-# Build a single frame:
-scipiper::scmake('6_visualize/tmp/frame_20220530_00.png', '6_timestep_gif_tasks.yml')
+rebuild_timestep_frames(20220530) # Build a single frame
 ```
 
 * **Text location, justification, and layout.** Described earlier so that you could get an initial view with callouts, these same elements (`label`, `pos`, `x_loc`, `y_loc`) are likely to be adjusted during your polishing iterations. 
@@ -281,282 +198,59 @@ scipiper::scmake('6_visualize/tmp/frame_20220530_00.png', '6_timestep_gif_tasks.
 
 ### Generate final video animation
 
-Once you are satisfied with the timing and appearance of your callouts and the datewheel, it is time to prepare a version to share out. Now, you may already have a version ready to go, but I like to just rebuild everything one more time knowing that my `callout_cfgs.yml` has the final up-to-date information for everything, especially if I've been individually building frames as I have been iterating. To do that, just rebuild the frames and the video animation as we did earlier (remember, you might need to manually delete any pause pngs prefixed `frame_6000` before this):
+Once you are satisfied with the timing and appearance of your callouts and the datewheel, it is time to prepare a version to share out. Now, you may already have a version ready to go, but I like to just rebuild everything one more time knowing that my `callout_cfgs.yml` has the final up-to-date information for everything, especially if I've been individually building frames as I have been iterating. To do that, just rebuild the frames and the video animation as we did earlier (remember, you might need to manually delete any pause pngs prefixed `frame_6000` before this). Update the `new_name` argument to match this scheme, `6_visualize/out/river_conditions_[month start]_[month end]_[year]_prototype.mp4`.
 
 ```r
-# Load that font again just in case! It's easy and quick to run but terrible
-# to realize your fonts are all wrong after the frames rebuild
-sysfonts::font_add_google('Abel','abel')
-
-# Build the intro frames
-scipiper::scmake('6_intro_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-scipiper::scmake('6_visualize/log/6_intro_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
-# Build the timestep frames
-scipiper::scmake('6_timestep_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-scipiper::scmake('6_visualize/log/6_timestep_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
-# Build the pause frames
-scipiper::scmake('6_pause_gif_tasks.yml', remake_file = '6_visualize.yml', force=TRUE)
-scipiper::scmake('6_visualize/log/6_pause_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
-# Build the final frames
-scipiper::scmake('6_final_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-scipiper::scmake('6_visualize/log/6_final_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
-# Build the animation
-scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
+source("helper_fxns_pipeline.R")
+rebuild_frame_sections(intro = T, timestep = T, pause = T, final = T)
+rebuild_video(new_name = "6_visualize/out/river_conditions_apr_jun_2022_prototype.mp4")
 ```
 
-Next, I rename the output file from `6_visualize/out/year_in_review.mp4` to `6_visualize/out/river_conditions_[month start]_[month end]_[year]_prototype.mp4`. I share this out and get feedback/approval from the various groups I need to (GWSIP collaborators, Vizlab lead, Data Science Chief, and IIDD Director). I incorporate edits using the iterative techniques employed earlier and then regenerate one more version but rename to `6_visualize/out/river_conditions_[month start]_[month end]_[year]_twitter.mp4`.
+Next, I share this new video out and get feedback/approval from the various groups I need to (GWSIP collaborators, Vizlab lead, Data Science Chief, and IIDD Director). I incorporate edits using the iterative techniques employed earlier and then regenerate one more version but rename to `6_visualize/out/river_conditions_[month start]_[month end]_[year]_twitter.mp4`:
+
+```r
+source("helper_fxns_pipeline.R")
+rebuild_frame_sections(intro = T, timestep = T, pause = T, final = T)
+rebuild_video(new_name = "6_visualize/out/river_conditions_apr_jun_2022_twitter.mp4")
+```
 
 Now, I share the Twitter version with collaborators in Web Communications so that they may start pulling together social media. They will also help develop the descriptive text that can accompany the visualization to meet accessibility needs. I have found that providing tabular version of the final events we feature is useful. To create that, run this code:
 
 ```r
-# Create a table from the final callouts to share as needed
-lapply(yaml.load_file("callouts_cfg.yml"), function(x) {
-  tibble(EventDescription = paste(x$text$label, collapse = " "),
-         EventStart = x$event_dates$start,
-         EventEnd = x$event_dates$end)
-}) %>% 
-  bind_rows() %>% 
-  filter(nchar(EventDescription) > 0) %>% 
-  arrange(EventStart, EventEnd) %>% 
-  View()
+source("helper_fxns_outreach_media.R")
+output_table <- generate_callout_table()
+View(output_table)
 ```
 
 ### Run code for simple-to-produce outreach artifacts
 
-While the social media plan is being developed using `6_visualize/out/river_conditions_[month start]_[month end]_[year]_twitter.mp4`, you can go ahead and start building all of the other social media content. There are a few configurations you need to set before moving ahead and running all the associated code.
-
-1. Choose a new date to feature as the static image frame. This will be used in any of the static images, so choose one that is interesting!
-2. Update and run the following code so that all subsequent code chunks can take advantage of the updated information.
+While the social media plan is being developed using `6_visualize/out/river_conditions_[month start]_[month end]_[year]_twitter.mp4`, you can go ahead and start building all of the other social media content. There are a few configurations you need to set in the following codechunk.
 
 ```r
-# Update to the appropriate [month start]_[month end]_[year] so that this can be used when naming all other outputs
+# Update to the appropriate [month start]_[month end]_[year] so that 
+# this can be used when naming all other outputs
 version_info <- "river_conditions_apr_jun_2022" 
 
 # Update to the date you want to use for any still frames
 frame_to_use <- "6_visualize/tmp/frame_20220616_00.png" 
 
-# Specify the time (in seconds) associated with the frame you want to appear as the Reddit preview
+# Specify the time (in seconds) associated with the frame you want 
+# to appear as the Reddit preview
 frame_to_use_t <- 38
-
-# This function is used in many of the following code chunks
-run_magick_cmd <- function(command_str) {
-  if(Sys.info()[['sysname']] == "Windows") {
-    magick_command <- sprintf('magick %s', command_str)
-  } else {
-    magick_command <- command_str
-  }
-  system(magick_command)
-}
 ```
 
-Note that if you restart R between running the above and any of the code chunks below, you will need to rerun these lines above so that the objects and functions exist in your environment.
-
-#### USGS VisID animation
-
-This reshapes the video frame, removes the existing logo, and adds the necessary black bar with USGS logo at the bottom of the video.
+Now that you have set those configurations, you can generate all of the media content using the code chunk below (except for Instagram, which we will cover after).
 
 ```r
-# This works very well for viz_config height and width of 2048 & 4096.
-# Unsure about what changes may be needed for other dimensions.
+# Load necessary functions
+source("helper_fxns_outreach_media.R")
 
-# Get viz frame dimensions and then divide by 2 bc we 
-# double them in combine_animation_frame
-timestep_frame_config <- remake::fetch("timestep_frame_config")
-viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
-
-# Identify files
-video_file <- sprintf("6_visualize/out/%s_twitter.mp4", version_info)
-video_logo_cover_file <- "6_visualize/tmp/video_logocovered_for_visid.mp4"
-video_scaled_for_visid_file <- "6_visualize/tmp/video_scaled_for_visid.mp4"
-visid_file <- "6_visualize/in/visid_overlay.png"
-video_w_visid_file <- sprintf("6_visualize/out/%s_visid.mp4", version_info)
-
-# Cover up the existing USGS logo
-system(sprintf(
-  'ffmpeg -y -i %s -vf "drawbox=x=0:y=ih-h:w=%s/6:h=%s/8:t=max:color=white" %s', 
-  video_file, 
-  viz_config_dim$width, 
-  viz_config_dim$height,
-  video_logo_cover_file
-))
-
-# Scale and pad the existing video to fit the black bottom bar
-# without changing aspect ratio
-system(sprintf(
-    'ffmpeg -y -i %s -vf "scale=%s:%s,pad=%s:%s:(ow-iw)/2:color=white" %s', 
-    video_logo_cover_file,
-    viz_config_dim$width-viz_config_dim$width*0.08691406, 
-    viz_config_dim$height-viz_config_dim$height*0.08691406,
-    viz_config_dim$width, 
-    viz_config_dim$height,
-    video_scaled_for_visid_file
-))
-
-# Overlay the visid black bar onto video
-system(sprintf(
-    'ffmpeg -y -i %s -i %s -filter_complex "overlay" -c:v libx264  %s', 
-    video_scaled_for_visid_file,
-    visid_file,
-    video_w_visid_file))
-```
-
-#### USGS Facebook animation
-
-The VisID version of the animation is not the right aspect ratio and is too large for Facebook. This updates the aspect ratio and scales the video size down, so that the output is compatible and optimized for Facebook.
-
-```r
-video_file <- sprintf("6_visualize/out/%s_visid.mp4", version_info)
-video_resized_for_facebook <- "6_visualize/tmp/video_facebook_aspect_ratio.mp4"
-video_downscaled_for_facebook <- sprintf("6_visualize/out/%s_facebook.mp4", version_info)
-
-# Get viz frame dimensions and then divide by 2 bc we 
-# double them in combine_animation_frame
-timestep_frame_config <- remake::fetch("timestep_frame_config")
-viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
-
-# need to have 16:9, not 2:1
-new_height <- viz_config_dim$width * 9/16
-
-# Scale and pad the existing video to fit 16:9 aspect ratio
-#   0.8691406 is the scale factor from above for the width
-#     of the logo black bar. Using it here means that we are centering
-#     the image and taking that black bar into account. It's a bit
-#     of a mystery to me still but it worked!
-system(sprintf(
-    'ffmpeg -y -i %s -vf "pad=%s:%s:0:(oh-ih)*0.8691406:color=black" %s', 
-    video_file,
-    viz_config_dim$width, 
-    new_height,
-    video_resized_for_facebook
-))
-
-# Scale down size so it doesn't upload as a 360 video
-scale_factor <- 1280 / viz_config_dim$width # 1280 = optimal facebook width 
-
-system(sprintf(
-    'ffmpeg -y -i %s -vf "scale=%s:%s" %s', 
-    video_resized_for_facebook,
-    viz_config_dim$width * scale_factor,
-    new_height * scale_factor,
-    video_downscaled_for_facebook
-))
-
-```
-
-#### Reddit animation
-
-Do this by adding one single still image before the video.
-
-```r
-# Make video with still image before
-viz_config <- scmake("viz_config")
-video_reddit <- sprintf("6_visualize/out/%s_reddit.mp4", version_info)
-video_in <- sprintf("6_visualize/out/%s_twitter.mp4", version_info)
-video_still_frame <- "6_visualize/tmp/video_still_frame.mp4"
-
-# First, cut out just this frame from video
-system(sprintf(
-  'ffmpeg -y -i %s -ss 00:00:%s -t 00:00:00.5 %s', 
-  video_in,
-  sprintf("%02d", frame_to_use_t),
-  video_still_frame
-))
-
-# Then, add to video
-# Bring them all together
-file.copy(video_in, sprintf("6_visualize/tmp/%s", basename(video_in)))
-files_to_cat_fn <- "6_visualize/tmp/videos_to_concat.txt"
-writeLines(sprintf("file '%s'", c(basename(video_still_frame), basename(video_in))), files_to_cat_fn)
-
-system(sprintf(
-  'ffmpeg -y -safe 0 -f concat -i %s -c copy %s',
-  files_to_cat_fn,
-  video_reddit
-))
-```
-
-#### USGS Drupal carousel image
-
-This still image is used on the GWSIP home page in the image carousel when the new animation is linked there by the Web Communications team. It is an awkwardly large size, so this creates the appropriately sized image with a white background and then centers our still frame on it.
-
-```r
-run_magick_cmd("convert -size 11400x3721 canvas:white 6_visualize/tmp/carousel_background.png")
-run_magick_cmd(sprintf("convert -composite -gravity center 6_visualize/tmp/carousel_background.png %s 6_visualize/out/%s_carousel.png", frame_to_use, version_info))
-```
-
-#### USGS VisID thumbnail
-
-This static thumbnail is used as the thumbnail and preview image for the animation that is uploaded to Drupal. It should be added as its own media object by the Web Communications team and then can be linked to in the Drupal video submission form.
-
-```r
-visid_file <- "6_visualize/in/visid_overlay.png"
-
-# Get viz frame dimensions and then divide by 2 bc we 
-# double them in combine_animation_frame
-timestep_frame_config <- remake::fetch("timestep_frame_config")
-viz_config_dim <- lapply(timestep_frame_config, function(x) x/2) 
-
-# Add cover over logo!
-run_magick_cmd(sprintf(
-    'convert %s -fill white -draw "rectangle 0,%s %s,%s" %s',
-    frame_to_use, 
-    timestep_frame_config$height,
-    timestep_frame_config$width/6,
-    timestep_frame_config$height - timestep_frame_config$height/8,
-    "6_visualize/tmp/frame_logo_covered.png"))
-
-# Resize the existing frame to fit the black bottom bar
-# without changing aspect ratio
-run_magick_cmd(sprintf(
-    "convert %s -resize %sx%s %s",
-    "6_visualize/tmp/frame_logo_covered.png", 
-    viz_config_dim$width - viz_config_dim$width*0.08691406,
-    viz_config_dim$height - viz_config_dim$height*0.08691406,
-    "6_visualize/tmp/frame_resized.png"))
-
-# Put resized frame into an appropriately sized image but with
-#  space at the bottom for the bar
-#   1. Create image that is the right size but just blank
-run_magick_cmd(sprintf("convert -size %sx%s canvas:white 6_visualize/tmp/drupal_still.png", viz_config_dim$width, viz_config_dim$height))
-# Now add the new frame
-run_magick_cmd(sprintf(
-    "convert -composite -gravity north %s %s %s",
-    "6_visualize/tmp/drupal_still.png", 
-    "6_visualize/tmp/frame_resized.png", 
-    "6_visualize/tmp/frame_resized_ready.png"))
-
-run_magick_cmd(sprintf(
-    "convert -composite -gravity southwest %s %s 6_visualize/out/%s_visid_thumbnail.png",
-    "6_visualize/tmp/frame_resized_ready.png", 
-    visid_file, 
-    version_info))
-```
-
-#### Square thumbnail
-
-This creates a square thumbnail showing only the map and not the title or datewheel. This might be used by the Web Communications team, but I can't remember if they still use it. We might be able to delete in the future.
-
-```r
-thumbnail_dim <- 500
-
-viz_config <- yaml::yaml.load_file("viz_config.yml")
-width <- viz_config[["width"]]
-height <- viz_config[["height"]]
-x_pos <- viz_config[["footnote_cfg"]][["x_pos"]]
-y_pos <- viz_config[["footnote_cfg"]][["y_pos"]]
-
-# Crop frame to map only view & resize so that width is 500
-run_magick_cmd(sprintf("convert %s -gravity West -chop %sx0 -gravity South -chop 0x%s -resize %sx%s 6_visualize/tmp/drupal_thumbnail_intermediate.png", frame_to_use, width*x_pos*0.80, height*y_pos*2, thumbnail_dim, thumbnail_dim))
-
-# Create a square white image
-run_magick_cmd(sprintf("convert -size %sx%s canvas:white 6_visualize/tmp/drupal_thumbnail.png", thumbnail_dim, thumbnail_dim))
-
-# Paste the map centered in the square white image
-run_magick_cmd(sprintf("convert -composite -gravity center 6_visualize/tmp/drupal_thumbnail.png 6_visualize/tmp/drupal_thumbnail_intermediate.png 6_visualize/out/%s_square_thumbnail.png", version_info))
+generate_visid_video(version_info) # USGS VisID animation
+generate_facebook_video(version_info) # USGS Facebook animation
+generate_reddit_video(version_info, frame_to_use_t) # Reddit animation
+generate_carousel_image(version_info, frame_to_use) # USGS Drupal carousel image
+generate_visid_thumb_image(version_info, frame_to_use) # USGS VisID thumbnail
+generate_square_thumb_image(version_info, frame_to_use) # Square thumbnail
 ```
 
 ### Restructure code and build a new Instagram version
@@ -574,265 +268,19 @@ You may want to increase the text size of callouts as specified in `callouts_cfg
 Now that the specifications for frames are updated and ready for the Instagram version, you need to rebuild all of the frames. Use the code below. No need to rename this one from `year_in_review.mp4` to something else since we will process it further in the next step.
 
 ```r
-sysfonts::font_add_google('Abel','abel')
-
-scipiper::scmake('6_intro_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-scipiper::scmake('6_visualize/log/6_intro_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
-scipiper::scmake('6_timestep_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-scipiper::scmake('6_visualize/log/6_timestep_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
-# Note that you may need to delete previous versions of these for them to rebuild if you made changes
-scipiper::scmake('6_pause_gif_tasks.yml', remake_file = '6_visualize.yml', force=TRUE)
-scipiper::scmake('6_visualize/log/6_pause_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
-scipiper::scmake('6_final_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-scipiper::scmake('6_visualize/log/6_final_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
-
-scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
+source("helper_fxns_pipeline.R")
+rebuild_frame_sections(intro = T, timestep = T, pause = T, final = T)
+rebuild_video()
 ```
 
 #### Run code to create the square, Instagram version
 
-Now that all of the frames and the initial video have been updated using our larger text and position adjustments, we are ready to apply the code below and cut/paste/convert the video into the final square, Instagram version. Make sure you set the `version_info` as we did with earlier code to match the appropriate month boundaries and year for which this is being generated.
+Now that all of the frames and the initial video have been updated using our larger text and position adjustments, we are ready to apply the code below and cut/paste/convert the video into the final square, Instagram version. Make sure you update the value of `version_info` as we did with earlier code to match the appropriate month boundaries and year for which this is being generated. After you run this code, you should see a file called `6_visualize/out/river_conditions_[month start]_[month end]_[year]_insta.mp4`.
 
 ```r
+source("helper_fxns_outreach_media.R")
 version_info <- "river_conditions_apr_jun_2022"
-```
-
-Now that we have set the version, you can run all the code in the following chunk. In the end, you should see a file called `6_visualize/out/river_conditions_[month start]_[month end]_[year]_insta.mp4`.
-
-```r
-video_file <- "6_visualize/out/year_in_review.mp4"
-video_title_covered <- "6_visualize/tmp/no_title.mp4"
-video_map_only <- "6_visualize/tmp/map_only.mp4"
-video_map_square <- "6_visualize/tmp/map_square.mp4"
-video_datewheel <- "6_visualize/tmp/datewheel.mp4"
-video_legend <- "6_visualize/tmp/legend.mp4"
-video_title <- "6_visualize/tmp/title.mp4"
-video_footnote <- "6_visualize/tmp/footnote.mp4"
-video_logo <- "6_visualize/tmp/logo.mp4"
-video_stitched <- "6_visualize/tmp/stitched.mp4"
-video_intro <- "6_visualize/tmp/intro.mp4"
-video_outro <- "6_visualize/tmp/outro.mp4"
-video_stitched_full_length <- "6_visualize/tmp/stitched_full.mp4"
-video_insta <- sprintf("6_visualize/out/%s_insta.mp4", version_info)
-
-reg_animation_start <- 4 # seconds into animation that map is first shown
-reg_animation_end <- 48 # seconds into animation that map is last shown
-
-insta_dim <- 600 # square shape
-
-viz_config <- yaml::yaml.load_file("viz_config.yml")
-width <- viz_config[["width"]]/2
-height <- viz_config[["height"]]/2
-
-## Create a video that contains only the datewheel
-
-# Find wheel location
-wheel_radius <- viz_config[["datewheel_cfg"]][["wheel_per"]]*width/2
-wheel_center_x <- viz_config[["datewheel_cfg"]][["x_pos"]]*width
-wheel_center_y <- viz_config[["datewheel_cfg"]][["y_pos"]]*height
-
-# Now crop out just wheel
-buffer<-1.05
-system(sprintf(
-  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', 
-  video_file,
-  wheel_radius*2*buffer, # diameter of wheel 
-  wheel_radius*2*buffer,
-  wheel_center_x - wheel_radius*buffer,
-  wheel_center_y + wheel_radius*1.65,
-  video_datewheel
-))
-
-## Create a video that contains only the legend
-
-# Find legend location
-legend_guess_width <- 0.10*width #10% width of video
-legend_guess_height <- 0.35*height #30% height of video
-legend_x <- viz_config[["legend_cfg"]][["x_pos"]]*width
-legend_y <- viz_config[["legend_cfg"]][["y_pos"]]*height
-
-# Now crop out just legend and scale to be bigger
-system(sprintf(
-  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', 
-  video_file,
-  legend_guess_width,  
-  legend_guess_height,
-  legend_x - legend_guess_width/1.5,
-  height - legend_y*1.02,
-  video_legend
-))
-
-## Create a video that contains only the title
-
-# Find title location
-title_guess_width <- wheel_radius*2*1.46 # diameter of wheel + some
-title_guess_height <- 0.17*height #20% height of video
-title_x <- viz_config[["title_cfg"]][["x_pos"]]*width
-title_y <- viz_config[["title_cfg"]][["y_pos"]]*height
-
-# Now crop out just title
-system(sprintf(
-  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', # scale=%s:-1
-  video_file,
-  title_guess_width,  
-  title_guess_height,
-  0,
-  0,
-  # width/3, # Scale to fit 1/3 of the final video
-  video_title
-))
-
-
-# Create a video that contains only the footnote
-
-# Find logo location
-footnote_guess_width <- 0.60*width #10% width of video
-footnote_guess_height <- 0.05*height #3% height of video
-footnote_x <- viz_config[["footnote_cfg"]][["x_pos"]]*width
-footnote_y <- viz_config[["footnote_cfg"]][["y_pos"]]*height
-
-# Now crop out just logo
-system(sprintf(
-  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:(ih-%s)" %s', # scale=%s:-1
-  video_file,
-  footnote_guess_width,  
-  footnote_guess_height,
-  footnote_x,
-  footnote_y,
-  video_footnote
-))
-
-## Crop video to create a map version
-
-# Title bleeds into map a bit, so need to cover title part with drawbox
-system(sprintf(
-  'ffmpeg -y -i %s -vf "drawbox=x=0:y=0:w=%s:h=%s:t=max:color=white" %s', 
-  video_file,
-  title_guess_width, 
-  title_guess_height,
-  video_title_covered
-))
-
-# Find edge of map
-x_pos <- viz_config[["footnote_cfg"]][["x_pos"]]
-map_info_cutoff <- width*x_pos*0.90
-map_guess_width <- width*0.992 - map_info_cutoff
-map_guess_height <- height - footnote_guess_height
-
-# Now crop to map
-system(sprintf(
-  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', 
-  video_title_covered,
-  map_guess_width, 
-  map_guess_height,
-  map_info_cutoff,
-  0,
-  video_map_only
-))
-
-## Make map video a square with white space on top by
-#   increasing height to be the same as width
-system(sprintf(
-  'ffmpeg -y -i %s -vf "pad=iw:iw:(ow-iw)/2:0:color=white" %s', 
-  video_map_only,
-  video_map_square
-))
-
-# Create a video that contains only the logo
-
-# Find logo location
-logo_guess_width <- wheel_radius*2*1.2 # diameter of wheel
-logo_guess_height <- 0.10*height #10% height of video
-logo_x <- 0
-logo_y <- 0
-
-# Now crop out just logo
-system(sprintf(
-  'ffmpeg -y -i %s -vf "crop=%s:%s:%s:%s" %s', # scale=%s:-1
-  video_file,
-  logo_guess_width,  
-  logo_guess_height,
-  0,
-  height,
-  video_logo
-))
-
-center_under_map <- sprintf("%s + (H-%s)/2", map_guess_height, map_guess_height)
-center_under_map_with_another <- sprintf("%s + (H-%s)/3", map_guess_height, map_guess_height)
-
-# Overlay these videos on top of existing video
-# And cut out intro & outro (reg animation starts at 4 seconds, ends at 45)
-system(sprintf(
-  'ffmpeg -y -i %s -i %s -i %s -i %s -i %s -i %s -filter_complex "overlay=%s:%s,overlay=%s:%s,overlay=%s:%s,overlay=%s:%s,overlay=%s:%s,scale=%s:-1" -ss 00:00:%s  -t 00:00:%s %s', 
-  video_map_square,
-  video_datewheel,
-  video_legend,
-  video_title,
-  video_logo,
-  video_footnote,
-  # Add date wheel
-  "(W-(W/3))",# Center in right half
-  sprintf("%s - (h/2)", center_under_map), # Center in white space below map
-  # Add legend
-  "(W/2)-(w/4)", # Center (but ever so slightly to the right since the title is wider than the wheel)
-  sprintf("%s - (h/2)", center_under_map), # Center in white space below map
-  # Add title
-  "(W*0.05)",# Just in from the left
-  sprintf("%s - (h/2)", center_under_map_with_another), # Center in white space below map & above logo
-  # Add logo
-  "(W*0.05)",# Left
-  sprintf("%s + (H-%s)*2/3 - (h/2)", map_guess_height, map_guess_height), # Center in white space below map & below title
-  # Add footnote
-  sprintf("(W/2)-(w/2)", footnote_guess_width), # Center
-  sprintf("(H-%s)", footnote_guess_height*1.1), # Just up from bottom
-  insta_dim,
-  sprintf("%02d", reg_animation_start), # start animation
-  sprintf("%02d", reg_animation_end-reg_animation_start), # end animation
-  video_stitched
-))
-
-
-# Need intro text centered
-# So cutting video and then adding in at the beginning
-system(sprintf(
-  'ffmpeg -y -i %s -ss 00:00:00 -t 00:00:%s -vf "crop=iw:(ih-%s):0:0,pad=iw:iw:(ow-iw)/2:(oh-ih)/2:color=white,scale=%s:-1" %s', # scale=%s:-1
-  video_file,
-  sprintf("%02d", reg_animation_start-1),
-  logo_guess_height,  
-  insta_dim,
-  video_intro
-))
-
-# Now do the same thing to the outro
-system(sprintf(
-  'ffmpeg -y -i %s -ss 00:00:%s -vf "crop=iw:(ih-%s):0:0,pad=iw:iw:(ow-iw)/2:(oh-ih)/2:color=white,scale=%s:-1" %s', # scale=%s:-1
-  video_file,
-  sprintf("%02d", reg_animation_end+1),
-  logo_guess_height,  
-  insta_dim,
-  video_outro
-))
-
-# Bring them all together
-files_to_cat_fn <- "6_visualize/tmp/videos_to_concat.txt"
-writeLines(sprintf("file '%s'", c(basename(video_intro), basename(video_stitched), basename(video_outro))), files_to_cat_fn)
-
-system(sprintf(
-  'ffmpeg -y -safe 0 -f concat -i %s -c copy %s',
-  files_to_cat_fn,
-  video_stitched_full_length
-))
-
-# Now edit to be 29 fps as we learned 1/21/2021 - Insta won't let you post too low of an fps
-system(sprintf(
-  'ffmpeg -y -i %s -r 29 %s',
-  video_stitched_full_length,
-  video_insta
-))
-
+generate_insta_video(version_info)
 ```
 
 ## Disclaimer
