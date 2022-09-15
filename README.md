@@ -8,6 +8,8 @@ This repo contains code used to create the recurring `U.S. River Conditions` ani
 
 Note that before you can just build this as the code suggests, you will have to have the appropriate permissions to our intermediate data products. Mainly, this is access to the Google Drive folder which we grant to internal users and close collaborators.
 
+Also, note that this repo was one of the first `scipiper` repos that we constructed and is not following all of the best practices that were learned later (*ahem* the over use of `force=TRUE` *ahem*). In the spirit of "if it's not broken, don't fix it" and prioritization of future projects rather than this known technical debt, we will just ignore such quirks here unless they disrupt our ability to create the animation from this repo.
+
 ## How to build this animation
 
 The process to create this animation is almost entirely automated using the (now dormant) custom dependency management R package, [`scipiper`](https://github.com/USGS-R/scipiper). There is a bit of manual work required to create and then prepare the animation's event/text callouts. Otherwise, it is mostly running chunks of code. The entire process is outlined below (*steps that aren't code, but are human checks are italicized in parentheses*).
@@ -58,14 +60,14 @@ First, verify that you are logged into Google Drive (GD). If you don't do this s
 googledrive::drive_auth()
 ```
 
-Next, actually download the data by running the following code which kicks off the lengthy data processing steps. Note that this will take multiple hours. 
+Next, actually download the data by running the following code, which kicks off the lengthy data processing steps. 
 
 ```r
 source('helper_fxns_pipeline.R')
 rebuild_gage_data()
 ```
 
-I usually plan on kicking this off in the morning and then getting back to it right at the end of the day, or even the next day. It also prints a lot to the console.
+Note that this will take multiple hours. I usually plan on kicking this off in the morning and then getting back to it right at the end of the day, or even the next day. It also prints a lot to the console.
 
 ### 2. Create a new blank animation to use for event callout inspiration
 
@@ -75,36 +77,32 @@ Unless you have already know what the callouts will be, you should generate a bl
 
 In the end, the animation is created by stitching together a bunch of individual PNG frames. The code is currently setup to use any file within the folder `6_visualize/tmp`. Thus, we need to clear (or rename) that folder to prevent old frames from appearing in our new visualization. If this folder doesn't exist for you, please create it and leave it empty for now.
 
-Note that I included "or rename" as an option because sometimes you need to quickly rebuild the full animation but don't need to rebuild each animation frame. By renaming the folder, you can always go back later, put the name back to `6_visualize/tmp` and then build the animation using those previous frames. It's a nice workaround if you need it.
+**Troubleshooting:** Note that I included "or rename" as an option because sometimes you need to quickly rebuild the full animation but don't need to rebuild each animation frame. By renaming the folder, you can always go back later, put the name back to `6_visualize/tmp` and then build the animation using those previous frames. It's a nice workaround if you need it.
 
 #### Configuration step: clear `callouts_cfg.yml`
 
 The animation's event callouts are added via the `callouts_cfg.yml` file. This file has a very specific structure so that the code can grab the information it needs to add them to the animation. Details about how to construct this file are included later on.
-Create an empty `callouts_cfg.yml` file. If there is already an existing `callouts_cfg.yml` file in your directory, rename or delete it. I like to save previous versions of this file until the next water year begins in order to make the full water year animation creation easier. So, I would rename using the appropriate water year and quarter identifiers, e.g. `callouts_cfg_wy21_q2.yml`, and then delete ones from previous water years at a later date. Once you've either renamed or deleted `callouts_cfg.yml` (or it never existed to begin with), run `file.create("callouts_cfg.yml")` to create the empty version. Note that the file must exist for the rest of the code to run, even if it is just empty.
+
+Create an empty `callouts_cfg.yml` file. If there is already an existing `callouts_cfg.yml` file in your directory, rename or delete it. I like to save previous versions of this file until the next water year begins in order to make the full water year animation creation easier. So, I would rename using the appropriate water year and quarter identifiers, e.g. `callouts_cfg_wy21_q2.yml`, and then delete ones from previous water years at a later date. Once you've either renamed or deleted `callouts_cfg.yml` (or it never existed to begin with), run `file.create("callouts_cfg.yml")` to create the empty version. 
+
+**Troubleshooting:** Note that the `callouts_cfg.yml` file must exist for the rest of the code to run, even if it is just empty.
 
 #### Build all animation frames and then the first, blank animation
 
-Now that you don't have any files in `6_visualize/tmp` or any content in `callouts_cfg.yml`, you can build the initial, blank version of the animation. Note that this repo was one of the first `scipiper` repos that we constructed and is not following all of the best practices that were learned later (*ahem* the over use of `force=TRUE` *ahem*). In the spirit of "if it's not broken, don't fix it" and prioritization of future projects rather than this known technical debt, we will just ignore such quirks here unless they disrupt our ability to create the animation from this repo.
+Now that you don't have any files in `6_visualize/tmp` or any content in `callouts_cfg.yml`, you can build the initial, blank version of the animation. 
 
 The animation is chunked into four sections:
 
 1. `intro` - the title slide that fades in and out
-1. `timestep` - each day's data with the map & datewheel visuals updating
+1. `timestep` - each day's data with the map, datewheel, and text callouts updating
 1. `pause` - the last frame of the animation repeated for a certain amount of time
 1. `final` - the final informational statement about GWSIP that fades in and out
 
-The intro and final frames should only need to be build once when you are kicking off a new version since they only depend on the date range and won't be impacted by tweaks in callouts. To build the intro and final frames, run the following:
+To build the animation frames, we can use the helper function called `rebuild_frame_sections()`. You can turn on/off the different sections to build one or more types of animation frames. At this stage, we need to get an initial build for all of the frames. To do so, run the following:
 
 ```r
 source('helper_fxns_pipeline.R')
-rebuild_frame_sections(intro = TRUE, final = TRUE)
-```
-
-The frames that are impacted by changes in callouts will be the timestep and pause sections. You will likely need to rebuild these frames a number of times as you work on the appearance and timing of callouts. To build the timestep and pause frames, run the following:
-
-```r
-source('helper_fxns_pipeline.R')
-rebuild_frame_sections(timestep = TRUE, pause = TRUE)
+rebuild_frame_sections(intro = TRUE, timestep = TRUE, pause = TRUE, final = TRUE)
 ```
 
 To stitch the completed frames together into a single video animation, run the following but updated the `new_name` argument to follow this pattern: `river_conditions_[month start]_[month end]_[year]_draft.mp4`.
@@ -150,7 +148,7 @@ These are the only elements you need to change right now. We will iterate on the
 
 #### Rebuild the frames and animation with the callouts
 
-Using the initial callouts timing and placement, generate a new animation by updating the appropriate frames and then rebuilding the video using the code below.
+Using the initial callouts timing and placement added in the previous step, generate a new animation by updating the appropriate frames and then rebuild the video using the code below. We only need to rebuild the `timestep` and `pause` frames here because the `intro` and `final` frames don't feature any callouts (those should only need to be built once per version).
 
 ```r
 source('helper_fxns_pipeline.R')
@@ -158,7 +156,7 @@ rebuild_frame_sections(timestep = TRUE, pause = TRUE)
 rebuild_video()
 ```
 
-Sometimes, I notice that the `pause` frames are not updating as they should. There are not many of them, so if this happens I delete the individual frames manually and then rebuild. To delete manually, find any frame in `6_visualize/tmp` prefixed with `frame_6000`.
+**Troubleshooting:** Sometimes, I notice that the `pause` frames are not updating as they should. There are not many of them, so if this happens I delete the individual frames manually and then rebuild. To delete manually, find any frame in `6_visualize/tmp` prefixed with `frame_6000`.
 
 ### 4. Tweak event callout timing and appearance
 
@@ -178,7 +176,13 @@ generate_event_graph()
 
 #### Event text appearance
 
-As you iterate through other parts of the text appearance, you probably don't want to keep waiting for the full animation to rebuild every time. You may be interested in generating just a single frame that occurs during all or one of the events you are adjusting. Below are some code to generate the individual frame(s). After you run the code, head over to `6_visualize/tmp` in the Files window of RStudio and sort by `Modified`.
+Use the following items in `callouts_cfg.yml` for each callout to adjust its appearance.
+
+* **Text location, justification, and layout.** Described earlier so that you could get an initial view with callouts, these same elements (`label`, `pos`, `x_loc`, `y_loc`) are likely to be adjusted during your polishing iterations. 
+* **Text size.** You can increase or decrease the text size from the default of `cex=6`, but we recommend not going smaller if possible.
+* **Box behind text.** `add_box` is initially left blank which means that no box will be added behind the text. If your text is particularly diffcult to read given the data points behind it's location, you may want to add a grey box by changing to `add_box=TRUE`.
+
+As you iterate through the text appearance, you may be interested in generating just a single frame that occurs during all or one of the events you are adjusting. Below is some code to generate the individual frame(s). After you run the code, head over to `6_visualize/tmp` in the Files window of RStudio and sort by `Modified`. 
 
 ```r
 # Build a frame for the middle of each event
@@ -198,13 +202,11 @@ rebuild_timestep_frames(days)
 rebuild_timestep_frames(20220530) # Build a single frame
 ```
 
-* **Text location, justification, and layout.** Described earlier so that you could get an initial view with callouts, these same elements (`label`, `pos`, `x_loc`, `y_loc`) are likely to be adjusted during your polishing iterations. 
-* **Text size.** You can increase or decrease the text size from the default of `cex=6`, but we recommend not going smaller if possible.
-* **Box behind text.** `add_box` is initially left blank which means that no box will be added behind the text. If your text is particularly diffcult to read given the data points behind it's location, you may want to add a grey box by changing to `add_box=TRUE`.
-
 ### 5. Generate final video animation
 
-Once you are satisfied with the timing and appearance of your callouts and the datewheel, it is time to prepare a version to share out. Now, you may already have a version ready to go, but I like to just rebuild everything one more time knowing that my `callout_cfgs.yml` has the final up-to-date information for everything, especially if I've been individually building frames as I have been iterating. To do that, just rebuild the frames and the video animation as we did earlier (remember, you might need to manually delete any pause pngs prefixed `frame_6000` before this). Update the `new_name` argument to match this scheme, `6_visualize/out/river_conditions_[month start]_[month end]_[year]_prototype.mp4`.
+Once you are satisfied with the timing and appearance of your callouts and the datewheel, it is time to prepare a version to share out. You may already think you have a version ready to go, but I like to rebuild everything one more time knowing that my `callout_cfgs.yml` has the final up-to-date information, especially if I've been individually building frames as I iterated through callout appearance/timing.
+
+To rebuild the full animation now that your callouts are finalized, rebuild the frames and the video animation as we did earlier. Update the `new_name` argument to match this scheme, `6_visualize/out/river_conditions_[month start]_[month end]_[year]_prototype.mp4`.
 
 ```r
 source("helper_fxns_pipeline.R")
@@ -212,7 +214,9 @@ rebuild_frame_sections(intro = T, timestep = T, pause = T, final = T)
 rebuild_video(new_name = "6_visualize/out/river_conditions_apr_jun_2022_prototype.mp4")
 ```
 
-Next, I share this new video out and get feedback/approval from the various groups I need to (GWSIP collaborators, Vizlab lead, Data Science Chief, and IIDD Director). I incorporate edits using the iterative techniques employed earlier and then regenerate one more version but rename to `6_visualize/out/river_conditions_[month start]_[month end]_[year]_twitter.mp4`:
+**Troubleshooting:** Remember, you might need to manually delete any pause pngs prefixed `frame_6000` before your video shows the most-up-to-date pause frames.
+
+Next, I share this new video with others to get feedback and approval from the various groups I need to (GWSIP collaborators, Vizlab lead, Data Science Chief, and IIDD Director). I incorporate edits using the iterative techniques employed earlier and then regenerate one more version but rename to `6_visualize/out/river_conditions_[month start]_[month end]_[year]_twitter.mp4`:
 
 ```r
 source("helper_fxns_pipeline.R")
@@ -220,7 +224,7 @@ rebuild_frame_sections(intro = T, timestep = T, pause = T, final = T)
 rebuild_video(new_name = "6_visualize/out/river_conditions_apr_jun_2022_twitter.mp4")
 ```
 
-Now, I share the Twitter version with collaborators in Web Communications so that they may start pulling together social media. They will also help develop the descriptive text that can accompany the visualization to meet accessibility needs. I have found that providing tabular version of the final events we feature is useful. To create that, run this code:
+Now, I share the Twitter version with collaborators in Web Communications through an MS Sharepoint folder so that they may start pulling together social media content. They will also help develop the descriptive text that can accompany the visualization to meet accessibility needs. I have found that providing them with a tabular version of the final events we feature is useful. To create that, run this code:
 
 ```r
 source("helper_fxns_outreach_media.R")
@@ -245,7 +249,7 @@ frame_to_use <- "6_visualize/tmp/frame_20220616_00.png"
 frame_to_use_t <- 38
 ```
 
-Now that you have set those configurations, you can generate all of the media content using the code chunk below (except for Instagram, which we will cover after).
+Now that you have set those configurations, you can generate all of the media content using the code chunk below (except for Instagram, which we will cover after). Once these are complete, add them to the MS Sharepoint folder.
 
 ```r
 # Load necessary functions
@@ -265,9 +269,16 @@ Creating an Instagram-optimized version is not as simple as the others because w
 
 #### Edit `viz_config.yml`, maybe `callouts_cfg.yml`
 
-To update the `viz_config.yml` so that our title and other info are larger and in appropriate locations for our cut/paste to square later on, comment out everything below the comment `# Comment this out when building the Instagram version` and above `# End of regular version specs`. Then, *uncomment* everything below the comment that says `# End of regular version specs`. Double check that the text under `title_config > subtitle` has the appropriate dates and update if needed. Save the file. 
+To update the `viz_config.yml` for Instagram:
 
-You may want to increase the text size of callouts as specified in `callouts_cfg.yml`, so that they can easily be read on our square version. Adjusting the size may require additional adjusting of position or layout. By default, all of the callouts had `cex=6`. Anything smaller than 6 should be increased. We have found that a `cex` between 6 and 8 works best for the Instagram version. Save the file following any changes. Note that you may want to retain a copy of your unchanged `callouts_cfg.yml` for the default Twitter version only for use in the future water year version. Name the copy appropriately prior to making any changes related to Instagram.
+1. Comment out everything below the comment `# Comment this out when building the Instagram version` and above `# End of regular version specs`. 
+1. Then, *uncomment* everything below the comment that says `# End of regular version specs`. 
+1. Double check that the text under `title_config > subtitle` has the appropriate dates and update if needed. 
+1. Save the `viz_config.yml` file. 
+
+While not always necessary, you may find that you want to increase the text size of callouts as specified in `callouts_cfg.yml`, so that they can easily be read in this Instagram version. By default, all of the callouts start with `cex=6`, but you may have made changes during your tweaking. We have found that a `cex` between 6 and 8 works best for the Instagram version. Save the file following any changes. Adjusting the size may require additional adjusting of the position or layout. 
+
+**Before you potentially change `callouts_cfg.yml` for Instagram:** If you do change the `callouts_cfg.yml`, you should plan to retain a copy of your pre-Instagram `callouts_cfg.yml` for the default Twitter version only for use in the future water year version. Name the copy appropriately prior to making any changes related to Instagram.
 
 #### Rebuild the animation
 
@@ -281,7 +292,9 @@ rebuild_video()
 
 #### Run code to create the square, Instagram version
 
-Now that all of the frames and the initial video have been updated using our larger text and position adjustments, we are ready to apply the code below and cut/paste/convert the video into the final square, Instagram version. Make sure you update the value of `version_info` as we did with earlier code to match the appropriate month boundaries and year for which this is being generated. After you run this code, you should see a file called `6_visualize/out/river_conditions_[month start]_[month end]_[year]_insta.mp4`.
+Now that all of the frames and the initial video have been updated using our larger text and position adjustments, we are ready to apply the code below and cut/paste/convert the video into the final square, Instagram version. 
+
+Make sure you update the value of `version_info` in the code below using the same syntax as we did with earlier code to match the appropriate month boundaries and year for which this is being generated. After you run this code, you should see a file called `6_visualize/out/river_conditions_[month start]_[month end]_[year]_insta.mp4`.
 
 ```r
 source("helper_fxns_outreach_media.R")
