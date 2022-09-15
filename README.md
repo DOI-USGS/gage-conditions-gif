@@ -56,12 +56,15 @@ First, verify that you are logged into Google Drive (GD). If you don't do this s
 googledrive::drive_auth()
 ```
 
-Next, actually download the data by running the following code which kicks off the lengthy data processing steps. Note that this will take multiple hours. I usually plan on kicking this off in the morning and then getting back to it right at the end of the day, or even the next day. It also prints a lot to the console.
+Next, actually download the data by running the following code which kicks off the lengthy data processing steps. Note that this will take multiple hours. 
 
-```
+```r
 source('helper_fxns_pipeline.R')
 rebuild_gage_data()
 ```
+
+I usually plan on kicking this off in the morning and then getting back to it right at the end of the day, or even the next day. It also prints a lot to the console.
+
 ### 2. Create a new blank animation to use for event callout inspiration
 
 Unless you have already know what the callouts will be, you should generate a blank version of the animation to use and share with collaborators in order to generate event callouts. If you already have callouts, still do the configuration steps here but don't bother rebuilding the animation frames until after you've followed the instructions further down to incorporate callouts into the animation.
