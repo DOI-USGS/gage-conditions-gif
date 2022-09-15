@@ -12,13 +12,13 @@ Note that before you can just build this as the code suggests, you will have to 
 
 The process to create this animation is almost entirely automated using the (now dormant) custom dependency management R package, [`scipiper`](https://github.com/USGS-R/scipiper). There is a bit of manual work required to create and then prepare the animation's event/text callouts. Otherwise, it is mostly running chunks of code. The entire process is outlined below (*steps that aren't code, but are human checks are italicized in parentheses*).
 
-1. Change the animation dates and download/process the new data (*notify Web Comms and GWSIP team that this process has begun*)
-1. Create a new blank animation to use for event callout inspiration
-1. Gather event callouts and add to the animation (*work with GWSIP collaborators & involve IIDD reviewers as necessary*)
-1. Tweak event callout timing and appearance
-1. Generate final video animation (*get it approved by IIDD reviewers during this step, after approval ask Web Comms to start the video description paragraph*)
-1. Run code for simple-to-produce outreach artifacts (*ask Web Comms to upload the VisID thumbnail to Drupal, then submit Drupal video upload form with link to that thumbnail*)
-1. Restructure code and build a new Instagram version (*share this and other outreach artifacts with Web Comms so the release package can be ready*)
+1. [Change the animation dates and prepare the new data](#change-the-animation-dates-and-prepare-the-new-data) (*notify Web Comms and GWSIP team that this process has begun*)
+1. [Create a new blank animation to use for event callout inspiration](#create-a-new-blank-animation-to-use-for-event-callout-inspiration)
+1. [Gather event callouts and add to the animation](#gather-event-callouts-and-add-to-the-animation) (*work with GWSIP collaborators & involve IIDD reviewers as necessary*)
+1. [Tweak event callout timing and appearance](#tweak-event-callout-timing-and-appearance)
+1. [Generate final video animation](#generate-final-video-animation) (*get it approved by IIDD reviewers during this step, after approval ask Web Comms to start the video description paragraph*)
+1. [Run code for simple-to-produce outreach artifacts](#run-code-for-simple-to-produce-outreach-artifacts) (*ask Web Comms to upload the VisID thumbnail to Drupal, then submit Drupal video upload form with link to that thumbnail*)
+1. [Restructure code and build a new Instagram version](#restructure-code-and-build-a-new-instagram-version) (*share this and other outreach artifacts with Web Comms so the release package can be ready*)
 
 *I plan to come back later and add instructions for how to generate the full water year animation*
 
@@ -33,7 +33,7 @@ The outputs from following this full process should be the following files:
 * `6_visualize/out/river_conditions_[month start]_[month end]_[year]_square_thumbnail.png`
 * `6_visualize/out/river_conditions_[month start]_[month end]_[year]_insta.mp4`
 
-### Change the animation dates and download/process the new data
+### 1. Change the animation dates and prepare the new data
 
 You can do this step the day after the desired visualization date range ends. We typically build these quarterly, so you would kick this step off on January 1 for quarter 1's animation (October 1 - December 31), and so on for the other quarters. Typically, we start this step on ...
 
@@ -62,7 +62,7 @@ Next, actually download the data by running the following code which kicks off t
 source('helper_fxns_pipeline.R')
 rebuild_gage_data()
 ```
-### Create a new blank animation to use for event callout inspiration
+### 2. Create a new blank animation to use for event callout inspiration
 
 Unless you have already know what the callouts will be, you should generate a blank version of the animation to use and share with collaborators in order to generate event callouts. If you already have callouts, still do the configuration steps here but don't bother rebuilding the animation frames until after you've followed the instructions further down to incorporate callouts into the animation.
 
@@ -111,7 +111,7 @@ rebuild_video(new_name = 'river_conditions_apr_jun_2022_draft.mp4')
 
 Now, you can go view the draft animation and then share with collaborators to get event callout input.
 
-### Gather event callouts and add to the animation
+### 3. Gather event callouts and add to the animation
 
 #### Populate the initial `callouts_cfg.yml`
 
@@ -155,7 +155,7 @@ rebuild_video()
 
 Sometimes, I notice that the `pause` frames are not updating as they should. There are not many of them, so if this happens I delete the individual frames manually and then rebuild. To delete manually, find any frame in `6_visualize/tmp` prefixed with `frame_6000`.
 
-### Tweak event callout timing and appearance
+### 4. Tweak event callout timing and appearance
 
 This is usually where I spend the most hands-on time because it is where you iterate on how the callouts integrate with the animation. Usually, the first animation is not ready for publication because callouts may overlap each other visually or temporally, some may extend the full length of the animation which isn't very useful, and others may blip on and then off too quickly for a user to read. Below we detail the other attributes and methods that you can use to polish the final visualization.
 
@@ -197,7 +197,7 @@ rebuild_timestep_frames(20220530) # Build a single frame
 * **Text size.** You can increase or decrease the text size from the default of `cex=6`, but we recommend not going smaller if possible.
 * **Box behind text.** `add_box` is initially left blank which means that no box will be added behind the text. If your text is particularly diffcult to read given the data points behind it's location, you may want to add a grey box by changing to `add_box=TRUE`.
 
-### Generate final video animation
+### 5. Generate final video animation
 
 Once you are satisfied with the timing and appearance of your callouts and the datewheel, it is time to prepare a version to share out. Now, you may already have a version ready to go, but I like to just rebuild everything one more time knowing that my `callout_cfgs.yml` has the final up-to-date information for everything, especially if I've been individually building frames as I have been iterating. To do that, just rebuild the frames and the video animation as we did earlier (remember, you might need to manually delete any pause pngs prefixed `frame_6000` before this). Update the `new_name` argument to match this scheme, `6_visualize/out/river_conditions_[month start]_[month end]_[year]_prototype.mp4`.
 
@@ -223,7 +223,7 @@ output_table <- generate_callout_table()
 View(output_table)
 ```
 
-### Run code for simple-to-produce outreach artifacts
+### 6. Run code for simple-to-produce outreach artifacts
 
 While the social media plan is being developed using `6_visualize/out/river_conditions_[month start]_[month end]_[year]_twitter.mp4`, you can go ahead and start building all of the other social media content. There are a few configurations you need to set in the following codechunk.
 
@@ -254,7 +254,7 @@ generate_visid_thumb_image(version_info, frame_to_use) # USGS VisID thumbnail
 generate_square_thumb_image(version_info, frame_to_use) # Square thumbnail
 ```
 
-### Restructure code and build a new Instagram version
+### 7. Restructure code and build a new Instagram version
 
 Creating an Instagram-optimized version is not as simple as the others because we need the whole video to be square and in a different layout, where the different elements may be bigger or smaller than they appear on the rectangular versions. As such, we actually have to edit some of the `viz_config.yml`, rebuild the video animation, and then run the code snippet to turn the video into a square. So, this should be done after all of your other products are complete AND you really truly have the final approval (the others should be done after approval, but are easy to re-generate should you need to; this one is more complex and so should be done as one of the final steps before publishing).
 
