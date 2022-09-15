@@ -10,7 +10,7 @@ Note that before you can just build this as the code suggests, you will have to 
 
 ## How to build this animation
 
-The process to create this animation is almost entirely automated using the (now dormant) custom dependency management R package, `scipiper`. There is a bit of manual work required to create and then prepare the animation's event/text callouts. Otherwise, it is mostly running chunks of code. The entire process is outlined below (*steps that aren't code, but are human checks are italicized in parentheses*).
+The process to create this animation is almost entirely automated using the (now dormant) custom dependency management R package, [`scipiper`](https://github.com/USGS-R/scipiper). There is a bit of manual work required to create and then prepare the animation's event/text callouts. Otherwise, it is mostly running chunks of code. The entire process is outlined below (*steps that aren't code, but are human checks are italicized in parentheses*).
 
 1. Change the animation dates and download/process the new data (*notify Web Comms and GWSIP team that this process has begun*)
 1. Create a new blank animation to use for event callout inspiration
@@ -68,13 +68,14 @@ Unless you have already know what the callouts will be, you should generate a bl
 
 #### Configuration step: clear `6_visualize/tmp`
 
-In the end, the animation is created by stitching together a bunch of individual PNG frames. The code is currently setup to just use any file within the folder `6_visualize/tmp`. Thus, we need to clear (or rename) that folder to prevent old frames from appearing in our new visualization. If this folder doesn't exist for you, please create it and leave it empty for now.
+In the end, the animation is created by stitching together a bunch of individual PNG frames. The code is currently setup to use any file within the folder `6_visualize/tmp`. Thus, we need to clear (or rename) that folder to prevent old frames from appearing in our new visualization. If this folder doesn't exist for you, please create it and leave it empty for now.
 
 Note that I included "or rename" as an option because sometimes you need to quickly rebuild the full animation but don't need to rebuild each animation frame. By renaming the folder, you can always go back later, put the name back to `6_visualize/tmp` and then build the animation using those previous frames. It's a nice workaround if you need it.
 
 #### Configuration step: clear `callouts_cfg.yml`
 
-The animation's event callouts are added via the `callouts_cfg.yml` file. This file has a very specific structure so that the code can grab the information it needs to add them to the animation. Details about how to construct this file are included later on, but for this step we need to create an empty `callouts_cfg.yml` file to avoid old callouts ending up on our new animation. If there is already an existing `callouts_cfg.yml` file in your directory, I suggest renaming or deleting it. I like to save previous versions of this file until the next water year begins in order to make the full water year animation creation easier. So, I would rename using the appropriate water year and quarter identifiers, e.g. `callouts_cfg_wy21_q2.yml`, and then delete ones from previous water years at a later date. Once you've either renamed or deleted `callouts_cfg.yml` (or it never existed to begin with), run `file.create("callouts_cfg.yml")` to create the empty version. Note that the file must exist for the rest of the code to run, even if it is just empty.
+The animation's event callouts are added via the `callouts_cfg.yml` file. This file has a very specific structure so that the code can grab the information it needs to add them to the animation. Details about how to construct this file are included later on.
+Create an empty `callouts_cfg.yml` file. If there is already an existing `callouts_cfg.yml` file in your directory, rename or delete it. I like to save previous versions of this file until the next water year begins in order to make the full water year animation creation easier. So, I would rename using the appropriate water year and quarter identifiers, e.g. `callouts_cfg_wy21_q2.yml`, and then delete ones from previous water years at a later date. Once you've either renamed or deleted `callouts_cfg.yml` (or it never existed to begin with), run `file.create("callouts_cfg.yml")` to create the empty version. Note that the file must exist for the rest of the code to run, even if it is just empty.
 
 #### Build all animation frames and then the first, blank animation
 
@@ -114,7 +115,7 @@ Now, you can go view the draft animation and then share with collaborators to ge
 
 #### Populate the initial `callouts_cfg.yml`
 
-You should either request or generate callouts in a table with three columns: `Start`, `End`, and `Label` (as shown below).
+Provide callouts in a table with three columns: `Start`, `End`, and `Label` (as shown below).
 
 Start | End | Label
 -- | -- | --
