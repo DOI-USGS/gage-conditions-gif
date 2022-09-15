@@ -33,6 +33,12 @@ The outputs from following this full process should be the following files:
 
 ### 1. Change the animation dates and prepare the new data
 
+#### Update the dates
+
+Go to `viz_config.yml` and make sure that the start/end entries for both `vizDates` and `wheelDates` are appropriate. `vizDates` refer to the dates that will be shown as animation frames and for which data will be pulled. `wheelDates` should be the start/end dates for the current water year and are used to construct the date wheel visual on the bottom left of the animation.
+
+Next, scroll down in `viz_config.yml` and ensure that the field `title_cfg > subtitle` shows the appropriate dates. While you're at it, update the same field but in the commented out area which will be used later to create an Instagram version of the animation.
+
 We typically build these quarterly and kickoff this step immediately after a quarter has ended. So, we start this step on ...
 
 | Quarter | Date to kickoff pipeline |
@@ -41,12 +47,6 @@ We typically build these quarterly and kickoff this step immediately after a qua
 | Quarter 2 (Jan 1 - Mar 31) | April 1st                                                                   |
 | Quarter 3 (Apr 1 - Jun 30) | July 1st *(note that this timing can be tricky given the July 4th holiday)* |
 | Quarter 4 (Jul 1 - Sep 30) | October 1st |
-
-#### Update the dates
-
-Go to `viz_config.yml` and make sure that the start/end entries for both `vizDates` and `wheelDates` are appropriate. `vizDates` refer to the dates that will be shown as animation frames and for which data will be pulled. `wheelDates` should be the start/end dates for the current water year and are used to construct the date wheel visual on the bottom left of the animation.
-
-Next, scroll down in `viz_config.yml` and ensure that the field `title_cfg > subtitle` shows the appropriate dates. While you're at it, update the same field but in the commented out area which will be used later to create an Instagram version of the animation.
 
 #### Run code to download the data
 
