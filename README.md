@@ -6,7 +6,7 @@ This repo contains code used to create the recurring `U.S. River Conditions` ani
 
 ## Before you build
 
-Note that before you can just build this as the code suggests, you will have to have the appropriate permissions to our intermediate data products. Mainly, this is access to the Google Drive folder which we grant to internal users and close collaborators.
+Note that before you can just build this as the code suggests, you will have to have the appropriate permissions, which we grant to internal users and close collaborators. This includes access to the AWS S3 bucket with historic daily streamflow output from the `national-flow-observations` pipeline and a Google Drive folder for intermediate data products.
 
 Also, note that this repo was one of the first `scipiper` repos that we constructed and is not following all of the best practices that were learned later (*ahem* the over use of `force=TRUE` *ahem*). In the spirit of "if it's not broken, don't fix it" and prioritization of future projects rather than this known technical debt, we will just ignore such quirks here unless they disrupt our ability to create the animation from this repo.
 
