@@ -75,7 +75,7 @@ Unless you have already know what the callouts will be, you should generate a bl
 
 #### Configuration step: clear `6_visualize/tmp`
 
-In the end, the animation is created by stitching together a bunch of individual PNG frames. The code is currently setup to use any file within the folder `6_visualize/tmp`. Thus, we need to clear (or rename) that folder to prevent old frames from appearing in our new visualization. If this folder doesn't exist for you, please create it and leave it empty for now.
+In the end, the animation is created by stitching together a bunch of individual PNG frames. The code is currently setup to use any file within the folder `6_visualize/tmp`. If you have previously built this animation, you will likely already have files in that location and need to clear (or rename) the folder to prevent old frames from appearing in your new visualization. If this folder doesn't exist for you, please create it and leave it empty for now.
 
 **Troubleshooting:** Note that I included "or rename" as an option because sometimes you need to quickly rebuild the full animation but don't need to rebuild each animation frame. By renaming the folder, you can always go back later, put the name back to `6_visualize/tmp` and then build the animation using those previous frames. It's a nice workaround if you need it.
 
