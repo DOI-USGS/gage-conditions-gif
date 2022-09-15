@@ -20,8 +20,6 @@ The process to create this animation is almost entirely automated using the (now
 1. [Run code for simple-to-produce outreach artifacts](#run-code-for-simple-to-produce-outreach-artifacts) (*ask Web Comms to upload the VisID thumbnail to Drupal, then submit Drupal video upload form with link to that thumbnail*)
 1. [Restructure code and build a new Instagram version](#restructure-code-and-build-a-new-instagram-version) (*share this and other outreach artifacts with Web Comms so the release package can be ready*)
 
-*I plan to come back later and add instructions for how to generate the full water year animation*
-
 The outputs from following this full process should be the following files:
 
 * `6_visualize/out/river_conditions_[month start]_[month end]_[year]_twitter.mp4`
