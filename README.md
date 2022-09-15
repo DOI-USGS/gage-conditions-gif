@@ -33,12 +33,14 @@ The outputs from following this full process should be the following files:
 
 ### 1. Change the animation dates and prepare the new data
 
-You can do this step the day after the desired visualization date range ends. We typically build these quarterly, so you would kick this step off on January 1 for quarter 1's animation (October 1 - December 31), and so on for the other quarters. Typically, we start this step on ...
+We typically build these quarterly and kickoff this step immediately after a quarter has ended. So, we start this step on ...
 
-* January 1st for quarter one's (Oct 1 - Dec 31) animation 
-* April 1st for quarter two's (Jan 1 - Mar 31) animation 
-* July 1st for quarter three's (Apr 1 - Jun 30) animation - *note that this timing can be tricky given the July 4th holiday*
-* October 1st for quarter four's (Jul 1 - Sep 30) animation 
+| Quarter | Date to kickoff pipeline |
+|--|--|
+| Quarter 1 (Oct 1 - Dec 31) | January 1st                                                                 |
+| Quarter 2 (Jan 1 - Mar 31) | April 1st                                                                   |
+| Quarter 3 (Apr 1 - Jun 30) | July 1st *(note that this timing can be tricky given the July 4th holiday)* |
+| Quarter 4 (Jul 1 - Sep 30) | October 1st |
 
 #### Update the dates
 
