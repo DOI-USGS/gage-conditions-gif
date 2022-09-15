@@ -35,9 +35,11 @@ The outputs from following this full process should be the following files:
 
 #### Update the dates
 
-Go to `viz_config.yml` and make sure that the start/end entries for both `vizDates` and `wheelDates` are appropriate. `vizDates` refer to the dates that will be shown as animation frames and for which data will be pulled. `wheelDates` should be the start/end dates for the current water year and are used to construct the date wheel visual on the bottom left of the animation.
+Open `viz_config.yml` and make sure that the following items are correct:
 
-Next, scroll down in `viz_config.yml` and ensure that the field `title_cfg > subtitle` shows the appropriate dates. While you're at it, update the same field but in the commented out area which will be used later to create an Instagram version of the animation.
+1. Start/end entries for `vizDates`, which refer to the dates that will be shown as animation frames and for which data will be pulled. 
+1. Start/end entries for `wheelDates`, which refer to the start/end dates for the current water year and are used to construct the date wheel visual on the bottom left of the animation. These shouldn't need to change every quarter.
+1. The text for `title_cfg > subtitle` shows the appropriate dates. There are two instances of this item in the file, one is commented out further down the page in the "Instagram version" of the animation `viz_config.yml` (we will cover how to use that later).
 
 We typically build these quarterly and kickoff this step immediately after a quarter has ended. So, we start this step on ...
 
