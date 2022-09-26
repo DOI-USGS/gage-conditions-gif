@@ -1,7 +1,7 @@
 
 project_states <- function(pre_state_boundaries_ind, projection) {
 
-  sc_retrieve(pre_state_boundaries_ind) %>%
+  sc_retrieve(pre_state_boundaries_ind, remake_file = '1_fetch.yml') %>%
     read_shp_zip(skip = I(list(STATEFP=c('69','66','60')))) %>%
     spTransform(projection)
 }
