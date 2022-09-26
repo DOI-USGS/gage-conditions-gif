@@ -38,7 +38,8 @@ rebuild_frame_sections <- function(intro = FALSE, timestep = FALSE, pause = FALS
   if(intro) {
     # Build the intro frames
     scipiper::scmake('6_intro_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-    scipiper::scmake('6_visualize/log/6_intro_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+    tryCatch(scipiper::scmake('6_visualize/log/6_intro_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE),
+             error = function(e) warning('Skipping the error that pops up about no file being created for intro'))
   }
 
   if(timestep) {
@@ -66,10 +67,10 @@ rebuild_frame_sections <- function(intro = FALSE, timestep = FALSE, pause = FALS
 #' @description This wraps a `scipiper::scmake()` call to rebuild the video and includes
 #' an option to rename the output file.
 #'
-#' @param new_filename filepath to use to rename the output file, defaults to NULL so the
+#' @param new_name filepath to use to rename the output file, defaults to NULL so the
 #' file would not be renamed and instead left as `6_visualize/out/year_in_review.mp4`
 #'
-rebuild_video <- function(new_filename = NULL) {
+rebuild_video <- function(new_name = NULL) {
   # Build the animation
   scipiper::scmake('6_visualize/out/year_in_review.mp4', remake_file = '6_visualize.yml', force = TRUE)
 
