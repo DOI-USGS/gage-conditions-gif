@@ -38,28 +38,50 @@ rebuild_frame_sections <- function(intro = FALSE, timestep = FALSE, pause = FALS
   if(intro) {
     # Build the intro frames
     scipiper::scmake('6_intro_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-    tryCatch(scipiper::scmake('6_visualize/log/6_intro_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE),
-             error = function(e) warning('Skipping the error that pops up about no file being created for intro'))
+    catch_known_build_error(scipiper::scmake('6_visualize/log/6_intro_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE))
   }
 
   if(timestep) {
     # Build the timestep frames
     scipiper::scmake('6_timestep_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-    scipiper::scmake('6_visualize/log/6_timestep_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+    catch_known_build_error(scipiper::scmake('6_visualize/log/6_timestep_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE))
   }
 
   if(pause) {
     # Build the pause frames
     scipiper::scmake('6_pause_gif_tasks.yml', remake_file = '6_visualize.yml', force=TRUE)
-    scipiper::scmake('6_visualize/log/6_pause_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+    catch_known_build_error(scipiper::scmake('6_visualize/log/6_pause_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE))
   }
 
   if(final) {
     # Build the final frames
     scipiper::scmake('6_final_gif_tasks.yml', remake_file = '6_visualize.yml', force = TRUE)
-    scipiper::scmake('6_visualize/log/6_final_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE)
+    catch_known_build_error(scipiper::scmake('6_visualize/log/6_final_gif_tasks.ind', remake_file = '6_visualize.yml', force=TRUE))
   }
 
+}
+
+#' Function to catch the error about a file not being created
+#'
+#' @description This can be used to wrap any `scmake()` call
+#' so that it prevents an error related to no file being created
+#' from stopping the code. Not ideal, but since we are using
+#' `force = TRUE` for almost every single `scmake()` call, I know
+#' that things will be rebuilding and this error is a bit of a mystery.
+#'
+#' @param expr the expression to catch the error
+#'
+catch_known_build_error <- function(expr) {
+  tryCatch(expr, error = function(e) {
+    if(grepl('did not create file', e)) {
+      # If it's the error we already know about where the `.ind` file isn't created,
+      # skip the error and print a warning instead so that the code can continue.
+      warning('Skipping the error that pops up about no file being created for intro')
+    } else {
+      # If it is not the error we already know about, actually throw an error!
+      stop(e)
+    }
+  })
 }
 
 #' Function to rebuild the video
