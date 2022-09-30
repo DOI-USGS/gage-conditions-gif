@@ -260,7 +260,7 @@ generate_insta_video <- function(version_info) {
 
   # Title bleeds into map a bit, so need to cover title part with drawbox
   system(sprintf(
-    'ffmpeg -y -i %s -vf "drawbox=x=0:y=0:w=%s:h=%s:t=max:color=white" %s',
+    'ffmpeg -y -i %s -vf "drawbox=x=0:y=0:w=%s:h=%s:t=fill:color=white" %s',
     video_file,
     title_guess_width,
     title_guess_height,
@@ -337,7 +337,7 @@ generate_insta_video <- function(version_info) {
     "(W*0.05)",# Left
     sprintf("%s + (H-%s)*2/3 - (h/2)", map_guess_height, map_guess_height), # Center in white space below map & below title
     # Add footnote
-    sprintf("(W/2)-(w/2)", footnote_guess_width), # Center
+    "(W/2)-(w/2)", # Center
     sprintf("(H-%s)", footnote_guess_height*1.1), # Just up from bottom
     insta_dim,
     sprintf("%02d", reg_animation_start), # start animation

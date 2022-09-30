@@ -282,7 +282,10 @@ While not always necessary, you may find that you want to increase the text size
 
 #### Rebuild the animation
 
-Now that the specifications for frames are updated and ready for the Instagram version, you need to rebuild all of the frames. Use the code below. No need to rename this one from `year_in_review.mp4` to something else since we will process it further in the next step.
+Now that the specifications for frames are updated and ready for the Instagram version, you need to rebuild all of the frames. Follow these steps:
+
+1. We need to start with a blank `tmp/` folder. Instead of clearing the contents in the existing folder, rename it from `tmp/` to `tmp_twitter/`. I like to retain all of the Twitter-sized frames for easy access should we need rebuild the videos again. When you build the Instagram ones in the next step, they will automatically get added into a new `tmp/` folder.
+2. Use the code below to build the Instagram-sized frames and create the new video. No need to rename the video created here from `year_in_review.mp4` to something else since we will process it further in the next step (and that code expects it to be named `year_in_review.mp4`).
 
 ```r
 source("helper_fxns_pipeline.R")
