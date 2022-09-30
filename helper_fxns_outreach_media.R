@@ -260,7 +260,7 @@ generate_insta_video <- function(version_info) {
 
   # Title bleeds into map a bit, so need to cover title part with drawbox
   system(sprintf(
-    'ffmpeg -y -i %s -vf "drawbox=x=0:y=0:w=%s:h=%s:t=max:color=white" %s',
+    'ffmpeg -y -i %s -vf "drawbox=x=0:y=0:w=%s:h=%s:t=fill:color=white" %s',
     video_file,
     title_guess_width,
     title_guess_height,
