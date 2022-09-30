@@ -27,7 +27,7 @@ generate_visid_video <- function(version_info) {
 
   # Cover up the existing USGS logo
   system(sprintf(
-    'ffmpeg -y -i %s -vf "drawbox=x=0:y=ih-h:w=%s/6:h=%s/8:t=max:color=white" %s',
+    'ffmpeg -y -i %s -vf "drawbox=x=0:y=ih-h:w=%s/6:h=%s/8:t=fill:color=white" %s',
     video_file,
     viz_config_dim$width,
     viz_config_dim$height,
