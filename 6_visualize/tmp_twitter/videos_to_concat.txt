@@ -1,2 +1,0 @@
-file 'video_still_frame.mp4'
-file 'river_conditions_test_sept_2022_twitter.mp4'
