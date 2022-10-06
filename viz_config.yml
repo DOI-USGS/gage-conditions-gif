@@ -96,8 +96,8 @@ footnote_cfg:
     "   the time this graphic was produced. We used only publicly available data from NWISWeb and some gages are missing gage height even when they have flow."
   ]
   x_pos: 0.255 # 0.30 (visid image)
-  y_pos: 0.02
-  cex: 3.9
+  y_pos: 0.025
+  cex: 3.3
   col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
