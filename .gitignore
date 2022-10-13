@@ -4,6 +4,7 @@
 .Ruserdata
 .httr-oauth
 */tmp/*
+*/tmp_twitter/*
 */out/*
 !*/out/*.ind
 .remake
