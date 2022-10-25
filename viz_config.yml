@@ -69,62 +69,12 @@ gage_style:
     col: "#7f7f7f"
 
 # Comment this out when building the Instagram version
-# legend_cfg:
-#   point_mult: 4
-#   text_cex: 3.9
-#   text_col: "#444444"
-#   x_pos: 0.11
-#   y_pos: 0.79
-# title_cfg:
-#   main: "U.S. River Conditions"
-#   subtitle: "July 1, 2022 - September 30, 2022"
-#   footnote: [
-#     "Conditions are relative to the historic",
-#     "daily record for each gage.",
-#   ]
-#   x_pos: 0.005
-#   y_pos: 0.94
-#   main_cex: 8
-#   main_col: "#666666"
-#   sub_cex: 5.1
-#   sub_col: "#666666"
-#   foot_cex: 4.2
-#   foot_col: "#939393"
-# footnote_cfg:
-#   main: [
-#     "* Both USGS gage height and National Weather Service flood stage levels are necessary to determine flooding conditions and were available for 38% of gages at",
-#     "   the time this graphic was produced. We used only publicly available data from NWISWeb and some gages are missing gage height even when they have flow."
-#   ]
-#   x_pos: 0.255 # 0.30 (visid image)
-#   y_pos: 0.025
-#   cex: 3.3
-#   col: "#939393"
-# datewheel_cfg:
-#     x_pos: 0.10 # percentage in the x direction to place the circle center
-#     y_pos: 0.33 # 0.37 (visid image) # percentage in the y direction to place the circle center
-#     wheel_per: 0.15 # percentage in the x direction to make the diameter
-#     event_per: 0.80 # percentage of the wheel radius to make the event arcs, skinnier if this is smaller
-#     inner_per: 0.7 # percentage of the wheel radius to make the donut, skinnier if this is bigger
-#     text_per: 0.75 # percentage of the inner radius to place the text
-#     col_empty: "#bdbdbd" # color of the wheel background
-#     col_filled: "#5d5d5dB3" # color to fill in the wheel as time marches on, last two = hex transparency
-#     col_text_months: "#383838" # color of month labels inside wheel
-#     col_text_months_outside: "#bdbdbd" # color of month labels inside wheel NOT during viz dates
-#     cex_text_months: 3.2
-#     col_text_datestamp: "#5f5f5f" # color of text inside the wheel
-#     cex_text_datestamp: 3.5
-# End of regular version specs
-
-# # Leave this commented when building the regular version
-# # Mostly just editing text size & datewheel dims
-# # Insta version!
 legend_cfg:
-  point_mult: 5.7
+  point_mult: 4
   text_cex: 3.9
   text_col: "#444444"
-  x_pos: 0.18
-  y_pos: 0.80
-# Insta version!
+  x_pos: 0.11
+  y_pos: 0.79
 title_cfg:
   main: "U.S. River Conditions"
   subtitle: "July 1, 2022 - September 30, 2022"
@@ -132,39 +82,89 @@ title_cfg:
     "Conditions are relative to the historic",
     "daily record for each gage.",
   ]
-  x_pos: 0.002
-  y_pos: 0.965
-  main_cex: 8.2
+  x_pos: 0.005
+  y_pos: 0.94
+  main_cex: 8
   main_col: "#666666"
-  sub_cex: 4.7
+  sub_cex: 5.1
   sub_col: "#666666"
-  foot_cex: 4.1
+  foot_cex: 4.2
   foot_col: "#939393"
-# Insta version!
 footnote_cfg:
   main: [
     "* Both USGS gage height and National Weather Service flood stage levels are necessary to determine flooding conditions and were available for 38% of gages at",
     "   the time this graphic was produced. We used only publicly available data from NWISWeb and some gages are missing gage height even when they have flow."
   ]
   x_pos: 0.255 # 0.30 (visid image)
-  y_pos: 0.02
-  cex: 3.5
+  y_pos: 0.025
+  cex: 3.3
   col: "#939393"
-# Insta version!
 datewheel_cfg:
-    x_pos: 0.095 # percentage in the x direction to place the circle center
-    y_pos: 0.27 # 0.37 (visid image) # percentage in the y direction to place the circle center
-    wheel_per: 0.17 # percentage in the x direction to make the diameter
+    x_pos: 0.10 # percentage in the x direction to place the circle center
+    y_pos: 0.33 # 0.37 (visid image) # percentage in the y direction to place the circle center
+    wheel_per: 0.15 # percentage in the x direction to make the diameter
     event_per: 0.80 # percentage of the wheel radius to make the event arcs, skinnier if this is smaller
-    inner_per: 0.70 # percentage of the wheel radius to make the donut, skinnier if this is bigger
+    inner_per: 0.7 # percentage of the wheel radius to make the donut, skinnier if this is bigger
     text_per: 0.75 # percentage of the inner radius to place the text
     col_empty: "#bdbdbd" # color of the wheel background
     col_filled: "#5d5d5dB3" # color to fill in the wheel as time marches on, last two = hex transparency
     col_text_months: "#383838" # color of month labels inside wheel
     col_text_months_outside: "#bdbdbd" # color of month labels inside wheel NOT during viz dates
-    cex_text_months: 3.9
+    cex_text_months: 3.2
     col_text_datestamp: "#5f5f5f" # color of text inside the wheel
-    cex_text_datestamp: 4.4
+    cex_text_datestamp: 3.5
+# End of regular version specs
+
+# # Leave this commented when building the regular version
+# # Mostly just editing text size & datewheel dims
+# # Insta version!
+# legend_cfg:
+#   point_mult: 5.7
+#   text_cex: 3.9
+#   text_col: "#444444"
+#   x_pos: 0.18
+#   y_pos: 0.80
+# # Insta version!
+# title_cfg:
+#   main: "U.S. River Conditions"
+#   subtitle: "July 1, 2022 - September 30, 2022"
+#   footnote: [
+#     "Conditions are relative to the historic",
+#     "daily record for each gage.",
+#   ]
+#   x_pos: 0.002
+#   y_pos: 0.965
+#   main_cex: 8.2
+#   main_col: "#666666"
+#   sub_cex: 4.7
+#   sub_col: "#666666"
+#   foot_cex: 4.1
+#   foot_col: "#939393"
+# # Insta version!
+# footnote_cfg:
+#   main: [
+#     "* Both USGS gage height and National Weather Service flood stage levels are necessary to determine flooding conditions and were available for 38% of gages at",
+#     "   the time this graphic was produced. We used only publicly available data from NWISWeb and some gages are missing gage height even when they have flow."
+#   ]
+#   x_pos: 0.255 # 0.30 (visid image)
+#   y_pos: 0.02
+#   cex: 3.5
+#   col: "#939393"
+# # Insta version!
+# datewheel_cfg:
+#     x_pos: 0.095 # percentage in the x direction to place the circle center
+#     y_pos: 0.27 # 0.37 (visid image) # percentage in the y direction to place the circle center
+#     wheel_per: 0.17 # percentage in the x direction to make the diameter
+#     event_per: 0.80 # percentage of the wheel radius to make the event arcs, skinnier if this is smaller
+#     inner_per: 0.70 # percentage of the wheel radius to make the donut, skinnier if this is bigger
+#     text_per: 0.75 # percentage of the inner radius to place the text
+#     col_empty: "#bdbdbd" # color of the wheel background
+#     col_filled: "#5d5d5dB3" # color to fill in the wheel as time marches on, last two = hex transparency
+#     col_text_months: "#383838" # color of month labels inside wheel
+#     col_text_months_outside: "#bdbdbd" # color of month labels inside wheel NOT during viz dates
+#     cex_text_months: 3.9
+#     col_text_datestamp: "#5f5f5f" # color of text inside the wheel
+#     cex_text_datestamp: 4.4
 # # End of instagram version specs
 
 # gif options
