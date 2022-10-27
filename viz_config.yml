@@ -1,7 +1,7 @@
 # Actual dates of the viz frames
 vizDates:
-  start: '2022-04-01'
-  end: '2022-06-30'
+  start: '2022-07-01'
+  end: '2022-09-30'
 # Dates that make up the wheel (usually a full year)
 wheelDates:
   start: '2021-10-01'
@@ -46,7 +46,7 @@ gage_style:
   with_percentile:
     normal:
       pch: 21
-      cex: 2.0
+      cex: 1.5
       bg: "#d7d7d7" #efefef
     drought:
       pch: 21
@@ -60,7 +60,7 @@ gage_style:
     flood:    # not based on percentile, based on if above flood stage or not
       pch: 21
       cex: 4.0
-      lwd: 5.0
+      lwd: 6.0
       bg: "#04507d" # same as second "wet"
       col: "#AE72E5" #"#9547dd"
   no_percentile:
@@ -71,24 +71,24 @@ gage_style:
 # Comment this out when building the Instagram version
 legend_cfg:
   point_mult: 4
-  text_cex: 2.4
+  text_cex: 3.9
   text_col: "#444444"
   x_pos: 0.11
   y_pos: 0.79
 title_cfg:
   main: "U.S. River Conditions"
-  subtitle: "April 1, 2022 - June 30, 2022"
+  subtitle: "July 1, 2022 - September 30, 2022"
   footnote: [
     "Conditions are relative to the historic",
     "daily record for each gage.",
   ]
   x_pos: 0.005
   y_pos: 0.94
-  main_cex: 6
+  main_cex: 8
   main_col: "#666666"
-  sub_cex: 3.1
+  sub_cex: 5.1
   sub_col: "#666666"
-  foot_cex: 2.6
+  foot_cex: 4.2
   foot_col: "#939393"
 footnote_cfg:
   main: [
@@ -96,8 +96,8 @@ footnote_cfg:
     "   the time this graphic was produced. We used only publicly available data from NWISWeb and some gages are missing gage height even when they have flow."
   ]
   x_pos: 0.255 # 0.30 (visid image)
-  y_pos: 0.02
-  cex: 2.5
+  y_pos: 0.025
+  cex: 3.3
   col: "#939393"
 datewheel_cfg:
     x_pos: 0.10 # percentage in the x direction to place the circle center
@@ -110,9 +110,9 @@ datewheel_cfg:
     col_filled: "#5d5d5dB3" # color to fill in the wheel as time marches on, last two = hex transparency
     col_text_months: "#383838" # color of month labels inside wheel
     col_text_months_outside: "#bdbdbd" # color of month labels inside wheel NOT during viz dates
-    cex_text_months: 2.2
+    cex_text_months: 3.2
     col_text_datestamp: "#5f5f5f" # color of text inside the wheel
-    cex_text_datestamp: 2.5
+    cex_text_datestamp: 3.5
 # End of regular version specs
 
 # # Leave this commented when building the regular version
@@ -120,25 +120,25 @@ datewheel_cfg:
 # # Insta version!
 # legend_cfg:
 #   point_mult: 5.7
-#   text_cex: 3.7
+#   text_cex: 3.9
 #   text_col: "#444444"
 #   x_pos: 0.18
 #   y_pos: 0.80
 # # Insta version!
 # title_cfg:
 #   main: "U.S. River Conditions"
-#   subtitle: "April 1, 2022 - June 30, 2022"
+#   subtitle: "July 1, 2022 - September 30, 2022"
 #   footnote: [
 #     "Conditions are relative to the historic",
 #     "daily record for each gage.",
 #   ]
 #   x_pos: 0.002
 #   y_pos: 0.965
-#   main_cex: 8
+#   main_cex: 8.2
 #   main_col: "#666666"
-#   sub_cex: 4.3
+#   sub_cex: 4.7
 #   sub_col: "#666666"
-#   foot_cex: 3.6
+#   foot_cex: 4.1
 #   foot_col: "#939393"
 # # Insta version!
 # footnote_cfg:
@@ -148,7 +148,7 @@ datewheel_cfg:
 #   ]
 #   x_pos: 0.255 # 0.30 (visid image)
 #   y_pos: 0.02
-#   cex: 2.5
+#   cex: 3.5
 #   col: "#939393"
 # # Insta version!
 # datewheel_cfg:
@@ -162,9 +162,9 @@ datewheel_cfg:
 #     col_filled: "#5d5d5dB3" # color to fill in the wheel as time marches on, last two = hex transparency
 #     col_text_months: "#383838" # color of month labels inside wheel
 #     col_text_months_outside: "#bdbdbd" # color of month labels inside wheel NOT during viz dates
-#     cex_text_months: 3.5
+#     cex_text_months: 3.9
 #     col_text_datestamp: "#5f5f5f" # color of text inside the wheel
-#     cex_text_datestamp: 4.0
+#     cex_text_datestamp: 4.4
 # # End of instagram version specs
 
 # gif options
