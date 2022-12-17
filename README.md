@@ -312,7 +312,7 @@ Sometimes, we also release a full water year version of the animation. Thanks to
 1. Locate the previous quarterly `callout_cfg.yml` files and paste their contents together into a single `callout_cfg.yml`. You can take some time now to merge any events that span quarters so that they appear as one continuous event.
 2. Edit the `vizDates` in the `viz_config.yml` file to be the full water year. These should now match the values in `wheelDates`.
 3. Edit the `title_cfg` and `subtitle` to reflect the new dates. Do this both in the main part of the `viz_config.yml` file and further down in the commented out Instagram configuration settings.
-4. Continue as you would with any quarterly animation by starting at number 4 of the main instructions (see [Tweak event callout timing and appearance](#4-tweak-event-callout-timing-and-appearance)).
+4. Continue as you would with any quarterly animation by starting at number 4 of the main instructions (see [Tweak event callout timing and appearance](#4-tweak-event-callout-timing-and-appearance)). Note that you will likely need to play with the flow/transition between quarters so that events don't abruptly start and stop arbitrarily at the quarter's end. You may also need to adjust placement of event text so that two quarter's text don't overlap.
 
 ## Disclaimer
 
