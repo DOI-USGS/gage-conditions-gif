@@ -151,12 +151,12 @@
 -
   event_dates:
     start: "2021-12-10"
-    end: "2021-12-16"
+    end: "2022-01-10"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2021-12-10"
-    end: "2021-12-19"
+    end: "2022-01-10"
   # Defaults to 9
   fade_in: 5
   # Defaults to 9
@@ -265,36 +265,6 @@
   wheel_color: "#ca0020"
   # Integer, starting with 0 (use >= 1 to increase height)
   wheel_hierarchy: 0
-  polygon:
-    # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
--
-  event_dates:
-    start: "2022-01-02"
-    end: "2022-01-10"
-  text_dates:
-    # Adjust these if the text + callout shape should appear for
-    #   different dates than the event appears on the date wheel
-    start: "2022-01-04"
-    end: "2022-01-12"
-  # Defaults to 9
-  fade_in: 3
-  # Defaults to 9
-  fade_out:
-  text:
-    label: ["Long duration", "atmospheric", "river brings", "rain to the", "Pacific", "Northwest"]
-    # This is in percentage space, relative to the plotting device
-    x_loc: 0.32
-    y_loc: 0.95
-    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
-    cex: 7
-  # TRUE or FALSE, defaults to FALSE
-  add_box:
-  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#04507d"
-  # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
