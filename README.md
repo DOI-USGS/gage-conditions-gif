@@ -14,13 +14,13 @@ Also, note that this repo was one of the first `scipiper` repos that we construc
 
 The process to create this animation is almost entirely automated using the (now dormant) custom dependency management R package, [`scipiper`](https://github.com/USGS-R/scipiper). There is a bit of manual work required to create and then prepare the animation's event/text callouts. Otherwise, it is mostly running chunks of code. The entire process is outlined below (*steps that aren't code, but are human checks are italicized in parentheses*).
 
-1. [Change the animation dates and prepare the new data](#change-the-animation-dates-and-prepare-the-new-data) (*notify Web Comms and GWSIP team that this process has begun*)
-1. [Create a new blank animation to use for event callout inspiration](#create-a-new-blank-animation-to-use-for-event-callout-inspiration)
-1. [Gather event callouts and add to the animation](#gather-event-callouts-and-add-to-the-animation) (*work with GWSIP collaborators & involve IIDD reviewers as necessary*)
-1. [Tweak event callout timing and appearance](#tweak-event-callout-timing-and-appearance)
-1. [Generate final video animation](#generate-final-video-animation) (*get it approved by IIDD reviewers during this step, after approval ask Web Comms to start the video description paragraph*)
-1. [Run code for simple-to-produce outreach artifacts](#run-code-for-simple-to-produce-outreach-artifacts) (*ask Web Comms to upload the VisID thumbnail to Drupal, then submit Drupal video upload form with link to that thumbnail*)
-1. [Restructure code and build a new Instagram version](#restructure-code-and-build-a-new-instagram-version) (*share this and other outreach artifacts with Web Comms so the release package can be ready*)
+1. [Change the animation dates and prepare the new data](#1-change-the-animation-dates-and-prepare-the-new-data) (*notify Web Comms and GWSIP team that this process has begun*)
+1. [Create a new blank animation to use for event callout inspiration](#2-create-a-new-blank-animation-to-use-for-event-callout-inspiration)
+1. [Gather event callouts and add to the animation](#3-gather-event-callouts-and-add-to-the-animation) (*work with GWSIP collaborators & involve IIDD reviewers as necessary*)
+1. [Tweak event callout timing and appearance](#4-tweak-event-callout-timing-and-appearance)
+1. [Generate final video animation](#5-generate-final-video-animation) (*get it approved by IIDD reviewers during this step, after approval ask Web Comms to start the video description paragraph*)
+1. [Run code for simple-to-produce outreach artifacts](#6-run-code-for-simple-to-produce-outreach-artifacts) (*ask Web Comms to upload the VisID thumbnail to Drupal, then submit Drupal video upload form with link to that thumbnail*)
+1. [Restructure code and build a new Instagram version](#7-restructure-code-and-build-a-new-instagram-version) (*share this and other outreach artifacts with Web Comms so the release package can be ready*)
 
 The outputs from following this full process should be the following files:
 
@@ -304,6 +304,15 @@ source("helper_fxns_outreach_media.R")
 version_info <- "river_conditions_apr_jun_2022"
 generate_insta_video(version_info)
 ```
+
+## How to build the water year version of this animation
+
+Sometimes, we also release a full water year version of the animation. Thanks to the automated processing and retention of `callout_cfg.yml` files, it is pretty quick to do:
+
+1. Locate the previous quarterly `callout_cfg.yml` files and paste their contents together into a single `callout_cfg.yml`. You can take some time now to merge any events that span quarters so that they appear as one continuous event.
+2. Edit the `vizDates` in the `viz_config.yml` file to be the full water year. These should now match the values in `wheelDates`.
+3. Edit the `title_cfg` and `subtitle` to reflect the new dates. Do this both in the main part of the `viz_config.yml` file and further down in the commented out Instagram configuration settings.
+4. Continue as you would with any quarterly animation by starting at number 4 of the main instructions (see [Tweak event callout timing and appearance](#4-tweak-event-callout-timing-and-appearance)). Note that you will likely need to play with the flow/transition between quarters so that events don't abruptly start and stop arbitrarily at the quarter's end. You may also need to adjust placement of event text so that two quarter's text don't overlap.
 
 ## Disclaimer
 
