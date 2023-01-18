@@ -77,7 +77,7 @@ legend_cfg:
   y_pos: 0.79
 title_cfg:
   main: "U.S. River Conditions"
-  subtitle: "October 1, 2022 - December 30, 2022"
+  subtitle: "October 1, 2022 - December 31, 2022"
   footnote: [
     "Conditions are relative to the historic",
     "daily record for each gage.",
@@ -127,7 +127,7 @@ datewheel_cfg:
 # # Insta version!
 # title_cfg:
 #   main: "U.S. River Conditions"
-#   subtitle: "October 1, 2022 - December 30, 2022""
+#   subtitle: "October 1, 2022 - December 31, 2022""
 #   footnote: [
 #     "Conditions are relative to the historic",
 #     "daily record for each gage.",
