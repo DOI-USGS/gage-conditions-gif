@@ -14,11 +14,11 @@
   text:
     label: ["Drought continues in","Western U.S,", "and the Great Plains"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.40
+    x_loc: 0.37
     y_loc: 0.64
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 6
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -44,11 +44,11 @@
   text:
     label: ["Atmospheric river","brings high water to", "the Northwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.34
+    x_loc: 0.33
     y_loc: 0.78
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 6
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -78,7 +78,7 @@
     y_loc: 0.41
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 6
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -121,12 +121,12 @@
 -
   event_dates:
     start: "2022-12-24"
-    end: "2022-12-30"
+    end: "2022-12-31"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2022-12-26"
-    end: "2022-12-30"
+    start: "2022-12-23"
+    end: "2022-12-31"
   # Defaults to 9
   fade_in:
   # Defaults to 9
@@ -134,11 +134,11 @@
   text:
     label: ["Tropical storm causes", "significant flooding", "along the Pacific Coast"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.33
+    x_loc: 0.32
     y_loc: 0.65
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 6
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
@@ -168,7 +168,7 @@
     y_loc: 0.77
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 7
+    cex: 6
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
