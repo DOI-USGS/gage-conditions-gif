@@ -4,7 +4,7 @@ prep_watermark_fun <- function(watermark_file, x_pos = c('left','right'), y_pos 
   y_pos <- match.arg(y_pos)
 
   plot_fun <- function(){
-    watermark_frac <- 0.15 # fraction of the width of the figure
+    watermark_frac <- 0.10 # fraction of the width of the figure
     watermark_bump_frac <- 0.01
     coord_space <- par()$usr
 
@@ -54,8 +54,8 @@ prep_watermark_for_intro_fun <- function(watermark_file, x_pos = c('left','right
   y_pos <- match.arg(y_pos)
 
   plot_fun <- function(){
-    watermark_y_frac <- 0.08 # fraction of the height of the figure
-    watermark_x_frac <- 0.15 # fraction of the width of the figure
+    watermark_y_frac <- 0.055 # fraction of the height of the figure
+    watermark_x_frac <- 0.10 # fraction of the width of the figure
     watermark_bump_frac <- 0.01
     coord_space <- par()$usr
 

@@ -1,11 +1,11 @@
 # Actual dates of the viz frames
 vizDates:
-  start: '2022-07-01'
-  end: '2022-09-30'
+  start: '2022-10-01'
+  end: '2022-12-31'
 # Dates that make up the wheel (usually a full year)
 wheelDates:
-  start: '2021-10-01'
-  end: '2022-09-30'
+  start: '2022-10-01'
+  end: '2023-09-30'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 3 # hours elapsed between GIF frames
 
@@ -77,7 +77,7 @@ legend_cfg:
   y_pos: 0.79
 title_cfg:
   main: "U.S. River Conditions"
-  subtitle: "July 1, 2022 - September 30, 2022"
+  subtitle: "October 1, 2022 - December 31, 2022"
   footnote: [
     "Conditions are relative to the historic",
     "daily record for each gage.",
@@ -127,16 +127,16 @@ datewheel_cfg:
 # # Insta version!
 # title_cfg:
 #   main: "U.S. River Conditions"
-#   subtitle: "July 1, 2022 - September 30, 2022"
+#   subtitle: "October 1, 2022 - December 31, 2022"
 #   footnote: [
 #     "Conditions are relative to the historic",
 #     "daily record for each gage.",
 #   ]
 #   x_pos: 0.002
 #   y_pos: 0.965
-#   main_cex: 8.2
+#   main_cex: 8.4
 #   main_col: "#666666"
-#   sub_cex: 4.7
+#   sub_cex: 4.9
 #   sub_col: "#666666"
 #   foot_cex: 4.1
 #   foot_col: "#939393"
@@ -148,7 +148,7 @@ datewheel_cfg:
 #   ]
 #   x_pos: 0.255 # 0.30 (visid image)
 #   y_pos: 0.02
-#   cex: 3.5
+#   cex: 3.4
 #   col: "#939393"
 # # Insta version!
 # datewheel_cfg:
