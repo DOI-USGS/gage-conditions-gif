@@ -1,7 +1,7 @@
 # Actual dates of the viz frames
 vizDates:
-  start: '2022-10-01'
-  end: '2022-12-31'
+  start: '2023-01-01'
+  end: '2023-03-31'
 # Dates that make up the wheel (usually a full year)
 wheelDates:
   start: '2022-10-01'
@@ -77,7 +77,7 @@ legend_cfg:
   y_pos: 0.79
 title_cfg:
   main: "U.S. River Conditions"
-  subtitle: "October 1, 2022 - December 31, 2022"
+  subtitle: "January 1, 2023 - March 31, 2023"
   footnote: [
     "Conditions are relative to the historic",
     "daily record for each gage.",
@@ -127,18 +127,18 @@ datewheel_cfg:
 # # Insta version!
 # title_cfg:
 #   main: "U.S. River Conditions"
-#   subtitle: "October 1, 2022 - December 31, 2022"
+#   subtitle: "January 1, 2023 - March 31, 2023"
 #   footnote: [
 #     "Conditions are relative to the historic",
 #     "daily record for each gage.",
 #   ]
 #   x_pos: 0.002
 #   y_pos: 0.965
-#   main_cex: 8.4
+#   main_cex: 8.6
 #   main_col: "#666666"
-#   sub_cex: 4.9
+#   sub_cex: 5.1
 #   sub_col: "#666666"
-#   foot_cex: 4.1
+#   foot_cex: 4.3
 #   foot_col: "#939393"
 # # Insta version!
 # footnote_cfg:
