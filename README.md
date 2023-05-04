@@ -314,15 +314,4 @@ Sometimes, we also release a full water year version of the animation. Thanks to
 3. Edit the `title_cfg` and `subtitle` to reflect the new dates. Do this both in the main part of the `viz_config.yml` file and further down in the commented out Instagram configuration settings.
 4. Continue as you would with any quarterly animation by starting at number 4 of the main instructions (see [Tweak event callout timing and appearance](#4-tweak-event-callout-timing-and-appearance)). Note that you will likely need to play with the flow/transition between quarters so that events don't abruptly start and stop arbitrarily at the quarter's end. You may also need to adjust placement of event text so that two quarter's text don't overlap.
 
-## Disclaimer
 
-This software is in the public domain because it contains materials that originally came from the U.S. Geological Survey, an agency of the United States Department of Interior. For more information, see the official USGS copyright policy at [http://www.usgs.gov/visual-id/credit_usgs.html#copyright](http://www.usgs.gov/visual-id/credit_usgs.html#copyright)
-
-This information is preliminary or provisional and is subject to revision. It is being provided to meet the need for timely best science. The information has not received final approval by the U.S. Geological Survey (USGS) and is provided on the condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from the authorized or unauthorized use of the information. Although this software program has been used by the USGS, no warranty, expressed or implied, is made by the USGS or the U.S. Government as to the accuracy and functioning of the program and related program material nor shall the fact of distribution constitute any such warranty, and no responsibility is assumed by the USGS in connection therewith.
-
-This software is provided "AS IS."
-
-
-[
-  ![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png)
-](http://creativecommons.org/publicdomain/zero/1.0/)
