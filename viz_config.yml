@@ -1,7 +1,7 @@
 # Actual dates of the viz frames
 vizDates:
-  start: '2023-01-01'
-  end: '2023-03-31'
+  start: '2023-04-01'
+  end: '2023-06-30'
 # Dates that make up the wheel (usually a full year)
 wheelDates:
   start: '2022-10-01'
@@ -77,7 +77,7 @@ legend_cfg:
   y_pos: 0.79
 title_cfg:
   main: "U.S. River Conditions"
-  subtitle: "January 1, 2023 - March 31, 2023"
+  subtitle: "April 1, 2023 - June 30, 2023"
   footnote: [
     "Conditions are relative to the historic",
     "daily record for each gage.",
@@ -92,8 +92,8 @@ title_cfg:
   foot_col: "#939393"
 footnote_cfg:
   main: [
-    "* Both USGS gage height and National Weather Service flood stage levels are necessary to determine flooding conditions and were available for 38% of gages at",
-    "   the time this graphic was produced. We used only publicly available data from NWISWeb and some gages are missing gage height even when they have flow."
+    "* Both USGS gage height and National Weather Service flood stage levels are necessary to determine flooding conditions and were available for 80% of gages at the time",
+    "   this graphic was produced. We used only publicly available data from Water Data for the Nation and some gages are missing gage height even when they have flow."
   ]
   x_pos: 0.255 # 0.30 (visid image)
   y_pos: 0.025
@@ -113,7 +113,7 @@ datewheel_cfg:
     cex_text_months: 3.2
     col_text_datestamp: "#5f5f5f" # color of text inside the wheel
     cex_text_datestamp: 3.5
-# End of regular version specs
+# # End of regular version specs
 
 # # Leave this commented when building the regular version
 # # Mostly just editing text size & datewheel dims
@@ -127,7 +127,7 @@ datewheel_cfg:
 # # Insta version!
 # title_cfg:
 #   main: "U.S. River Conditions"
-#   subtitle: "January 1, 2023 - March 31, 2023"
+#   subtitle: "April 1, 2023 - June 30, 2023"
 #   footnote: [
 #     "Conditions are relative to the historic",
 #     "daily record for each gage.",
@@ -143,8 +143,8 @@ datewheel_cfg:
 # # Insta version!
 # footnote_cfg:
 #   main: [
-#     "* Both USGS gage height and National Weather Service flood stage levels are necessary to determine flooding conditions and were available for 38% of gages at",
-#     "   the time this graphic was produced. We used only publicly available data from NWISWeb and some gages are missing gage height even when they have flow."
+#     "* Both USGS gage height and National Weather Service flood stage levels are necessary to determine flooding conditions and were available for 80% of gages at the time",
+#     "   this graphic was produced. We used only publicly available data from Water Data for the Nation and some gages are missing gage height even when they have flow."
 #   ]
 #   x_pos: 0.255 # 0.30 (visid image)
 #   y_pos: 0.02
