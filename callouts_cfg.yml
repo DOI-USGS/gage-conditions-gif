@@ -1,21 +1,21 @@
 -
   event_dates:
-    start: "2023-07-01"
-    end: "2023-08-31"
+    start: "2023-10-01"
+    end: "2023-10-14"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2023-07-12"
-    end: "2023-07-16"
+    start: "2023-10-11"
+    end: "2023-10-14"
   # Defaults to 9
   fade_in:
   # Defaults to 9
   fade_out:
   text:
-    label: ["Parts of Alaska", "received twice", "the normal", "rainfall"]
+    label: ["Remnant", "Tropical", "Storm","Ophelia", "brings", "high", "water to", "New Jersey", "and", "New York"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.185
-    y_loc: 0.31
+    x_loc: 0.90
+    y_loc: 0.685
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -23,126 +23,6 @@
   add_box:
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
-  # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 0
-  polygon:
-    # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
--
-  event_dates:
-    start: "2023-07-01"
-    end: "2023-09-30"
-  text_dates:
-    # Adjust these if the text + callout shape should appear for
-    #   different dates than the event appears on the date wheel
-    start: "2023-09-09"
-    end: "2023-09-13"
-  # Defaults to 9
-  fade_in:
-  # Defaults to 9
-  fade_out:
-  text:
-    label: ["Drought in much", "of the Heartland"]
-    # This is in percentage space, relative to the plotting device
-    x_loc: 0.60
-    y_loc: 0.84
-    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
-    cex: 7
-  # TRUE or FALSE, defaults to FALSE
-  add_box: TRUE
-  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#ca0020"
-  # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
-  polygon:
-    # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
--
-  event_dates:
-    start: "2023-07-01"
-    end: "2023-09-22"
-  text_dates:
-    # Adjust these if the text + callout shape should appear for
-    #   different dates than the event appears on the date wheel
-    start: "2023-08-01"
-    end: "2023-08-12"
-  # Defaults to 9
-  fade_in:
-  # Defaults to 9
-  fade_out:
-  text:
-    label: ["Drought in", "parts of the", "Northwest"]
-    # This is in percentage space, relative to the plotting device
-    x_loc: 0.33
-    y_loc: 0.84
-    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
-    cex: 7
-  # TRUE or FALSE, defaults to FALSE
-  add_box: TRUE
-  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#ca0020"
-  # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 3
-  polygon:
-    # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
--
-  event_dates:
-    start: "2023-07-03"
-    end: "2023-07-31"
-  text_dates:
-    # Adjust these if the text + callout shape should appear for
-    #   different dates than the event appears on the date wheel
-    start: "2023-07-10"
-    end: "2023-07-14"
-  # Defaults to 9
-  fade_in:
-  # Defaults to 9
-  fade_out:
-  text:
-    label: ["Flooding in","New England"]
-    # This is in percentage space, relative to the plotting device
-    x_loc: 0.76
-    y_loc: 0.94
-    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
-    cex: 7
-  # TRUE or FALSE, defaults to FALSE
-  add_box:
-  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#04507d"
-  # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 0
-  polygon:
-    # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
--
-  event_dates:
-    start: "2023-08-15"
-    end: "2023-09-30"
-  text_dates:
-    # Adjust these if the text + callout shape should appear for
-    #   different dates than the event appears on the date wheel
-    start: "2023-08-24"
-    end: "2023-08-27"
-  # Defaults to 9
-  fade_in:
-  # Defaults to 9
-  fade_out:
-  text:
-    label: ["Drought expands","across the South"]
-    # This is in percentage space, relative to the plotting device
-    x_loc: 0.62
-    y_loc: 0.54
-    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
-    cex: 7
-  # TRUE or FALSE, defaults to FALSE
-  add_box: TRUE
-  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#ca0020"
   # Integer, starting with 0 (use >= 1 to increase height)
   wheel_hierarchy: 2
   polygon:
@@ -150,89 +30,29 @@
     file: "6_visualize/in/overlay_callouts_dummy.png"
 -
   event_dates:
-    start: "2023-08-16"
-    end: "2023-09-01"
+    start: "2023-10-01"
+    end: "2023-10-30"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2023-08-17"
-    end: "2023-08-22"
+    start: "2023-10-06"
+    end: "2023-10-09"
   # Defaults to 9
   fade_in:
   # Defaults to 9
   fade_out:
   text:
-    label: ["Flooding in Southern", "California from remnant", "Hurricane Hilary"]
+    label: ["Drought continues across","South Central U.S."]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.36
-    y_loc: 0.49
+    x_loc: 0.49
+    y_loc: 0.58
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 5
+    cex: 7
   # TRUE or FALSE, defaults to FALSE
   add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#04507d"
-  # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 0
-  polygon:
-    # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
--
-  event_dates:
-    start: "2023-08-31"
-    end: "2023-09-06"
-  text_dates:
-    # Adjust these if the text + callout shape should appear for
-    #   different dates than the event appears on the date wheel
-    start: "2023-08-31"
-    end: "2023-09-03"
-  # Defaults to 9
-  fade_in:
-  # Defaults to 9
-  fade_out:
-  text:
-    label: ["Hurricane Idalia","brings flooding","to parts of the","Southeast"]
-    # This is in percentage space, relative to the plotting device
-    x_loc: 0.70
-    y_loc: 0.185
-    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
-    cex: 6
-  # TRUE or FALSE, defaults to FALSE
-  add_box:
-  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#04507d"
-  # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 0
-  polygon:
-    # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
--
-  event_dates:
-    start: "2023-09-02"
-    end: "2023-09-30"
-  text_dates:
-    # Adjust these if the text + callout shape should appear for
-    #   different dates than the event appears on the date wheel
-    start: "2023-09-02"
-    end: "2023-09-07"
-  # Defaults to 9
-  fade_in:
-  # Defaults to 9
-  fade_out:
-  text:
-    label: ["High flows", "in parts of", "the West"]
-    # This is in percentage space, relative to the plotting device
-    x_loc: 0.35
-    y_loc: 0.64
-    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
-    cex: 6
-  # TRUE or FALSE, defaults to FALSE
-  add_box: TRUE
-  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#04507d"
+  wheel_color: "#ca0020"
   # Integer, starting with 0 (use >= 1 to increase height)
   wheel_hierarchy: 1
   polygon:
@@ -240,22 +60,52 @@
     file: "6_visualize/in/overlay_callouts_dummy.png"
 -
   event_dates:
-    start: "2023-09-23"
-    end: "2023-09-30"
+    start: "2023-10-31"
+    end: "2023-12-31"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2023-09-28"
-    end: "2023-09-30"
+    start: "2023-11-08"
+    end: "2023-11-12"
   # Defaults to 9
   fade_in:
   # Defaults to 9
   fade_out:
   text:
-    label: ["Flooding in","and around", "New York City"]
+    label: ["Drought in the", "Southern U.S.", "spreads eastward"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.76
-    y_loc: 0.945
+    x_loc: 0.64
+    y_loc: 0.55
+    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
+    pos: 4
+    cex: 6
+  # TRUE or FALSE, defaults to FALSE
+  add_box: TRUE
+  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
+  wheel_color: "#ca0020"
+  # Integer, starting with 0 (use >= 1 to increase height)
+  wheel_hierarchy: 1
+  polygon:
+    # Defaults to existing small NE shape
+    file: "6_visualize/in/overlay_callouts_dummy.png"
+-
+  event_dates:
+    start: "2023-11-21"
+    end: "2023-11-24"
+  text_dates:
+    # Adjust these if the text + callout shape should appear for
+    #   different dates than the event appears on the date wheel
+    start: "2023-11-22"
+    end: "2023-11-24"
+  # Defaults to 9
+  fade_in:
+  # Defaults to 9
+  fade_out:
+  text:
+    label: ["Rain in the", "Mid-Atlantic", "region brings", "only temporary", "relief from", "low flows"]
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.89
+    y_loc: 0.55
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -264,27 +114,57 @@
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
+  wheel_hierarchy: 2
+  polygon:
+    # Defaults to existing small NE shape
+    file: "6_visualize/in/overlay_callouts_dummy.png"
+-
+  event_dates:
+    start: "2023-11-28"
+    end: "2023-12-12"
+  text_dates:
+    # Adjust these if the text + callout shape should appear for
+    #   different dates than the event appears on the date wheel
+    start: "2023-11-28"
+    end: "2023-11-30"
+  # Defaults to 9
+  fade_in:
+  # Defaults to 9
+  fade_out:
+  text:
+    label: ["Drought conditions", "improve in Texas"]
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.488
+    y_loc: 0.49
+    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
+    pos: 4
+    cex: 7
+  # TRUE or FALSE, defaults to FALSE
+  add_box: TRUE
+  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
+  wheel_color: "#ca0020"
+  # Integer, starting with 0 (use >= 1 to increase height)
   wheel_hierarchy: 3
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
 -
   event_dates:
-    start: "2023-09-24"
-    end: "2023-09-30"
+    start: "2023-12-03"
+    end: "2023-12-15"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2023-09-27"
-    end: "2023-09-30"
+    start: "2023-12-03"
+    end: "2023-12-15"
   # Defaults to 9
   fade_in:
   # Defaults to 9
   fade_out:
   text:
-    label: ["Atmospheric river", "alleviates low flows", "in the Pacific Northwest"]
+    label: ["Atmospheric rivers", "bring high water", "to the Pacific Northwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.35
+    x_loc: 0.33
     y_loc: 0.88
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
@@ -294,28 +174,28 @@
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
+  wheel_hierarchy: 2
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
 -
   event_dates:
-    start: "2023-09-22"
-    end: "2023-09-30"
+    start: "2023-12-09"
+    end: "2023-12-23"
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2023-09-24"
-    end: "2023-09-28"
+    start: "2023-12-09"
+    end: "2023-12-23"
   # Defaults to 9
   fade_in:
   # Defaults to 9
   fade_out:
   text:
-    label: ["Tropical", "Storm", "Ophelia", "brings", "high","water", "to the", "Eastern", "U.S."]
+    label: ["Nor'easter and strong", "fronts bring flooding", "to parts of the", "eastern U.S."]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.90
-    y_loc: 0.675
+    x_loc: 0.74
+    y_loc: 0.945
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
