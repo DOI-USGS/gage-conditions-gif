@@ -12,10 +12,10 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["Remnant", "Tropical", "Storm","Ophelia", "brings", "high", "water to", "New Jersey", "and", "New York"]
+    label: ["Remnant Tropical Storm Ophelia", "brings high water to", "New Jersey and New York"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.90
-    y_loc: 0.685
+    x_loc: 0.67
+    y_loc: 0.945
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -42,7 +42,7 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["Drought continues across","South Central U.S."]
+    label: ["Yearlong drought continues", "across South Central U.S."]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.49
     y_loc: 0.58
@@ -125,8 +125,8 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2023-11-28"
-    end: "2023-11-30"
+    start: "2023-10-24"
+    end: "2023-10-27"
   # Defaults to 9
   fade_in:
   # Defaults to 9
