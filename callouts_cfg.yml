@@ -6,7 +6,7 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2024-07-01"
-    end: "2024-07-16"
+    end: "2024-07-13"
   # Defaults to 9
   fade_in:
   # Defaults to 9
@@ -14,8 +14,8 @@
   text:
     label: ["Low flows in much","of the East;","high flows in", "the upper Midwest"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.735
-    y_loc: 0.860
+    x_loc: 0.71
+    y_loc: 0.95
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -35,8 +35,8 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2024-07-06"
-    end: "2024-07-19"
+    start: "2024-07-09"
+    end: "2024-07-17"
   # Defaults to 9
   fade_in:
   # Defaults to 9
@@ -44,13 +44,13 @@
   text:
     label: ["Hurricane Beryl","brings high water,", "Texas to the Midwest","and Great Lakes"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.635
-    y_loc: 0.555
+    x_loc: 0.595
+    y_loc: 0.505
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#04507d"
   # Integer, starting with 0 (use >= 1 to increase height)
@@ -74,8 +74,38 @@
   text:
     label: ["Hurricane Debby","causes flooding", "along much of", "the East Coast"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.890
+    x_loc: 0.885
     y_loc: 0.572
+    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
+    pos: 4
+    cex: 6
+  # TRUE or FALSE, defaults to FALSE
+  add_box:
+  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
+  wheel_color: "#04507d"
+  # Integer, starting with 0 (use >= 1 to increase height)
+  wheel_hierarchy: 3
+  polygon:
+    # Defaults to existing small NE shape
+    file: "6_visualize/in/overlay_callouts_dummy.png"
+-
+  event_dates:
+    start: "2024-08-13"
+    end: "2024-08-21"
+  text_dates:
+    # Adjust these if the text + callout shape should appear for
+    #   different dates than the event appears on the date wheel
+    start: "2024-08-14"
+    end: "2024-08-16"
+  # Defaults to 9
+  fade_in:
+  # Defaults to 9
+  fade_out:
+  text:
+    label: ["Hurricane Ernestro","brings high water", "to Puerto Rico"]
+    # This is in percentage space, relative to the plotting device
+    x_loc: 0.865
+    y_loc: 0.245
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
     cex: 6
@@ -95,8 +125,8 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2024-08-19"
-    end: "2024-08-29"
+    start: "2024-08-22"
+    end: "2024-08-24"
   # Defaults to 9
   fade_in:
   # Defaults to 9
@@ -110,11 +140,11 @@
     pos: 4
     cex: 6
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#ca0020"
   # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
+  wheel_hierarchy: 3
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
@@ -125,22 +155,22 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2024-08-08"
-    end: "2024-09-30"
+    start: "2024-09-06"
+    end: "2024-09-12"
   # Defaults to 9
   fade_in:
   # Defaults to 9
   fade_out:
   text:
-    label: ["Small pockets","of drought in", "many areas of the U.S."]
+    label: ["Small pockets","of drought in many", "areas of the U.S."]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.625
+    x_loc: 0.485
     y_loc: 0.555
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
-    cex: 6
+    cex: 7
   # TRUE or FALSE, defaults to FALSE
-  add_box:
+  add_box: TRUE
   # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
   wheel_color: "#ca0020"
   # Integer, starting with 0 (use >= 1 to increase height)
@@ -156,7 +186,7 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2024-09-11"
-    end: "2024-09-16"
+    end: "2024-09-14"
   # Defaults to 9
   fade_in:
   # Defaults to 9
@@ -164,7 +194,7 @@
   text:
     label: ["Hurricane Francine","brings high water","to the Gulf Coast"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.718
+    x_loc: 0.680
     y_loc: 0.185
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
@@ -186,7 +216,7 @@
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
     start: "2024-09-16"
-    end: "2024-09-22"
+    end: "2024-09-20"
   # Defaults to 9
   fade_in:
   # Defaults to 9
@@ -215,7 +245,7 @@
   text_dates:
     # Adjust these if the text + callout shape should appear for
     #   different dates than the event appears on the date wheel
-    start: "2024-09-25"
+    start: "2024-09-27"
     end: "2024-09-30"
   # Defaults to 9
   fade_in:
@@ -224,7 +254,7 @@
   text:
     label: ["Hurricane Helene","brings record", "flooding"]
     # This is in percentage space, relative to the plotting device
-    x_loc: 0.718
+    x_loc: 0.680
     y_loc: 0.185
     # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
     pos: 4
