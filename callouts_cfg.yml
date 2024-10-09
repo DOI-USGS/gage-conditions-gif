@@ -162,7 +162,7 @@
   # Defaults to 9
   fade_out:
   text:
-    label: ["Small pockets","of drought in many", "areas of the U.S."]
+    label: ["Drought in many", "parts of the U.S."]
     # This is in percentage space, relative to the plotting device
     x_loc: 0.485
     y_loc: 0.555
