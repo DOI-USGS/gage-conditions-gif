@@ -12,11 +12,11 @@ rebuild_gage_data <- function() {
   # change for a rainy day.
 
   scipiper::scmake("1_fetch/out/dv_data.rds.ind", "1_fetch.yml")
-  scipiper::scmake("1_fetch/out/dv_data_fixed_gh.rds.ind", "1_fetch.yml")
-  scipiper::scmake("1_fetch/out/sites_stage.rds.ind", remake_file = "1_fetch.yml")
+  # scipiper::scmake("1_fetch/out/dv_data_fixed_gh.rds.ind", "1_fetch.yml")
+  # scipiper::scmake("1_fetch/out/sites_stage.rds.ind", remake_file = "1_fetch.yml")
   scipiper::scmake("2_process/out/dv_stats.rds.ind", "2_process.yml")
-  scipiper::scmake("2_process/out/dv_stats_fixed_gh.rds.ind", "2_process.yml")
-  scipiper::scmake("2_process/out/dv_stat_styles.rds.ind", "2_process.yml")
+  # scipiper::scmake("2_process/out/dv_stats_fixed_gh.rds.ind", "2_process.yml")
+  # scipiper::scmake("2_process/out/dv_stat_styles.rds.ind", "2_process.yml")
 }
 
 #' Function to rebuild any or all frames
