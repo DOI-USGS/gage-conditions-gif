@@ -1,19 +1,11 @@
 version: 0.3.0
 name: 1_fetch/out/site_locations.rds.ind
 type: file
-<<<<<<< HEAD
 hash: e93fe6dca1dd12caac91e1c47cc05c16
 time: 2025-01-02 18:25:34 UTC
 depends:
   1_fetch/out/sites.rds.ind: 624d927962dacc908f03e41aa9e459ac
-=======
-hash: 393470c14aab520ff0dc1f6910a73976
-time: 2024-10-03 18:50:55 UTC
-depends:
-  1_fetch/out/sites.rds.ind: 11c6444b81b55b37cbcf5f0ee9e8b671
->>>>>>> 94d104de548121dfeea889ea3a76181b6e2e2bec
 fixed: 815cf73829504ede512d11cef2f0b77a
 code:
   functions:
     fetch_site_locations: 4e220bbcbecd639095550475972c9dec
-

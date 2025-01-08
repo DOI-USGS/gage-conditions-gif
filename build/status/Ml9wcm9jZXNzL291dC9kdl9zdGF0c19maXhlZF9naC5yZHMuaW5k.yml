@@ -1,21 +1,12 @@
 version: 0.3.0
 name: 2_process/out/dv_stats_fixed_gh.rds.ind
 type: file
-<<<<<<< HEAD
 hash: d6abd8061c4f1ebc6729839c4b4ee197
 time: 2025-01-02 18:02:02 UTC
 depends:
   2_process/out/dv_stats.rds.ind: 0560d4072e1625486700809c38c74053
   1_fetch/out/dv_data_fixed_gh.rds.ind: d8e5b7ffb3b67f7e0ca2a199875d2b69
-=======
-hash: 3a460d0d017e0961bcb9037124087ce2
-time: 2024-10-07 22:47:30 UTC
-depends:
-  2_process/out/dv_stats.rds.ind: be724e68901de49c5a6d1900b2e1e2f3
-  1_fetch/out/dv_data_fixed_gh.rds.ind: 3d02f3106a5d3c88fa779f23aaa9683d
->>>>>>> 94d104de548121dfeea889ea3a76181b6e2e2bec
 fixed: 372c6f0af5e879d4b9bec2ed8c7fda96
 code:
   functions:
     process_add_fixed_gh: 6a3ff99f30659ac950a819b264752bc6
-
