@@ -208,33 +208,3 @@
   polygon:
     # Defaults to existing small NE shape
     file: "6_visualize/in/overlay_callouts_dummy.png"
--
-  event_dates:
-    start: "2025-03-22"
-    end: "2025-03-31"
-  text_dates:
-    # Adjust these if the text + callout shape should appear for
-    #   different dates than the event appears on the date wheel
-    start: "2025-03-30"
-    end: "2025-03-31"
-  # Defaults to 9
-  fade_in:
-  # Defaults to 9
-  fade_out:
-  text:
-    label: ["An expanding area", "of low flows", "in the Northeast"]
-    # This is in percentage space, relative to the plotting device
-    x_loc: 0.72
-    y_loc: 0.915
-    # Numeric indicating where to place text relative to location: 1,2,3,4 (below, left, above, right)
-    pos: 4
-    cex: 6
-  # TRUE or FALSE, defaults to FALSE
-  add_box:
-  # "#04507d" for wet event & "#ca0020" for a dry event, defaults to wet
-  wheel_color: "#ca0020"
-  # Integer, starting with 0 (use >= 1 to increase height)
-  wheel_hierarchy: 1
-  polygon:
-    # Defaults to existing small NE shape
-    file: "6_visualize/in/overlay_callouts_dummy.png"
