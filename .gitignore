@@ -16,5 +16,7 @@
 6_visualize/log/*
 build/status/Nl92aXN1YWxpemUvbG9n*
 docker-compose.yml
-
 *.xlsx
+*renv/
+*renv.lock
+*river_conditions_*
