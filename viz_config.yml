@@ -1,7 +1,7 @@
 # Actual dates of the viz frames
 vizDates:
-  start: '2024-10-01'
-  end: '2024-12-31'
+  start: '2025-01-01'
+  end: '2025-03-31'
 # Dates that make up the wheel (usually a full year)
 wheelDates:
   start: '2024-10-01'
@@ -77,7 +77,7 @@ legend_cfg:
   y_pos: 0.79
 title_cfg:
   main: "U.S. River Conditions"
-  subtitle: "October 1, 2024 - December 31, 2024"
+  subtitle: "January 1, 2025 - March 31, 2025"
   footnote: [
     "Conditions are relative to the historic",
     "daily record for each gage.",
