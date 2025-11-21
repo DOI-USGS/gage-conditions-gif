@@ -1,7 +1,7 @@
 # Actual dates of the viz frames
 vizDates:
-  start: '2025-04-01'
-  end: '2025-06-30'
+  start: '2024-10-01'
+  end: '2025-09-30'
 # Dates that make up the wheel (usually a full year)
 wheelDates:
   start: '2024-10-01'
