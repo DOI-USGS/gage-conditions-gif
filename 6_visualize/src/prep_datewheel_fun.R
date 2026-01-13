@@ -44,13 +44,21 @@ prep_datewheel_fun <- function(dateTime, viz_config, wheel_dates_config, datewhe
       n_callouts = 0
     }
 
-  make_arc <- function(x0, y0, r, from_angle, to_angle, rot_dir){
-    theta <- seq(from_angle, to_angle, by = rot_dir*0.002)
-    x_out <- x0 + r*cos(theta)
-    y_out <- y0 + r*sin(theta)
+make_arc <- function(x0, y0, r, from_angle, to_angle, rot_dir){
 
-    return(list(x = x_out, y = y_out))
+  if (isTRUE(all.equal(from_angle, to_angle))) {
+    theta <- from_angle
+  } else {
+    step <- abs(0.002)
+    step <- if (to_angle < from_angle) -step else step
+    theta <- seq(from_angle, to_angle, by = step)
   }
+
+  x_out <- x0 + r*cos(theta)
+  y_out <- y0 + r*sin(theta)
+  list(x = x_out, y = y_out)
+}
+
 
   rm(viz_config, wheel_dates_config, callouts_cfg)
 
